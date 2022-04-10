@@ -15,11 +15,12 @@ use App\Feeship;
 use App\Shipping;
 use App\Order;
 use App\OrderDetails;
+use Auth;
 session_start();
 class CheckoutController extends Controller
 {
     public function AuthLogin(){
-        $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
         if($admin_id){
             return Redirect::to('dashboard');
         }else{
