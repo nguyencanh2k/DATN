@@ -56,6 +56,10 @@ Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_bran
 //Product
 Route::get('/add-product','ProductController@add_product');
 Route::get('/edit-product/{product_id}','ProductController@edit_product');
+Route::get('users','UserController@index');
+Route::get('add-users','UserController@add_users');
+Route::post('store-users','UserController@store_users');
+Route::post('assign-roles','UserController@assign_roles');
 Route::get('/delete-product/{product_id}','ProductController@delete_product');
 Route::get('/all-product','ProductController@all_product');
 
@@ -135,4 +139,7 @@ Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 //Authentication roles
 
 Route::get('/register-auth','AuthController@register_auth');
+Route::get('/login-auth','AuthController@login_auth');
+Route::get('/logout-auth','AuthController@logout_auth');
 Route::post('/register','AuthController@register');
+Route::post('/login','AuthController@login');

@@ -76,7 +76,7 @@
                             <a href="javascript:void(0)" class="log-user">
                                 <span>
                                     <?php
-                                        $name= Session::get('admin_name');
+                                        $name= Auth::user()->admin_name;
                                         if($name){
                                             echo "Hi, ".$name;
                                         }
@@ -98,7 +98,7 @@
                                         
                                         <hr class="my-2">
                                        
-                                        <li><a href="{{URL::to('/logout')}}"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="{{URL::to('/logout-auth')}}"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -179,6 +179,17 @@
                             <li><a href="{{URL::to('/manage-slider')}}">Quản lý Slider</a></li>
                         </ul>
                     </li>
+                    @hasrole(['admin', 'author'])
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-list-ul"></i><span class="nav-text">Users</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{URL::to('/add-users')}}">Thêm User</a></li>
+                            <li><a href="{{URL::to('/users')}}">Quản lý User</a></li>
+                        </ul>
+                    </li>
+                    @endhasrole
                 </ul>
             </div>
         </div>

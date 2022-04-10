@@ -31,6 +31,13 @@
                                         Session::put('message', null);
                                     }
                                     ?>
+
+                                    @foreach($errors->all() as $val)
+                                    <ul>
+                                        <li>{{$val}}</li>
+                                    </ul>
+                                    @endforeach
+
                                     <div class="form-group">
                                         <input type="text" name="admin_email" class="form-control" placeholder="E-MAIL">
                                     </div>
@@ -40,6 +47,7 @@
                                     <button class="btn login-form__btn submit w-100">Đăng nhập</button>
                                 </form>
                                 <p class="mt-5 login-form__footer">Chưa có tài khoản? <a href="{{URL::to('/register-auth')}}" class="text-primary">Đăng ký</a></p>
+                                <p class="mt-5 login-form__footer"><a href="{{URL::to('/login-auth')}}" class="text-primary">Đăng nhập auth</a></p>
                             </div>
                         </div>
                     </div>
