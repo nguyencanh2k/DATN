@@ -24,11 +24,11 @@
         <div class="row">
             @if(session()->has('message'))
                     <div class="alert alert-success ml-3">
-                        {{ session()->get('message') }}
+                        {!! session()->get('message') !!}
                     </div>
                 @elseif(session()->has('error'))
                      <div class="alert alert-danger ml-3">
-                        {{ session()->get('error') }}
+                        {!! session()->get('error') !!}
                     </div>
             @endif
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">

@@ -76,7 +76,8 @@
                         <input type="hidden" value="{{$value->product_name}}" class="cart_product_name_{{$value->product_id}}">
                         <input type="hidden" value="{{$value->product_image}}" class="cart_product_image_{{$value->product_id}}">
                         <input type="hidden" value="{{$value->product_price}}" class="cart_product_price_{{$value->product_id}}">
-
+                        <input type="hidden" value="{{$value->product_quantity}}" class="cart_product_quantity_{{$value->product_id}}">
+                        
                         <div class="pro-details-quality mt-0px">
                             <div class="cart-plus-minus">
                                 <input class="cart-plus-minus-box cart_product_qty_{{$value->product_id}}" type="number" name="qty" min="1" value="1" />

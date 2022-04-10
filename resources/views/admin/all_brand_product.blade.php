@@ -52,4 +52,17 @@
         </div>
     </div>
 </div>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="bootstrap-pagination">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        {!!$all_brand_product->links()!!}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

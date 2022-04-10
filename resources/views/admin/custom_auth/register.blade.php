@@ -21,8 +21,8 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="index.html"> <h4>Đăng nhập</h4></a>
-                                <form class="mt-5 mb-5 login-input" action="{{URL::to('/admin-dashboard')}}" method="post">
+                                <a class="text-center" href="index.html"> <h4>Đăng ký</h4></a>
+                                <form class="mt-5 mb-5 login-input" action="{{URL::to('/register')}}" method="post">
                                     {{ csrf_field() }}
                                     <?php
                                     $message= Session::get('message');
@@ -32,14 +32,20 @@
                                     }
                                     ?>
                                     <div class="form-group">
-                                        <input type="text" name="admin_email" class="form-control" placeholder="E-MAIL">
+                                        <input type="text" name="admin_name" value="{{old('admin_name')}}" class="form-control" placeholder="NAME">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="admin_email" value="{{old('admin_email')}}" class="form-control" placeholder="E-MAIL">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="admin_phone" value="{{old('admin_phone')}}" class="form-control" placeholder="PHONE">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="admin_password" class="form-control" placeholder="PASSWORD">
                                     </div>
-                                    <button class="btn login-form__btn submit w-100">Đăng nhập</button>
+                                    <button class="btn login-form__btn submit w-100">Đăng ký</button>
                                 </form>
-                                <p class="mt-5 login-form__footer">Chưa có tài khoản? <a href="{{URL::to('/register-auth')}}" class="text-primary">Đăng ký</a></p>
+                                <p class="mt-5 login-form__footer">Đã có tài khoản? <a href="{{URL::to('/register-auth')}}" class="text-primary">Đăng nhập</a></p>
                             </div>
                         </div>
                     </div>

@@ -130,3 +130,9 @@ Route::get('/delete-slide/{slide_id}','SliderController@delete_slide');
 Route::post('/insert-slider','SliderController@insert_slider');
 Route::get('/unactive-slide/{slide_id}','SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}','SliderController@active_slide');
+
+
+//Authentication roles
+
+Route::get('/register-auth','AuthController@register_auth');
+Route::post('/register','AuthController@register');
