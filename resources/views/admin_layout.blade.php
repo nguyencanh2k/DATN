@@ -190,6 +190,14 @@
                         </ul>
                     </li>
                     @endhasrole
+                    
+                    @impersonate
+                    <li class="nav-label">
+                        <a href="{{URL::to('/impersonate-destroy')}}" aria-expanded="false">
+                            Về tài khoản của bạn
+                        </a>
+                    </li>
+                    @endimpersonate
                 </ul>
             </div>
         </div>

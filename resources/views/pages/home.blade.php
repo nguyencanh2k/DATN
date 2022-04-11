@@ -19,7 +19,7 @@
                         Frederique <br />
                         Constant 2022
                     </h1>
-                    <h1>{{$slide->slider_desc}}</h1>
+                    <h1>{!!$slide->slider_desc!!}</h1>
                     <p class="animated">Hàng tuyển chọn rất kỹ</p>
                     <a href="shop-4-column.html" class="shop-btn animated">Mua ngay</a>
                 </div>

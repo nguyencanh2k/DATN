@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Roles;
 use App\Admin;
 use Session;
+use Auth;
 class UserController extends Controller
 {
     public function index()
@@ -20,6 +21,9 @@ class UserController extends Controller
         return view('admin.users.add_users');
     }
     public function assign_roles(Request $request){
+        if(Auth::id()==$request->admin_id){
+            return redirect()->back()->with('message', 'Bạn không được phân quyền cho chính mình');
+        }
         $data = $request->all();
         $user = Admin::where('admin_email',$data['admin_email'])->first();
         $user->roles()->detach();
@@ -46,37 +50,26 @@ class UserController extends Controller
         Session::put('message','Thêm users thành công');
         return Redirect::to('users');
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
+    public function delete_user_roles($admin_id){
+        if(Auth::id()==$admin_id){
+            return redirect()->back()->with('message', 'Bạn không được xóa chính mình');
+        }
+        $admin = Admin::find($admin_id);
+        if($admin){
+            $admin->roles()->detach();
+            $admin->delete();
+        }
+        return redirect()->back()->with('message', 'Xóa user thành công');
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function impersonate($admin_id){
+        $user = Admin::where('admin_id', $admin_id)->first();
+        if($user){
+            session()->put('impersonate', $user->admin_id);
+        }
+        return redirect('/users');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function impersonate_destroy(){
+        session()->forget('impersonate');
+        return redirect('/users');
     }
 }

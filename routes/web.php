@@ -54,12 +54,17 @@ Route::post('/save-brand-product','BrandProduct@save_brand_product');
 Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_brand_product');
 
 //Product
-Route::get('/add-product','ProductController@add_product');
-Route::get('/edit-product/{product_id}','ProductController@edit_product');
-Route::get('users','UserController@index');
+Route::group(['middleware' => 'auth.roles'], function () {
+    Route::get('/add-product','ProductController@add_product');
+    Route::get('/edit-product/{product_id}','ProductController@edit_product');
+});
+Route::get('users','UserController@index')->middleware('auth.roles');
 Route::get('add-users','UserController@add_users');
 Route::post('store-users','UserController@store_users');
 Route::post('assign-roles','UserController@assign_roles');
+Route::get('impersonate/{admin_id}','UserController@impersonate');
+Route::get('impersonate-destroy','UserController@impersonate_destroy');
+Route::get('delete-user-roles/{admin_id}','UserController@delete_user_roles')->middleware('auth.roles');
 Route::get('/delete-product/{product_id}','ProductController@delete_product');
 Route::get('/all-product','ProductController@all_product');
 
