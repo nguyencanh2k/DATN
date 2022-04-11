@@ -147,6 +147,24 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-list-ul"></i><span class="nav-text">Danh mục bài viết</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{URL::to('/add-category-post')}}">Thêm danh mục bài viết</a></li>
+                            <li><a href="{{URL::to('/all-category-post')}}">Liệt kê danh mục bài viết</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-list-ul"></i><span class="nav-text">Quản lý bài viết</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{URL::to('/add-post')}}">Thêm bài viết</a></li>
+                            <li><a href="{{URL::to('/all-post')}}">Liệt kê bài viết</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-list-ul"></i><span class="nav-text">Đơn hàng</span>
                         </a>
                         <ul aria-expanded="false">
@@ -266,6 +284,15 @@
          CKEDITOR.replace('ckeditor6');
          CKEDITOR.replace('ckeditor7');
          CKEDITOR.replace('ckeditor8');
+         CKEDITOR.replace('ckeditor9');
+         CKEDITOR.replace('ckeditor10');
+         CKEDITOR.replace('ckeditor11');
+         CKEDITOR.replace('ckeditor12');
+         CKEDITOR.replace('ckeditor13');
+         CKEDITOR.replace('ckeditor14');
+         CKEDITOR.replace('ckeditor15');
+         CKEDITOR.replace('ckeditor16');
+         CKEDITOR.replace('ckeditor17');
     </script>
     <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
     <script type="text/javascript">

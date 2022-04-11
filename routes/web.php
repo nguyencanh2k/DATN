@@ -53,6 +53,26 @@ Route::get('/active-brand-product/{brand_product_id}','BrandProduct@active_brand
 Route::post('/save-brand-product','BrandProduct@save_brand_product');
 Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_brand_product');
 
+
+//category post
+Route::get('/add-category-post','CategoryPost@add_category_post');
+Route::get('/all-category-post','CategoryPost@all_category_post');
+Route::post('/save-category-post','CategoryPost@save_category_post');
+// Route::get('/danh-muc-bai-viet/{cate_post_slug}','CategoryPost@danh_muc_bai_viet');
+Route::get('/edit-category-post/{category_post_id}','CategoryPost@edit_category_post');
+Route::post('/update-category-post/{cate_id}','CategoryPost@update_category_post');
+Route::get('/delete-category-post/{cate_id}','CategoryPost@delete_category_post');
+
+//post
+Route::get('/add-post','PostController@add_post');
+Route::get('/all-post','PostController@all_post');
+Route::get('/delete-post/{post_id}','PostController@delete_post');
+Route::get('/edit-post/{post_id}','PostController@edit_post');
+Route::post('/save-post','PostController@save_post');
+Route::post('/update-post/{post_id}','PostController@update_post');
+//danh muc bai viet home
+Route::get('/danh-muc-bai-viet/{post_slug}','PostController@danh_muc_bai_viet');
+
 //Product
 Route::group(['middleware' => 'auth.roles'], function () {
     Route::get('/add-product','ProductController@add_product');

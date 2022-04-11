@@ -16,6 +16,7 @@ use App\Shipping;
 use App\Order;
 use App\OrderDetails;
 use Auth;
+use App\CatePost;
 session_start();
 class CheckoutController extends Controller
 {
@@ -28,6 +29,9 @@ class CheckoutController extends Controller
         }
     }
     public function login_checkout(Request $request){
+
+        //category post
+        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
         //seo 
         $meta_desc = "Đăng nhập thanh toán"; 
         $meta_keywords = "Đăng nhập thanh toán";
@@ -37,7 +41,7 @@ class CheckoutController extends Controller
        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
 
-       return view('pages.checkout.login_checkout')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical);
+       return view('pages.checkout.login_checkout')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
    }
    public function add_customer(Request $request){
 
@@ -54,6 +58,9 @@ class CheckoutController extends Controller
     	return Redirect::to('/checkout');
     }
     public function checkout(Request $request){
+
+        //category post
+        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
         //seo 
 
        $meta_desc = "Đăng nhập thanh toán"; 
@@ -66,7 +73,7 @@ class CheckoutController extends Controller
        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
        $city = City::orderby('matp','ASC')->get();
 
-       return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city);
+       return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('category_post',$category_post);
     }
     public function save_checkout_customer(Request $request){
         $data = array();
@@ -83,6 +90,9 @@ class CheckoutController extends Controller
         return Redirect::to('/payment');
     }
     public function payment(Request $request){
+
+        //category post
+        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
         //seo 
         $meta_desc = "Đăng nhập thanh toán"; 
         $meta_keywords = "Đăng nhập thanh toán";
@@ -91,7 +101,7 @@ class CheckoutController extends Controller
         //--seo 
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
-        return view('pages.checkout.payment')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical);
+        return view('pages.checkout.payment')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
 
     }
     public function order_place(Request $request){

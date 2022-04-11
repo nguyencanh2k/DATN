@@ -198,6 +198,15 @@
                                         </li>
                                         <li class="menu-dropdown">
                                             <a href="#">Blog</a>
+                                            <ul class="mega-menu-wrap">
+                                                <li>
+                                                    <ul>
+                                                        @foreach($category_post as $key => $danhmucbaiviet)
+                                                            <li><a href="{{URL::to('/danh-muc-bai-viet/'.$danhmucbaiviet->cate_post_slug)}}">{{$danhmucbaiviet->cate_post_name}}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li><a href="contact.html">Contact Us</a></li>
                                     </ul>

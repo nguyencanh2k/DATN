@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Mail;
 use App\Slider;
+use App\CatePost;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -13,6 +14,8 @@ session_start();
 class HomeController extends Controller
 {
     public function index(Request $request){
+        //category post
+        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(3)->get();
         //seo 
@@ -28,9 +31,11 @@ class HomeController extends Controller
         $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
         $all_product2 = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'asc')->limit(16)->get();
         $all_product3 = DB::table('tbl_product')->where('product_status','0')->orderby(DB::raw('RAND()'))->limit(12)->get();
-        return view('pages.home')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product2',$all_product2)->with('all_product3',$all_product3)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider);
+        return view('pages.home')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product2',$all_product2)->with('all_product3',$all_product3)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post);
     }
     public function search(Request $request){
+        //category post
+        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
         //seo 
         $meta_desc = "Tìm kiếm sản phẩm"; 
         $meta_keywords = "Tìm kiếm sản phẩm";
@@ -45,7 +50,7 @@ class HomeController extends Controller
        $search_product = DB::table('tbl_product')->where('product_name','like','%'.$keywords.'%')->get(); 
 
 
-       return view('pages.sanpham.search')->with('category',$cate_product)->with('brand',$brand_product)->with('search_product',$search_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical);
+       return view('pages.sanpham.search')->with('category',$cate_product)->with('brand',$brand_product)->with('search_product',$search_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
 
     }
     public function send_mail(){
