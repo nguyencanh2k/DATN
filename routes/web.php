@@ -72,6 +72,7 @@ Route::post('/save-post','PostController@save_post');
 Route::post('/update-post/{post_id}','PostController@update_post');
 //danh muc bai viet home
 Route::get('/danh-muc-bai-viet/{post_slug}','PostController@danh_muc_bai_viet');
+Route::get('/bai-viet/{post_slug}','PostController@bai_viet');
 
 //Product
 Route::group(['middleware' => 'auth.roles'], function () {

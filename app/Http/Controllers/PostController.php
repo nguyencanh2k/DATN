@@ -131,4 +131,25 @@ class PostController extends Controller
         $post = Post::with('cate_post')->where('post_status',0)->where('cate_post_id',$cate_id)->paginate(10);
         return view('pages.baiviet.danhmucbaiviet')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('post',$post);
     }
+    public function bai_viet(Request $request, $post_slug){
+        //category post
+        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+        $post = Post::with('cate_post')->where('post_status',0)->where('post_slug',$post_slug)->take(1)->get();
+
+        // $catepost = CatePost::where('cate_post_slug', $post_slug)->take(1)->get();
+        foreach($post as $key =>$p){
+            //seo 
+            $meta_desc = $p->post_meta_desc; 
+            $meta_keywords = $p->post_meta_keywords;
+            $meta_title = $p->post_title;
+            $cate_id = $p->cate_post_id;
+            $url_canonical = $request->url();
+            $cate_post_id = $p->cate_post_id;
+            //--seo
+        }
+        $related = Post::with('cate_post')->where('post_status',0)->where('cate_post_id', $cate_post_id)->whereNotIn('post_slug',[$post_slug])->take(3)->get();
+        return view('pages.baiviet.baiviet')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('post',$post)->with('related',$related);
+    }
 }
