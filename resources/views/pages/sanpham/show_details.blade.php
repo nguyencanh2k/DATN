@@ -30,18 +30,11 @@
                         </div>
                     </div>
                     <div id="gallery" class="product-dec-slider-2">
-                        <a class="active" data-image="{{URL::to('/public/uploads/product/'.$value->product_image)}}" data-zoom-image="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-                            <img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="" />
+                        @foreach ($gallery as $key => $gal)
+                        <a class="active" data-image="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}" data-zoom-image="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}">
+                            <img src="{{URL::to('/public/uploads/gallery/'.$gal->gallery_image)}}" alt="{{$gal->gallery_name}}" />
                         </a>
-                        <a data-image="{{URL::to('/public/uploads/product/'.$value->product_image)}}" data-zoom-image="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-                            <img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="" />
-                        </a>
-                        <a data-image="{{URL::to('/public/uploads/product/'.$value->product_image)}}" data-zoom-image="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-                            <img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="" />
-                        </a>
-                        <a data-image="{{URL::to('/public/uploads/product/'.$value->product_image)}}" data-zoom-image="{{URL::to('/public/uploads/product/'.$value->product_image)}}">
-                            <img src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt="" />
-                        </a>
+                        @endforeach
                     </div>
                 </div>
             </div>

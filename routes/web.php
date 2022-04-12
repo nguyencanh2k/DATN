@@ -169,3 +169,11 @@ Route::get('/login-auth','AuthController@login_auth');
 Route::get('/logout-auth','AuthController@logout_auth');
 Route::post('/register','AuthController@register');
 Route::post('/login','AuthController@login');
+
+//Gallery
+Route::get('/add-gallery/{product_id}','GalleryController@add_gallery');
+Route::post('/select-gallery','GalleryController@select_gallery');
+Route::post('/insert-gallery/{pro_id}','GalleryController@insert_gallery');
+Route::post('/update-gallery-name','GalleryController@update_gallery_name');
+Route::post('/delete-gallery','GalleryController@delete_gallery');
+Route::post('/update-gallery','GalleryController@update_gallery');

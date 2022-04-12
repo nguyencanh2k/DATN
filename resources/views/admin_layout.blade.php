@@ -16,7 +16,7 @@
     <!-- Custom Stylesheet -->
     <link href="{{asset('public/backend/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('public/backend/css/formValidation.min.css')}}" rel="stylesheet">
-
+    <meta name="csrf-token" content="{{csrf_token()}}">
 </head>
 
 <body>
@@ -308,7 +308,7 @@
             function fetch_delivery(){
                 var _token = $('input[name="_token"]').val();
                  $.ajax({
-                    url : '{{url('/select-feeship')}}',
+                    url : "{{url('/select-feeship')}}",
                     method: 'POST',
                     data:{_token:_token},
                     success:function(data){
@@ -322,7 +322,7 @@
                 var fee_value = $(this).text();
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
-                    url : '{{url('/update-delivery')}}',
+                    url : "{{url('/update-delivery')}}",
                     method: 'POST',
                     data:{feeship_id:feeship_id, fee_value:fee_value, _token:_token},
                     success:function(data){
@@ -339,7 +339,7 @@
                 var fee_ship = $('.fee_ship').val();
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
-                    url : '{{url('/insert-delivery')}}',
+                    url : "{{url('/insert-delivery')}}",
                     method: 'POST',
                     data:{city:city, province:province, _token:_token, wards:wards, fee_ship:fee_ship},
                     success:function(data){
@@ -361,7 +361,7 @@
                     result = 'wards';
                 }
                 $.ajax({
-                    url : '{{url('/select-delivery')}}',
+                    url : "{{url('/select-delivery')}}",
                     method: 'POST',
                     data:{action:action,ma_id:ma_id,_token:_token},
                     success:function(data){
@@ -383,7 +383,7 @@
             // alert(order_qty);
             // alert(order_code);
             $.ajax({
-                    url : '{{url('/update-qty')}}',
+                    url : "{{url('/update-qty')}}",
     
                     method: 'POST',
     
@@ -437,7 +437,7 @@
             if(j==0){
             
                     $.ajax({
-                            url : '{{url('/update-order-qty')}}',
+                            url : "{{url('/update-order-qty')}}",
                             method: 'POST',
                             data:{_token:_token, order_status:order_status ,order_id:order_id ,quantity:quantity, order_product_id:order_product_id},
                             success:function(data){
@@ -448,6 +448,98 @@
                 
             }
 
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            load_gallery();
+            function load_gallery(){
+                var pro_id = $('.pro_id').val();
+                var _token = $('input[name="_token"]').val();
+                
+                $.ajax({
+                    url : "{{url('/select-gallery')}}",
+                    method: 'POST',
+                    data:{pro_id:pro_id, _token:_token},
+                    success:function(data){
+                        $('#gallery_load').html(data);
+                    }
+                });
+            }
+            $('#file').change(function(){
+                var error = '';
+                var files = $('#file')[0].files;
+                if(files.length>5){
+                    error+='<p>chọn tối đa 4 ảnh</p>';
+                }else if(files.length==''){
+                    error+='<p>Không được bỏ trống</p>';
+                }else if (files.size>100000000){
+                    error+='<p>File ảnh phải dưới 10Mb</p>';
+                }
+                if(error==''){
+
+                }else{
+                    $('#file').val('');
+                    $('#error_gallery').html('<span class="text-danger">'+error+'</span>');
+                    return false;
+                }
+            });
+            $(document).on('blur','.edit_gal_name', function(){
+                var gal_id = $(this).data('gal_id');
+                var gal_text = $(this).text();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url : "{{url('/update-gallery-name')}}",
+                    method: 'POST',
+                    data:{gal_id:gal_id, gal_text:gal_text, _token:_token},
+                    success:function(data){
+                        load_gallery();
+                        $('#error_gallery').html('<span class="text-danger">Cập nhật tên hình ảnh thành công</span>');
+            
+                    }
+                });
+            });
+            $(document).on('click','.delete-gallery', function(){
+                var gal_id = $(this).data('gal_id');
+                var _token = $('input[name="_token"]').val();
+                if(confirm('Bạn muốn xóa ảnh này không?')){
+
+                    $.ajax({
+                    url : "{{url('/delete-gallery')}}",
+                    method: 'POST',
+                    data:{gal_id:gal_id, _token:_token},
+                    success:function(data){
+                        load_gallery();
+                        $('#error_gallery').html('<span class="text-danger">Xóa hình ảnh thành công</span>');
+                    }
+                });
+                }
+            });
+            $(document).on('change','.file_image', function(){
+                var gal_id = $(this).data('gal_id');
+                var image = document.getElementById('file-'+gal_id).files[0];
+                var form_data = new FormData();
+                form_data.append("file",document.getElementById('file-'+gal_id).files[0] );
+                form_data.append("gal_id", gal_id);
+
+                    $.ajax({
+                    url : "{{url('/update-gallery')}}",
+                    method: 'POST',
+                    headers:{
+                        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                    },
+                    data:form_data,
+                    contentType:false,
+                    cache:false,
+                    processData:false,
+
+                    success:function(data){
+                        load_gallery();
+                        $('#error_gallery').html('<span class="text-danger">Cập nhật hình ảnh thành công</span>');
+                    }
+                });
+                
+            });
         });
     </script>
 </body>

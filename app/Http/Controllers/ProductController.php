@@ -9,6 +9,8 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 use App\CatePost;
+use App\Gallery;
+use File;
 session_start();
 class ProductController extends Controller
 {
@@ -40,7 +42,8 @@ class ProductController extends Controller
         $this->AuthLogin();
         $data = array();
     	$data['product_name'] = $request->product_name;
-    	$data['product_quantity'] = $request->product_product_quantity;
+    	$data['product_quantity'] = $request->product_quantity;
+    	$data['product_sold'] = '0';
     	$data['product_price'] = $request->product_price;
     	$data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -49,21 +52,31 @@ class ProductController extends Controller
         $data['product_status'] = $request->product_status;
         $data['product_image'] = $request->product_status;
         $get_image = $request->file('product_image');
+
+        $path = 'public/uploads/product/';
+        $path_gallery = 'public/uploads/gallery/';
       
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
             $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('public/uploads/product',$new_image);
+            $get_image->move($path, $new_image);
+            File::copy($path.$new_image, $path_gallery.$new_image);
             $data['product_image'] = $new_image;
-            DB::table('tbl_product')->insert($data);
-            Session::put('message','Thêm sản phẩm thành công');
-            return Redirect::to('add-product');
+            
         }
-        $data['product_image'] = '';
-    	DB::table('tbl_product')->insert($data);
-    	Session::put('message','Thêm sản phẩm thành công');
-    	return Redirect::to('all-product');
+        // $data['product_image'] = '';
+    	// DB::table('tbl_product')->insert($data);
+    	// Session::put('message','Thêm sản phẩm thành công');
+    	// return Redirect::to('all-product');
+        $pro_id = DB::table('tbl_product')->insertGetId($data);
+        $gallery = new Gallery();
+        $gallery->gallery_name = $new_image;
+        $gallery->gallery_image = $new_image;
+        $gallery->product_id = $pro_id;
+        $gallery->save();
+        Session::put('message','Thêm sản phẩm thành công');
+        return Redirect::to('add-product');
     }
     public function unactive_product($product_id){
         $this->AuthLogin();
@@ -136,6 +149,7 @@ class ProductController extends Controller
 
         foreach($details_product as $key => $value){
             $category_id = $value->category_id;
+            $product_id = $value->product_id;
             //seo 
             $meta_desc = $value->product_desc;
             $meta_keywords = $value->product_name;
@@ -143,14 +157,14 @@ class ProductController extends Controller
             $url_canonical = $request->url();
             //--seo
         }
-            
-    
+        //gallery
+        $gallery = Gallery::where('product_id', $product_id)->take(4)->get();
 
         $related_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
         
-        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
+        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('gallery',$gallery);
     }
 }
