@@ -22,6 +22,7 @@ Route::post('/tim-kiem', 'HomeController@search');
 Route::get('/danh-muc-san-pham/{category_id}','CategoryProduct@show_category_home');
 Route::get('/thuong-hieu-san-pham/{brand_id}','BrandProduct@show_brand_home');
 Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
+Route::get('/tag/{product_tag}','ProductController@tag');
 
 //Back-end
 Route::get('/admin', 'AdminController@index');

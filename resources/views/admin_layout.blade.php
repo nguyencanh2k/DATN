@@ -17,6 +17,11 @@
     <link href="{{asset('public/backend/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('public/backend/css/formValidation.min.css')}}" rel="stylesheet">
     <meta name="csrf-token" content="{{csrf_token()}}">
+    {{-- <link href="{{asset('public/backend/css/jquery.dataTables.min.css')}}" rel="stylesheet"> --}}
+    <link rel="stylesheet" type="text/css" href="{{asset('public/backend/DataTables/datatables.min.css')}}"/>
+    <link href="{{asset('public/backend/css/bootstrap-tagsinput.css')}}" rel="stylesheet">
+ 
+    
 </head>
 
 <body>
@@ -269,6 +274,9 @@
     <script src="{{asset('public/backend/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js')}}"></script>
 
 
+    <script type="text/javascript" src="{{asset('public/backend/DataTables/datatables.min.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{asset('public/backend/js/jquery.dataTables.min.js')}}"></script> --}}
+    <script src="{{asset('public/backend/js/bootstrap-tagsinput.min.js')}}"></script>
 
     <script src="{{asset('public/backend/js/dashboard/dashboard-1.js')}}"></script>
     <script src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
@@ -541,6 +549,12 @@
                 
             });
         });
+    </script>
+    {{-- datatable --}}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
     </script>
 </body>
 

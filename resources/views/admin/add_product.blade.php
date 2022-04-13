@@ -72,6 +72,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Tags sản phẩm</label>
+                        <div class="col-sm-10">
+                            <input type="text" data-role="tagsinput" name="product_tags" class="form-control" placeholder="Tags sản phẩm">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Thương hiệu</label>
                         <div class="col-sm-10 form-group">
                             <select name="product_brand" class="form-control">

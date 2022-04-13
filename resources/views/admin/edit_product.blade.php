@@ -61,6 +61,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Tags sản phẩm</label>
+                        <div class="col-sm-10">
+                            <input type="text" data-role="tagsinput" name="product_tags" class="form-control" value="{{$pro->product_tags}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Danh mục sản phẩm</label>
                         <div class="col-sm-10 form-group">
                             <select name="product_cate" class="form-control">

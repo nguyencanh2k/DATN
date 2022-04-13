@@ -91,7 +91,6 @@
                             <a href="#"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
                         </div>
                     </div>
-                    
                     <div class="pro-details-social-info">
                         <span>Share</span>
                         <div class="social-info">
@@ -117,6 +116,31 @@
                         <ul>
                             <li><img src="assets/images/icons/policy.png" alt="" /><span>Dịch vụ gói quà miễn phí khi mua tại cửa hàng</span></li>
                         </ul>
+                        <style type="text/css">
+                            a.tags_style{
+                                margin: 3px 2px;
+                                border: 1px solid;
+                                height: auto;
+                                background: #4fb68d;
+                                color: #fff;
+                                padding: 3px;
+                            }
+                            a.tags_style:hover{
+                                background: black;
+                            }
+                        </style>
+                        <fieldset>
+                            <legend>Tags</legend>
+                            <p><i class="fa fa-tag"></i>
+                            @php
+                                $tags = $value->product_tags;
+                                $tags = explode(",",$tags);
+                            @endphp
+                            @foreach ($tags as $tag)
+                                <a class="tags_style" href="{{url('/tag/'.str_slug($tag))}}">{{$tag}}</a>
+                            @endforeach
+                            </p>
+                        </fieldset>
                     </div>
                 </div>
             </div>
