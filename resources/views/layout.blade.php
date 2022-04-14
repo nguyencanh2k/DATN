@@ -577,6 +577,7 @@
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v13.0" nonce="imywgrxV"></script>
 
         <script src="{{asset('public/frontend/js/sweetalert.js')}}"></script>
+        <script src="{{asset('public/frontend/js/simple.money.format.js')}}"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('.add-to-cart').click(function(){
@@ -794,6 +795,35 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#sort').on('change', function(){
+                var url = $(this).val();
+                if(url){
+                    window.location = url;
+                }
+                return false;
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+        $( "#slider-range" ).slider({
+        range: true,
+        min: {{$min_price_range}},
+        max: {{$max_price_range}},
+        step: 100000,
+        values: [ {{$min_price}}, {{$max_price}} ],
+        slide: function( event, ui ) {
+            $( "#amount" ).val(ui.values[ 0 ].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VNĐ - " + ui.values[ 1 ].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VNĐ ");
+            $( "#start_price" ).val(ui.values[ 0 ]);
+            $( "#end_price" ).val(ui.values[ 1 ]);
+        }
+        });
+        $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") +
+        " VNĐ - " + $( "#slider-range" ).slider( "values", 1 ).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VNĐ");
 
+    });
+    </script>
     </body>
 </html>

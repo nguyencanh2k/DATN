@@ -40,15 +40,19 @@
                     <!-- Right Side Start -->
                     <div class="select-shoing-wrap">
                         <div class="shot-product">
-                            <p>Sort By:</p>
+                            <p>Sắp xếp theo</p>
                         </div>
                         <div class="shop-select">
-                            <select>
-                                <option value="">Sort by newness</option>
-                                <option value="">A to Z</option>
-                                <option value=""> Z to A</option>
-                                <option value="">In stock</option>
-                            </select>
+                            <form>
+                                @csrf
+                                <select name="sort" id="sort" class="form-control">
+                                    <option value="{{Request::url()}}?sort_by=none">---Lọc---</option>
+                                    <option value="{{Request::url()}}?sort_by=tang_dan">---Giá tăng dần---</option>
+                                    <option value="{{Request::url()}}?sort_by=giam_dan">---Giá giảm dần---</option>
+                                    <option value="{{Request::url()}}?sort_by=kytu_az">A đến Z</option>
+                                    <option value="{{Request::url()}}?sort_by=kytu_za">Z đến A</option>
+                                </select>
+                            </form>
                         </div>
                     </div>
                     <!-- Right Side End -->
@@ -146,24 +150,6 @@
                                             <span class="checkmark"></span>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" value="" /> <a href="#">Fresh Vegetables <span>(17)</span></a>
-                                            <span class="checkmark"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" value="" /> <a href="#">Fresh Salad & Dips<span>(17)</span> </a>
-                                            <span class="checkmark"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" value="" /> <a href="#">Milk,Butter & Eggs<span>(17)</span> </a>
-                                            <span class="checkmark"></span>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -173,10 +159,15 @@
                     <div class="sidebar-widget mt-20">
                         <h4 class="pro-sidebar-title">Price</h4>
                         <div class="price-filter mt-10">
+                            <form action="">
                             <div class="price-slider-amount">
-                                <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                                <input type="text" id="amount" class="w-100" placeholder="Add Your Price" />
+                                <input type="hidden" id="start_price" name="start_price"/>
+                                <input type="hidden" id="end_price" name="end_price"/>
                             </div>
                             <div id="slider-range"></div>
+                            <input type="submit" name="filter_price" value="Lọc giá" class="btn btn-success" />
+                            </form>
                         </div>
                     </div>
                     <div class="sidebar-widget mt-30">
@@ -186,12 +177,6 @@
                                 <li>
                                     <div class="sidebar-widget-list-left">
                                         <input type="checkbox" /> <a href="#">Studio Design<span>(10)</span> </a>
-                                        <span class="checkmark"></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="sidebar-widget-list-left">
-                                        <input type="checkbox" value="" /> <a href="#">Graphic Corner<span>(7)</span></a>
                                         <span class="checkmark"></span>
                                     </div>
                                 </li>
