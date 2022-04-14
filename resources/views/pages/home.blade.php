@@ -285,17 +285,18 @@
                     <!-- Feature Slider Start -->
                     <div class="feature-slider owl-carousel owl-nav-style">
                         <!-- Single Item -->
+                        @foreach($all_product as $key => $product2)
                         <div class="feature-slider-item">
                             <article class="list-product">
                                 <div class="img-block">
                                     <a href="single-product.html" class="thumbnail">
-                                        <img class="first-img" src="{{asset('public/frontend/images/product-image/organic/product-18.jpg')}}" alt="" />
-                                        <img class="second-img" src="{{asset('public/frontend/images/product-image/organic/product-18.jpg')}}" alt="" />
+                                        <img class="first-img" src="{{URL::to('public/uploads/product/'.$product2->product_image)}}" alt="" />
+                                        <img class="second-img" src="{{URL::to('public/uploads/product/'.$product2->product_image)}}" alt="" />
                                     </a>
                                 </div>
                                 <div class="product-decs">
-                                    <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                    <h2><a href="single-product.html" class="product-link">Juicy Couture Solid...</a></h2>
+                                    <a class="inner-link" href="shop-4-column.html"><span>{{$product2->product_name}}</span></a>
+                                    <h2><a href="single-product.html" class="product-link">{{$product2->product_content}}</a></h2>
                                     <div class="rating-product">
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
@@ -305,36 +306,13 @@
                                     </div>
                                     <div class="pricing-meta">
                                         <ul>
-                                            <li class="old-price not-cut">€29.90</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="list-product">
-                                <div class="img-block">
-                                    <a href="single-product.html" class="thumbnail">
-                                        <img class="first-img" src="{{asset('public/frontend/images/product-image/organic/product-19.jpg')}}" alt="" />
-                                        <img class="second-img" src="{{asset('public/frontend/images/product-image/organic/product-20.jpg')}}" alt="" />
-                                    </a>
-                                </div>
-                                <div class="product-decs">
-                                    <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                    <h2><a href="single-product.html" class="product-link">New Balance Fresh...</a></h2>
-                                    <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div>
-                                    <div class="pricing-meta">
-                                        <ul>
-                                            <li class="old-price not-cut">€29.90</li>
+                                            <li class="old-price not-cut">{{number_format($product2->product_price,0,',','.').' '.'VNĐ'}}</li>
                                         </ul>
                                     </div>
                                 </div>
                             </article>
                         </div>
+                        @endforeach
                     </div>
                     <!-- Feature Slider End -->
                 </div>

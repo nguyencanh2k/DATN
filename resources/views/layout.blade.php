@@ -111,7 +111,14 @@
                                                     <?php 
                                                         }
                                                     ?>
-
+                                                    <?php
+                                                        $customer_id = Session::get('customer_id');
+                                                        if($customer_id!=NULL){ 
+                                                    ?>
+                                                        <li><a href="{{URL::to('/history')}}">Lịch sử đơn hàng</a></li>
+                                                    <?php
+                                                    } 
+                                                    ?>
                                                     
                                                     <?php
                                                         $customer_id = Session::get('customer_id');
@@ -499,10 +506,6 @@
                                             {{-- <a href="#"> + Add To Cart</a> --}}
                                             
                                         </div>
-                                        <div class="pro-details-cart btn-hover" >
-                                            <a href="#"> + Add To Cart</a>
-                                            
-                                        </div>
                                         <div id="beforesend_quickview"></div>
                                     </div>
                                     <div class="pro-details-wish-com">
@@ -789,12 +792,6 @@
                     }
                 });
             });
-            var $owl = $('.owl-carousel').owlCarousel({
-    items: 1,
-    loop:true
-});
-
-$owl.trigger('refresh.owl.carousel');
         });
     </script>
 

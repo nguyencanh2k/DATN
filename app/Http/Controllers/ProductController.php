@@ -203,7 +203,7 @@ class ProductController extends Controller
         $output['product_content'] = $product->product_content;
         $output['product_price'] = number_format($product->product_price,0,',','.').'VND';
         $output['product_image'] = '<img src="public/uploads/product/'.$product->product_image.'"/>';
-        $output['product_button'] ='<input type="button" id="buyquickview"  data-id_product="'.$product->product_id.'" class="add-to-cart-quickview" name="add-to-cart" value="Them vao gio hang" />';
+        $output['product_button'] ='<a type="button" id="buyquickview"  data-id_product="'.$product->product_id.'" class="add-to-cart-quickview" name="add-to-cart" />Thêm vào giỏ hàng';
         $output['product_quickview_value'] = '
         <input type="hidden" value="'.$product->product_id.'" class="cart_product_id_'.$product->product_id.'">
         <input type="hidden" value="'.$product->product_name.'" class="cart_product_name_'.$product->product_id.'">

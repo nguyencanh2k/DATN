@@ -9,6 +9,11 @@ use App\OrderDetails;
 use App\Customer;
 use App\Coupon;
 use App\Product;
+use App\CatePost;
+use App\Brand;
+use App\CategoryProductModel;
+use DB;
+use Session;
 class OrderController extends Controller
 {
     public function manage_order(){
@@ -285,5 +290,67 @@ class OrderController extends Controller
 		$order_details = OrderDetails::where('product_id',$data['order_product_id'])->where('order_code',$data['order_code'])->first();
 		$order_details->product_sales_quantity = $data['order_qty'];
 		$order_details->save();
+	}
+	public function history(Request $request){
+		if(!Session::get('customer_id')){
+			return redirect('login-checkout')->with('error','Vui long dang nhap');
+		}else{
+			//category post
+			$category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+			//seo 
+			$meta_desc = "Lịch sử đơn hàng"; 
+			$meta_keywords = "Lịch sử đơn hàng";
+			$meta_title = "Lịch sử đơn hàng";
+			$url_canonical = $request->url();
+			//--seo
+	
+			$cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
+			$brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+			$getorder = Order::where('customer_id',Session::get('customer_id'))->orderby('order_id', 'DESC')->get();
+			return view('pages.history.history')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('getorder',$getorder);
+		}
+	}
+	public function view_history_order(Request $request,$order_code){
+		if(!Session::get('customer_id')){
+			return redirect('login-checkout')->with('error','Vui long dang nhap');
+		}else{
+			//category post
+			$category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+			//seo 
+			$meta_desc = "Lịch sử đơn hàng"; 
+			$meta_keywords = "Lịch sử đơn hàng";
+			$meta_title = "Lịch sử đơn hàng";
+			$url_canonical = $request->url();
+			//--seo
+	
+			$cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
+			$brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+			
+			$order_details = OrderDetails::with('product')->where('order_code',$order_code)->get();
+			$getorder = Order::where('order_code',$order_code)->first();
+			$customer_id = $getorder->customer_id;
+			$shipping_id = $getorder->shipping_id;
+			$order_status = $getorder->order_status;
+			
+			$customer = Customer::where('customer_id',$customer_id)->first();
+			$shipping = Shipping::where('shipping_id',$shipping_id)->first();
+
+			$order_details_product = OrderDetails::with('product')->where('order_code', $order_code)->get();
+
+			foreach($order_details_product as $key => $order_d){
+				$product_coupon = $order_d->product_coupon;
+			}
+			
+			if($product_coupon != 'no'){
+				$coupon = Coupon::where('coupon_code',$product_coupon)->first();
+				$coupon_condition = $coupon->coupon_condition;
+				$coupon_number = $coupon->coupon_number;
+			}else{
+				$coupon_condition = 2;
+				$coupon_number = 0;
+			}
+			return view('pages.history.view_history_order')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with(
+				'order_details',$order_details)->with('customer',$customer)->with('shipping',$shipping)->with('order_details',$order_details)->with('coupon_condition',$coupon_condition)->with('coupon_number',$coupon_number)->with('order_status',$order_status)->with('getorder',$getorder);
+		}
 	}
 }
