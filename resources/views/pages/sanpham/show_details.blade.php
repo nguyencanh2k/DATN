@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="breadcrumb-content">
-                    <h1 class="breadcrumb-hrading">Single Product Page</h1>
+                    <h1 class="breadcrumb-hrading">{{$meta_title}}</h1>
                     <ul class="breadcrumb-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Single Product</li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li>Chi tiết sản phẩm</li>
                     </ul>
                 </div>
             </div>
@@ -174,7 +174,99 @@
                     <div class="row">
                         <div class="col-lg-7">
                             <div class="review-wrapper">
-                                <div class="fb-comments" data-href="{{$url_canonical}}" data-width="" data-numposts="20"></div>
+                                <div class="single-review">
+                                    <div class="review-img">
+                                        <img width="120" height="120" src="{{asset('public/frontend/images/guest.jpg')}}" alt="" />
+                                    </div>
+                                    <div class="review-content">
+                                        <div class="review-top-wrap">
+                                            <div class="review-left">
+                                                <div class="review-name">
+                                                    <h4>White Lewis</h4>
+                                                </div>
+                                                <div class="rating-product">
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-left">
+                                                <a href="#">Reply</a>
+                                            </div>
+                                        </div>
+                                        <div class="review-bottom">
+                                            <p>
+                                                Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-review child-review">
+                                    <div class="review-img">
+                                        <img src="assets/images/testimonial-image/2.png" alt="" />
+                                    </div>
+                                    <div class="review-content">
+                                        <div class="review-top-wrap">
+                                            <div class="review-left">
+                                                <div class="review-name">
+                                                    <h4>White Lewis</h4>
+                                                </div>
+                                                <div class="rating-product">
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-left">
+                                                <a href="#">Reply</a>
+                                            </div>
+                                        </div>
+                                        <div class="review-bottom">
+                                            <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="ratting-form-wrapper pl-50">
+                                <h3>Add a Review</h3>
+                                <div class="ratting-form">
+                                    <form action="#">
+                                        <div class="star-box">
+                                            <span>Your rating:</span>
+                                            <div class="rating-product">
+                                                <i class="ion-android-star"></i>
+                                                <i class="ion-android-star"></i>
+                                                <i class="ion-android-star"></i>
+                                                <i class="ion-android-star"></i>
+                                                <i class="ion-android-star"></i>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="rating-form-style mb-10">
+                                                    <input placeholder="Name" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="rating-form-style mb-10">
+                                                    <input placeholder="Email" type="email" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="rating-form-style form-submit">
+                                                    <textarea name="Your Review" placeholder="Message"></textarea>
+                                                    <input type="submit" value="Submit" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

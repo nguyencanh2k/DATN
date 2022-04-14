@@ -16,6 +16,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
 Route::get('/404', 'HomeController@error_page');
 Route::post('/tim-kiem', 'HomeController@search');
+Route::post('/autocomplete-ajax', 'HomeController@autocomplete_ajax');
 
 
 //Danh muc san pham trang chu
@@ -41,6 +42,9 @@ Route::get('/active-category-product/{category_product_id}', 'CategoryProduct@ac
 
 Route::post('/save-category-product', 'CategoryProduct@save_category_product');
 Route::post('/update-category-product/{category_product_id}', 'CategoryProduct@update_category_product');
+
+Route::post('/product-tabs', 'CategoryProduct@product_tabs');
+
 
 //Brand Product
 Route::get('/add-brand-product','BrandProduct@add_brand_product');
@@ -95,6 +99,7 @@ Route::get('/active-product/{product_id}','ProductController@active_product');
 
 Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
+Route::post('/quickview','ProductController@quickview');
 
 
 //Cart

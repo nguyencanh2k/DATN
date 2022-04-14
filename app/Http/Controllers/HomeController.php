@@ -9,6 +9,8 @@ use App\Slider;
 use App\CatePost;
 use Session;
 use App\Http\Requests;
+use App\Product;
+use App\CategoryProductModel;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 class HomeController extends Controller
@@ -31,7 +33,8 @@ class HomeController extends Controller
         $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
         $all_product2 = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'asc')->limit(16)->get();
         $all_product3 = DB::table('tbl_product')->where('product_status','0')->orderby(DB::raw('RAND()'))->limit(12)->get();
-        return view('pages.home')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product2',$all_product2)->with('all_product3',$all_product3)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post);
+        $cate_pro_tabs = CategoryProductModel::where('category_status','0')->orderby('category_id','asc')->get(); 
+        return view('pages.home')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product2',$all_product2)->with('all_product3',$all_product3)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post)->with('cate_pro_tabs',$cate_pro_tabs);
     }
     public function search(Request $request){
         //category post
@@ -71,5 +74,18 @@ class HomeController extends Controller
     }
     public function error_page(){
         return view('errors.404');
+    }
+    public function autocomplete_ajax(Request $request){
+        $data = $request->all();
+        if($data['query']){
+            $product = Product::where('product_status',0)->where('product_name','LIKE','%'.$data['query'].'%')->get();
+            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+            foreach($product as $key => $val){
+                $output.='
+                <li class="li_search_ajax p-2"><a href="#" style="color: black">'.$val->product_name.'</a></li>';
+            }
+            $output.='</ul>';
+            echo $output;
+        }
     }
 }

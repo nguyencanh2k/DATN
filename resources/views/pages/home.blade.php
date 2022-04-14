@@ -130,6 +130,11 @@
                                         <img class="first-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
                                         <img class="second-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
                                     </a>
+                                    <div class="quick-view">
+                                        <a class="quick_view xemnhanh" href="#" data-link-action="quickview" title="Quick view" data-id_product="{{$product->product_id}}" data-toggle="modal" data-target="#exampleModal">
+                                            <i class="ion-ios-search-strong"></i>
+                                        </a>
+                                    </div>
                                 </div>
                                 <ul class="product-flag">
                                     <li class="new">New</li>
@@ -170,421 +175,77 @@
                     </div>
                     <!-- Best Sells Carousel End -->
                 </div>
-</section>
+            </section>
             <!-- Best Sells Slider End -->
-
-            <!-- Category Area Start -->
-            <section class="categorie-area">
+            <!-- Banner Area Start -->
+            <div class="banner-3-area">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
-                            <!-- Section Title -->
-                            <div class="section-title mt-res-sx-30px mt-res-md-30px">
-                                <h2>Danh mục sản phẩm</h2>
-                            </div>
-                            <!-- Section Title -->
-                        </div>
-                    </div>
-                    <!-- Category Slider Start -->
-                    <div class="category-slider owl-carousel owl-nav-style">
-                        <!-- Single item -->
-                        <div class="category-item">
-                            <div class="category-list mb-30px">
-                                <div class="category-thumb">
-                                    <a href="shop-4-column.html">
-                                        <img src="{{asset('public/frontend/images/dong-ho-nam-trang-chu-1.jpg')}}" alt="" />
-                                    </a>
-                                </div>
-                                {{-- <div class="desc-listcategoreis">
-                                    <div class="name_categories">
-                                        <h4>Fresh Vegetables</h4>
-                                    </div>
-                                    <span class="number_product">17 Products</span>
-                                    <a href="shop-4-column.html"> Shop Now <i class="ion-android-arrow-dropright-circle"></i></a>
-                                </div> --}}
-                            </div>
-                            <div class="category-list">
-                                <div class="category-thumb">
-                                    <a href="shop-4-column.html">
-                                        <img src="{{asset('public/frontend/images/dong-ho-nu-trang-chu-1.jpg')}}" alt="" />
-                                    </a>
-                                </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-res-xs-30">
+                            <div class="banner-wrapper">
+                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/dong-ho-nam-trang-chu-1.jpg')}}" alt="" /></a>
                             </div>
                         </div>
-                        <!-- Single item -->
-                        <div class="category-item">
-                            <div class="category-list mb-30px">
-                                <div class="category-thumb">
-                                    <a href="shop-4-column.html">
-                                        <img src="{{asset('public/frontend/images/dong-ho-co-trang-chu.jpg')}}" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="category-list">
-                                <div class="category-thumb">
-                                    <a href="shop-4-column.html">
-                                        <img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" />
-                                    </a>
-                                </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="banner-wrapper">
+                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/dong-ho-nu-trang-chu-1.jpg')}}" alt="" /></a>
                             </div>
                         </div>
-                        <!-- Single item -->
-                        <div class="category-item">
-                            <div class="category-list mb-30px">
-                                <div class="category-thumb">
-                                    <a href="shop-4-column.html">
-                                        <img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="category-list">
-                                <div class="category-thumb">
-                                    <a href="shop-4-column.html">
-                                        <img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" />
-                                    </a>
-                                </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
+                            <div class="banner-wrapper">
+                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/dong-ho-co-trang-chu.jpg')}}" alt="" /></a>
                             </div>
                         </div>
-                        <!-- Single item -->
-                        <div class="category-item">
-                            <div class="category-list mb-30px">
-                                <div class="category-thumb">
-                                    <a href="shop-4-column.html">
-                                        <img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" />
-                                    </a>
-                                </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
+                            <div class="banner-wrapper">
+                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" /></a>
                             </div>
-                            <div class="category-list">
-                                <div class="category-thumb">
-                                    <a href="shop-4-column.html">
-                                        <img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single item -->
-                    </div>
-                </div>
-            </section>
-            <!-- Category Area End  -->
-            <!-- Hot deal area Start -->
-            <section class="hot-deal-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <!-- Section Title -->
-                                    <div class="section-title">
-                                        <h2>Hot Deals</h2>
-                                        <p>Add hot products to weekly line up</p>
-                                    </div>
-                                    <!-- Section Title End-->
-                                </div>
-                            </div>
-                            <!-- Hot Deal Slider Start -->
-                            <div class="hot-deal owl-carousel owl-nav-style">
-                                <!--  Single item -->
-                                <article class="list-product">
-                                    <div class="img-block">
-                                        <a href="single-product.html" class="thumbnail">
-                                            <img class="first-img" src="{{asset('public/frontend/images/product-image/organic/product-16.jpg')}}" alt="" />
-                                            <img class="second-img" src="{{asset('public/frontend/images/product-image/organic/product-16.jpg')}}" alt="" />
-                                        </a>
-                                    </div>
-                                    <ul class="product-flag">
-                                        <li class="new">New</li>
-                                    </ul>
-                                    <div class="product-decs">
-                                        <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                        <h2><a href="single-product.html" class="product-link">Originals Kaval Windbreaker Winter Jacket 2</a></h2>
-                                        <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                        </div>
-                                        <div class="pricing-meta">
-                                            <ul>
-                                                <li class="old-price">€18.90</li>
-                                                <li class="current-price">€34.21</li>
-                                                <li class="discount-price">-5%</li>
-                                            </ul>
-                                        </div>
-                                        <div class="add-to-link">
-                                            <ul>
-                                                <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                                <li>
-                                                    <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="in-stock">Availability: <span>300 In Stock</span></div>
-
-                                    <div class="clockdiv">
-                                        <div class="title_countdown">Hurry Up! Offers ends in:</div>
-                                        <div data-countdown="2021/03/01"></div>
-                                    </div>
-                                </article>
-                                <!--  Single item -->
-                                <article class="list-product">
-                                    <div class="img-block">
-                                        <a href="single-product.html" class="thumbnail">
-                                            <img class="first-img" src="{{asset('public/frontend/images/product-image/organic/product-11.jpg')}}" alt="" />
-                                            <img class="second-img" src="{{asset('public/frontend/images/product-image/organic/product-12.jpg')}}" alt="" />
-                                        </a>
-                                    </div>
-                                    <ul class="product-flag">
-                                        <li class="new">New</li>
-                                    </ul>
-                                    <div class="product-decs">
-                                        <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                        <h2><a href="single-product.html" class="product-link">Originals Kaval Windbreaker Winter Jacket</a></h2>
-                                        <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                        </div>
-                                        <div class="pricing-meta">
-                                            <ul>
-                                                <li class="old-price">€18.90</li>
-                                                <li class="current-price">€34.21</li>
-                                                <li class="discount-price">-5%</li>
-                                            </ul>
-                                        </div>
-                                        <div class="add-to-link">
-                                            <ul>
-                                                <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                                <li>
-                                                    <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="in-stock">Availability: <span>300 In Stock</span></div>
-
-                                    <div class="clockdiv">
-                                        <div class="title_countdown">Hurry Up! Offers ends in:</div>
-                                        <div data-countdown="2021/03/01"></div>
-                                    </div>
-                                </article>
-                                <!--  Single item -->
-                                <article class="list-product">
-                                    <div class="img-block">
-                                        <a href="single-product.html" class="thumbnail">
-                                            <img class="first-img" src="{{asset('public/frontend/images/product-image/organic/product-15.jpg')}}" alt="" />
-                                            <img class="second-img" src="{{asset('public/frontend/images/product-image/organic/product-2.jpg')}}" alt="" />
-                                        </a>
-                                    </div>
-                                    <ul class="product-flag">
-                                        <li class="new">New</li>
-                                    </ul>
-                                    <div class="product-decs">
-                                        <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                        <h2><a href="single-product.html" class="product-link">New Balance Fresh Foam Kaymin</a></h2>
-                                        <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                        </div>
-                                        <div class="pricing-meta">
-                                            <ul>
-                                                <li class="old-price">€18.90</li>
-                                                <li class="current-price">€34.21</li>
-                                                <li class="discount-price">-5%</li>
-                                            </ul>
-                                        </div>
-                                        <div class="add-to-link">
-                                            <ul>
-                                                <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                                <li>
-                                                    <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="in-stock">Availability: <span>299 In Stock</span></div>
-
-                                    <div class="clockdiv">
-                                        <div class="title_countdown">Hurry Up! Offers ends in:</div>
-                                        <div data-countdown="2021/03/01"></div>
-                                    </div>
-                                </article>
-                                <!--  Single item -->
-                                <article class="list-product">
-                                    <div class="img-block">
-                                        <a href="single-product.html" class="thumbnail">
-                                            <img class="first-img" src="{{asset('public/frontend/images/product-image/organic/product-14.jpg')}}" alt="" />
-                                            <img class="second-img" src="{{asset('public/frontend/images/product-image/organic/product-14.jpg')}}" alt="" />
-                                        </a>
-                                    </div>
-                                    <ul class="product-flag">
-                                        <li class="new">New</li>
-                                    </ul>
-                                    <div class="product-decs">
-                                        <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                        <h2><a href="single-product.html" class="product-link">Madden by Steve Madden Cale 6</a></h2>
-                                        <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                        </div>
-                                        <div class="pricing-meta">
-                                            <ul>
-                                                <li class="old-price">€18.90</li>
-                                                <li class="current-price">€34.21</li>
-                                                <li class="discount-price">-5%</li>
-                                            </ul>
-                                        </div>
-                                        <div class="add-to-link">
-                                            <ul>
-                                                <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                                <li>
-                                                    <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="in-stock">Availability: <span>299 In Stock</span></div>
-
-                                    <div class="clockdiv">
-                                        <div class="title_countdown">Hurry Up! Offers ends in:</div>
-                                        <div data-countdown="2021/03/01"></div>
-                                    </div>
-                                </article>
-                                <!--  Single item -->
-                            </div>
-                            <!-- Hot Deal Slider End -->
-                        </div>
-                        <!-- New Arrivals Area Start -->
-                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <!-- Section Title -->
-                                    <div class="section-title ml-0px mt-res-sx-30px">
-                                        <h2>New Arrivals</h2>
-                                        <p>Add new products to weekly line up</p>
-                                    </div>
-                                    <!-- Section Title -->
-                                </div>
-                            </div>
-                            <!-- New Product Slider Start -->
-                            <div class="new-product-slider owl-carousel owl-nav-style">
-                                <!-- Product Single Item -->
-                                @foreach($all_product2 as $key => $product2)
-                                
-                                <div class="product-inner-item">
-                                    <article class="list-product">
-                                        <div class="img-block">
-                                            <a href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}" class="thumbnail">
-                                                <img class="first-img" src="{{URL::to('public/uploads/product/'.$product2->product_image)}}" alt="" />
-                                                <img class="second-img" src="{{URL::to('public/uploads/product/'.$product2->product_image)}}" alt="" />
-                                            </a>
-                                        </div>
-                                        <ul class="product-flag">
-                                            <li class="new">New</li>
-                                        </ul>
-                                        <div class="product-decs">
-                                            <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}"><span>{{$product2->product_name}}</span></a>
-                                            <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}" class="product-link">{{$product2->product_content}}</a></h2>
-                                            <div class="rating-product">
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                            </div>
-                                            <div class="pricing-meta">
-                                                <ul>
-                                                    {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
-                                                    <li class="current-price">{{number_format($product2->product_price,0,',','.').' '.'VNĐ'}}</li>
-                                                    <li class="discount-price">-5%</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="add-to-link">
-                                            <ul>
-                                                <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                                <li>
-                                                    <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </article>
-                                    <article class="list-product">
-                                        <div class="img-block">
-                                            <a href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}" class="thumbnail">
-                                                <img class="first-img" src="{{URL::to('public/uploads/product/'.$product2->product_image)}}" alt="" />
-                                                <img class="second-img" src="{{URL::to('public/uploads/product/'.$product2->product_image)}}" alt="" />
-                                            </a>
-                                        </div>
-                                        <ul class="product-flag">
-                                            <li class="new">New</li>
-                                        </ul>
-                                        <div class="product-decs">
-                                            <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}"><span>{{$product2->product_name}}</span></a>
-                                            <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}" class="product-link">{{$product2->product_content}}</a></h2>
-                                            <div class="rating-product">
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                            </div>
-                                            <div class="pricing-meta">
-                                                <ul>
-                                                    {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
-                                                    <li class="current-price">{{number_format($product2->product_price,0,',','.').' '.'VNĐ'}}</li>
-                                                    <li class="discount-price">-5%</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="add-to-link">
-                                            <ul>
-                                                <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product2->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                                <li>
-                                                    <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </article>
-                                </div>
-                                @endforeach
-                                <!-- Product Single Item -->
-                            </div>
-                            
-                            <!-- Product Slider End -->
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- Banner Area End -->
+            <!-- Category Tab Area Start -->
+            <section class="category-tab-area sub-category-owl-nav mt-30">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Dong ho </h2>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs sub-category mb-30px">
+                                @php
+                                    $i=0;
+                                @endphp
+                            @foreach ($cate_pro_tabs as $key => $cat_tabs)
+                                @php
+                                    $i++;
+                                @endphp
+                            <li data-id="{{$cat_tabs->category_id}}" class="nav-item tabs_pro {{$i==1 ? 'active' : ''}}">
+                                <a class="nav-link" data-toggle="tab" >{{$cat_tabs->category_name}}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="feature" class="tab-pane active">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4">
+                                    <div class="banner-wrapper">
+                                        <a><img src="{{asset('public/frontend/images/banner-image/26.jpg')}}" alt="" /></a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 mt-res-sm-90 mt-res-sm-60 mt-res-sm-60">
+                                    <div class="new-product-slider owl-carousel owl-nav-style" >
+                                        <div id="tabs_product"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tab panes -->
+                    
+                </div>
             </section>
-            <!-- Hot Deal Area End -->
+            <!-- Category Tab Area end -->
             <!-- Banner Area Start -->
             <div class="banner-area">
                 <div class="container">

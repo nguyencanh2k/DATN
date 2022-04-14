@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 use App\CatePost;
+use App\Product;
 session_start();
 class CategoryProduct extends Controller
 {
@@ -87,7 +88,7 @@ class CategoryProduct extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
         $category_by_id = DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')->where('tbl_product.category_id', $category_id)->get();
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->limit(1)->get();
-        foreach($cate_product as $key => $val){
+        foreach($category_name as $key => $val){
             //seo 
             $meta_desc = $val->category_desc; 
             $meta_keywords = $val->meta_keywords;
@@ -96,5 +97,63 @@ class CategoryProduct extends Controller
             //--seo
             }
         return view('pages.category.show_category')->with('category',$cate_product)->with('brand',$brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
+    }
+    public function product_tabs(Request $request){
+        $data = $request->all();
+        $output = '';
+        $product = Product::where('category_id',$data['cate_id'])->orderBy('product_id','DESC')->get();
+        $product_count = $product->count();
+        if($product_count>0){
+            foreach($product as $key => $val){
+                $output.='<div class="product-inner-item">
+                                <article class="list-product mb-30px">
+                                    <div class="img-block">
+                                        <a href="single-product.html" class="thumbnail">
+                                            <img class="first-img" src="'.url('public/uploads/product/'.$val->product_image).'" alt="'.$val->product_name.'" />
+                                        </a>
+                                        <div class="quick-view">
+                                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
+                                                <i class="ion-ios-search-strong"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <ul class="product-flag">
+                                        <li class="new">New</li>
+                                    </ul>
+                                    <div class="product-decs">
+                                        <a class="inner-link" href="'.url('/chi-tiet'.$val->product_id).'"><span>'.$val->product_name.'</span></a>
+                                        <h2><a href="single-product.html" class="product-link">'.$val->product_desc.'</a></h2>
+                                        <div class="rating-product">
+                                            <i class="ion-android-star"></i>
+                                            <i class="ion-android-star"></i>
+                                            <i class="ion-android-star"></i>
+                                            <i class="ion-android-star"></i>
+                                            <i class="ion-android-star"></i>
+                                        </div>
+                                        <div class="pricing-meta">
+                                            <ul>
+                                                <li class="current-price">'.number_format($val->product_price,0,',','.').'VND</li>
+                                                <li class="discount-price">-10%</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-link">
+                                        <ul>
+                                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
+                                            <li>
+                                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article>
+                                </div>
+                        ';}
+        }else{
+            $output.='<p style="color:red; text-align:center">Chua co san pham</p>';
+        }
+        echo $output;
     }
 }

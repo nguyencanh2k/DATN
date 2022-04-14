@@ -10,8 +10,8 @@
                     <h1 class="breadcrumb-hrading">{{$name->category_name}}</h1>
                     @endforeach
                     <ul class="breadcrumb-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Shop Left Sidebar</li>
+                        <li><a href="{{url('/')}}">Trang chủ</a></li>
+                        <li>Danh mục</li>
                     </ul>
                 </div>
             </div>

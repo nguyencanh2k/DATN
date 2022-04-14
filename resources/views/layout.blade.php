@@ -174,38 +174,26 @@
                                         </li>
                                         <li class="menu-dropdown">
                                             <a href="#">Danh mục <i class="ion-ios-arrow-down"></i></a>
-                                            <ul class="mega-menu-wrap">
-                                                <li>
-                                                    <ul>
-                                                        @foreach($category as $key => $cate)
-                                                        <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
+                                            <ul class="sub-menu">
+                                                @foreach($category as $key => $cate)
+                                                    <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li class="menu-dropdown">
                                             <a href="#">Thương hiệu <i class="ion-ios-arrow-down"></i></a>
-                                            <ul class="mega-menu-wrap">
-                                                <li>
-                                                    <ul>
-                                                        @foreach($brand as $key => $brand)
-                                                            <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}">{{$brand->brand_name}}</a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
+                                            <ul class="sub-menu">
+                                               @foreach($brand as $key => $brand)
+                                                    <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}">{{$brand->brand_name}}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li class="menu-dropdown">
                                             <a href="#">Blog</a>
-                                            <ul class="mega-menu-wrap">
-                                                <li>
-                                                    <ul>
-                                                        @foreach($category_post as $key => $danhmucbaiviet)
-                                                            <li><a href="{{URL::to('/danh-muc-bai-viet/'.$danhmucbaiviet->cate_post_slug)}}">{{$danhmucbaiviet->cate_post_name}}</a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
+                                            <ul class="sub-menu">
+                                                @foreach($category_post as $key => $danhmucbaiviet)
+                                                    <li><a href="{{URL::to('/danh-muc-bai-viet/'.$danhmucbaiviet->cate_post_slug)}}">{{$danhmucbaiviet->cate_post_name}}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li><a href="contact.html">Contact Us</a></li>
@@ -218,9 +206,10 @@
                                     <div class="header_account_list search_list">
                                         <a href="javascript:void(0)"><i class="ion-ios-search-strong"></i></a>
                                         <div class="dropdown_search">
-                                            <form action="{{URL::to('/tim-kiem')}}" method="post">
+                                            <form action="{{URL::to('/tim-kiem')}}" autocomplete="off" method="post">
                                                 {{ csrf_field() }}
-                                                <input name="keywords_submit" placeholder="Search entire store here ..." type="text" />
+                                                <input name="keywords_submit" id="keywords" placeholder="Tìm kiếm sản phẩm" type="text" />
+                                                <div class="search-category bootstrap-select" id="search_ajax"></div>
                                                 <button name="search_items" type="submit"><i class="ion-ios-search-strong"></i></button>
                                             </form>
                                         </div>
@@ -455,10 +444,9 @@
             </footer>
             <!--  Footer Area End -->
         </div>
-
         <!-- Modal -->
-        
-        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+                
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -468,35 +456,26 @@
                         <div class="row">
                             <div class="col-md-5 col-sm-12 col-xs-12">
                                 <div class="tab-content quickview-big-img">
-                                    <div id="pro-1" class="tab-pane fade show active">
-                                        <img src="{{asset('public/frontend/images/product-image/organic/product-11.jpg')}}" alt="" />
-                                    </div>
-                                    <div id="pro-2" class="tab-pane fade">
-                                        <img src="{{asset('public/frontend/images/product-image/organic/product-9.jpg')}}" alt="" />
-                                    </div>
-                                    <div id="pro-3" class="tab-pane fade">
-                                        <img src="{{asset('public/frontend/images/product-image/organic/product-20.jpg')}}" alt="" />
-                                    </div>
-                                    <div id="pro-4" class="tab-pane fade">
-                                        <img src="{{asset('public/frontend/images/product-image/organic/product-19.jpg')}}" alt="" />
-                                    </div>
+                                    <div class="tab-pane fade show active" id="product_quickview_image"></div>
+                                    {{-- <div class="tab-pane fade" id="product_quickview_gallery"></div> --}}
                                 </div>
                                 <!-- Thumbnail Large Image End -->
                                 <!-- Thumbnail Image End -->
                                 <div class="quickview-wrap mt-15">
                                     <div class="quickview-slide-active owl-carousel nav owl-nav-style owl-nav-style-2" role="tablist">
-                                        <a class="active" data-toggle="tab" href="#pro-1"><img src="{{asset('public/frontend/images/product-image/organic/product-11.jpg')}}" alt="" /></a>
-                                        <a data-toggle="tab" href="#pro-2"><img src="{{asset('public/frontend/images/product-image/organic/product-9.jpg')}}" alt="" /></a>
-                                        <a data-toggle="tab" href="#pro-3"><img src="{{asset('public/frontend/images/product-image/organic/product-20.jpg')}}" alt="" /></a>
-                                        <a data-toggle="tab" href="#pro-4"><img src="{{asset('public/frontend/images/product-image/organic/product-19.jpg')}}" alt="" /></a>
+                                        <a class="active" data-toggle="tab" id="product_quickview_image"></a>
+                                        {{-- <a data-toggle="tab" href="#pro-2" id="product_quickview_gallery"></a> --}}
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-7 col-sm-12 col-xs-12">
+                                <form action="">
+                                    @csrf
+                                <div id="product_quickview_value"></div>
                                 <div class="product-details-content quickview-content">
-                                    <h2>Originals Kaval Windbr</h2>
-                                    <p class="reference">Reference:<span> demo_17</span></p>
-                                    <div class="pro-details-rating-wrap">
+                                    <h2 id="product_quickview_title"></h2>
+                                    <p class="reference">Reference: <span id="product_quickview_id"></span></p>
+                                    {{-- <div class="pro-details-rating-wrap">
                                         <div class="rating-product">
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>
@@ -505,31 +484,26 @@
                                             <i class="ion-android-star"></i>
                                         </div>
                                         <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
-                                    </div>
+                                    </div> --}}
                                     <div class="pricing-meta">
                                         <ul>
-                                            <li class="old-price not-cut">€18.90</li>
+                                            <li class="old-price not-cut" id="product_quickview_price"></li>
                                         </ul>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisic elit eiusm tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim venialo quis nostrud exercitation ullamco</p>
-                                    <div class="pro-details-size-color">
-                                        <div class="pro-details-color-wrap">
-                                            <span>Color</span>
-                                            <div class="pro-details-color-content">
-                                                <ul>
-                                                    <li class="blue"></li>
-                                                    <li class="maroon active"></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <p id="product_quickview_desc"></p>
                                     <div class="pro-details-quality">
                                         <div class="cart-plus-minus">
                                             <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
                                         </div>
-                                        <div class="pro-details-cart btn-hover">
-                                            <a href="#"> + Add To Cart</a>
+                                        <div class="pro-details-cart btn-hover" id="product_quickview_button">
+                                            {{-- <a href="#"> + Add To Cart</a> --}}
+                                            
                                         </div>
+                                        <div class="pro-details-cart btn-hover" >
+                                            <a href="#"> + Add To Cart</a>
+                                            
+                                        </div>
+                                        <div id="beforesend_quickview"></div>
                                     </div>
                                     <div class="pro-details-wish-com">
                                         <div class="pro-details-wishlist">
@@ -559,13 +533,15 @@
                                         </div>
                                     </div>
                                 </div>
+                            </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <!-- Modal end -->
+        
 
         <!-- Scripts to be loaded  -->
         <!-- JS
@@ -639,6 +615,37 @@
                 });
             });
         </script>
+        <script type="text/javascript">
+                $(document).on('click','.add-to-cart-quickview',function(){
+    
+                    var id = $(this).data('id_product');
+                    // alert(id);
+                    var cart_product_id = $('.cart_product_id_' + id).val();
+                    var cart_product_name = $('.cart_product_name_' + id).val();
+                    var cart_product_image = $('.cart_product_image_' + id).val();
+                    var cart_product_quantity = $('.cart_product_quantity_' + id).val();
+                    var cart_product_price = $('.cart_product_price_' + id).val();
+                    var cart_product_qty = $('.cart_product_qty_' + id).val();
+                    var _token = $('input[name="_token"]').val();
+                    if(parseInt(cart_product_qty)>parseInt(cart_product_quantity)){
+                        alert('Làm ơn đặt nhỏ hơn ' + cart_product_quantity);
+                    }else{
+                        $.ajax({
+                            url: '{{url('/add-cart-ajax')}}',
+                            method: 'POST',
+                            data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token,cart_product_quantity:cart_product_quantity},
+                            beforeSend: function(){
+                                $("#beforesend_quickview").html("<p class='text text-primary'>Dang them san pham vao gio</p>");
+                            },
+                            success:function(){
+        
+                                $("#beforesend_quickview").html("<p class='text text-success'>San pham da duoc them vao gio</p>");
+                            }
+                        });
+                    }
+                });
+            
+        </script>
         {{-- <script type="text/javascript">
             $(document).ready(function(){
                 $('.choose').on('change',function(){
@@ -646,7 +653,7 @@
                 var ma_id = $(this).val();
                 var _token = $('input[name="_token"]').val();
                 var result = '';
-               
+            
                 if(action=='city'){
                     result = 'province';
                 }else{
@@ -657,12 +664,12 @@
                     method: 'POST',
                     data:{action:action,ma_id:ma_id,_token:_token},
                     success:function(data){
-                       $('#'+result).html(data);  
+                    $('#'+result).html(data);     
                     }
                 });
             });
             });
-              
+            
         </script> --}}
         <script type="text/javascript">
 
@@ -711,5 +718,85 @@
               });
           });
       </script>
+      <script type="text/javascript">
+        $('#keywords').keyup(function(){
+            var query = $(this).val();
+            if(query !='')
+            {
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{url('/autocomplete-ajax')}}",
+                    method: 'POST',
+                    data:{query:query, _token:_token},
+                    success:function(data){
+                        $('#search_ajax').fadeIn();
+                        $('#search_ajax').html(data);
+                    }
+                });
+            }else{
+                $('#search_ajax').fadeOut();
+            }
+        });
+        $(document).on('click', '.li_search_ajax', function(){
+            $('#keywords').val($(this).text());
+            $('#search_ajax').fadeOut();
+        });
+    </script>
+    <script type="text/javascript">
+        $('.xemnhanh').click(function(){
+            var product_id = $(this).data('id_product');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/quickview')}}",
+                method:"POST",
+                dataType:"JSON",
+                data:{product_id:product_id, _token:_token},
+                success:function(data){
+                    $('#product_quickview_title').html(data.product_name);
+                    $('#product_quickview_id').html(data.product_id);
+                    $('#product_quickview_price').html(data.product_price);
+                    $('#product_quickview_image').html(data.product_image);
+                    $('#product_quickview_gallery').html(data.product_gallery);
+                    $('#product_quickview_desc').html(data.product_desc);
+                    $('#product_quickview_content').html(data.product_content);
+                    $('#product_quickview_value').html(data.product_quickview_value);
+                    $('#product_quickview_button').html(data.product_button);
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var cate_id = $('.tabs_pro').data('id');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/product-tabs')}}",
+                method:"POST",
+                data:{cate_id:cate_id, _token:_token},
+                success:function(data){
+                    $('#tabs_product').html(data);
+                }
+            });
+            $('.tabs_pro').click(function(){
+                var cate_id = $(this).data('id');
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{url('/product-tabs')}}",
+                    method:"POST",
+                    data:{cate_id:cate_id, _token:_token},
+                    success:function(data){
+                        $('#tabs_product').html(data);
+                    }
+                });
+            });
+            var $owl = $('.owl-carousel').owlCarousel({
+    items: 1,
+    loop:true
+});
+
+$owl.trigger('refresh.owl.carousel');
+        });
+    </script>
+
     </body>
 </html>
