@@ -100,6 +100,7 @@
                             <th scope="col">Mã giảm giá</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Giá sản phẩm</th>
+                            <th scope="col">Giá gốc</th>
                             <th scope="col">Tổng tiền</th>
                         </tr>
                     </thead>
@@ -139,6 +140,7 @@
                                 @endif
                             </td>
                             <td>{{number_format($details->product_price ,0,',','.')}}đ</td>
+                            <td>{{number_format($details->product->price_cost ,0,',','.')}}đ</td>
                             <td>{{number_format($subtotal ,0,',','.')}}đ</td>
                         </tr>
                         @endforeach
@@ -173,31 +175,17 @@
                                     <option value="">----Chọn hình thức đơn hàng-----</option>
                                     <option id="{{$or->order_id}}" selected value="1">Chưa xử lý</option>
                                     <option id="{{$or->order_id}}" value="2">Đã xử lý-Đã giao hàng</option>
-                                    <option id="{{$or->order_id}}" value="3">Hủy đơn hàng-tạm giữ</option>
                                   </select>
                                 </form>
-                                @elseif($or->order_status==2)
+                                @else
                                 <form>
                                   @csrf
                                   <select class="form-control order_details">
                                     <option value="">----Chọn hình thức đơn hàng-----</option>
-                                    <option id="{{$or->order_id}}" value="1">Chưa xử lý</option>
+                                    <option disabled id="{{$or->order_id}}" value="1">Chưa xử lý</option>
                                     <option id="{{$or->order_id}}" selected value="2">Đã xử lý-Đã giao hàng</option>
-                                    <option id="{{$or->order_id}}" value="3">Hủy đơn hàng-tạm giữ</option>
                                   </select>
                                 </form>
-                
-                                @else
-                                <form>
-                                   @csrf
-                                  <select class="form-control order_details">
-                                    <option value="">----Chọn hình thức đơn hàng-----</option>
-                                    <option id="{{$or->order_id}}" value="1">Chưa xử lý</option>
-                                    <option id="{{$or->order_id}}"  value="2">Đã xử lý-Đã giao hàng</option>
-                                    <option id="{{$or->order_id}}" selected value="3">Hủy đơn hàng-tạm giữ</option>
-                                  </select>
-                                </form>
-                
                                 @endif
                                 @endforeach
                 

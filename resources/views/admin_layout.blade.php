@@ -20,6 +20,7 @@
     {{-- <link href="{{asset('public/backend/css/jquery.dataTables.min.css')}}" rel="stylesheet"> --}}
     <link rel="stylesheet" type="text/css" href="{{asset('public/backend/DataTables/datatables.min.css')}}"/>
     <link href="{{asset('public/backend/css/bootstrap-tagsinput.css')}}" rel="stylesheet">
+    <link href="{{asset('public/backend/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
  
     
 </head>
@@ -280,6 +281,11 @@
 
     <script src="{{asset('public/backend/js/dashboard/dashboard-1.js')}}"></script>
     <script src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script>
+    <script src="{{asset('public/backend/js/plugins-init/form-pickers-init.js')}}"></script>
+    <script src="{{asset('public/backend/js/simple.money.format.js')}}"></script>
+    <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
+
     <script>
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
@@ -302,12 +308,17 @@
          CKEDITOR.replace('ckeditor16');
          CKEDITOR.replace('ckeditor17');
     </script>
-    <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
+
     <script type="text/javascript">
         $.validate({
             
         });
     </script>
+
+    <script type="text/javascript">
+        $('.price_format').simpleMoneyFormat();
+    </script>
+    
     <script type="text/javascript">
         $(document).ready(function(){
     
@@ -555,6 +566,64 @@
         $(document).ready( function () {
             $('#myTable').DataTable();
         } );
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            chart30daysorder();
+            var chart = new Morris.Bar({
+                element: 'morris-bar-chart',
+                xkey: 'period',
+                ykeys: ['order', 'sales', 'profit', 'quantity'],
+                labels: ['đơn hàng', 'doanh số', 'lợi nhuận', 'số lượng'],
+                barColors: ['#7571F9', '#9097c4'],
+                hideHover: 'auto',
+                gridLineColor: 'transparent',
+                resize: true
+            });
+            function chart30daysorder(){
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                        url : "{{url('/days-order')}}",
+                        method: 'POST',
+                        dataType:"JSON",
+                        data:{_token:_token},
+                        success:function(data){
+                            chart.setData(data);
+                        }
+                });
+            }
+            $('.dashboard-filter').click(function(){
+                var dashboard_value = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                        url : "{{url('/dashboard-filter')}}",
+                        method: 'POST',
+                        dataType:"JSON",
+                        data:{dashboard_value:dashboard_value,_token:_token},
+                        success:function(data){
+                            chart.setData(data);
+                        }
+                });
+        
+            });
+
+            $('#btn-dashboard-filter').click(function(){
+                var _token = $('input[name="_token"]').val();
+                var from_date = $('#mdate').val();
+                var to_date = $('#mdate2').val();
+                $.ajax({
+                        url : "{{url('/filter-by-date')}}",
+                        method: 'POST',
+                        dataType:"JSON",
+                        data:{from_date:from_date ,to_date:to_date,_token:_token},
+                        success:function(data){
+                            chart.setData(data);
+                        }
+                });
+        
+            });
+        });
     </script>
 </body>
 

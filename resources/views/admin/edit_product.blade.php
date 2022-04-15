@@ -31,7 +31,13 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Giá sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_price" class="form-control" value="{{$pro->product_price}}">
+                            <input type="text" name="product_price" class="form-control price_format" value="{{$pro->product_price}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Giá gốc</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="price_cost" class="form-control price_format" value="{{$pro->price_cost}}">
                         </div>
                     </div>
                     <div class="form-group row">

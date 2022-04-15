@@ -32,8 +32,15 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Giá sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_price" class="form-control" data-validation="number" 
-                            data-validation-error-msg="Làm ơn điền số tiền" placeholder="Giá sản phẩm">
+                            <input type="text" name="product_price" class="form-control price_format" data-validation="length" 
+                            data-validation-length="min5" data-validation-error-msg="Làm ơn điền số tiền" placeholder="Giá sản phẩm">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Giá gốc</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="price_cost" class="form-control price_format" data-validation="length" 
+                            data-validation-length="min5" data-validation-error-msg="Làm ơn điền số tiền" placeholder="Giá gốc sản phẩm">
                         </div>
                     </div>
                     <div class="form-group row">

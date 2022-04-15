@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 order-lg-last col-md-12 order-md-first">
-                @foreach($post as $key => $p)
+                @foreach($post_by_id as $key => $p)
                 <div class="blog-posts">
                     <div class="single-blog-post blog-grid-post">
                         <div class="blog-post-media">
