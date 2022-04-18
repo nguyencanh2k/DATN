@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Cart;
 use App\CatePost;
 use App\Coupon;
+use Illuminate\Contracts\Session\Session as SessionSession;
+
 session_start();
 class CartController extends Controller
 {
@@ -209,5 +211,45 @@ class CartController extends Controller
         }else{
             return redirect()->back()->with('error','Mã giảm giá không đúng');
         }
-    }   
+    } 
+    public function show_cart_menu(){
+        $cart = count(Session::get('cart'));
+        echo $cart;
+    }  
+    public function click_cart_mini(){
+        $cart = count(Session::get('cart'));
+        $output = '';
+        if($cart>0){
+            $output.='<ul>';
+            foreach(Session::get('cart') as $key => $value){
+                $output.=' <li class="single-shopping-cart">
+                                <div class="shopping-cart-img">
+                                    <a href=""><img alt="" src="'.asset('public/uploads/product/'.$value['product_image']).'" /></a>
+                                    <span class="product-quantity">'.$value['product_qty'].'</span>
+                                </div>
+                                <div class="shopping-cart-title">
+                                    <h4><a href="">'.$value['product_name'].'</a></h4>
+                                    <span>'.number_format($value['product_price'],0,',','.').'vnđ</span>
+                                    <div class="shopping-cart-delete">
+                                        <a href="'.url('/del-product/'.$value['session_id']).'" class="cart_quantity_delete"><i class="ion-android-cancel"></i></a>
+                                    </div>
+                                </div>
+                            </li>';
+            }
+            
+            $output.='</ul>
+                    
+                    <div class="shopping-cart-btn text-center">
+                        <a class="default-btn" href="'.url('/gio-hang').'">Xem giỏ hàng</a>
+                    </div>';
+        }
+        else{
+            $output.='
+                    <div class="shopping-cart-total">
+                        <h4 class="shop-total text-center">Giỏ hàng trống</h4>
+                    </div>';
+        }
+        echo $output;
+    }  
+    
 }

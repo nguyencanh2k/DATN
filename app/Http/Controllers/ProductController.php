@@ -179,6 +179,21 @@ class ProductController extends Controller
         
         return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('gallery',$gallery);
     }
+    public function tat_ca_san_pham(Request $request){
+        //category post
+        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+        $show_all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
+        //seo 
+            $meta_desc = 'Tất cả sản phẩm';
+            $meta_keywords = 'Tất cả sản phẩm';
+            $meta_title = 'Tất cả sản phẩm';
+            $url_canonical = $request->url();
+        //--seo
+        
+        return view('pages.sanpham.show_all_product')->with('category',$cate_product)->with('brand',$brand_product)->with('show_all_product',$show_all_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
+    }
     public function tag($product_tag, Request $request){
         //category post
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();

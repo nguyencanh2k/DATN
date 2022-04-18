@@ -203,6 +203,15 @@
                             <li><a href="{{URL::to('/manage-slider')}}">Quản lý Slider</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-list-ul"></i><span class="nav-text">Quản lý khách hàng</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{URL::to('/add-customer-ad')}}">Thêm khách hàng</a></li>
+                            <li><a href="{{URL::to('/all-customer-ad')}}">Quản lý khách hàng</a></li>
+                        </ul>
+                    </li>
                     @hasrole(['admin', 'author'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">

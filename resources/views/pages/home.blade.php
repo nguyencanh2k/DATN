@@ -21,27 +21,11 @@
                     </h1>
                     <h1>{!!$slide->slider_desc!!}</h1>
                     <p class="animated">Hàng tuyển chọn rất kỹ</p>
-                    <a href="shop-4-column.html" class="shop-btn animated">Mua ngay</a>
+                    {{-- <a href="#" class="shop-btn animated">Mua ngay</a> --}}
                 </div>
             </div>
         </div>
         @endforeach
-        <!-- Slider Single Item End -->
-        <!-- Slider Single Item Start -->
-        {{-- <div class="slider-height-6 d-flex align-items-start justify-content-start bg-img" style="background-image: url({{asset('public/frontend/images/banner2.jpg);')}}">
-            <div class="container">
-                <div class="slider-content-1 slider-animated-1 text-left">
-                    <span class="animated">Bộ sưu tập Orient 2022</span>
-                    <h1 class="animated">
-                        Sang trọng & <br />
-                        Đẳng cấp
-                    </h1>
-                    <p class="animated">Cam kết giá tốt nhất</p>
-                    <a href="shop-4-column.html" class="shop-btn animated">Mua ngay</a>
-                </div>
-            </div>
-        </div> --}}
-        <!-- Slider Single Item End -->
     </div>
 </div>
 <!-- Slider Arae End -->
@@ -161,7 +145,7 @@
                                     <ul>
                                         <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
                                         <li>
-                                            <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
+                                            <a class="add-to-wishlist" data-id_product="{{$product->product_id}}" name="add-to-wishlist"><i class="ion-android-favorite-outline"></i></a>
                                         </li>
                                         <li>
                                             <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>

@@ -180,7 +180,7 @@
                                             <a href="{{URL::to('/trang-chu')}}">Trang chủ</a>
                                         </li>
                                         <li class="menu-dropdown">
-                                            <a href="#">Danh mục <i class="ion-ios-arrow-down"></i></a>
+                                            <a href="{{URL::to('/tat-ca-san-pham')}}">Danh mục <i class="ion-ios-arrow-down"></i></a>
                                             <ul class="sub-menu">
                                                 @foreach($category as $key => $cate)
                                                     <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></li>
@@ -188,7 +188,7 @@
                                             </ul>
                                         </li>
                                         <li class="menu-dropdown">
-                                            <a href="#">Thương hiệu <i class="ion-ios-arrow-down"></i></a>
+                                            <a href="{{URL::to('/tat-ca-san-pham')}}">Thương hiệu <i class="ion-ios-arrow-down"></i></a>
                                             <ul class="sub-menu">
                                                @foreach($brand as $key => $brand)
                                                     <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}">{{$brand->brand_name}}</a></li>
@@ -203,7 +203,7 @@
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="">Contact Us</a></li>
                                     </ul>
                                 </div>
                                 <!--Main Navigation End -->
@@ -233,49 +233,8 @@
                                     <!--Cart info Start -->
                                     <div class="cart-info d-flex">
                                         <div class="mini-cart-warp">
-                                            <a href="#" class="count-cart"><span>$20.00</span></a>
-                                            <div class="mini-cart-content">
-                                                <ul>
-                                                    <li class="single-shopping-cart">
-                                                        <div class="shopping-cart-img">
-                                                            <a href="single-product.html"><img alt="" src="{{asset('public/frontend/images/banner1.jpg')}}" /></a>
-                                                            <span class="product-quantity">1x</span>
-                                                        </div>
-                                                        <div class="shopping-cart-title">
-                                                            <h4><a href="single-product.html">Juicy Couture...</a></h4>
-                                                            <span>$9.00</span>
-                                                            <div class="shopping-cart-delete">
-                                                                <a href="#"><i class="ion-android-cancel"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="single-shopping-cart">
-                                                        <div class="shopping-cart-img">
-                                                            <a href="single-product.html"><img alt="" src="{{asset('public/frontend/images/banner2.jpg')}}" /></a>
-                                                            <span class="product-quantity">1x</span>
-                                                        </div>
-                                                        <div class="shopping-cart-title">
-                                                            <h4><a href="single-product.html">Water and Wind...</a></h4>
-                                                            <span>$11.00</span>
-                                                            <div class="shopping-cart-delete">
-                                                                <a href="#"><i class="ion-android-cancel"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                <div class="shopping-cart-total">
-                                                    <h4>Subtotal : <span>$20.00</span></h4>
-                                                    <h4>Shipping : <span>$7.00</span></h4>
-                                                    <h4>Taxes : <span>$0.00</span></h4>
-                                                    <h4 class="shop-total">Total : <span>$27.00</span></h4>
-                                                </div>
-                                                <div class="shopping-cart-btn text-center">
-                                                    <a class="default-btn" href="{{URL::to('/gio-hang')}}">Xem giỏ hàng</a>
-                                                </div>
-                                                <div class="shopping-cart-btn text-center mt-2">
-                                                    <a class="default-btn" href="{{URL::to('/show-checkout')}}">Thanh toán</a>
-                                                </div>
-                                            </div>
+                                            <a href="#" class="count-cart"><span class="show-cart"></span></a>
+                                            <div class="mini-cart-content"></div>
                                         </div>
                                     </div>
                                     <!--Cart info End -->
@@ -579,9 +538,28 @@
         <script src="{{asset('public/frontend/js/sweetalert.js')}}"></script>
         <script src="{{asset('public/frontend/js/simple.money.format.js')}}"></script>
         <script type="text/javascript">
+            click_cart_mini();
+            show_cart();
+            function click_cart_mini(){
+                $.ajax({
+                    url:"{{url('/click-cart-mini')}}",
+                    method:"GET",
+                    success:function(data){
+                        $('.mini-cart-content').html(data);
+                        }
+                    });
+            }
+            function show_cart(){
+                $.ajax({
+                    url:"{{url('/show-cart')}}",
+                    method:"GET",
+                    success:function(data){
+                        $('.show-cart').html(data);
+                        }
+                    });
+                }
             $(document).ready(function(){
                 $('.add-to-cart').click(function(){
-    
                     var id = $(this).data('id_product');
                     // alert(id);
                     var cart_product_id = $('.cart_product_id_' + id).val();
@@ -612,6 +590,8 @@
                                     function() {
                                         window.location.href = "{{url('/gio-hang')}}";
                                     });
+                                    show_cart();
+                                    click_cart_mini();
         
                             }
                         });

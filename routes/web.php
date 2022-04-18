@@ -24,6 +24,7 @@ Route::get('/danh-muc-san-pham/{category_id}','CategoryProduct@show_category_hom
 Route::get('/thuong-hieu-san-pham/{brand_id}','BrandProduct@show_brand_home');
 Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
 Route::get('/tag/{product_tag}','ProductController@tag');
+Route::get('/tat-ca-san-pham','ProductController@tat_ca_san_pham');
 
 //Back-end
 Route::get('/admin', 'AdminController@index');
@@ -87,13 +88,6 @@ Route::group(['middleware' => 'auth.roles'], function () {
     Route::get('/add-product','ProductController@add_product');
     Route::get('/edit-product/{product_id}','ProductController@edit_product');
 });
-Route::get('users','UserController@index')->middleware('auth.roles');
-Route::get('add-users','UserController@add_users');
-Route::post('store-users','UserController@store_users');
-Route::post('assign-roles','UserController@assign_roles');
-Route::get('impersonate/{admin_id}','UserController@impersonate');
-Route::get('impersonate-destroy','UserController@impersonate_destroy');
-Route::get('delete-user-roles/{admin_id}','UserController@delete_user_roles')->middleware('auth.roles');
 Route::get('/delete-product/{product_id}','ProductController@delete_product');
 Route::get('/all-product','ProductController@all_product');
 
@@ -104,6 +98,22 @@ Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
 Route::post('/quickview','ProductController@quickview');
 
+//User
+Route::get('users','UserController@index')->middleware('auth.roles');
+Route::get('add-users','UserController@add_users');
+Route::post('store-users','UserController@store_users');
+Route::post('assign-roles','UserController@assign_roles');
+Route::get('impersonate/{admin_id}','UserController@impersonate');
+Route::get('impersonate-destroy','UserController@impersonate_destroy');
+Route::get('delete-user-roles/{admin_id}','UserController@delete_user_roles')->middleware('auth.roles');
+
+//Customer_Phan admin
+Route::get('/all-customer-ad','CustomerController@all_customer_ad');
+Route::get('/add-customer-ad','CustomerController@add_customer_ad');
+Route::post('/save-customer-ad','CustomerController@save_customer_ad');
+Route::get('/edit-customer-ad/{post_id}','CustomerController@edit_customer_ad');
+Route::post('/update-customer-ad/{customer_id}','CustomerController@update_customer_ad');
+Route::get('/delete-customer-ad/{customer_id}','CustomerController@delete_customer_ad');
 
 //Cart
 Route::post('/update-cart-quantity','CartController@update_cart_quantity');
@@ -115,6 +125,8 @@ Route::get('/gio-hang','CartController@gio_hang');
 Route::post('/update-cart','CartController@update_cart');
 Route::get('/del-product/{session_id}','CartController@delete_product');
 Route::get('/del-all-product','CartController@delete_all_product');
+Route::get('/show-cart','CartController@show_cart_menu');
+Route::get('/click-cart-mini','CartController@click_cart_mini');
 
 //Checkout
 Route::get('/login-checkout','CheckoutController@login_checkout');

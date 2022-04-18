@@ -21,132 +21,6 @@
 <div class="checkout-area mt-60px mb-40px">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="billing-info-wrap">
-                    <h3>Thông tin thanh toán</h3>
-                    <form method="post">
-                        @csrf
-                        @if(Session::get('coupon'))
-							@foreach(Session::get('coupon') as $key => $cou)
-								<input type="hidden" name="order_coupon" class="order_coupon" value="{{$cou['coupon_code']}}">
-							@endforeach
-						@else 
-							<input type="hidden" name="order_coupon" class="order_coupon" value="no">
-						@endif
-
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-20px">
-                                    <label>Họ và tên</label>
-                                    <input type="text" name="shipping_name" class="shipping_name"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-20px">
-                                    <label>Số điện thoại</label>
-                                    <input type="text" name="shipping_phone" class="shipping_phone"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-20px">
-                                    <label>Email</label>
-                                    <input type="text" name="shipping_email" class="shipping_email"/>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-20px">
-                                    <label>Địa chỉ</label>
-                                    <input type="text" name="shipping_address" class="shipping_address"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="additional-info-wrap">
-                            <h4>Thông tin thêm</h4>
-                            <div class="additional-info">
-                                <label>Ghi chú đơn hàng</label>
-                                <textarea placeholder="Notes about your order, e.g. special notes for delivery. " name="shipping_notes" class="shipping_notes"></textarea>
-                            </div>
-                        </div>
-                        <div class="Place-order mt-25">
-                            <input type="button" value="Xác nhận đơn hàng" name="send_order" class="btn btn-hover cart-btn-2 send_order">
-                        </div>
-                    </form>
-                    {{-- <form>
-                        @csrf
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Chọn thành phố</label>
-                            <div class="col-sm-10 form-group">
-                                <select name="city" id="city" class="form-control choose city">
-                                    <option value="">----Chọn thành phố----</option>
-                                    @foreach($city as $key => $ci)
-                                    <option value="{{$ci->matp}}">{{$ci->name_city}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Chọn quận huyện</label>
-                            <div class="col-sm-10 form-group">
-                                <select name="province" id="province" class="form-control province choose">
-                                    <option value="">----Chọn quận huyện----</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Chọn xã phường</label>
-                            <div class="col-sm-10 form-group">
-                                <select name="wards" id="wards" class="form-control wards">
-                                    <option value="">----Chọn xã phường----</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-10">
-                                <button type="button" name="add_delivery" class="btn btn-dark add_delivery">Thêm phí vận chuyển</button>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="Place-order mt-25">
-                        <input type="button" value="Tính phí vận chuyển" name="calculate_order" class="btn btn-hover">
-                    </div> --}}
-                </div>
-            </div>
-            {{-- <div class="col-lg-5">
-                <div class="your-order-area">
-                    <h3>Đơn hàng của bạn</h3>
-                    <div class="your-order-wrap gray-bg-4">
-                        <div class="your-order-product-info">
-                            <div class="your-order-top">
-                                <ul>
-                                    <li>Sản phẩm</li>
-                                    <li>Tổng tiền</li>
-                                </ul>
-                            </div>
-                            <div class="your-order-middle">
-                                <ul>
-                                    <li><span class="order-middle-left">Product Name X 1</span> <span class="order-price">$329 </span></li>
-                                    <li><span class="order-middle-left">Product Name X 1</span> <span class="order-price">$329 </span></li>
-                                </ul>
-                            </div>
-                            <div class="your-order-bottom">
-                                <ul>
-                                    <li class="your-order-shipping">Phí vận chuyển</li>
-                                    <li>Freeship</li>
-                                </ul>
-                            </div>
-                            <div class="your-order-total">
-                                <ul>
-                                    <li class="order-total">Tổng tiền</li>
-                                    <li>$329</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Place-order mt-25">
-                        <a class="btn-hover" href="#">Place Order</a>
-                    </div>
-                </div>
-            </div> --}}
             <!-- cart area start -->
             <div class="cart-main-area mtb-60px">
                 <div class="container">
@@ -306,18 +180,7 @@
                                 @if(Session::get('coupon'))
                                 <a class="check_coupon mb-2" name="unset-coupon" href="{{url('/unset-coupon')}}">Xóa mã giảm giá</a>
                                 @endif
-                                <?php
-                                    $customer_id = Session::get('customer_id');
-                                    if($customer_id!=NULL){ 
-                                ?>
-                                <a href="{{URL::to('/checkout')}}">Thanh toán</a>
-                                <?php 
-                                    }else{
-                                ?>
-                                    <a href="{{URL::to('/login-checkout')}}">Thanh toán</a>
-                                <?php
-                                    } 
-                                ?>
+                                
                                 
                             </div>
                             @endif
@@ -325,6 +188,134 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12">
+                <div class="billing-info-wrap">
+                    <h3>Thông tin thanh toán</h3>
+                    <hr class="w-100 p-0">
+                    <form method="post">
+                        @csrf
+                        @if(Session::get('coupon'))
+							@foreach(Session::get('coupon') as $key => $cou)
+								<input type="hidden" name="order_coupon" class="order_coupon" value="{{$cou['coupon_code']}}">
+							@endforeach
+						@else 
+							<input type="hidden" name="order_coupon" class="order_coupon" value="no">
+						@endif
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-20px">
+                                    <label>Họ và tên</label>
+                                    <input type="text" name="shipping_name" class="shipping_name"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-20px">
+                                    <label>Số điện thoại</label>
+                                    <input type="text" name="shipping_phone" class="shipping_phone"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-20px">
+                                    <label>Email</label>
+                                    <input type="text" name="shipping_email" class="shipping_email"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-20px">
+                                    <label>Địa chỉ</label>
+                                    <input type="text" name="shipping_address" class="shipping_address"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="additional-info-wrap">
+                            <h4>Thông tin thêm</h4>
+                            <div class="additional-info">
+                                <label>Ghi chú đơn hàng</label>
+                                <textarea placeholder="Notes about your order, e.g. special notes for delivery. " name="shipping_notes" class="shipping_notes"></textarea>
+                            </div>
+                        </div>
+                        <div class="Place-order mt-25">
+                            <input type="button" value="Xác nhận đơn hàng" name="send_order" class="btn btn-hover cart-btn-2 send_order">
+                        </div>
+                    </form>
+                    {{-- <form>
+                        @csrf
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Chọn thành phố</label>
+                            <div class="col-sm-10 form-group">
+                                <select name="city" id="city" class="form-control choose city">
+                                    <option value="">----Chọn thành phố----</option>
+                                    @foreach($city as $key => $ci)
+                                    <option value="{{$ci->matp}}">{{$ci->name_city}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Chọn quận huyện</label>
+                            <div class="col-sm-10 form-group">
+                                <select name="province" id="province" class="form-control province choose">
+                                    <option value="">----Chọn quận huyện----</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Chọn xã phường</label>
+                            <div class="col-sm-10 form-group">
+                                <select name="wards" id="wards" class="form-control wards">
+                                    <option value="">----Chọn xã phường----</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <button type="button" name="add_delivery" class="btn btn-dark add_delivery">Thêm phí vận chuyển</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="Place-order mt-25">
+                        <input type="button" value="Tính phí vận chuyển" name="calculate_order" class="btn btn-hover">
+                    </div> --}}
+                </div>
+            </div>
+            {{-- <div class="col-lg-5">
+                <div class="your-order-area">
+                    <h3>Đơn hàng của bạn</h3>
+                    <div class="your-order-wrap gray-bg-4">
+                        <div class="your-order-product-info">
+                            <div class="your-order-top">
+                                <ul>
+                                    <li>Sản phẩm</li>
+                                    <li>Tổng tiền</li>
+                                </ul>
+                            </div>
+                            <div class="your-order-middle">
+                                <ul>
+                                    <li><span class="order-middle-left">Product Name X 1</span> <span class="order-price">$329 </span></li>
+                                    <li><span class="order-middle-left">Product Name X 1</span> <span class="order-price">$329 </span></li>
+                                </ul>
+                            </div>
+                            <div class="your-order-bottom">
+                                <ul>
+                                    <li class="your-order-shipping">Phí vận chuyển</li>
+                                    <li>Freeship</li>
+                                </ul>
+                            </div>
+                            <div class="your-order-total">
+                                <ul>
+                                    <li class="order-total">Tổng tiền</li>
+                                    <li>$329</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Place-order mt-25">
+                        <a class="btn-hover" href="#">Place Order</a>
+                    </div>
+                </div>
+            </div> --}}
+            
         </div>
     </div>
 </div>

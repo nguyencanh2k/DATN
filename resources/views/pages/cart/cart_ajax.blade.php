@@ -148,7 +148,7 @@
                     @if(Session::get('coupon'))
                     <a class="check_coupon mb-2" name="unset-coupon" href="{{url('/unset-coupon')}}">Xóa mã giảm giá</a>
                     @endif
-                    @if(Session::get('customer'))
+                    @if(Session::get('customer_id'))
 	                    <a href="{{url('/checkout')}}">Đặt hàng</a>
 	                @else 
 	                    <a href="{{url('/login-checkout')}}">Đặt hàng</a>
