@@ -40,15 +40,19 @@
                     <!-- Right Side Start -->
                     <div class="select-shoing-wrap">
                         <div class="shot-product">
-                            <p>Sort By:</p>
+                            <p>Sắp xếp theo</p>
                         </div>
                         <div class="shop-select">
-                            <select>
-                                <option value="">Sort by newness</option>
-                                <option value="">A to Z</option>
-                                <option value=""> Z to A</option>
-                                <option value="">In stock</option>
-                            </select>
+                            <form>
+                                @csrf
+                                <select name="sort" id="sort" class="form-control">
+                                    <option value="{{Request::url()}}?sort_by=none">---Lọc---</option>
+                                    <option value="{{Request::url()}}?sort_by=tang_dan">---Giá tăng dần---</option>
+                                    <option value="{{Request::url()}}?sort_by=giam_dan">---Giá giảm dần---</option>
+                                    <option value="{{Request::url()}}?sort_by=kytu_az">A đến Z</option>
+                                    <option value="{{Request::url()}}?sort_by=kytu_za">Z đến A</option>
+                                </select>
+                            </form>
                         </div>
                     </div>
                     <!-- Right Side End -->
@@ -65,6 +69,14 @@
                                 @foreach($brand_by_id as $key => $product)
                                 <div class="col-xl-3 col-md-6 col-lg-4 col-sm-6 col-xs-12">
                                     <article class="list-product">
+                                    <form action="">
+                                        @csrf
+                                        <input type="hidden" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
+                                        <input type="hidden" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
+                                        <input type="hidden" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
+                                        <input type="hidden" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
+                                        <input type="hidden" value="{{$product->product_quantity}}" class="cart_product_quantity_{{$product->product_id}}">
+                                        <input type="hidden" value="1" class="cart_product_qty_{{$product->product_id}}">
                                         <div class="img-block">
                                             <a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="thumbnail">
                                                 <img class="first-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
@@ -76,7 +88,7 @@
                                         </ul>
                                         <div class="product-decs">
                                             <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
-                                            <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2>
+                                            {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2> --}}
                                             <div class="rating-product">
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
@@ -94,7 +106,7 @@
                                         </div>
                                         <div class="add-to-link">
                                             <ul>
-                                                <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
+                                                <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">ADD TO CART </a></li>
                                                 <li>
                                                     <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
                                                 </li>
@@ -103,6 +115,7 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                    </form>
                                     </article>
                                 </div>
                                 @endforeach
@@ -173,10 +186,15 @@
                     <div class="sidebar-widget mt-20">
                         <h4 class="pro-sidebar-title">Price</h4>
                         <div class="price-filter mt-10">
+                            <form action="">
                             <div class="price-slider-amount">
-                                <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                                <input type="text" id="amount" class="w-100" placeholder="Add Your Price" />
+                                <input type="hidden" id="start_price" name="start_price"/>
+                                <input type="hidden" id="end_price" name="end_price"/>
                             </div>
                             <div id="slider-range"></div>
+                            <input type="submit" name="filter_price" value="Lọc giá" class="btn btn-success" />
+                            </form>
                         </div>
                     </div>
                     <div class="sidebar-widget mt-30">

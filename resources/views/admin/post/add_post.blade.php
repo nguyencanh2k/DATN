@@ -30,25 +30,25 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tóm tắt bài viết</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_desc" rows="6" id="ckeditor11"  placeholder="Mô tả thương hiệu"></textarea>
+                            <textarea class="form-control h-150px" name="post_desc" rows="6" id="ckeditor2"  placeholder="Mô tả thương hiệu"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nội dung bài viết</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_content" rows="6" id="ckeditor12"  placeholder="Mô tả thương hiệu"></textarea>
+                            <textarea class="form-control h-150px" name="post_content" rows="6" id="ckeditor3"  placeholder="Mô tả thương hiệu"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Meta từ khóa</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_meta_keywords" rows="6" id="ckeditor13"  placeholder="Mô tả thương hiệu"></textarea>
+                            <textarea class="form-control h-150px" name="post_meta_keywords" rows="6" id="ckeditor4"  placeholder="Mô tả thương hiệu"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Meta nội dung</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_meta_desc" rows="6" id="ckeditor14"  placeholder="Mô tả thương hiệu"></textarea>
+                            <textarea class="form-control h-150px" name="post_meta_desc" rows="6" id="ckeditor5"  placeholder="Mô tả thương hiệu"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

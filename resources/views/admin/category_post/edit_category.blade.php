@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả danh mục bài viết</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="cate_post_desc" rows="6" id="ckeditor4" >{{$category_post->cate_post_desc}}</textarea>
+                            <textarea class="form-control h-150px" name="cate_post_desc" rows="6" id="ckeditor1" >{{$category_post->cate_post_desc}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">

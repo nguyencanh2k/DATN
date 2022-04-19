@@ -2531,7 +2531,22 @@ ul.dropdown-nav>li>a {
     font-weight: 700;
 
 }
-.count-cart:after {
+/* .count-cart:after {
+    position: absolute;
+    top: 9px;
+    left: -26px;
+    right: auto;
+    width: 18px;
+    height: 18px;
+    content: "2";
+    background: #4fb68d;
+    color: #fff;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    float: right;
+} */
+.show-cart {
     position: absolute;
     top: 9px;
     left: -26px;
@@ -3575,7 +3590,7 @@ a.quick_view:hover{
     font-size: 12px;
     text-transform: uppercase;
     color: #999;
-    line-height: 1;
+    line-height: 2;
     margin-bottom: 10px;
     display: block;
 }
@@ -5950,7 +5965,7 @@ a.read-more-btn i {
     color: #253237;
     font-weight: 600;
     margin: 0 0 22px;
-    line-height: 16px;
+    line-height: 28px;
 }
 
 .reference {

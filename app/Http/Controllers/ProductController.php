@@ -184,7 +184,29 @@ class ProductController extends Controller
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
-        $show_all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
+        // $show_all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
+        $min_price = Product::min('product_price');
+        $max_price = Product::max('product_price');
+        $min_price_range = $min_price + 1000000;
+        $max_price_range = $max_price + 5000000;
+        if(isset($_GET['sort_by'])){
+            $sort_by = $_GET['sort_by'];
+            if($sort_by=='giam_dan'){
+                $show_all_product = Product::orderBy('product_price','DESC')->paginate(10)->appends(request()->query());
+            }elseif($sort_by=='tang_dan'){
+                $show_all_product = Product::orderBy('product_price','ASC')->paginate(10)->appends(request()->query());
+            }elseif($sort_by=='kytu_za'){
+                $show_all_product = Product::orderBy('product_name','DESC')->paginate(10)->appends(request()->query());
+            }elseif($sort_by=='kytu_az'){
+                $show_all_product = Product::orderBy('product_name','ASC')->paginate(10)->appends(request()->query());
+            }
+        }elseif(isset($_GET['start_price']) && $_GET['end_price']){
+            $min_price = $_GET['start_price'];
+            $max_price = $_GET['end_price'];
+            $show_all_product = Product::whereBetween('product_price', [$min_price, $max_price])->paginate(10)->appends(request()->query());
+        }else{
+            $show_all_product = Product::where('product_status','0')->paginate(20);
+        }
         //seo 
             $meta_desc = 'Tất cả sản phẩm';
             $meta_keywords = 'Tất cả sản phẩm';
@@ -192,7 +214,8 @@ class ProductController extends Controller
             $url_canonical = $request->url();
         //--seo
         
-        return view('pages.sanpham.show_all_product')->with('category',$cate_product)->with('brand',$brand_product)->with('show_all_product',$show_all_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
+        return view('pages.sanpham.show_all_product')->with('category',$cate_product)->with('brand',$brand_product)->with('show_all_product',$show_all_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with(
+            'min_price',$min_price)->with('max_price',$max_price)->with('min_price_range',$min_price_range)->with('max_price_range',$max_price_range);
     }
     public function tag($product_tag, Request $request){
         //category post

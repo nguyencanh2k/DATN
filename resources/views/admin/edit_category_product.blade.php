@@ -25,13 +25,13 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả danh mục</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_desc" rows="6" id="ckeditor6" >{{$edit_value->category_desc}}</textarea>
+                            <textarea class="form-control h-150px" name="category_product_desc" rows="6" id="ckeditor17" >{{$edit_value->category_desc}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Từ khóa danh mục</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor10" >{{$edit_value->meta_keywords}}</textarea>
+                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor18" >{{$edit_value->meta_keywords}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">

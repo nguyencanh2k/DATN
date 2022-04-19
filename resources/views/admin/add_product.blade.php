@@ -30,17 +30,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Giá sản phẩm</label>
+                        <label class="col-sm-2 col-form-label">Giá nhập sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_price" class="form-control price_format" data-validation="length" 
-                            data-validation-length="min5" data-validation-error-msg="Làm ơn điền số tiền" placeholder="Giá sản phẩm">
+                            <input type="text" name="price_cost" class="form-control price_format" data-validation="length" 
+                            data-validation-length="min5" data-validation-error-msg="Làm ơn điền số tiền" placeholder="Giá nhập sản phẩm">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Giá gốc</label>
+                        <label class="col-sm-2 col-form-label">Giá bán sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="price_cost" class="form-control price_format" data-validation="length" 
-                            data-validation-length="min5" data-validation-error-msg="Làm ơn điền số tiền" placeholder="Giá gốc sản phẩm">
+                            <input type="text" name="product_price" class="form-control price_format" data-validation="length" 
+                            data-validation-length="min5" data-validation-error-msg="Làm ơn điền số tiền" placeholder="Giá bán sản phẩm">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -59,13 +59,13 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" id="ckeditor1" name="product_desc" rows="6" id="comment" placeholder="Mô tả sản phẩm"></textarea>
+                            <textarea class="form-control h-150px" id="ckeditor14" name="product_desc" rows="6" id="comment" placeholder="Mô tả sản phẩm"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nội dung sản phẩm</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" id="ckeditor2" name="product_content" rows="6" id="comment" placeholder="Nội dung sản phẩm"></textarea>
+                            <textarea class="form-control h-150px" id="ckeditor15" name="product_content" rows="6" id="comment" placeholder="Nội dung sản phẩm"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

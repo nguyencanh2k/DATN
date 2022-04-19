@@ -247,23 +247,30 @@
                                 <nav id="mobile-menu-active">
                                     <ul class="menu-overflow">
                                         <li>
-                                            <a href="index.html">Trang chủ</a>
+                                            <a href="{{URL::to('/trang-chu')}}">Trang chủ</a>
                                         </li>
                                         <li>
-                                            <a href="#">Danh mục</a>
+                                            <a href="{{URL::to('/tat-ca-san-pham')}}">Danh mục</a>
                                             <ul>
-                                                <li>
-                                                    <a href="#">Thương hiệu</a>
-                                                    <ul>
-                                                        <li><a href="shop-3-column.html">Shop Grid 3 Column</a></li>
-                                                    </ul>
-                                                </li>
+                                                @foreach($category as $key => $cate_mb)
+                                                <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate_mb->category_id)}}">{{$cate_mb->category_name}}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
+                                        {{-- <li>
+                                            <a href="{{URL::to('/tat-ca-san-pham')}}">Thương hiệu</a>
+                                            <ul>
+                                                @foreach($brand as $key => $brand_mb)
+                                                <li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand_mb->brand_id)}}">{{$brand_mb->brand_name}}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </li> --}}
                                         <li>
                                             <a href="#">Blog</a>
                                             <ul>
-                                                <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
+                                                @foreach($category_post as $key => $danhmucbaiviet_mb)
+                                                <li><a href="{{URL::to('/danh-muc-bai-viet/'.$danhmucbaiviet_mb->cate_post_slug)}}">{{$danhmucbaiviet_mb->cate_post_name}}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li><a href="contact.html">Contact Us</a></li>
@@ -326,15 +333,14 @@
                             <!-- footer single wedget -->
                             <div class="col-md-6 col-lg-2 mt-res-sx-30px mt-res-md-30px">
                                 <div class="single-wedge">
-                                    <h4 class="footer-herading">Information</h4>
+                                    <h4 class="footer-herading">Thêm thông tin</h4>
                                     <div class="footer-links">
                                         <ul>
-                                            <li><a href="#">Delivery</a></li>
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="#">Secure Payment</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="#">Sitemap</a></li>
-                                            <li><a href="#">Stores</a></li>
+                                            <li><a href="#">Vận chuyển</a></li>
+                                            <li><a href="about.html">Về chúng tôi</a></li>
+                                            <li><a href="#">Thanh toán an toàn</a></li>
+                                            <li><a href="contact.html">Liên hệ chúng tôi</a></li>
+                                            <li><a href="#">Cửa hàng</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -342,15 +348,14 @@
                             <!-- footer single wedget -->
                             <div class="col-md-6 col-lg-2 mt-res-md-50px mt-res-sx-30px mt-res-md-30px">
                                 <div class="single-wedge">
-                                    <h4 class="footer-herading">Custom Links</h4>
+                                    <h4 class="footer-herading">Liên kết</h4>
                                     <div class="footer-links">
                                         <ul>
-                                            <li><a href="#">Legal Notice</a></li>
-                                            <li><a href="#">Prices Drop</a></li>
-                                            <li><a href="#">New Products</a></li>
-                                            <li><a href="#">Best Sales</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="my-account.html">My Account</a></li>
+                                            <li><a href="#">Giá tốt nhất</a></li>
+                                            <li><a href="#">Sản phẩm mới</a></li>
+                                            <li><a href="#">Sản phẩm bán chạy</a></li>
+                                            <li><a href="login.html">Đăng nhập</a></li>
+                                            <li><a href="my-account.html">Tài khoản của tôi</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -358,31 +363,7 @@
                             <!-- footer single wedget -->
                             <div class="col-md-6 col-lg-4 mt-res-md-50px mt-res-sx-30px mt-res-md-30px">
                                 <div class="single-wedge">
-                                    <h4 class="footer-herading">Newsletter</h4>
-                                    <div class="subscrib-text">
-                                        <p>You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.</p>
-                                    </div>
-                                    <div id="mc_embed_signup" class="subscribe-form">
-                                        <form
-                                            id="mc-embedded-subscribe-form"
-                                            class="validate"
-                                            novalidate=""
-                                            target="_blank"
-                                            name="mc-embedded-subscribe-form"
-                                            method="post"
-                                            action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
-                                        >
-                                            <div id="mc_embed_signup_scroll" class="mc-form">
-                                                <input class="email" type="email" required="" placeholder="Enter your email here.." name="EMAIL" value="" />
-                                                <div class="mc-news" aria-hidden="true" style="position: absolute; left: -5000px;">
-                                                    <input type="text" value="" tabindex="-1" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" />
-                                                </div>
-                                                <div class="clear">
-                                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe" value="Sign Up" />
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <h4 class="footer-herading">Tải ngay</h4>
                                     <div class="img_app">
                                         <a href="#"><img src="{{asset('public/frontend/images/icons/app_store.png')}}" alt="" /></a>
                                         <a href="#"><img src="{{asset('public/frontend/images/icons/google_play.png')}}" alt="" /></a>
@@ -398,7 +379,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-lg-4">
-                                <p class="copy-text">Copyright © <a href="#"> HasThemes</a>. All Rights Reserved</p>
+                                <p class="copy-text">Copyright © <a href="#"> NXC</a>. All Rights Reserved</p>
                             </div>
                             <div class="col-md-6 col-lg-8">
                                 <img class="payment-img" src="{{asset('public/frontend/images/icons/payment.png')}}" alt="" />

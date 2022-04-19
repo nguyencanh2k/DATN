@@ -7,6 +7,7 @@ use DB;
 use App\Brand;
 use Session;
 use App\CatePost;
+use App\Product;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
@@ -29,7 +30,7 @@ class BrandProduct extends Controller
         $this->AuthLogin();
         // $all_brand_product = DB::table('tbl_brand')->get();
         // $all_brand_product = Brand::all(); 
-        $all_brand_product = Brand::orderBy('brand_id','DESC')->paginate(2);
+        $all_brand_product = Brand::orderBy('brand_id','DESC')->paginate(10);
         $manager_brand_product = view('admin.all_brand_product')->with('all_brand_product', $all_brand_product);
         return view('admin_layout')->with('admin.all_brand_product', $manager_brand_product);
     }
@@ -102,8 +103,30 @@ class BrandProduct extends Controller
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
-        $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_id)->get();
+        // $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_id)->get();
         $brand_name = DB::table('tbl_brand')->where('tbl_brand.brand_id',$brand_id)->limit(1)->get();
+        $min_price = Product::min('product_price');
+        $max_price = Product::max('product_price');
+        $min_price_range = $min_price + 1000000;
+        $max_price_range = $max_price + 5000000;
+        if(isset($_GET['sort_by'])){
+            $sort_by = $_GET['sort_by'];
+            if($sort_by=='giam_dan'){
+                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_price','DESC')->paginate(10)->appends(request()->query());
+            }elseif($sort_by=='tang_dan'){
+                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_price','ASC')->paginate(10)->appends(request()->query());
+            }elseif($sort_by=='kytu_za'){
+                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_name','DESC')->paginate(10)->appends(request()->query());
+            }elseif($sort_by=='kytu_az'){
+                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_name','ASC')->paginate(10)->appends(request()->query());
+            }
+        }elseif(isset($_GET['start_price']) && $_GET['end_price']){
+            $min_price = $_GET['start_price'];
+            $max_price = $_GET['end_price'];
+            $brand_by_id = Product::with('brand')->whereBetween('product_price', [$min_price, $max_price])->orderBy('product_id', 'ASC')->paginate(10)->appends(request()->query());
+        }else{
+            $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_id)->get();
+        }
         foreach($brand_name as $key => $val){
             //seo 
             $meta_desc = $val->brand_desc; 
@@ -112,6 +135,7 @@ class BrandProduct extends Controller
             $url_canonical = $request->url();
             //--seo
         }
-        return view('pages.brand.show_brand')->with('category',$cate_product)->with('brand',$brand_product)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
+        return view('pages.brand.show_brand')->with('category',$cate_product)->with('brand',$brand_product)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
+            'category_post',$category_post)->with('min_price',$min_price)->with('max_price',$max_price)->with('min_price_range',$min_price_range)->with('max_price_range',$max_price_range);
     }
 }

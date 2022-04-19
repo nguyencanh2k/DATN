@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="slider_desc" rows="6" id="ckeditor4"  placeholder="Mô tả"></textarea>
+                            <textarea class="form-control h-150px" name="slider_desc" rows="6" id="ckeditor10"  placeholder="Mô tả"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

@@ -144,7 +144,7 @@ class CategoryProduct extends Controller
                                     </ul>
                                     <div class="product-decs">
                                         <a class="inner-link" href="'.url('/chi-tiet'.$val->product_id).'"><span>'.$val->product_name.'</span></a>
-                                        <h2><a href="single-product.html" class="product-link">'.$val->product_desc.'</a></h2>
+                                        
                                         <div class="rating-product">
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>

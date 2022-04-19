@@ -316,6 +316,9 @@
          CKEDITOR.replace('ckeditor15');
          CKEDITOR.replace('ckeditor16');
          CKEDITOR.replace('ckeditor17');
+         CKEDITOR.replace('ckeditor18');
+         CKEDITOR.replace('ckeditor19');
+         CKEDITOR.replace('ckeditor20');
     </script>
 
     <script type="text/javascript">

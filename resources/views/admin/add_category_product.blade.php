@@ -24,13 +24,13 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả danh mục</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_desc" rows="6" id="ckeditor3"  placeholder="Mô tả danh mục"></textarea>
+                            <textarea class="form-control h-150px" name="category_product_desc" rows="6" id="ckeditor12"  placeholder="Mô tả danh mục"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Từ khóa danh mục</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor9"  placeholder="Mô tả danh mục"></textarea>
+                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor13"  placeholder="Mô tả danh mục"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

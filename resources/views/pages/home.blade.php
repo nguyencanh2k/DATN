@@ -125,7 +125,7 @@
                                 </ul>
                                 <div class="product-decs">
                                     <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
-                                    <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2>
+                                    {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{!!$product->product_content!!}</a></h2> --}}
                                     <div class="rating-product">
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
@@ -167,22 +167,22 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-res-xs-30">
                             <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/dong-ho-nam-trang-chu-1.jpg')}}" alt="" /></a>
+                                <a href="{{URL::to('/danh-muc-san-pham/10')}}"><img src="{{asset('public/frontend/images/dong-ho-nam-trang-chu-1.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/dong-ho-nu-trang-chu-1.jpg')}}" alt="" /></a>
+                                <a href="{{URL::to('/danh-muc-san-pham/11')}}"><img src="{{asset('public/frontend/images/dong-ho-nu-trang-chu-1.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
                             <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/dong-ho-co-trang-chu.jpg')}}" alt="" /></a>
+                                <a href="{{URL::to('/danh-muc-san-pham/12')}}"><img src="{{asset('public/frontend/images/dong-ho-co-trang-chu.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
                             <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" /></a>
+                                <a href="{{URL::to('/danh-muc-san-pham/13')}}"><img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -280,7 +280,7 @@
                                 </div>
                                 <div class="product-decs">
                                     <a class="inner-link" href="shop-4-column.html"><span>{{$product2->product_name}}</span></a>
-                                    <h2><a href="single-product.html" class="product-link">{{$product2->product_content}}</a></h2>
+                                    {{-- <h2><a href="single-product.html" class="product-link">{!!$product2->product_content!!}</a></h2> --}}
                                     <div class="rating-product">
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
@@ -344,7 +344,7 @@
                             </ul>
                             <div class="product-decs">
                                 <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}"><span>{{$product3->product_name}}</span></a>
-                                <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="product-link">{{$product3->product_content}}</a></h2>
+                                {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="product-link">{!!$product3->product_content!!}</a></h2> --}}
                                 <div class="rating-product">
                                     <i class="ion-android-star"></i>
                                     <i class="ion-android-star"></i>
