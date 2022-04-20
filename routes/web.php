@@ -25,6 +25,12 @@ Route::get('/thuong-hieu-san-pham/{brand_id}','BrandProduct@show_brand_home');
 Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
 Route::get('/tag/{product_tag}','ProductController@tag');
 Route::get('/tat-ca-san-pham','ProductController@tat_ca_san_pham');
+Route::post('/load-comment','ProductController@load_comment');
+Route::post('/send-comment','ProductController@send_comment');
+Route::get('/comment','ProductController@list_comment');
+Route::post('/allow-comment','ProductController@allow_comment');
+Route::post('/reply-comment','ProductController@reply_comment');
+Route::post('/insert-rating','ProductController@insert_rating');
 
 //Back-end
 Route::get('/admin', 'AdminController@index');

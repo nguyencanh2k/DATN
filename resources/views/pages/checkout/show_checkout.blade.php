@@ -245,7 +245,7 @@
                             <label class="col-sm-2 col-form-label">Chọn thành phố</label>
                             <div class="col-sm-10 form-group">
                                 <select name="city" id="city" class="form-control choose city">
-                                    <option value="">----Chọn thành phố----</option>
+                                    <option>----Chọn thành phố----</option>
                                     @foreach($city as $key => $ci)
                                     <option value="{{$ci->matp}}">{{$ci->name_city}}</option>
                                     @endforeach
@@ -256,7 +256,7 @@
                             <label class="col-sm-2 col-form-label">Chọn quận huyện</label>
                             <div class="col-sm-10 form-group">
                                 <select name="province" id="province" class="form-control province choose">
-                                    <option value="">----Chọn quận huyện----</option>
+                                    <option>----Chọn quận huyện----</option>
                                 </select>
                             </div>
                         </div>
@@ -264,7 +264,7 @@
                             <label class="col-sm-2 col-form-label">Chọn xã phường</label>
                             <div class="col-sm-10 form-group">
                                 <select name="wards" id="wards" class="form-control wards">
-                                    <option value="">----Chọn xã phường----</option>
+                                    <option>----Chọn xã phường----</option>
                                 </select>
                             </div>
                         </div>
