@@ -140,7 +140,6 @@
                                     <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                                 </div>
                                 <h5>Tổng tiền :<span>{{number_format($total,0,',','.')}}đ</span></h5>
-                                <h5>Phí vận chuyển:<span>Freeship</span></h5>
                                 @if(Session::get('coupon'))
                                 <h5>
                                     @foreach(Session::get('coupon') as $key => $cou)

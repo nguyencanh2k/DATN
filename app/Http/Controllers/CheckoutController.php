@@ -15,6 +15,7 @@ use App\Feeship;
 use App\Shipping;
 use App\Order;
 use App\OrderDetails;
+use App\Coupon;
 use Auth;
 use App\CatePost;
 use Carbon\Carbon;
@@ -218,7 +219,11 @@ class CheckoutController extends Controller
     // }
     public function confirm_order(Request $request){
         $data = $request->all();
-
+        //get coupon
+        $coupon = Coupon::where('coupon_code', $data['order_coupon'])->first();
+        $coupon->coupon_time = $coupon->coupon_time - 1;
+        $coupon->save();
+        //get shipping
         $shipping = new Shipping();
         $shipping->shipping_name = $data['shipping_name'];
         $shipping->shipping_email = $data['shipping_email'];
@@ -231,7 +236,7 @@ class CheckoutController extends Controller
 
         $checkout_code = substr(md5(microtime()),rand(0,26),5);
 
- 
+        //get order
         $order = new Order;
         $order->customer_id = Session::get('customer_id');
         $order->shipping_id = $shipping_id;
@@ -259,5 +264,5 @@ class CheckoutController extends Controller
         }
         Session::forget('coupon');
         Session::forget('cart');
-   }
+    }
 }

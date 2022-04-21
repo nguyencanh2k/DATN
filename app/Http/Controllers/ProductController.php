@@ -282,8 +282,7 @@ class ProductController extends Controller
         $comment_rep = Comment::with('product')->where('comment_parent_comment', '>', 0)->get();
         $output = '';
         foreach($comment as $key => $comm){
-            $output.= '
-            <div class="review-wrapper">
+            $output.= '            
                 <div class="single-review">
                     <div class="review-img">
                         <img width="100" height="100" src="'.url('/public/frontend/images/guest.jpg').'" alt="" />
@@ -295,9 +294,6 @@ class ProductController extends Controller
                                     <h4>'.$comm->comment_name.'</h4>
                                 </div>
                             </div>
-                            <div class="review-left">
-                                <a href="#">Reply</a>
-                            </div>
                         </div>
                         <div class="review-bottom">
                             <p>'.$comm->comment.'</p>
@@ -306,7 +302,8 @@ class ProductController extends Controller
                 </div>';
             foreach($comment_rep as $key => $rep_comment){
                 if($rep_comment->comment_parent_comment==$comm->comment_id){
-            $output.= '<div class="single-review child-review">
+            $output.= '
+            <div class="single-review child-review">
                     <div class="review-img">
                         <img width="60" height="60" src="'.url('/public/frontend/images/avatar_admin.png').'" alt="" />
                     </div>
@@ -317,16 +314,12 @@ class ProductController extends Controller
                                     <h4>@Admin</h4>
                                 </div>
                             </div>
-                            <div class="review-left">
-                                <a href="#">Reply</a>
-                            </div>
                         </div>
                         <div class="review-bottom">
                             <p>'.$rep_comment->comment.'</p>
                         </div>
                     </div>
-                </div>
-        </div>';}}
+                </div>';}}
         
         }
         echo $output;

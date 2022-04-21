@@ -161,6 +161,10 @@ Route::get('/view-history-order/{order_code}','OrderController@view_history_orde
 
 //Send Mail 
 Route::get('/send-mail','HomeController@send_mail');
+Route::get('/quen-mat-khau','MailController@quen_mat_khau');
+Route::post('/recover-pass','MailController@recover_pass');
+Route::get('/update-new-pass','MailController@update_new_pass');
+Route::post('/reset-new-pass','MailController@reset_new_pass');
 
 
 //Coupon

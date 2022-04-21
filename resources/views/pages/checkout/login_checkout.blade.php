@@ -35,6 +35,15 @@
                                     <div id="lg1" class="tab-pane active">
                                         <div class="login-form-container">
                                             <div class="login-register-form">
+                                                @if(session()->has('message'))
+                                                    <div class="alert alert-success ml-3">
+                                                        {!! session()->get('message') !!}
+                                                    </div>
+                                                @elseif(session()->has('error'))
+                                                    <div class="alert alert-danger ml-3">
+                                                        {!! session()->get('error') !!}
+                                                    </div>
+                                                @endif
                                                 <form action="{{URL::to('/login-customer')}}" method="post">
                                                     {{ csrf_field() }}
                                                     <input type="text" name="email_account" placeholder="Username" />
@@ -43,7 +52,7 @@
                                                         <div class="login-toggle-btn">
                                                             <input type="checkbox" />
                                                             <a class="flote-none" href="javascript:void(0)">Remember me</a>
-                                                            <a href="#">Quên mật khẩu?</a>
+                                                            <a href="{{url('/quen-mat-khau')}}">Quên mật khẩu?</a>
                                                         </div>
                                                         <button type="submit"><span>Đăng nhập</span></button>
                                                     </div>
@@ -54,6 +63,15 @@
                                     <div id="lg2" class="tab-pane">
                                         <div class="login-form-container">
                                             <div class="login-register-form">
+                                                @if(session()->has('message'))
+                                                    <div class="alert alert-success ml-3">
+                                                        {!! session()->get('message') !!}
+                                                    </div>
+                                                @elseif(session()->has('error'))
+                                                    <div class="alert alert-danger ml-3">
+                                                        {!! session()->get('error') !!}
+                                                    </div>
+                                                @endif
                                                 <form action="{{URL::to('/add-customer')}}" method="post">
                                                     {{ csrf_field() }}
                                                     <input type="text" name="customer_name" placeholder="Họ và tên" />

@@ -75,7 +75,7 @@
                                         </ul>
                                         <div class="product-decs">
                                             <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
-                                            <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2>
+                                            {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2> --}}
                                             <div class="rating-product">
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>
