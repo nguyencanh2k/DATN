@@ -62,7 +62,7 @@
                                             @endphp
                                             <tr>
                                                 <td class="product-thumbnail">
-                                                    <a href="#"><img src="{{asset('public/uploads/product/'.$cart['product_image'])}}" alt="" /></a>
+                                                    <a href="#"><img width="120px" height="120px" src="{{asset('public/uploads/product/'.$cart['product_image'])}}" alt="" /></a>
                                                 </td>
                                                 <td class="product-name"><a href="#">{{$cart['product_name']}}</a></td>
                                                 <td class="product-price-cart"><span class="amount">{{number_format($cart['product_price'],0,',','.')}}đ</span></td>

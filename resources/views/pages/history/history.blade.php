@@ -53,14 +53,45 @@
                             <td>{{$ord->order_code}}</td>
                             <td>{{ $ord->created_at }}</td>
                             <td>@if($ord->order_status==1)
-                                Đơn hàng mới
-                            @else 
-                                Đã xử lý
+                                <span class="text text-success">Đơn hàng mới</span> 
+                            @elseif($ord->order_status==2)
+                                <span class="text text-primary">Đã xử lý - Đã giao hàng</span> 
+                            @else
+                                <span class="text text-danger">Đơn hàng đã bị hủy</span> 
                             @endif
                             </td>
-                            <td><span>
+                            <td>
+                                @if($ord->order_status!=3)
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#huydon">
+                                    Hủy đơn hàng
+                                </button>
+                                @endif
+                                <form>
+                                    @csrf
+                                <div class="modal fade" id="huydon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Lý do hủy đơn hàng</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea name="" class="lydohuydon" id="" cols="110" rows="10" required></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                        <button type="button" id="{{$ord->order_code}}" onclick="Huydonhang(this.id)" class="btn btn-success">Gửi</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </form>
+                                <span>
                                 <a href="{{URL::to('/view-history-order/'.$ord->order_code)}}" data-toggle="tooltip" data-placement="top" title="View">Xem đơn hàng</a>
-                            </span></td>
+                                </span>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

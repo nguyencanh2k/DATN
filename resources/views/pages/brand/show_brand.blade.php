@@ -6,9 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="breadcrumb-content">
-                    @foreach($brand_name as $key => $name)
-                    <h1 class="breadcrumb-hrading">{{$name->brand_name}}</h1>
-                    @endforeach
+                    <h1 class="breadcrumb-hrading">{{$brand_name->brand_name}}</h1>
                     <ul class="breadcrumb-links">
                         <li><a href="{{url('/')}}">Trang chủ</a></li>
                         <li>Thương hiệu</li>
@@ -150,33 +148,28 @@
                         </div>
                         <!-- Sidebar single item -->
                         <div class="sidebar-widget">
-                            <h4 class="pro-sidebar-title">Categories</h4>
+                            <h4 class="pro-sidebar-title">Thương hiệu</h4>
                             <div class="sidebar-widget-list">
                                 <ul>
+                                    @php
+                                        $brand_id = [];
+                                        $brand_arr = [];
+                                        if(isset($_GET['brand'])){
+                                            $brand_id = $_GET['brand'];
+                                        }else{
+                                            $brand_id = $brand_name->brand_id.",";
+                                        }
+                                        $brand_arr = explode(",", $brand_id);
+                                    @endphp
+                                    @foreach ($brand as $key => $bra)
                                     <li>
                                         <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" /> <a href="#">Fresh Fruit<span>(17)</span> </a>
+                                            <input type="checkbox" {{in_array($bra->brand_id, $brand_arr) ? 'checked' : ''}} class="brand-filter" data-filters="brand" 
+                                            value="{{$bra->brand_id}}" name="brand-filter"/> <a href="#">{{$bra->brand_name}}</a>
                                             <span class="checkmark"></span>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" value="" /> <a href="#">Fresh Vegetables <span>(17)</span></a>
-                                            <span class="checkmark"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" value="" /> <a href="#">Fresh Salad & Dips<span>(17)</span> </a>
-                                            <span class="checkmark"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" value="" /> <a href="#">Milk,Butter & Eggs<span>(17)</span> </a>
-                                            <span class="checkmark"></span>
-                                        </div>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -197,7 +190,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="sidebar-widget mt-30">
+                    {{-- <div class="sidebar-widget mt-30">
                         <h4 class="pro-sidebar-title">Brand</h4>
                         <div class="sidebar-widget-list">
                             <ul>
@@ -215,7 +208,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- Sidebar Area End -->

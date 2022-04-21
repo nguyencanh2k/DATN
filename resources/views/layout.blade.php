@@ -674,7 +674,8 @@
                           });
   
                           window.setTimeout(function(){ 
-                              location.reload();
+                              //location.reload();
+                                window.location.href = "{{url('/history')}}";
                           } ,3000);
   
                         } else {
@@ -866,6 +867,46 @@
                 }
                 });
         });
+    </script>
+    <script type="text/javascript">
+        function Huydonhang(id){
+            var order_code = id;
+            var lydo = $('.lydohuydon').val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url : "{{url('/huy-don-hang')}}",
+                method: 'POST',
+                data:{order_code:order_code, lydo:lydo, _token:_token},
+                success:function(data){
+                    alert("Hủy đơn hàng thành công");
+                    location.reload();
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        $('.category-filter').click(function(){
+            var category = [], tempArray = [];
+            $.each($("[data-filters='category']:checked"), function(){
+                tempArray.push($(this).val());
+            });
+            tempArray.reverse();
+            if(tempArray.length !==0){
+                category+='?cate='+tempArray.toString();
+            }
+            window.location.href = category
+        })
+        $('.brand-filter').click(function(){
+            var brand = [], tempArray = [];
+            $.each($("[data-filters='brand']:checked"), function(){
+                tempArray.push($(this).val());
+            });
+            tempArray.reverse();
+            if(tempArray.length !==0){
+                brand+='?brand='+tempArray.toString();
+            }
+            window.location.href = brand
+        })
     </script>
     </body>
 </html>

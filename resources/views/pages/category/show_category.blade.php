@@ -127,6 +127,7 @@
                     <!--  Pagination Area Start -->
                     <div class="pro-pagination-style text-center">
                         <ul>
+                            {{-- {{$category_by_id->links()}} --}}
                             <li>
                                 <a class="prev" href="#"><i class="ion-ios-arrow-left"></i></a>
                             </li>
@@ -150,15 +151,28 @@
                         </div>
                         <!-- Sidebar single item -->
                         <div class="sidebar-widget">
-                            <h4 class="pro-sidebar-title">Categories</h4>
+                            <h4 class="pro-sidebar-title">Lọc danh mục</h4>
                             <div class="sidebar-widget-list">
                                 <ul>
+                                    @php
+                                        $category_id = [];
+                                        $category_arr = [];
+                                        if(isset($_GET['cate'])){
+                                            $category_id = $_GET['cate'];
+                                        }else{
+                                            $category_id = $name->category_id.",";
+                                        }
+                                        $category_arr = explode(",", $category_id);
+                                    @endphp
+                                    @foreach ($category as $key => $cate)
                                     <li>
                                         <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" /> <a href="#">Fresh Fruit<span>(17)</span> </a>
+                                            <input type="checkbox" {{in_array($cate->category_id, $category_arr) ? 'checked' : ''}} class="category-filter" data-filters="category" 
+                                            value="{{$cate->category_id}}" name="category-filter"/> <a href="#">{{$cate->category_name}}</a>
                                             <span class="checkmark"></span>
                                         </div>
                                     </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -179,7 +193,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="sidebar-widget mt-30">
+                    {{-- <div class="sidebar-widget mt-30">
                         <h4 class="pro-sidebar-title">Brand</h4>
                         <div class="sidebar-widget-list">
                             <ul>
@@ -191,7 +205,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- Sidebar Area End -->

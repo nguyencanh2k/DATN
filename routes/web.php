@@ -158,6 +158,7 @@ Route::post('/update-order-qty','OrderController@update_order_qty');
 Route::post('/update-qty','OrderController@update_qty');
 Route::get('/history','OrderController@history');
 Route::get('/view-history-order/{order_code}','OrderController@view_history_order');
+Route::post('/huy-don-hang','OrderController@huy_don_hang');
 
 //Send Mail 
 Route::get('/send-mail','HomeController@send_mail');

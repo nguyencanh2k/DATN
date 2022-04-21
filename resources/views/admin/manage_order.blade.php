@@ -20,6 +20,7 @@
                             <th scope="col">Mã đơn hàng</th>
                             <th scope="col">Thời gian đặt hàng</th>
                             <th scope="col">Tình trạng đơn hàng</th>
+                            <th scope="col">Lý do hủy đơn</th>
                             <th scope="col">Hành động</th>
                         </tr>
                     </thead>
@@ -36,10 +37,16 @@
                             <td>{{$ord->order_code}}</td>
                             <td>{{ $ord->created_at }}</td>
                             <td>@if($ord->order_status==1)
-                                Đơn hàng mới
-                            @else 
-                                Đã xử lý - Đã giao hàng
+                                <span class="text text-success">Đơn hàng mới</span> 
+                            @elseif($ord->order_status==2)
+                                <span class="text text-primary">Đã xử lý - Đã giao hàng</span> 
+                            @else
+                                <span class="text text-danger">Đơn hàng đã bị hủy</span> 
                             @endif
+                            </td>
+                            <td>@if($ord->order_status==3)
+                                {{$ord->order_destroy}}
+                                @endif
                             </td>
                             <td><span>
                                 <a href="{{URL::to('/view-order/'.$ord->order_code)}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye text-success m-r-5 text-active"></i></a>
