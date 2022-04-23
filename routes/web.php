@@ -144,7 +144,9 @@ Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer
 Route::get('/payment','CheckoutController@payment');
 Route::post('/order-place','CheckoutController@order_place');
 Route::post('/select-delivery-home','CheckoutController@select_delivery_home');
+Route::post('/calculate-fee','CheckoutController@calculate_fee');
 Route::post('/confirm-order','CheckoutController@confirm_order');
+Route::get('/del-fee','CheckoutController@del_fee');
 
 
 //Order

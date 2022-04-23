@@ -195,28 +195,51 @@ class CheckoutController extends Controller
         return view('admin_layout')->with('admin.view_order', $manager_order_by_id);
         
     }
-    // public function select_delivery_home(Request $request){
-    //     $data = $request->all();
-    //     if($data['action']){
-    //         $output = '';
-    //         if($data['action']=="city"){
-    //             $select_province = Province::where('matp',$data['ma_id'])->orderby('maqh','ASC')->get();
-    //                 $output.='<option>---Chọn quận huyện---</option>';
-    //             foreach($select_province as $key => $province){
-    //                 $output.='<option value="'.$province->maqh.'">'.$province->name_quanhuyen.'</option>';
-    //             }
+    public function select_delivery_home(Request $request){
+        $data = $request->all();
+        if($data['action']){
+            $output = '';
+            if($data['action']=="city"){
+                $select_province = Province::where('matp',$data['ma_id'])->orderby('maqh','ASC')->get();
+                    $output.='<option>---Chọn quận huyện---</option>';
+                foreach($select_province as $key => $province){
+                    $output.='<option value="'.$province->maqh.'">'.$province->name_quanhuyen.'</option>';
+                }
 
-    //         }else{
+            }else{
 
-    //             $select_wards = Wards::where('maqh',$data['ma_id'])->orderby('xaid','ASC')->get();
-    //             $output.='<option>---Chọn xã phường---</option>';
-    //             foreach($select_wards as $key => $ward){
-    //                 $output.='<option value="'.$ward->xaid.'">'.$ward->name_xaphuong.'</option>';
-    //             }
-    //         }
-    //         echo $output;
-    //     }
-    // }
+                $select_wards = Wards::where('maqh',$data['ma_id'])->orderby('xaid','ASC')->get();
+                $output.='<option>---Chọn xã phường---</option>';
+                foreach($select_wards as $key => $ward){
+                    $output.='<option value="'.$ward->xaid.'">'.$ward->name_xaphuong.'</option>';
+                }
+            }
+            echo $output;
+        }
+    }
+    public function calculate_fee(Request $request){
+        $data = $request->all();
+        if($data['matp']){
+            $feeship = Feeship::where('fee_matp',$data['matp'])->where('fee_maqh',$data['maqh'])->where('fee_xaid',$data['xaid'])->get();
+            if($feeship){
+                $count_feeship = $feeship->count();
+                if($count_feeship>0){
+                     foreach($feeship as $key => $fee){
+                        Session::put('fee',$fee->fee_feeship);
+                        Session::save();
+                    }
+                }else{ 
+                    Session::put('fee',30000);
+                    Session::save();
+                }
+            }
+           
+        }
+    }
+    public function del_fee(){
+        Session::forget('fee');
+        return redirect()->back();
+    }
     public function confirm_order(Request $request){
         $data = $request->all();
         //get coupon
@@ -262,10 +285,12 @@ class CheckoutController extends Controller
                $order_details->product_price = $cart['product_price'];
                $order_details->product_sales_quantity = $cart['product_qty'];
                $order_details->product_coupon =  $data['order_coupon'];
+               $order_details->product_feeship = $data['order_fee'];
                $order_details->save();
            }
         }
         Session::forget('coupon');
+        Session::forget('fee');
         Session::forget('cart');
     }
 }

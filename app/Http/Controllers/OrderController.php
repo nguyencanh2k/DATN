@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Shipping;
+use App\Feeship;
 use App\Order;
 use App\OrderDetails;
 use App\Customer;
@@ -175,6 +176,7 @@ class OrderController extends Controller
 					<tr>
 						<th>Tên sản phẩm</th>
 						<th>Mã giảm giá</th>
+						<th>Phí ship</th>
 						<th>Số lượng</th>
 						<th>Giá sản phẩm</th>
 						<th>Thành tiền</th>
@@ -199,6 +201,7 @@ class OrderController extends Controller
 					<tr>
 						<td>'.$product->product_name.'</td>
 						<td>'.$product_coupon.'</td>
+						<td>'.number_format($product->product_feeship,0,',','.').'đ'.'</td>
 						<td>'.$product->product_sales_quantity.'</td>
 						<td>'.number_format($product->product_price,0,',','.').'đ'.'</td>
 						<td>'.number_format($subtotal,0,',','.').'đ'.'</td>
@@ -216,8 +219,8 @@ class OrderController extends Controller
 		$output.= '<tr>
 				<td colspan="2">
 					<p>Tổng giảm: '.$coupon_echo.'</p>
-					<p>Phí ship: Freeship</p>
-					<p>Thanh toán : '.number_format($total_coupon ,0,',','.').'đ'.'</p>
+					<p>Phí ship: '.number_format($product->product_feeship,0,',','.').'đ'.'</p>
+					<p>Thanh toán : '.number_format($total_coupon + $product->product_feeship,0,',','.').'đ'.'</p>
 				</td>
 		</tr>';
 		$output.='				
@@ -314,7 +317,7 @@ class OrderController extends Controller
 	}
 	public function history(Request $request){
 		if(!Session::get('customer_id')){
-			return redirect('login-checkout')->with('error','Vui long dang nhap');
+			return redirect('login-checkout')->with('error','Vui lòng đăng nhập tài khoản');
 		}else{
 			//category post
 			$category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
@@ -333,7 +336,7 @@ class OrderController extends Controller
 	}
 	public function view_history_order(Request $request,$order_code){
 		if(!Session::get('customer_id')){
-			return redirect('login-checkout')->with('error','Vui long dang nhap');
+			return redirect('login-checkout')->with('error','Vui lòng đăng nhập tài khoản');
 		}else{
 			//category post
 			$category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
@@ -346,7 +349,7 @@ class OrderController extends Controller
 	
 			$cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
 			$brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
-			
+			//lsu don hang
 			$order_details = OrderDetails::with('product')->where('order_code',$order_code)->get();
 			$getorder = Order::where('order_code',$order_code)->first();
 			$customer_id = $getorder->customer_id;

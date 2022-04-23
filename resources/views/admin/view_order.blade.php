@@ -98,6 +98,7 @@
                             <th scope="col">Tên sản phẩm</th>
                             <th scope="col">Số lượng sản phẩm trong kho</th>
                             <th scope="col">Mã giảm giá</th>
+                            <th scope="col">Phí ship</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Giá sản phẩm</th>
                             <th scope="col">Giá gốc</th>
@@ -125,6 +126,7 @@
                                 Không có
                               @endif
                             </td>
+                            <td>{{number_format($details->product_feeship ,0,',','.')}}đ</td>
                             <td>
                                 <input type="number" min="1" {{$order_status==2 ? 'disabled' : ''}} class="order_qty_{{$details->product_id}}" value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
                                 <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{$details->product_id}}" value="{{$details->product->product_quantity}}">
@@ -133,7 +135,7 @@
                   
                                 <input type="hidden" name="order_product_id" class="order_product_id" value="{{$details->product_id}}">
                   
-                                @if($order_status!=2) 
+                                @if($order_status==1) 
                   
                                 <button class="btn btn-default update_quantity_order" data-product_id="{{$details->product_id}}" name="update_quantity_order">Cập nhật</button>
                   
@@ -145,7 +147,7 @@
                         </tr>
                         @endforeach
                         <tr>
-                            <td colspan="7">
+                            <td colspan="9">
                                 @php 
                                     $total_coupon = 0;
                                 @endphp
@@ -153,20 +155,21 @@
                                     @php
                                     $total_after_coupon = ($total*$coupon_number)/100;
                                     echo 'Tổng giảm: '.number_format($total_after_coupon,0,',','.').' đ'.'</br>';
-                                    $total_coupon = $total - $total_after_coupon ;
+                                    $total_coupon = $total + $details->product_feeship - $total_after_coupon ;
                                     @endphp
                                 @else 
                                     @php
                                     echo 'Tổng giảm :'.number_format($coupon_number,0,',','.').' đ'.'</br>';
-                                    $total_coupon = $total - $coupon_number ;
+                                    $total_coupon = $total + $details->product_feeship - $coupon_number ;
 
                                     @endphp
                                 @endif
+                                Phí ship : {{number_format($details->product_feeship,0,',','.')}}đ</br> 
                                 Thanh toán: {{number_format($total_coupon,0,',','.')}} đ     
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="9">
                               @foreach($order as $key => $or)
                                 @if($or->order_status==1)
                                 <form>
@@ -175,6 +178,17 @@
                                     <option value="">----Chọn hình thức đơn hàng-----</option>
                                     <option id="{{$or->order_id}}" selected value="1">Chưa xử lý</option>
                                     <option id="{{$or->order_id}}" value="2">Đã xử lý-Đã giao hàng</option>
+                                    <option id="{{$or->order_id}}" value="3">Đơn hàng bị hủy</option>
+                                  </select>
+                                </form>
+                                @elseif($or->order_status==2)
+                                <form>
+                                  @csrf
+                                  <select class="form-control order_details">
+                                    <option value="">----Chọn hình thức đơn hàng-----</option>
+                                    <option disabled id="{{$or->order_id}}" value="1">Chưa xử lý</option>
+                                    <option id="{{$or->order_id}}" selected value="2">Đã xử lý-Đã giao hàng</option>
+                                    <option disabled id="{{$or->order_id}}" value="3">Đơn hàng bị hủy</option>
                                   </select>
                                 </form>
                                 @else
@@ -183,7 +197,8 @@
                                   <select class="form-control order_details">
                                     <option value="">----Chọn hình thức đơn hàng-----</option>
                                     <option disabled id="{{$or->order_id}}" value="1">Chưa xử lý</option>
-                                    <option id="{{$or->order_id}}" selected value="2">Đã xử lý-Đã giao hàng</option>
+                                    <option disabled id="{{$or->order_id}}" value="2">Đã xử lý-Đã giao hàng</option>
+                                    <option id="{{$or->order_id}}" selected value="3">Đơn hàng bị hủy</option>
                                   </select>
                                 </form>
                                 @endif
