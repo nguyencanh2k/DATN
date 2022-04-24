@@ -266,7 +266,7 @@
                     <li class="new">New</li>
                 </ul>
                 <div class="product-decs">
-                    <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}"><span>{{$lienquan->product_name}}</span></a>
+                    <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}"><span>{{$lienquan->product_name}}</span></a>
                     {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}" class="product-link">{{$lienquan->product_name}}</a></h2> --}}
                     <div class="rating-product">
                         <i class="ion-android-star"></i>

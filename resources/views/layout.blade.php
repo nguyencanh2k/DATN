@@ -999,5 +999,99 @@
             window.location.href = brand
         })
     </script>
+    <script>
+        function delete_compare(id){
+            if(localStorage.getItem('compare')!=null){
+                var data = JSON.parse(localStorage.getItem('compare'));
+                var index = data.findIndex(item => item.id === id);
+                data.splice(index, 1);
+                localStorage.setItem('compare', JSON.stringify(data));
+                document.getElementById("row_compare"+id).remove();
+            }
+        }
+        viewed_compare();
+        function viewed_compare(){
+            if(localStorage.getItem('compare')!=null){
+                var data = JSON.parse(localStorage.getItem('compare'));
+                for(i=0; i<data.length; i++){
+                    var name = data[i].name;
+                    var price = data[i].price;
+                    var image = data[i].image;
+                    var url = data[i].url;
+                    var content = data[i].content;
+                    var id = data[i].id;
+                    $('#row_compare').find('tbody').append(`
+                                    <tr id="row_compare`+id+`">
+                                        <td class="product-image-title">
+                                            <a href="#" class="image"><img width="120px" height="120px" src="`+image+`" alt="Compare Product" /></a>
+                                            <a href="#" class="title">`+name+`</a>
+                                        </td>
+                                        <td class="pro-desc">
+                                            <p>`+content+`</p>
+                                        </td>
+                                        <td class="pro-price">`+price+`</td>
+                                        <td class="pro-addtocart">
+                                            <a href="`+url+`"><span>Xem sản phẩm</span></a>
+                                        </td>
+                                        <td class="pro-remove">
+                                            <button onclick="delete_compare(`+id+`)" ><i class="ion-trash-b"></i></button>
+                                        </td>
+                                    </tr>`);
+                }
+            }
+        }
+
+        function add_compare(product_id){
+            document.getElementById('title-compare').innerText = 'Chỉ cho phép so sánh tối đa 3 sp';
+            var id = product_id;
+            var name = document.getElementById('wishlist_productname' + id).value;
+            var content = document.getElementById('wishlist_productcontent' + id).value;
+            var price = document.getElementById('wishlist_productprice' + id).value;
+            var image = document.getElementById('wishlist_productimage' + id).src;
+            var url = document.getElementById('wishlist_producturl' + id).href;
+            var newItem = {
+                'url':url,
+                'id':id,
+                'name':name,
+                'price':price,
+                'image':image,
+                'content':content,
+            }
+            if(localStorage.getItem('compare')==null){
+                localStorage.setItem('compare', '[]');
+            }
+            var old_data = JSON.parse(localStorage.getItem('compare'));
+            var matches = $.grep(old_data, function(obj){
+                return obj.id == id;
+            })
+            if(matches.length){
+
+            }
+            else{
+                if(old_data.length<=2){
+                    old_data.push(newItem);
+                    $('#row_compare').find('tbody').append(`
+                                    <tr id="row_compare`+id+`">
+                                        <td class="product-image-title">
+                                            <a href="#" class="image"><img width="120px" height="120px" src="`+newItem.image+`" alt="Compare Product" /></a>
+                                            <a href="#" class="title">`+newItem.name+`</a>
+                                        </td>
+                                        <td class="pro-desc">
+                                            <p>`+newItem.content+`</p>
+                                        </td>
+                                        <td class="pro-price">`+newItem.price+`</td>
+                                        <td class="pro-addtocart">
+                                            <a href="`+newItem.url+`"><span>Xem sản phẩm</span></a>
+                                        </td>
+                                        <td class="pro-remove">
+                                            <button onclick="delete_compare(`+id+`)" ><i class="ion-trash-b"></i></button>
+                                        </td>
+                                    </tr>`);
+                }
+            }
+            localStorage.setItem('compare', JSON.stringify(old_data));
+            $('#sosanh').modal();
+        }
+    </script>
     </body>
 </html>

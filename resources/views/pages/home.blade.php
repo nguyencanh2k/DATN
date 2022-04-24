@@ -104,15 +104,16 @@
                             <form action="">
                                 @csrf
                                 <input type="hidden" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
-                                <input type="hidden" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
+                                <input type="hidden" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}" id="wishlist_productname{{$product->product_id}}">
                                 <input type="hidden" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
-                                <input type="hidden" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
+                                <input type="hidden" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}" id="wishlist_productprice{{$product->product_id}}">
+                                <input type="hidden" value="{{$product->product_content}}"  id="wishlist_productcontent{{$product->product_id}}">
                                 <input type="hidden" value="{{$product->product_quantity}}" class="cart_product_quantity_{{$product->product_id}}">
                                 <input type="hidden" value="1" class="cart_product_qty_{{$product->product_id}}">
                                 <div class="img-block">
-                                    <a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="thumbnail">
-                                        <img class="first-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
-                                        <img class="second-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
+                                    <a id="wishlist_producturl{{$product->product_id}}" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="thumbnail">
+                                        <img id="wishlist_productimage{{$product->product_id}}" class="first-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
+                                        <img id="wishlist_productimage{{$product->product_id}}" class="second-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
                                     </a>
                                     <div class="quick-view">
                                         <a class="quick_view xemnhanh" href="#" data-link-action="quickview" title="Quick view" data-id_product="{{$product->product_id}}" data-toggle="modal" data-target="#exampleModal">
@@ -148,7 +149,7 @@
                                             <a class="add-to-wishlist" data-id_product="{{$product->product_id}}" name="add-to-wishlist"><i class="ion-android-favorite-outline"></i></a>
                                         </li>
                                         <li>
-                                            <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
+                                            <a style="cursor: pointer;" onclick="add_compare({{$product->product_id}})"><i class="ion-ios-shuffle-strong"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -160,6 +161,48 @@
                     <!-- Best Sells Carousel End -->
                 </div>
             </section>
+            
+                                    
+            <div class="container">
+                <!-- The Modal -->
+                <div class="modal" id="sosanh">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title"><span id="title-compare"></span></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        <div class="compare-table table-responsive" >
+                            <table class="table mb-0" id="row_compare">
+                                <tbody>
+                                    <tr>
+                                        <th class="first-column">Tên sản phẩm</th>
+                                        <th class="first-column">Mô tả</th>
+                                        <th class="first-column">Giá</th>
+                                        <th class="first-column">Xem chi tiết sản phẩm</th>
+                                        <th class="first-column">Xóa</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+
             <!-- Best Sells Slider End -->
             <!-- Banner Area Start -->
             <div class="banner-3-area">
