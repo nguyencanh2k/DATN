@@ -8199,3 +8199,6 @@ span.title {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+#tabs_product .owl-nav { 
+    display: block !important; 
+}

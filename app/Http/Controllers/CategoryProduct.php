@@ -130,22 +130,23 @@ class CategoryProduct extends Controller
         $product = Product::where('category_id',$data['cate_id'])->orderBy('product_id','DESC')->get();
         $product_count = $product->count();
         if($product_count>0){
+            $output.='<div class="new-product-slider owl-carousel owl-nav-style" >';
             foreach($product as $key => $val){
                 $output.='
-                <input type="hidden" value="'.$val->product_id.'" class="cart_product_id_'.$val->product_id.'">
-                <input type="hidden" value="'.$val->product_name.'" class="cart_product_name_'.$val->product_id.'">
-                <input type="hidden" value="'.$val->product_image.'" class="cart_product_image_'.$val->product_id.'">
-                <input type="hidden" value="'.$val->product_price.'" class="cart_product_price_'.$val->product_id.'">
-                <input type="hidden" value="'.$val->product_quantity.'" class="cart_product_quantity_'.$val->product_id.'">
-                <input type="hidden" value="1" class="cart_product_qty_'.$val->product_id.'">
                 <div class="product-inner-item">
                                 <article class="list-product mb-30px">
+                                <input type="hidden" value="'.$val->product_id.'" class="cart_product_id_'.$val->product_id.'">
+                                <input type="hidden" value="'.$val->product_name.'" class="cart_product_name_'.$val->product_id.'">
+                                <input type="hidden" value="'.$val->product_image.'" class="cart_product_image_'.$val->product_id.'">
+                                <input type="hidden" value="'.$val->product_price.'" class="cart_product_price_'.$val->product_id.'">
+                                <input type="hidden" value="'.$val->product_quantity.'" class="cart_product_quantity_'.$val->product_id.'">
+                                <input type="hidden" value="1" class="cart_product_qty_'.$val->product_id.'">
                                     <div class="img-block">
-                                        <a href="single-product.html" class="thumbnail">
+                                        <a href="'.url('/chi-tiet-san-pham/'.$val->product_id).'" class="thumbnail">
                                             <img class="first-img" src="'.url('public/uploads/product/'.$val->product_image).'" alt="'.$val->product_name.'" />
                                         </a>
                                         <div class="quick-view">
-                                            <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
+                                            <a class="quick_view xemnhanh" href="#" data-link-action="quickview" title="Quick view" onclick="Xemnhanh(this.id);" id="'.$val->product_id.'" data-toggle="modal" data-target="#exampleModal">
                                                 <i class="ion-ios-search-strong"></i>
                                             </a>
                                         </div>
@@ -154,7 +155,7 @@ class CategoryProduct extends Controller
                                         <li class="new">New</li>
                                     </ul>
                                     <div class="product-decs">
-                                        <a class="inner-link prd-name-hidden" href="'.url('/chi-tiet'.$val->product_id).'"><span>'.$val->product_name.'</span></a>
+                                        <a class="inner-link prd-name-hidden" href="'.url('/chi-tiet-san-pham/'.$val->product_id).'"><span>'.$val->product_name.'</span></a>
                                         
                                         <div class="rating-product">
                                             <i class="ion-android-star"></i>
@@ -184,6 +185,7 @@ class CategoryProduct extends Controller
                                 </article>
                                 </div>
                         ';}
+            $output.='</div>';
         }else{
             $output.='<p style="color:red; text-align:center">Chua co san pham</p>';
         }

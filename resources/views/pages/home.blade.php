@@ -203,7 +203,7 @@
                                 @php
                                     $i++;
                                 @endphp
-                            <li data-id="{{$cat_tabs->category_id}}" class="nav-item tabs_pro {{$i==1 ? 'active' : ''}}">
+                            <li style="cursor: pointer;" data-id="{{$cat_tabs->category_id}}" class="nav-item tabs_pro {{$i==1 ? 'active' : ''}}">
                                 <a class="nav-link" data-toggle="tab" >{{$cat_tabs->category_name}}</a>
                             </li>
                             @endforeach
@@ -217,10 +217,8 @@
                                         <a><img src="{{asset('public/frontend/images/banner-image/26.jpg')}}" alt="" /></a>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 mt-res-sm-90 mt-res-sm-60 mt-res-sm-60">
-                                    <div class="new-product-slider owl-carousel owl-nav-style" >
-                                        <div id="tabs_product"></div>
-                                    </div>
+                                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 mt-res-sm-90 mt-res-sm-60 mt-res-sm-60">                                   
+                                    <div id="tabs_product"></div>
                                 </div>
                             </div>
                         </div>

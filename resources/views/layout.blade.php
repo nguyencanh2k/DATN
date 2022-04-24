@@ -799,6 +799,29 @@
         });
     </script>
     <script type="text/javascript">
+        function Xemnhanh($product_id){
+            var product_id = $product_id;
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/quickview')}}",
+                method:"POST",
+                dataType:"JSON",
+                data:{product_id:product_id, _token:_token},
+                success:function(data){
+                    $('#product_quickview_title').html(data.product_name);
+                    $('#product_quickview_id').html(data.product_id);
+                    $('#product_quickview_price').html(data.product_price);
+                    $('#product_quickview_image').html(data.product_image);
+                    $('#product_quickview_gallery').html(data.product_gallery);
+                    $('#product_quickview_desc').html(data.product_desc);
+                    $('#product_quickview_content').html(data.product_content);
+                    $('#product_quickview_value').html(data.product_quickview_value);
+                    $('#product_quickview_button').html(data.product_button);
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
         $(document).ready(function(){
             var cate_id = $('.tabs_pro').data('id');
             var _token = $('input[name="_token"]').val();
@@ -808,6 +831,7 @@
                 data:{cate_id:cate_id, _token:_token},
                 success:function(data){
                     $('#tabs_product').html(data);
+                    $('.owl-carousel').owlCarousel();
                 }
             });
             $('.tabs_pro').click(function(){
@@ -819,6 +843,7 @@
                     data:{cate_id:cate_id, _token:_token},
                     success:function(data){
                         $('#tabs_product').html(data);
+                        $('.owl-carousel').owlCarousel();
                     }
                 });
             });
