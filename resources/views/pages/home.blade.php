@@ -124,7 +124,7 @@
                                     <li class="new">New</li>
                                 </ul>
                                 <div class="product-decs">
-                                    <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
+                                    <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
                                     {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{!!$product->product_content!!}</a></h2> --}}
                                     <div class="rating-product">
                                         <i class="ion-android-star"></i>
@@ -272,6 +272,14 @@
                         @foreach($all_product as $key => $product2)
                         <div class="feature-slider-item">
                             <article class="list-product">
+                                <form action="">
+                                    @csrf
+                                    <input type="hidden" value="{{$product2->product_id}}" class="cart_product_id_{{$product2->product_id}}">
+                                    <input type="hidden" value="{{$product2->product_name}}" class="cart_product_name_{{$product2->product_id}}">
+                                    <input type="hidden" value="{{$product2->product_image}}" class="cart_product_image_{{$product2->product_id}}">
+                                    <input type="hidden" value="{{$product2->product_price}}" class="cart_product_price_{{$product2->product_id}}">
+                                    <input type="hidden" value="{{$product2->product_quantity}}" class="cart_product_quantity_{{$product2->product_id}}">
+                                    <input type="hidden" value="1" class="cart_product_qty_{{$product2->product_id}}">
                                 <div class="img-block">
                                     <a href="single-product.html" class="thumbnail">
                                         <img class="first-img" src="{{URL::to('public/uploads/product/'.$product2->product_image)}}" alt="" />
@@ -279,7 +287,7 @@
                                     </a>
                                 </div>
                                 <div class="product-decs">
-                                    <a class="inner-link" href="shop-4-column.html"><span>{{$product2->product_name}}</span></a>
+                                    <a class="inner-link prd-name-hidden" href="shop-4-column.html"><span>{{$product2->product_name}}</span></a>
                                     {{-- <h2><a href="single-product.html" class="product-link">{!!$product2->product_content!!}</a></h2> --}}
                                     <div class="rating-product">
                                         <i class="ion-android-star"></i>
@@ -294,6 +302,7 @@
                                         </ul>
                                     </div>
                                 </div>
+                                </form>
                             </article>
                         </div>
                         @endforeach
@@ -343,7 +352,7 @@
                                 <li class="new">New</li>
                             </ul>
                             <div class="product-decs">
-                                <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}"><span>{{$product3->product_name}}</span></a>
+                                <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}"><span>{{$product3->product_name}}</span></a>
                                 {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="product-link">{!!$product3->product_content!!}</a></h2> --}}
                                 <div class="rating-product">
                                     <i class="ion-android-star"></i>

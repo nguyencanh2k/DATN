@@ -131,7 +131,14 @@ class CategoryProduct extends Controller
         $product_count = $product->count();
         if($product_count>0){
             foreach($product as $key => $val){
-                $output.='<div class="product-inner-item">
+                $output.='
+                <input type="hidden" value="'.$val->product_id.'" class="cart_product_id_'.$val->product_id.'">
+                <input type="hidden" value="'.$val->product_name.'" class="cart_product_name_'.$val->product_id.'">
+                <input type="hidden" value="'.$val->product_image.'" class="cart_product_image_'.$val->product_id.'">
+                <input type="hidden" value="'.$val->product_price.'" class="cart_product_price_'.$val->product_id.'">
+                <input type="hidden" value="'.$val->product_quantity.'" class="cart_product_quantity_'.$val->product_id.'">
+                <input type="hidden" value="1" class="cart_product_qty_'.$val->product_id.'">
+                <div class="product-inner-item">
                                 <article class="list-product mb-30px">
                                     <div class="img-block">
                                         <a href="single-product.html" class="thumbnail">
@@ -147,7 +154,7 @@ class CategoryProduct extends Controller
                                         <li class="new">New</li>
                                     </ul>
                                     <div class="product-decs">
-                                        <a class="inner-link" href="'.url('/chi-tiet'.$val->product_id).'"><span>'.$val->product_name.'</span></a>
+                                        <a class="inner-link prd-name-hidden" href="'.url('/chi-tiet'.$val->product_id).'"><span>'.$val->product_name.'</span></a>
                                         
                                         <div class="rating-product">
                                             <i class="ion-android-star"></i>
@@ -165,7 +172,7 @@ class CategoryProduct extends Controller
                                     </div>
                                     <div class="add-to-link">
                                         <ul>
-                                            <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
+                                            <li class="cart"><a class="cart-btn add-to-cart" onclick="Addtocart(this.id);" id="'.$val->product_id.'" name="add-to-cart">Thêm vào giỏ hàng </a></li>
                                             <li>
                                                 <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
                                             </li>

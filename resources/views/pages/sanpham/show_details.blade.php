@@ -59,8 +59,8 @@
                     </div>
                     <div class="pro-details-list">
                         <ul>
-                            <li><p><span>- Danh mục sản phẩm: {{$value->category_name}}</span></p></li>
-                            <li><p>- {!!$value->product_desc!!}</p></li>
+                            {{-- <li><p><span>- Danh mục sản phẩm: {{$value->category_name}}</span></p></li> --}}
+                            <li><p>{!!$value->product_desc!!}</p></li>
                         </ul>
                     </div>
                     <form action="{{URL::to('/save-cart')}}" method="POST">
@@ -248,6 +248,14 @@
             @foreach($relate as $key => $lienquan)
             <!-- Single Item -->
             <article class="list-product">
+                <form action="">
+                    @csrf
+                    <input type="hidden" value="{{$lienquan->product_id}}" class="cart_product_id_{{$lienquan->product_id}}">
+                    <input type="hidden" value="{{$lienquan->product_name}}" class="cart_product_name_{{$lienquan->product_id}}">
+                    <input type="hidden" value="{{$lienquan->product_image}}" class="cart_product_image_{{$lienquan->product_id}}">
+                    <input type="hidden" value="{{$lienquan->product_price}}" class="cart_product_price_{{$lienquan->product_id}}">
+                    <input type="hidden" value="{{$lienquan->product_quantity}}" class="cart_product_quantity_{{$lienquan->product_id}}">
+                    <input type="hidden" value="1" class="cart_product_qty_{{$lienquan->product_id}}">
                 <div class="img-block">
                     <a href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}" class="thumbnail">
                         <img class="first-img" src="{{URL::to('public/uploads/product/'.$lienquan->product_image)}}" alt="" />
@@ -277,7 +285,7 @@
                 </div>
                 <div class="add-to-link">
                     <ul>
-                        <li class="cart"><a class="cart-btn" href="#">ADD TO CART </a></li>
+                        <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$lienquan->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
                         <li>
                             <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
                         </li>
@@ -286,6 +294,7 @@
                         </li>
                     </ul>
                 </div>
+                </form>
             </article>
             <!-- Single Item -->
             @endforeach

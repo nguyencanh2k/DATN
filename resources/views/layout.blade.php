@@ -438,15 +438,16 @@
                                         </ul>
                                     </div>
                                     <p id="product_quickview_desc"></p>
+                                    <div id="beforesend_quickview"></div>
                                     <div class="pro-details-quality">
                                         <div class="cart-plus-minus">
                                             <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
                                         </div>
+                                        
                                         <div class="pro-details-cart btn-hover" id="product_quickview_button">
                                             {{-- <a href="#"> + Add To Cart</a> --}}
                                             
                                         </div>
-                                        <div id="beforesend_quickview"></div>
                                     </div>
                                     <div class="pro-details-wish-com">
                                         <div class="pro-details-wishlist">
@@ -580,6 +581,46 @@
                 });
             });
         </script>
+        <script>
+            function Addtocart($product_id){
+                    var id = $product_id;
+                    // alert(id);
+                    var cart_product_id = $('.cart_product_id_' + id).val();
+                    var cart_product_name = $('.cart_product_name_' + id).val();
+                    var cart_product_image = $('.cart_product_image_' + id).val();
+                    var cart_product_quantity = $('.cart_product_quantity_' + id).val();
+                    var cart_product_price = $('.cart_product_price_' + id).val();
+                    var cart_product_qty = $('.cart_product_qty_' + id).val();
+                    var _token = $('input[name="_token"]').val();
+                    if(parseInt(cart_product_qty)>parseInt(cart_product_quantity)){
+                        alert('Làm ơn đặt nhỏ hơn ' + cart_product_quantity);
+                    }else{
+                        $.ajax({
+                            url: '{{url('/add-cart-ajax')}}',
+                            method: 'POST',
+                            data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token,cart_product_quantity:cart_product_quantity},
+                            success:function(){
+        
+                                swal({
+                                        title: "Đã thêm sản phẩm vào giỏ hàng",
+                                        text: "Tiếp tục mua sắm",
+                                        showCancelButton: true,
+                                        cancelButtonText: "Xem tiếp",
+                                        confirmButtonClass: "btn-success",
+                                        confirmButtonText: "Đi đến giỏ hàng",
+                                        closeOnConfirm: false
+                                    },
+                                    function() {
+                                        window.location.href = "{{url('/gio-hang')}}";
+                                    });
+                                    show_cart();
+                                    click_cart_mini();
+        
+                            }
+                        });
+                    }
+            }
+        </script>
         <script type="text/javascript">
                 $(document).on('click','.add-to-cart-quickview',function(){
     
@@ -600,11 +641,11 @@
                             method: 'POST',
                             data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token,cart_product_quantity:cart_product_quantity},
                             beforeSend: function(){
-                                $("#beforesend_quickview").html("<p class='text text-primary'>Dang them san pham vao gio</p>");
+                                $("#beforesend_quickview").html("<h4 class='text text-primary mt-4'>Đang thêm sản phẩm vào giỏ hàng</h4>");
                             },
                             success:function(){
         
-                                $("#beforesend_quickview").html("<p class='text text-success'>San pham da duoc them vao gio</p>");
+                                $("#beforesend_quickview").html("<h4 class='text text-success mt-4'>Sản phẩm đã được thêm vào giỏ hàng</h4>");
                             }
                         });
                     }
