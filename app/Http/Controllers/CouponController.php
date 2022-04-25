@@ -7,6 +7,7 @@ use App\Coupon;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
+use Brian2694\Toastr\Facades\Toastr;
 session_start();
 class CouponController extends Controller
 {

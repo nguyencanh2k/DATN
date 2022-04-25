@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Auth;
 use App\Post;
 use App\CatePost;
+use Brian2694\Toastr\Facades\Toastr;
 session_start();
 class PostController extends Controller
 {
@@ -49,10 +50,12 @@ class PostController extends Controller
             $get_image->move('public/uploads/post',$new_image);
             $post->post_image = $new_image;
             $post->save();
-            Session::put('message','Thêm bài viết thành công');
+            //Session::put('message','Thêm bài viết thành công');
+            Toastr::success('Thêm bài viết thành công', 'Thành công');
             return redirect()->back();
         }else{
-            Session::put('message','Làm ơn thêm ảnh vào bài viết');
+            //Session::put('message','Làm ơn thêm ảnh vào bài viết');
+            Toastr::warning('Làm ơn thêm ảnh vào bài viết', 'Thông báo');
             return redirect()->back();
 
         }
@@ -72,7 +75,8 @@ class PostController extends Controller
             unlink($path);
         }
         $post->delete();
-        Session::put('message','Xóa bài viết thành công');
+        //Session::put('message','Xóa bài viết thành công');
+        Toastr::success('Xóa bài viết thành công', 'Thành công');
         return redirect()->back();
     }
     public function edit_post($post_id){
@@ -109,7 +113,8 @@ class PostController extends Controller
             
         }
         $post->save();
-        Session::put('message','Cập nhật bài viết thành công');
+        //Session::put('message','Cập nhật bài viết thành công');
+        Toastr::success('Cập nhật bài viết thành công', 'Thành công');
         return redirect()->back();
     }
     public function danh_muc_bai_viet(Request $request, $post_slug){

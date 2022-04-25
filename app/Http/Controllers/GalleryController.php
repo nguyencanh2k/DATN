@@ -10,6 +10,7 @@ use App\Gallery;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 use App\CatePost;
+use Brian2694\Toastr\Facades\Toastr;
 session_start();
 class GalleryController extends Controller
 {
@@ -87,7 +88,8 @@ class GalleryController extends Controller
                
             }
         }
-        Session::put('message','Thêm thư viện ảnh thành công');
+        //Session::put('message','Thêm thư viện ảnh thành công');
+        Toastr::success('Thêm thư viện ảnh thành công', 'Thành công');
         return redirect()->back();
     }
     public function update_gallery_name(Request $request){

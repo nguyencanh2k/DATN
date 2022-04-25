@@ -50,10 +50,11 @@
                                 <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="product_image" class="custom-file-input">
+                                    <input type="file" name="product_image" class="custom-file-input image-preview" onchange="previewFile(this);">
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>
+                            <img src="http://aimory.vn/wp-content/uploads/2017/10/no-image.png" id="previewImg" width="30%" alt="">
                         </div>
                     </div>
                     <div class="form-group row">

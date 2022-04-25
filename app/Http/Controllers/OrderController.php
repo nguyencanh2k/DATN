@@ -17,6 +17,7 @@ use App\Statistic;
 use Carbon\Carbon;
 use DB;
 use Session;
+use Brian2694\Toastr\Facades\Toastr;
 class OrderController extends Controller
 {
     public function manage_order(){
@@ -56,7 +57,8 @@ class OrderController extends Controller
 	public function order_code(Request $request ,$order_code){
 		$order = Order::where('order_code',$order_code)->first();
 		$order->delete();
-		Session::put('message','Xóa đơn hàng thành công');
+		//Session::put('message','Xóa đơn hàng thành công');
+        Toastr::success('Xóa đơn hàng thành công', 'Thành công');
         return redirect()->back();
 
 	}

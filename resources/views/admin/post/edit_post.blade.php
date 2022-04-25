@@ -58,12 +58,12 @@
                                 <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="post_image" class="custom-file-input">
+                                    <input type="file" name="post_image" class="custom-file-input image-preview" onchange="previewFile(this);">
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>
+                            <img src="{{asset('public/uploads/post/'.$post->post_image)}}" id="previewImg" height="100" width="100">
                         </div>
-                        <img src="{{asset('public/uploads/post/'.$post->post_image)}}" height="100" width="100">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Danh mục bài viết</label>

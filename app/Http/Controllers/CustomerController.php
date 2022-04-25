@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Customer;
 use Session;
 use Auth;
+use Brian2694\Toastr\Facades\Toastr;
 class CustomerController extends Controller
 {
     public function AuthLogin(){
@@ -36,7 +37,8 @@ class CustomerController extends Controller
         $customer->customer_email = $data['customer_email'];
         $customer->customer_password = md5($data['customer_password']);
         $customer->save();
-        Session::put('message','Thêm khách hàng thành công');
+        //Session::put('message','Thêm khách hàng thành công');
+        Toastr::success('Thêm khách hàng thành công', 'Thành công');
         return Redirect::to('add-customer-ad');
     }
     public function edit_customer_ad($customer_id){
@@ -54,13 +56,15 @@ class CustomerController extends Controller
         $customer->customer_email = $data['customer_email'];
         $customer->customer_password = md5($data['customer_password']);
         $customer->save();
-        Session::put('message','Cập nhật thông tin khách hàng thành công');
+        //Session::put('message','Cập nhật thông tin khách hàng thành công');
+        Toastr::success('Cập nhật thông tin khách hàng thành công', 'Thành công');
         return Redirect::to('all-customer-ad');
     }
     public function delete_customer_ad($customer_id){
         $delete_cus = Customer::find($customer_id);
         $delete_cus->delete();
-        Session::put('message','Xóa khách hàng thành công');
+        //Session::put('message','Xóa khách hàng thành công');
+        Toastr::success('Xóa khách hàng thành công', 'Thành công');
         return redirect()->back();
     }
 }

@@ -24,7 +24,15 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Hình ảnh</label>
                         <div class="col-sm-10">
-                            <input type="file" name="slider_image" class="form-control" placeholder="Hình ảnh">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend"><span class="input-group-text">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" name="slider_image" class="custom-file-input image-preview" onchange="previewFile(this);">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                            <img src="http://aimory.vn/wp-content/uploads/2017/10/no-image.png" id="previewImg" width="30%" alt="">
                         </div>
                     </div>
                     <div class="form-group row">

@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('public/backend/DataTables/datatables.min.css')}}"/>
     <link href="{{asset('public/backend/css/bootstrap-tagsinput.css')}}" rel="stylesheet">
     <link href="{{asset('public/backend/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
- 
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     
 </head>
 
@@ -302,7 +302,8 @@
     <script src="{{asset('public/backend/js/plugins-init/form-pickers-init.js')}}"></script>
     <script src="{{asset('public/backend/js/simple.money.format.js')}}"></script>
     <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
-
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
     <script>
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
@@ -686,6 +687,18 @@
                     }
                 });
         });
+    </script>
+    <script>
+        function previewFile(input){
+            var file = $(".image-preview").get(0).files[0];
+            if(file){
+                var reader = new FileReader();
+                reader.onload = function(){
+                    $("#previewImg").attr("src", reader.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 </body>
 

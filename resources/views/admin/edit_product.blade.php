@@ -47,11 +47,11 @@
                                 <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="product_image" class="custom-file-input">
+                                    <input type="file" name="product_image" class="custom-file-input image-preview" onchange="previewFile(this);">
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>
-                            <img src="{{URL::to('public/uploads/product/'.$pro->product_image)}}" height="100" width="100">
+                            <img src="{{URL::to('public/uploads/product/'.$pro->product_image)}}" id="previewImg" height="100" width="100">
                         </div>
                     </div>
                     <div class="form-group row">
