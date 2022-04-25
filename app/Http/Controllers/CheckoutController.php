@@ -154,13 +154,17 @@ class CheckoutController extends Controller
     }
     public function logout_checkout(){
     	Session::flush();
+        Session::forget('customer_id');
+        Session::forget('coupon');
     	return Redirect::to('/login-checkout');
     }
     public function login_customer(Request $request){
     	$email = $request->email_account;
     	$password = md5($request->password_account);
     	$result = DB::table('tbl_customers')->where('customer_email',$email)->where('customer_password',$password)->first();
-    	
+    	if(Session::get('coupon')==true){
+            Session::forget('coupon');
+        }
     	
     	if($result){
            
@@ -245,6 +249,7 @@ class CheckoutController extends Controller
         //get coupon
         if(Session::get('coupon')!=null){
             $coupon = Coupon::where('coupon_code', $data['order_coupon'])->first();
+            $coupon->coupon_used = $coupon->coupon_used.','.Session::get('customer_id');
             $coupon->coupon_time = $coupon->coupon_time - 1;
             $coupon->save();
         }

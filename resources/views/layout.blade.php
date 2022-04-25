@@ -285,6 +285,7 @@
             </header>
             <!-- Header End -->
             
+            @yield('slider')
             @yield('content')
             <!-- Footer Area start -->
             <footer class="footer-area">

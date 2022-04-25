@@ -18,10 +18,14 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Tên mã giảm giá</th>
+                            <th scope="col">Ngày bắt đầu</th>
+                            <th scope="col">Ngày kết thúc</th>
                             <th scope="col">Mã giảm giá</th>
                             <th scope="col">Số lượng mã giảm giá</th>
                             <th scope="col">Điều kiện giảm giá</th>
                             <th scope="col">Số giảm</th>
+                            <th scope="col">Tình trạng</th>
+                            <th scope="col">Hạn sử dụng</th>
                             <th scope="col">Hành động</th>
                         </tr>
                     </thead>
@@ -30,6 +34,8 @@
                         <tr>
                             <td>{{ $cou->coupon_id }}</td>
                             <td>{{ $cou->coupon_name }}</td>
+                            <td>{{ $cou->coupon_date_start }}</td>
+                            <td>{{ $cou->coupon_date_end }}</td>
                             <td>{{ $cou->coupon_code }}</td>
                             <td>{{ $cou->coupon_time }}</td>
                             <td>
@@ -57,6 +63,26 @@
                                     <?php
                                 }
                                 ?>
+                            </td>
+                            <td>
+                                <?php
+                                if($cou->coupon_status==1){
+                                    ?>
+                                    <span style="color: green">Đang kích hoạt</span>
+                                    <?php
+                                    }else{
+                                    ?>  
+                                    <span style="color: red">Đã khóa</span>
+                                    <?php
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                @if($cou->coupon_date_end>=$today)
+                                    <span style="color: green">Còn hạn</span>
+                                @else
+                                    <span style="color: red">Hết hạn</span>
+                                @endif
                             </td>
                             <td><span>
                                 <a href="{{URL::to('/delete-coupon/'.$cou->coupon_id)}}" onclick="return confirm('Bạn có chắc là muốn xóa mã giảm giá này ko?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close text-danger ml-4"></i></a>

@@ -28,6 +28,18 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Ngày bắt đầu</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="coupon_date_start" id="mdate3" class="form-control" placeholder="Ngày bắt đầu">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Ngày kết thúc</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="coupon_date_end" id="mdate4" class="form-control" placeholder="Ngày kết thúc">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Số lượng</label>
                         <div class="col-sm-10">
                             <input type="text" name="coupon_time" class="form-control" placeholder="Số lượng">

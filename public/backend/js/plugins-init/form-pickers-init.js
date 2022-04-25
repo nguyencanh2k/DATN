@@ -12,7 +12,17 @@
         weekStart: 0,
         time: false
     });
-    
+    // MAterial Date picker
+    $('#mdate3').bootstrapMaterialDatePicker({
+        weekStart: 0,
+        time: false
+    });
+    // MAterial Date picker
+    $('#mdate4').bootstrapMaterialDatePicker({
+        weekStart: 0,
+        time: false
+    });
+
     $('#timepicker').bootstrapMaterialDatePicker({
         format: 'HH:mm',
         time: true,
