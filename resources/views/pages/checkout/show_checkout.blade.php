@@ -211,6 +211,13 @@
                                 <a class="check_coupon mb-2" name="unset-coupon" href="{{url('/unset-coupon')}}">Xóa mã giảm giá</a>
                                 @endif
                                 
+                                <form action="{{url('/momo-payment')}}" method="post">
+                                    @csrf
+                                    <div class="Place-order mt-25 text-center">
+                                        <input type="hidden" value="{{$total_after}}" name="total_momo" class="btn btn-hover cart-btn-2">
+                                        <input type="submit" value="Thanh toán qua ATM Momo" name="payUrl" class="btn btn-hover cart-btn-2 w-100">
+                                    </div>
+                                </form>
                             </div>
                             @endif
                         </div>

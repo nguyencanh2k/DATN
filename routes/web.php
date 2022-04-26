@@ -213,3 +213,6 @@ Route::post('/insert-gallery/{pro_id}','GalleryController@insert_gallery');
 Route::post('/update-gallery-name','GalleryController@update_gallery_name');
 Route::post('/delete-gallery','GalleryController@delete_gallery');
 Route::post('/update-gallery','GalleryController@update_gallery');
+
+//momo
+Route::post('/momo-payment','CheckoutController@momo_payment');
