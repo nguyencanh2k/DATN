@@ -13,7 +13,7 @@
                     Session::put('message', null);
                 }
                 ?>
-                <table class="table table-bordered table-striped verticle-middle">
+                <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -50,7 +50,7 @@
         </div>
     </div>
 </div>
-<div class="col-lg-12">
+{{-- <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
             <div class="bootstrap-pagination">
@@ -62,5 +62,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

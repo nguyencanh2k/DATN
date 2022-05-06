@@ -40,7 +40,7 @@ class CategoryPost extends Controller
     }
     public function all_category_post(){
         $this->AuthLogin();
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->paginate(5);
+        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
         return view('admin.category_post.list_category')->with(compact('category_post'));
     }
     public function edit_category_post($category_post_id){

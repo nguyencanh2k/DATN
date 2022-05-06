@@ -21,7 +21,7 @@ class CustomerController extends Controller
     }
     public function all_customer_ad(){
         $this->AuthLogin();
-        $all_customer_ad = Customer::orderBy('customer_id','DESC')->paginate(5);
+        $all_customer_ad = Customer::orderBy('customer_id','DESC')->get();
         return view('admin.customers.all_customer')->with(compact('all_customer_ad'));
     }
     public function add_customer_ad(){

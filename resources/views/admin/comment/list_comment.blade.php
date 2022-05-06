@@ -13,7 +13,7 @@
                     Session::put('message', null);
                 }
                 ?>
-                <table class="table table-bordered table-striped verticle-middle">
+                <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
                             <th scope="col">Duyệt</th>

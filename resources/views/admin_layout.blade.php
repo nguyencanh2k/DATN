@@ -63,19 +63,6 @@
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-                <div class="header-left">
-                    <div class="input-group icons">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-                        </div>
-                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
-                        <div class="drop-down animated flipInX d-md-none">
-                            <form action="#">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </form>
-                        </div>
-                    </div>
-                </div>
                 <div class="header-right">
                     <ul class="clearfix">
                         <li class="icons d-none d-md-flex" data-toggle="dropdown">
@@ -135,7 +122,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Thương hiệu sản phẩm</span>
+                            <i class="fa fa-handshake-o"></i><span class="nav-text">Thương hiệu</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/add-brand-product')}}">Thêm thương hiệu</a></li>
@@ -144,7 +131,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Sản phẩm</span>
+                            <i class="fa fa-shopping-cart"></i><span class="nav-text">Sản phẩm</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/add-product')}}">Thêm sản phẩm</a></li>
@@ -153,7 +140,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Danh mục bài viết</span>
+                            <i class="fa fa-pencil-square-o"></i><span class="nav-text">Danh mục bài viết</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/add-category-post')}}">Thêm danh mục bài viết</a></li>
@@ -162,7 +149,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Quản lý bài viết</span>
+                            <i class="fa fa-newspaper-o"></i><span class="nav-text">Quản lý bài viết</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/add-post')}}">Thêm bài viết</a></li>
@@ -171,7 +158,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Đơn hàng</span>
+                            <i class="fa fa-bars"></i><span class="nav-text">Đơn hàng</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a></li>
@@ -179,7 +166,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Mã giảm giá</span>
+                            <i class="fa fa-ticket"></i><span class="nav-text">Mã giảm giá</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/insert-coupon')}}">Thêm mã giảm giá</a></li>
@@ -188,7 +175,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Vận chuyển</span>
+                            <i class="fa fa-car"></i><span class="nav-text">Vận chuyển</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/delivery')}}">Quản lý vận chuyển</a></li>
@@ -196,7 +183,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Bình luận</span>
+                            <i class="fa fa-comments-o"></i><span class="nav-text">Bình luận</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/comment')}}">Quản lý bình luận</a></li>
@@ -204,7 +191,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Slider</span>
+                            <i class="fa fa-sliders"></i><span class="nav-text">Slider</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/add-slider')}}">Thêm Slider</a></li>
@@ -213,7 +200,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Quản lý khách hàng</span>
+                            <i class="fa fa-user"></i><span class="nav-text">Quản lý khách hàng</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/add-customer-ad')}}">Thêm khách hàng</a></li>
@@ -223,11 +210,11 @@
                     @hasrole(['admin', 'author'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-list-ul"></i><span class="nav-text">Users</span>
+                            <i class="fa fa-user-circle"></i><span class="nav-text">Quản lý admin</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{URL::to('/add-users')}}">Thêm User</a></li>
-                            <li><a href="{{URL::to('/users')}}">Quản lý User</a></li>
+                            <li><a href="{{URL::to('/add-users')}}">Thêm admin</a></li>
+                            <li><a href="{{URL::to('/users')}}">Quản lý admin</a></li>
                         </ul>
                     </li>
                     @endhasrole

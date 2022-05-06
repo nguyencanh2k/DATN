@@ -13,7 +13,7 @@
                     Session::put('message', null);
                 }
                 ?>
-                <table class="table table-bordered table-striped verticle-middle">
+                <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
                             <th style="width:20px;">
@@ -49,7 +49,7 @@
                             <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
 
                             <td>
-                                <input type="submit" value="Phân quyền" class="btn btn-sm btn-default">
+                                <input type="submit" value="Phân quyền" class="btn  btn-default">
                                 <a class="btn btn-sm btn-danger" href="{{url('/delete-user-roles/'.$user->admin_id)}}">Xóa</a>
                                 <a class="btn btn-sm btn-success" href="{{url('/impersonate/'.$user->admin_id)}}">Đổi tài khoản</a>
                             </td> 
@@ -62,7 +62,7 @@
         </div>
     </div>
 </div>
-<div class="col-lg-12">
+{{-- <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
             <div class="bootstrap-pagination">
@@ -74,5 +74,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
