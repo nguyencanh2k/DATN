@@ -93,7 +93,15 @@
                                             <li class="dropdown xs-after-n">
                                                 <a class="angle-icon" href="#">Cài đặt</a>
                                                 <ul class="dropdown-nav">
-                                                    <li><a href="{{URL::to('/login-checkout')}}">Tài khoản</a></li>
+                                                    <?php
+                                                        $customer_id = Session::get('customer_id');
+                                                        if($customer_id!=NULL){ 
+                                                    ?>
+                                                        <li><a href="{{URL::to('/chi-tiet-tai-khoan/'.$customer_id)}}">Tài khoản</a></li>
+                                                    <?php
+                                                    } 
+                                                    ?>
+
                                                     <?php
                                                         $customer_id = Session::get('customer_id');
                                                         $shipping_id = Session::get('shipping_id');
@@ -111,6 +119,7 @@
                                                     <?php 
                                                         }
                                                     ?>
+
                                                     <?php
                                                         $customer_id = Session::get('customer_id');
                                                         if($customer_id!=NULL){ 

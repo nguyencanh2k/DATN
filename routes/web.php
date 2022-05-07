@@ -120,7 +120,9 @@ Route::post('/save-customer-ad','CustomerController@save_customer_ad');
 Route::get('/edit-customer-ad/{post_id}','CustomerController@edit_customer_ad');
 Route::post('/update-customer-ad/{customer_id}','CustomerController@update_customer_ad');
 Route::get('/delete-customer-ad/{customer_id}','CustomerController@delete_customer_ad');
-
+//chi tiet tai khoan
+Route::get('/chi-tiet-tai-khoan/{customer_id}','CustomerController@chi_tiet_tai_khoan');
+Route::post('/cap-nhat-tai-khoan/{customer_id}','CustomerController@cap_nhat_tai_khoan');
 //Cart
 Route::post('/update-cart-quantity','CartController@update_cart_quantity');
 Route::post('/save-cart','CartController@save_cart');

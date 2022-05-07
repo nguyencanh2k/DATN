@@ -40,10 +40,9 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="{{URL::to('/dashboard')}}">
-                    <b class="logo-abbr"><img src="{{asset('public/backend/images/logo.png')}}" alt=""> </b>
-                    <span class="logo-compact"><img src="{{asset('public/backend/images/logo-compact.png')}}" alt=""></span>
-                    <span class="brand-title">
-                        <img src="{{asset('public/backend/images/logo-text.png')}}" alt="">
+                    <b class="logo-abbr text-white">AD</b>
+                    <span class="brand-title text-white">
+                        <b>ADMIN DASHBOARD</b>
                     </span>
                 </a>
             </div>
