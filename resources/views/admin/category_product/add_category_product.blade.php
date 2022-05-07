@@ -18,19 +18,19 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên danh mục</label>
                         <div class="col-sm-10">
-                            <input type="text" name="category_product_name" class="form-control" placeholder="Tên danh mục">
+                            <input type="text" name="category_product_name" class="form-control" placeholder="Tên danh mục" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả danh mục</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_desc" rows="6" id="ckeditor12"  placeholder="Mô tả danh mục"></textarea>
+                            <textarea class="form-control h-150px" name="category_product_desc" rows="6" id="ckeditor" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Từ khóa danh mục</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor13"  placeholder="Mô tả danh mục"></textarea>
+                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor2" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

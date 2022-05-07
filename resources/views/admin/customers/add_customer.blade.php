@@ -16,27 +16,27 @@
                 <form action="{{URL::to('save-customer-ad')}}" method="post">
                     @csrf
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Tên</label>
+                        <label class="col-sm-2 col-form-label">Tên khách hàng</label>
                         <div class="col-sm-10">
-                            <input type="text" name="customer_name" class="form-control" placeholder="">
+                            <input type="text" name="customer_name" class="form-control" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" name="customer_email" class="form-control" placeholder="">
+                            <input type="text" name="customer_email" class="form-control" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Số điện thoại</label>
                         <div class="col-sm-10">
-                            <input type="text" name="customer_phone" class="form-control" placeholder="">
+                            <input type="text" name="customer_phone" class="form-control" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mật khẩu</label>
                         <div class="col-sm-10">
-                            <input type="text" name="customer_password" class="form-control" placeholder="">
+                            <input type="text" name="customer_password" class="form-control" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group row">

@@ -74,10 +74,10 @@
                                                 @endif
                                                 <form action="{{URL::to('/add-customer')}}" method="post">
                                                     {{ csrf_field() }}
-                                                    <input type="text" name="customer_name" placeholder="Họ và tên" />
-                                                    <input name="customer_email" placeholder="Email" type="email" />
-                                                    <input type="password" name="customer_password" placeholder="Mật khẩu" />
-                                                    <input type="text" name="customer_phone" placeholder="Số điện thoại" />
+                                                    <input type="text" name="customer_name" placeholder="Họ và tên"  required/>
+                                                    <input name="customer_email" placeholder="Email" type="email"  required/>
+                                                    <input type="password" name="customer_password" placeholder="Mật khẩu"  required/>
+                                                    <input type="text" name="customer_phone" placeholder="Số điện thoại"  required/>
                                                     <div class="button-box">
                                                         <button type="submit"><span>Đăng ký</span></button>
                                                     </div>

@@ -18,37 +18,37 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên bài viết</label>
                         <div class="col-sm-10">
-                            <input type="text" name="post_title" class="form-control" placeholder="Tên thương hiệu">
+                            <input type="text" name="post_title" class="form-control" placeholder="Tên bài viết" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Slug</label>
                         <div class="col-sm-10">
-                            <input type="text" name="post_slug" class="form-control" placeholder="Tên thương hiệu">
+                            <input type="text" name="post_slug" class="form-control" placeholder="Slug" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tóm tắt bài viết</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_desc" rows="6" id="ckeditor2"  placeholder="Mô tả thương hiệu"></textarea>
+                            <textarea class="form-control h-150px" name="post_desc" rows="6" id="ckeditor"  placeholder="Tóm tắt bài viết" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nội dung bài viết</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_content" rows="6" id="ckeditor3"  placeholder="Mô tả thương hiệu"></textarea>
+                            <textarea class="form-control h-150px" name="post_content" rows="6" id="ckeditor2"  placeholder="Nội dung bài viết" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Meta từ khóa</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_meta_keywords" rows="6" id="ckeditor4"  placeholder="Mô tả thương hiệu"></textarea>
+                            <textarea class="form-control h-150px" name="post_meta_keywords" rows="6" id="ckeditor3"  placeholder="Meta từ khóa" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Meta nội dung</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_meta_desc" rows="6" id="ckeditor5"  placeholder="Mô tả thương hiệu"></textarea>
+                            <textarea class="form-control h-150px" name="post_meta_desc" rows="6" id="ckeditor4"  placeholder="Meta nội dung" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -58,7 +58,7 @@
                                 <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="post_image" class="custom-file-input image-preview" onchange="previewFile(this);">
+                                    <input type="file" name="post_image" class="custom-file-input image-preview" onchange="previewFile(this);" required>
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>

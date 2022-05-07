@@ -281,25 +281,25 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-20px">
                                     <label>Họ và tên</label>
-                                    <input type="text" name="shipping_name" class="shipping_name"/>
+                                    <input type="text" name="shipping_name" class="shipping_name" required/>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-20px">
                                     <label>Số điện thoại</label>
-                                    <input type="text" name="shipping_phone" class="shipping_phone"/>
+                                    <input type="text" name="shipping_phone" class="shipping_phone" required/>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-20px">
                                     <label>Email</label>
-                                    <input type="text" name="shipping_email" class="shipping_email"/>
+                                    <input type="text" name="shipping_email" class="shipping_email" required/>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-20px">
                                     <label>Địa chỉ</label>
-                                    <input type="text" name="shipping_address" class="shipping_address"/>
+                                    <input type="text" name="shipping_address" class="shipping_address" required/>
                                 </div>
                             </div>
                         </div>

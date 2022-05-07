@@ -18,25 +18,25 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên</label>
                         <div class="col-sm-10">
-                            <input type="text" name="admin_name" class="form-control" placeholder="">
+                            <input type="text" name="admin_name" class="form-control" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" name="admin_email" class="form-control" placeholder="">
+                            <input type="text" name="admin_email" class="form-control" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Số điện thoại</label>
                         <div class="col-sm-10">
-                            <input type="text" name="admin_phone" class="form-control" placeholder="">
+                            <input type="text" name="admin_phone" class="form-control" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mật khẩu</label>
                         <div class="col-sm-10">
-                            <input type="text" name="admin_password" class="form-control" placeholder="">
+                            <input type="text" name="admin_password" class="form-control" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group row">

@@ -49,7 +49,7 @@
                                                     @csrf
                                                     <input type="hidden" name="email" value="{{$email}}" />
                                                     <input type="hidden" name="token" value="{{$token}}" />
-                                                    <input type="text" name="password_account" placeholder="Nhập mật khẩu mới" />
+                                                    <input type="text" name="password_account" placeholder="Nhập mật khẩu mới"  required/>
                                                     <div class="button-box">
                                                         <button type="submit"><span>Gửi</span></button>
                                                     </div>

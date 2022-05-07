@@ -19,19 +19,19 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên danh mục</label>
                         <div class="col-sm-10">
-                            <input type="text" value="{{$edit_value->category_name}}" name="category_product_name" class="form-control" placeholder="Tên danh mục">
+                            <input type="text" value="{{$edit_value->category_name}}" name="category_product_name" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả danh mục</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_desc" rows="6" id="ckeditor17" >{{$edit_value->category_desc}}</textarea>
+                            <textarea class="form-control h-150px" name="category_product_desc" rows="6" id="ckeditor" required>{{$edit_value->category_desc}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Từ khóa danh mục</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor18" >{{$edit_value->meta_keywords}}</textarea>
+                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor2" required>{{$edit_value->meta_keywords}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">

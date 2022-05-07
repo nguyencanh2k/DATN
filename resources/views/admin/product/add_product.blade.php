@@ -18,29 +18,25 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_name" data-validation="length" data-validation-length="min3"
-                             data-validation-error-msg="Làm ơn điền ít nhất 3 ký tự" class="form-control" placeholder="Tên sản phẩm">
+                            <input type="text" name="product_name" class="form-control" placeholder="Tên sản phẩm" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Số lượng sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_quantity" data-validation="number" 
-                            data-validation-error-msg="Làm ơn điền số lượng" class="form-control" placeholder="Số lượng sản phẩm">
+                            <input type="text" name="product_quantity" class="form-control" placeholder="Số lượng sản phẩm" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Giá nhập sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="price_cost" class="form-control price_format" data-validation="length" 
-                            data-validation-length="min5" data-validation-error-msg="Làm ơn điền số tiền" placeholder="Giá nhập sản phẩm">
+                            <input type="text" name="price_cost" class="form-control price_format" placeholder="Giá nhập sản phẩm" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Giá bán sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_price" class="form-control price_format" data-validation="length" 
-                            data-validation-length="min5" data-validation-error-msg="Làm ơn điền số tiền" placeholder="Giá bán sản phẩm">
+                            <input type="text" name="product_price" class="form-control price_format" placeholder="Giá bán sản phẩm" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -50,7 +46,7 @@
                                 <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="product_image" class="custom-file-input image-preview" onchange="previewFile(this);">
+                                    <input type="file" name="product_image" class="custom-file-input image-preview" onchange="previewFile(this);" required>
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>
@@ -60,13 +56,13 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" id="ckeditor14" name="product_desc" rows="6" id="comment" placeholder="Mô tả sản phẩm"></textarea>
+                            <textarea class="form-control h-150px" id="ckeditor" name="product_desc" rows="6" id="comment" placeholder="Mô tả sản phẩm" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nội dung sản phẩm</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" id="ckeditor15" name="product_content" rows="6" id="comment" placeholder="Nội dung sản phẩm"></textarea>
+                            <textarea class="form-control h-150px" id="ckeditor2" name="product_content" rows="6" id="comment" placeholder="Nội dung sản phẩm" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -82,7 +78,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tags sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" data-role="tagsinput" name="product_tags" class="form-control" placeholder="Tags sản phẩm">
+                            <input type="text" data-role="tagsinput" name="product_tags" class="form-control" placeholder="Tags sản phẩm" required>
                         </div>
                     </div>
                     <div class="form-group row">

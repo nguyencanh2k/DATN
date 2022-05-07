@@ -18,19 +18,19 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên danh mục bài viết</label>
                         <div class="col-sm-10">
-                            <input type="text" name="cate_post_name" class="form-control" placeholder="Tên danh mục">
+                            <input type="text" name="cate_post_name" class="form-control" placeholder="Tên danh mục bài viết" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Slug</label>
                         <div class="col-sm-10">
-                            <input type="text" name="cate_post_slug" class="form-control" placeholder="Tên danh mục">
+                            <input type="text" name="cate_post_slug" class="form-control" placeholder="Slug" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả danh mục bài viết</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="cate_post_desc" rows="6" id="ckeditor"  placeholder="Mô tả thương hiệu"></textarea>
+                            <textarea class="form-control h-150px" name="cate_post_desc" rows="6" id="ckeditor"  placeholder="Mô tả thương hiệu" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

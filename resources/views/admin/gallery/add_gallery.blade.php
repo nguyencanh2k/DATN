@@ -11,7 +11,7 @@
                     <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" name="file[]" id="file" accept="image/*" multiple class="form-control custom-file-input">
+                        <input type="file" name="file[]" id="file" accept="image/*" multiple class="form-control custom-file-input" required>
                         <label class="custom-file-label">Choose file</label>
                     </div>
                     <input type="submit" name="upload"  value="Tải ảnh" class="btn btn-success">

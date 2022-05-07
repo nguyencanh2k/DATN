@@ -43,7 +43,7 @@
                                                 @endif
                                                 <form action="{{url('/recover-pass')}}" method="post">
                                                     @csrf
-                                                    <input type="text" name="email_account" placeholder="Email" />
+                                                    <input type="text" name="email_account" placeholder="Email" required/>
                                                     <div class="button-box">
                                                         <button type="submit"><span>Gửi</span></button>
                                                     </div>

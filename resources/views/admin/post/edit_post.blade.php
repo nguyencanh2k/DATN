@@ -18,37 +18,37 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên bài viết</label>
                         <div class="col-sm-10">
-                            <input type="text" name="post_title" class="form-control" value="{{$post->post_title}}">
+                            <input type="text" name="post_title" class="form-control" value="{{$post->post_title}}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Slug</label>
                         <div class="col-sm-10">
-                            <input type="text" name="post_slug" class="form-control" value="{{$post->post_slug}}">
+                            <input type="text" name="post_slug" class="form-control" value="{{$post->post_slug}}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tóm tắt bài viết</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_desc" rows="6" id="ckeditor6">{{$post->post_desc}}</textarea>
+                            <textarea class="form-control h-150px" name="post_desc" rows="6" id="ckeditor" required>{{$post->post_desc}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nội dung bài viết</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_content" rows="6" id="ckeditor7">{{$post->post_content}}</textarea>
+                            <textarea class="form-control h-150px" name="post_content" rows="6" id="ckeditor2" required>{{$post->post_content}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Meta từ khóa</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_meta_keywords" rows="6" id="ckeditor8">{{$post->post_meta_keywords}}</textarea>
+                            <textarea class="form-control h-150px" name="post_meta_keywords" rows="6" id="ckeditor3" required>{{$post->post_meta_keywords}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Meta nội dung</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_meta_desc" rows="6" id="ckeditor9">{{$post->post_meta_desc}}</textarea>
+                            <textarea class="form-control h-150px" name="post_meta_desc" rows="6" id="ckeditor4" required>{{$post->post_meta_desc}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -58,7 +58,7 @@
                                 <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="post_image" class="custom-file-input image-preview" onchange="previewFile(this);">
+                                    <input type="file" name="post_image" class="custom-file-input image-preview" onchange="previewFile(this);" required>
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>

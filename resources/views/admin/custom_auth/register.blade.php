@@ -39,16 +39,16 @@
                                     @endforeach
                                     
                                     <div class="form-group">
-                                        <input type="text" name="admin_name" value="{{old('admin_name')}}" class="form-control" placeholder="NAME">
+                                        <input type="text" name="admin_name" value="{{old('admin_name')}}" class="form-control" placeholder="NAME" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="admin_email" value="{{old('admin_email')}}" class="form-control" placeholder="E-MAIL">
+                                        <input type="text" name="admin_email" value="{{old('admin_email')}}" class="form-control" placeholder="E-MAIL" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="admin_phone" value="{{old('admin_phone')}}" class="form-control" placeholder="PHONE">
+                                        <input type="text" name="admin_phone" value="{{old('admin_phone')}}" class="form-control" placeholder="PHONE" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="admin_password" class="form-control" placeholder="PASSWORD">
+                                        <input type="password" name="admin_password" class="form-control" placeholder="PASSWORD" required>
                                     </div>
                                     <button class="btn login-form__btn submit w-100">Đăng ký</button>
                                 </form>

@@ -19,13 +19,13 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên thương hiệu</label>
                         <div class="col-sm-10">
-                            <input type="text" value="{{$edit_value->brand_name}}" name="brand_product_name" class="form-control" placeholder="Tên danh mục">
+                            <input type="text" value="{{$edit_value->brand_name}}" name="brand_product_name" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả thương hiệu</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="brand_product_desc" rows="6" id="ckeditor16" >{{$edit_value->brand_desc}}</textarea>
+                            <textarea class="form-control h-150px" name="brand_product_desc" rows="6" id="ckeditor" required>{{$edit_value->brand_desc}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">

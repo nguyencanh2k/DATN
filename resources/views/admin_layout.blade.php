@@ -294,29 +294,27 @@
     <script>
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
-         CKEDITOR.replace('ckeditor');
-         CKEDITOR.replace('ckeditor1');
-         CKEDITOR.replace('ckeditor2');
-         CKEDITOR.replace('ckeditor3');
-         CKEDITOR.replace('ckeditor4');
-         CKEDITOR.replace('ckeditor5');
-         CKEDITOR.replace('ckeditor6');
-         CKEDITOR.replace('ckeditor7');
-         CKEDITOR.replace('ckeditor8');
-         CKEDITOR.replace('ckeditor9');
-         CKEDITOR.replace('ckeditor10');
-         CKEDITOR.replace('ckeditor11');
-         CKEDITOR.replace('ckeditor12');
-         CKEDITOR.replace('ckeditor13');
-         CKEDITOR.replace('ckeditor14');
-         CKEDITOR.replace('ckeditor15');
-         CKEDITOR.replace('ckeditor16');
-         CKEDITOR.replace('ckeditor17');
-         CKEDITOR.replace('ckeditor18');
-         CKEDITOR.replace('ckeditor19');
-         CKEDITOR.replace('ckeditor20');
+         var editor = CKEDITOR.replace('ckeditor');
+         var editor2 = CKEDITOR.replace('ckeditor2');
+         var editor3 = CKEDITOR.replace('ckeditor3');
+         var editor4 = CKEDITOR.replace('ckeditor4');
+         editor.on( 'required', function( evt ) {
+            editor.showNotification( 'Vui lòng điền vào trường này', 'warning' );
+            evt.cancel();
+        } );
+        editor2.on( 'required', function( evt ) {
+            editor2.showNotification( 'Vui lòng điền vào trường này', 'warning' );
+            evt.cancel();
+        } );
+        editor3.on( 'required', function( evt ) {
+            editor3.showNotification( 'Vui lòng điền vào trường này', 'warning' );
+            evt.cancel();
+        } );
+        editor4.on( 'required', function( evt ) {
+            editor4.showNotification( 'Vui lòng điền vào trường này', 'warning' );
+            evt.cancel();
+        } );
     </script>
-
     <script type="text/javascript">
         $.validate({
             

@@ -19,25 +19,25 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_name" class="form-control" value="{{$pro->product_name}}">
+                            <input type="text" name="product_name" class="form-control" value="{{$pro->product_name}}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Số lượng sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_quantity" class="form-control" value="{{$pro->product_quantity}}">
+                            <input type="text" name="product_quantity" class="form-control" value="{{$pro->product_quantity}}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Giá nhập sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="price_cost" class="form-control price_format" value="{{$pro->price_cost}}">
+                            <input type="text" name="price_cost" class="form-control price_format" value="{{$pro->price_cost}}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Giá bán sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_price" class="form-control price_format" value="{{$pro->product_price}}">
+                            <input type="text" name="product_price" class="form-control price_format" value="{{$pro->product_price}}" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -47,7 +47,7 @@
                                 <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="product_image" class="custom-file-input image-preview" onchange="previewFile(this);">
+                                    <input type="file" name="product_image" class="custom-file-input image-preview" onchange="previewFile(this);" required>
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>
@@ -57,19 +57,19 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="product_desc" rows="6" id="ckeditor19" >{{$pro->product_desc}}</textarea>
+                            <textarea class="form-control h-150px" name="product_desc" rows="6" id="ckeditor"  required>{{$pro->product_desc}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nội dung sản phẩm</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="product_content" rows="6" id="ckeditor20"  >{{$pro->product_content}}</textarea>
+                            <textarea class="form-control h-150px" name="product_content" rows="6" id="ckeditor2"  required >{{$pro->product_content}}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tags sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" data-role="tagsinput" name="product_tags" class="form-control" value="{{$pro->product_tags}}">
+                            <input type="text" data-role="tagsinput" name="product_tags" class="form-control" value="{{$pro->product_tags}}" required>
                         </div>
                     </div>
                     <div class="form-group row">

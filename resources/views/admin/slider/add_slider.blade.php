@@ -18,7 +18,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Tên slide</label>
                         <div class="col-sm-10">
-                            <input type="text" name="slider_name" class="form-control" placeholder="Tên slider">
+                            <input type="text" name="slider_name" class="form-control" placeholder="Tên slider" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -28,7 +28,7 @@
                                 <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="slider_image" class="custom-file-input image-preview" onchange="previewFile(this);">
+                                    <input type="file" name="slider_image" class="custom-file-input image-preview" onchange="previewFile(this);" required>
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Mô tả</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="slider_desc" rows="6" id="ckeditor10"  placeholder="Mô tả"></textarea>
+                            <textarea class="form-control h-150px" name="slider_desc" rows="6" id="ckeditor"  placeholder="Mô tả" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
