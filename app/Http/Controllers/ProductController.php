@@ -213,9 +213,9 @@ class ProductController extends Controller
         }elseif(isset($_GET['start_price']) && $_GET['end_price']){
             $min_price = $_GET['start_price'];
             $max_price = $_GET['end_price'];
-            $show_all_product = Product::whereBetween('product_price', [$min_price, $max_price])->paginate(10)->appends(request()->query());
+            $show_all_product = Product::whereBetween('product_price', [$min_price, $max_price])->paginate(12)->appends(request()->query());
         }else{
-            $show_all_product = Product::where('product_status','0')->paginate(20);
+            $show_all_product = Product::where('product_status','0')->paginate(12);
         }
         //seo 
             $meta_desc = 'Tất cả sản phẩm';

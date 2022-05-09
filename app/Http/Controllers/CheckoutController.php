@@ -171,7 +171,7 @@ class CheckoutController extends Controller
     		Session::put('customer_id',$result->customer_id);
     		return Redirect::to('/checkout');
     	}else{
-    		return Redirect::to('/login-checkout');
+    		return Redirect::to('/login-checkout')->with('message', 'Sai email hoặc mật khẩu.');
     	}
         // Session::save();
 

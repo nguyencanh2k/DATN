@@ -64,49 +64,56 @@
                                 @foreach($pro_tag as $key => $product)
                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                     <article class="list-product">
-                                        <div class="img-block">
-                                            <a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="thumbnail">
-                                                <img class="first-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
-                                                <img class="second-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
-                                            </a>
-                                        </div>
-                                        <ul class="product-flag">
-                                            <li class="new">New</li>
-                                        </ul>
-                                        <div class="product-decs">
-                                            <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
-                                            {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2> --}}
-                                            <div class="rating-product">
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
+                                        <form action="">
+                                            @csrf
+                                            <input type="hidden" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
+                                            <input type="hidden" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
+                                            <input type="hidden" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
+                                            <input type="hidden" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
+                                            <input type="hidden" value="{{$product->product_quantity}}" class="cart_product_quantity_{{$product->product_id}}">
+                                            <input type="hidden" value="1" class="cart_product_qty_{{$product->product_id}}">
+                                            <div class="img-block">
+                                                <a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="thumbnail">
+                                                    <img class="first-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
+                                                    <img class="second-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
+                                                </a>
                                             </div>
-                                            <div class="pricing-meta">
+                                            <ul class="product-flag">
+                                                <li class="new">New</li>
+                                            </ul>
+                                            <div class="product-decs">
+                                                <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
+                                                {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2> --}}
+                                                <div class="rating-product">
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                    <i class="ion-android-star"></i>
+                                                </div>
+                                                <div class="pricing-meta">
+                                                    <ul>
+                                                        {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
+                                                        <li class="current-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li>
+                                                        <li class="discount-price">-5%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="add-to-link">
                                                 <ul>
-                                                    {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
-                                                    <li class="current-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li>
-                                                    <li class="discount-price">-5%</li>
+                                                    <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
+                                                    <li>
+                                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
+                                                    </li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                        <div class="add-to-link">
-                                            <ul>
-                                                <li class="cart"><a class="cart-btn" href="#">Thêm vào giỏ hàng </a></li>
-                                                <li>
-                                                    <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        </form>
                                     </article>
                                 </div>
                                 @endforeach
-                                
-                                
                         </div>
                         <!-- Tab Two End -->
                     </div>

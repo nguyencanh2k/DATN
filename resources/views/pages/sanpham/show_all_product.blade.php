@@ -123,18 +123,7 @@
                     </div>
                     <!-- Shop Tab Content End -->
                     <!--  Pagination Area Start -->
-                    <div class="pro-pagination-style text-center">
-                        <ul>
-                            <li>
-                                <a class="prev" href="#"><i class="ion-ios-arrow-left"></i></a>
-                            </li>
-                            <li><a class="active" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li>
-                                <a class="next" href="#"><i class="ion-ios-arrow-right"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+                    {{ $show_all_product->links('pages.include.my_paginate') }}
                     <!--  Pagination Area End -->
                 </div>
                 <!-- Shop Bottom Area End -->

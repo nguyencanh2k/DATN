@@ -123,18 +123,7 @@
                     </div>
                     <!-- Shop Tab Content End -->
                     <!--  Pagination Area Start -->
-                    <div class="pro-pagination-style text-center">
-                        <ul>
-                            <li>
-                                <a class="prev" href="#"><i class="ion-ios-arrow-left"></i></a>
-                            </li>
-                            <li><a class="active" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li>
-                                <a class="next" href="#"><i class="ion-ios-arrow-right"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+                    {{ $brand_by_id->links('pages.include.my_paginate') }}
                     <!--  Pagination Area End -->
                 </div>
                 <!-- Shop Bottom Area End -->
@@ -190,25 +179,6 @@
                             </form>
                         </div>
                     </div>
-                    {{-- <div class="sidebar-widget mt-30">
-                        <h4 class="pro-sidebar-title">Brand</h4>
-                        <div class="sidebar-widget-list">
-                            <ul>
-                                <li>
-                                    <div class="sidebar-widget-list-left">
-                                        <input type="checkbox" /> <a href="#">Studio Design<span>(10)</span> </a>
-                                        <span class="checkmark"></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="sidebar-widget-list-left">
-                                        <input type="checkbox" value="" /> <a href="#">Graphic Corner<span>(7)</span></a>
-                                        <span class="checkmark"></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
             <!-- Sidebar Area End -->

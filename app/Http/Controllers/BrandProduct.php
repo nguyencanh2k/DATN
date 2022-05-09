@@ -130,8 +130,13 @@ class BrandProduct extends Controller
             $min_price = $_GET['start_price'];
             $max_price = $_GET['end_price'];
             $brand_by_id = Product::with('brand')->whereBetween('product_price', [$min_price, $max_price])->orderBy('product_id', 'ASC')->paginate(10)->appends(request()->query());
+        }elseif(isset($_GET['brand'])){
+            //$brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_id)->get();
+            $brand_id = $_GET['brand'];
+            $brand_arr = explode(",", $brand_id);
+            $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->whereIn('tbl_product.brand_id', $brand_arr)->paginate(2)->appends(request()->query());
         }else{
-            $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_id)->get();
+            $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_name->brand_id)->paginate(2);
         }
         //seo 
         $meta_desc = $brand_name->brand_desc; 
@@ -140,15 +145,16 @@ class BrandProduct extends Controller
         $url_canonical = $request->url();
         //--seo
         
-        if(isset($_GET['brand'])){
-            $brand_id = $_GET['brand'];
-            $brand_arr = explode(",", $brand_id);
-            $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->whereIn('tbl_product.brand_id', $brand_arr)->paginate(12);
-        }else{
-            $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_name->brand_id)->paginate(12);
-        }
+        // if(isset($_GET['brand'])){
+        //     $brand_id = $_GET['brand'];
+        //     $brand_arr = explode(",", $brand_id);
+        //     $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->whereIn('tbl_product.brand_id', $brand_arr)->paginate(2);
+        // }else{
+        //     $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_name->brand_id)->paginate(2);
+        // }
 
-        return view('pages.brand.show_brand')->with('category',$cate_product)->with('brand',$brand_product)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
-            'category_post',$category_post)->with('min_price',$min_price)->with('max_price',$max_price)->with('min_price_range',$min_price_range)->with('max_price_range',$max_price_range);
+        return view('pages.brand.show_brand')->with('category',$cate_product)->with('brand',$brand_product)->with('brand_by_id',$brand_by_id)->with(
+            'brand_name',$brand_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with(
+            'url_canonical',$url_canonical)->with('category_post',$category_post)->with('min_price',$min_price)->with('max_price',$max_price)->with('min_price_range',$min_price_range)->with('max_price_range',$max_price_range);
     }
 }

@@ -21,7 +21,7 @@ use Brian2694\Toastr\Facades\Toastr;
 class OrderController extends Controller
 {
     public function manage_order(){
-    	$order = Order::orderby('created_at','DESC')->paginate(10);
+    	$order = Order::orderby('created_at','DESC')->get();
     	return view('admin.manage_order')->with(compact('order'));
     }
     public function view_order($order_code){
@@ -375,8 +375,10 @@ class OrderController extends Controller
 				$coupon_condition = 2;
 				$coupon_number = 0;
 			}
-			return view('pages.history.view_history_order')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with(
-				'order_details',$order_details)->with('customer',$customer)->with('shipping',$shipping)->with('order_details',$order_details)->with('coupon_condition',$coupon_condition)->with('coupon_number',$coupon_number)->with('order_status',$order_status)->with('getorder',$getorder);
+			return view('pages.history.view_history_order')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with(
+				'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with(
+				'order_details',$order_details)->with('customer',$customer)->with('shipping',$shipping)->with('order_details',$order_details)->with(
+				'coupon_condition',$coupon_condition)->with('coupon_number',$coupon_number)->with('order_status',$order_status)->with('getorder',$getorder);
 		}
 	}
 	public function huy_don_hang(Request $request){

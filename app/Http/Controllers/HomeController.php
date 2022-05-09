@@ -39,6 +39,8 @@ class HomeController extends Controller
     public function search(Request $request){
         //category post
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
         //seo 
         $meta_desc = "Tìm kiếm sản phẩm"; 
         $meta_keywords = "Tìm kiếm sản phẩm";
@@ -47,8 +49,6 @@ class HomeController extends Controller
         //--seo
        $keywords = $request->keywords_submit;
 
-       $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
-       $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
 
        $search_product = DB::table('tbl_product')->where('product_name','like','%'.$keywords.'%')->get(); 
 
