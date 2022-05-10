@@ -37,8 +37,6 @@ class PostController extends Controller
         $post->post_slug = $data['post_slug'];
         $post->post_desc = $data['post_desc'];
         $post->post_content = $data['post_content'];
-        $post->post_meta_desc = $data['post_meta_desc'];
-        $post->post_meta_keywords = $data['post_meta_keywords'];
         $post->cate_post_id = $data['cate_post_id'];
         $post->post_status = $data['post_status'];
         $get_image = $request->file('post_image');
@@ -93,8 +91,6 @@ class PostController extends Controller
         $post->post_slug = $data['post_slug'];
         $post->post_desc = $data['post_desc'];
         $post->post_content = $data['post_content'];
-        $post->post_meta_desc = $data['post_meta_desc'];
-        $post->post_meta_keywords = $data['post_meta_keywords'];
         $post->cate_post_id = $data['cate_post_id'];
         $post->post_status = $data['post_status'];
         $get_image = $request->file('post_image');
@@ -146,8 +142,8 @@ class PostController extends Controller
         // $catepost = CatePost::where('cate_post_slug', $post_slug)->take(1)->get();
         foreach($post_by_id as $key =>$p){
             //seo 
-            $meta_desc = $p->post_meta_desc; 
-            $meta_keywords = $p->post_meta_keywords;
+            $meta_desc = 'Bài viết'; 
+            $meta_keywords = 'Bài viết';
             $meta_title = $p->post_title;
             $cate_id = $p->cate_post_id;
             $url_canonical = $request->url();

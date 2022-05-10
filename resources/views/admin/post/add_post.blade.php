@@ -40,18 +40,6 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Meta từ khóa</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_meta_keywords" rows="6" id="ckeditor3"  placeholder="Meta từ khóa" required></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Meta nội dung</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="post_meta_desc" rows="6" id="ckeditor4"  placeholder="Meta nội dung" required></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Hình ảnh bài viết</label>
                         <div class="col-sm-10">
                             <div class="input-group mb-3">

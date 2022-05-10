@@ -7960,7 +7960,7 @@ h3.cart-page-title {
     display: block;
     color: #253237;
 }
-.blog-page-meta li:first-child:after {
+/* .blog-page-meta li:first-child:after {
     position: absolute;
     top: 50%;
     right: -9px;
@@ -7970,7 +7970,7 @@ h3.cart-page-title {
     width: 1px;
     height: 12px;
     margin-top: -6px;
-}
+} */
 .blog-page-meta li {
     display: inline-block;
     position: relative;

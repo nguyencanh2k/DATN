@@ -157,23 +157,12 @@ class CategoryProduct extends Controller
                                             </a>
                                         </div>
                                     </div>
-                                    <ul class="product-flag">
-                                        <li class="new">New</li>
-                                    </ul>
                                     <div class="product-decs">
                                         <a class="inner-link prd-name-hidden" href="'.url('/chi-tiet-san-pham/'.$val->product_id).'"><span>'.$val->product_name.'</span></a>
                                         
-                                        <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                        </div>
                                         <div class="pricing-meta">
                                             <ul>
                                                 <li class="current-price">'.number_format($val->product_price,0,',','.').'VND</li>
-                                                <li class="discount-price">-10%</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -181,10 +170,10 @@ class CategoryProduct extends Controller
                                         <ul>
                                             <li class="cart"><a class="cart-btn add-to-cart" onclick="Addtocart(this.id);" id="'.$val->product_id.'" name="add-to-cart">Thêm vào giỏ hàng </a></li>
                                             <li>
-                                                <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
+                                                <a href=""><i class="ion-android-favorite-outline"></i></a>
                                             </li>
                                             <li>
-                                                <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
+                                                <a href=""><i class="ion-ios-shuffle-strong"></i></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -192,8 +181,6 @@ class CategoryProduct extends Controller
                                 </div>
                         ';}
             $output.='</div>';
-        }else{
-            $output.='<p style="color:red; text-align:center">Chua co san pham</p>';
         }
         echo $output;
     }

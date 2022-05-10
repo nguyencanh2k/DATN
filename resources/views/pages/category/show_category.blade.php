@@ -83,24 +83,13 @@
                                                 <img class="second-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
                                             </a>
                                         </div>
-                                        <ul class="product-flag">
-                                            <li class="new">New</li>
-                                        </ul>
                                         <div class="product-decs">
                                             <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
                                             {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2> --}}
-                                            <div class="rating-product">
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                                <i class="ion-android-star"></i>
-                                            </div>
                                             <div class="pricing-meta">
                                                 <ul>
                                                     {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
                                                     <li class="current-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li>
-                                                    <li class="discount-price">-5%</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -108,10 +97,10 @@
                                             <ul>
                                                 <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">ADD TO CART </a></li>
                                                 <li>
-                                                    <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
+                                                    <a href=""><i class="ion-android-favorite-outline"></i></a>
                                                 </li>
                                                 <li>
-                                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
+                                                    <a href=""><i class="ion-ios-shuffle-strong"></i></a>
                                                 </li>
                                             </ul>
                                         </div>

@@ -37,9 +37,6 @@
                                 <li>
                                     <a href="#"><i class="ion-person"></i> Admin</a>
                                 </li>
-                                <li>
-                                    <a href="#"><i class="ion-calendar"></i> 24 April, 2020</a>
-                                </li>
                             </ul>
                             <p>
                                 {!!$p->post_content!!}
@@ -49,39 +46,12 @@
                     <!-- single blog post -->
                 </div>
                 @endforeach
-                <div class="blog-single-tags-share d-sm-flex justify-content-between">
-                    <div class="blog-single-tags d-flex">
-                        <span class="title">Tags: </span>
-                        <ul class="tag-list">
-                            <li><a href="#">Fashion,</a></li>
-                            <li><a href="#">T-shirt,</a></li>
-                            <li><a href="#">White</a></li>
-                        </ul>
-                    </div>
-                    <div class="blog-single-share d-flex">
-                        <span class="title">Share:</span>
-                        <ul class="social">
-                            <li>
-                                <a href="#"><i class="ion-social-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="ion-social-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="ion-social-google"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="ion-social-instagram"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="blog-related-post">
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <!-- Section Title -->
                             <div class="section-title underline-shape">
-                                <h2>Related Post</h2>
+                                <h2>Bài viết liên quan</h2>
                             </div>
                             <!-- Section Title -->
                         </div>
@@ -99,9 +69,6 @@
                                 <ul class="blog-page-meta">
                                     <li>
                                         <a href="#"><i class="ion-person"></i> Admin</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="ion-calendar"></i> 24 April, 2020</a>
                                     </li>
                                 </ul>
                             </div>

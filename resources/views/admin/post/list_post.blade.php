@@ -21,7 +21,6 @@
                             <th scope="col">Hình ảnh</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Mô tả bài viết</th>
-                            <th scope="col">Từ khóa bài viết</th>
                             <th scope="col">Danh mục bài viết</th>
                             <th scope="col">Hiển thị</th>
                             <th scope="col">Hành động</th>
@@ -35,7 +34,6 @@
                             <td><img src="{{asset('public/uploads/post/'.$post->post_image)}}" height="100" width="100" alt=""></td>
                             <td>{{$post->post_slug}}</td>
                             <td>{!!$post->post_desc!!}</td>
-                            <td>{{$post->post_meta_keywords}}</td>
                             <td>{{$post->cate_post->cate_post_name}}</td>
                             <td>
                                     @if($post->post_status==0)

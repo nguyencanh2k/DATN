@@ -13,8 +13,8 @@
                     <div class="single-static pb-res-md-0 pb-res-sm-0 pb-res-xs-0">
                         <img src="{{asset('public/frontend/images/icons/static-icons-1.png')}}" alt="" class="img-responsive" />
                         <div class="single-static-meta">
-                            <h4>Free Shipping</h4>
-                            <p>On all orders over $75.00</p>
+                            <h4>Giao hàng siêu tốc</h4>
+                            <p>Nhận hàng trong vòng 1 - 2 ngày</p>
                         </div>
                     </div>
                 </div>
@@ -24,8 +24,8 @@
                     <div class="single-static pb-res-md-0 pb-res-sm-0 pb-res-xs-0 pt-res-xs-20">
                         <img src="{{asset('public/frontend/images/icons/static-icons-2.png')}}" alt="" class="img-responsive" />
                         <div class="single-static-meta">
-                            <h4>Free Returns</h4>
-                            <p>Returns are free within 9 days</p>
+                            <h4>Đổi trả miễn phí</h4>
+                            <p>Trả hàng miễn phí trong vòng 7 ngày kể từ khi nhận hàng</p>
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,8 @@
                     <div class="single-static pt-res-md-30 pb-res-sm-30 pb-res-xs-0 pt-res-xs-20">
                         <img src="{{asset('public/frontend/images/icons/static-icons-3.png')}}" alt="" class="img-responsive" />
                         <div class="single-static-meta">
-                            <h4>100% Payment Secure</h4>
-                            <p>Your payment are safe with us.</p>
+                            <h4>Thanh toán an toàn</h4>
+                            <p>Thanh toán của bạn luôn được bảo mật</p>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,8 @@
                     <div class="single-static pt-res-md-30 pb-res-sm-30 pt-res-xs-20">
                         <img src="{{asset('public/frontend/images/icons/static-icons-4.png')}}" alt="" class="img-responsive" />
                         <div class="single-static-meta">
-                            <h4>Support 24/7</h4>
-                            <p>Contact us 24 hours a day</p>
+                            <h4>Hỗ trợ 24/7</h4>
+                            <p>Đội ngũ tư vấn viên 24/7</p>
                         </div>
                     </div>
                 </div>
@@ -95,24 +95,13 @@
                                         </a>
                                     </div>
                                 </div>
-                                <ul class="product-flag">
-                                    <li class="new">New</li>
-                                </ul>
                                 <div class="product-decs">
                                     <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
                                     {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{!!$product->product_content!!}</a></h2> --}}
-                                    <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div>
                                     <div class="pricing-meta">
                                         <ul>
                                             {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
                                             <li class="current-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li>
-                                            <li class="discount-price">-5%</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -140,7 +129,7 @@
             <div class="container">
                 <!-- The Modal -->
                 <div class="modal" id="sosanh">
-                  <div class="modal-dialog">
+                  <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     
                       <!-- Modal Header -->
@@ -155,11 +144,11 @@
                             <table class="table mb-0" id="row_compare">
                                 <tbody>
                                     <tr>
-                                        <th class="first-column">Tên sản phẩm</th>
-                                        <th class="first-column">Mô tả</th>
-                                        <th class="first-column">Giá</th>
-                                        <th class="first-column">Xem chi tiết sản phẩm</th>
-                                        <th class="first-column">Xóa</th>
+                                        <td class="first-column">Tên sản phẩm</td>
+                                        <td class="first-column">Mô tả</td>
+                                        <td class="first-column">Giá</td>
+                                        <td class="first-column">Xem chi tiết sản phẩm</td>
+                                        <td class="first-column">Xóa</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -210,7 +199,7 @@
             <section class="category-tab-area sub-category-owl-nav mt-30">
                 <div class="container">
                     <div class="section-title">
-                        <h2>Dong ho </h2>
+                        <h2>Danh mục sản phẩm </h2>
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs sub-category mb-30px">
                                 @php
@@ -251,17 +240,17 @@
                     <div class="row">
                         <div class="col-md-3 col-xs-12">
                             <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/dong-ho-co-thuy-sy.jpg')}}" alt="" /></a>
+                                <a href=""><img src="{{asset('public/frontend/images/dong-ho-co-thuy-sy.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-md-6 col-xs-12 mt-res-sx-30px">
                             <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/SRWATCH-GALAXY-SG99993.4602GLA-version2-1.jpg')}}" alt="" /></a>
+                                <a href=""><img src="{{asset('public/frontend/images/SRWATCH-GALAXY-SG99993.4602GLA-version2-1.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-md-3 col-xs-12 mt-res-sx-30px">
                             <div class="banner-wrapper">
-                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/Ogival-OG358.88AGR-GL.jpg')}}" alt="" /></a>
+                                <a href=""><img src="{{asset('public/frontend/images/Ogival-OG358.88AGR-GL.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -296,21 +285,14 @@
                                     <input type="hidden" value="{{$product2->product_quantity}}" class="cart_product_quantity_{{$product2->product_id}}">
                                     <input type="hidden" value="1" class="cart_product_qty_{{$product2->product_id}}">
                                 <div class="img-block">
-                                    <a href="single-product.html" class="thumbnail">
+                                    <a href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}" class="thumbnail">
                                         <img class="first-img" src="{{URL::to('public/uploads/product/'.$product2->product_image)}}" alt="" />
                                         <img class="second-img" src="{{URL::to('public/uploads/product/'.$product2->product_image)}}" alt="" />
                                     </a>
                                 </div>
                                 <div class="product-decs">
-                                    <a class="inner-link prd-name-hidden" href="shop-4-column.html"><span>{{$product2->product_name}}</span></a>
+                                    <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}"><span>{{$product2->product_name}}</span></a>
                                     {{-- <h2><a href="single-product.html" class="product-link">{!!$product2->product_content!!}</a></h2> --}}
-                                    <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div>
                                     <div class="pricing-meta">
                                         <ul>
                                             <li class="old-price not-cut">{{number_format($product2->product_price,0,',','.').' '.'VNĐ'}}</li>
@@ -332,7 +314,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="banner-inner">
-                                <a href="shop-4-column.html"><img src="{{asset('public/frontend/images/4.jpg')}}" alt="" /></a>
+                                <a href=""><img src="{{asset('public/frontend/images/4.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -346,8 +328,8 @@
                         <div class="col-md-12">
                             <!-- Section Title -->
                             <div class="section-title">
-                                <h2>Recently Added</h2>
-                                <p>Add products to weekly line up</p>
+                                <h2>Sản phẩm phổ biến</h2>
+                                <p>Thêm ngay vào bộ sưu tập của bạn</p>
                             </div>
                             <!-- Section Title -->
                         </div>
@@ -363,24 +345,13 @@
                                     <img class="second-img" src="{{URL::to('public/uploads/product/'.$product3->product_image)}}" alt="" />
                                 </a>
                             </div>
-                            <ul class="product-flag">
-                                <li class="new">New</li>
-                            </ul>
                             <div class="product-decs">
                                 <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}"><span>{{$product3->product_name}}</span></a>
                                 {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="product-link">{!!$product3->product_content!!}</a></h2> --}}
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
                                 <div class="pricing-meta">
                                     <ul>
                                         {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
                                         <li class="current-price">{{number_format($product3->product_price,0,',','.').' '.'VNĐ'}}</li>
-                                        <li class="discount-price">-5%</li>
                                     </ul>
                                 </div>
                             </div>
@@ -388,10 +359,10 @@
                                 <ul>
                                     <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product3->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
                                     <li>
-                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
+                                        <a href=""><i class="ion-android-favorite-outline"></i></a>
                                     </li>
                                     <li>
-                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
+                                        <a href=""><i class="ion-ios-shuffle-strong"></i></a>
                                     </li>
                                 </ul>
                             </div>

@@ -40,9 +40,6 @@
                                 <li>
                                     <a href="#"><i class="ion-person"></i> Admin</a>
                                 </li>
-                                <li>
-                                    <a href="#"><i class="ion-calendar"></i> 24 April, 2020</a>
-                                </li>
                             </ul>
                             <p>
                                 {!!$p->post_desc!!}
