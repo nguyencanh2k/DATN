@@ -42,16 +42,6 @@
                 <div class="product-details-content">
                     <h2>{{$value->product_name}}</h2>
                     <p class="reference">Mã sản phẩm:<span> {{$value->product_id}}</span></p>
-                    <div class="pro-details-rating-wrap">
-                        <div class="rating-product">
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                            <i class="ion-android-star"></i>
-                        </div>
-                        <span class="read-review"><a class="reviews" href="#">Reviews (1)</a></span>
-                    </div>
                     <div class="pricing-meta">
                         <ul>
                             <li class="old-price not-cut">{{number_format($value->product_price,0,',','.').'VNĐ'}}</li>
@@ -83,14 +73,6 @@
                             </div>
                         </div>
                     </form>
-                    <div class="pro-details-wish-com">
-                        <div class="pro-details-wishlist">
-                            <a href="#"><i class="ion-android-favorite-outline"></i>Add to wishlist</a>
-                        </div>
-                        <div class="pro-details-compare">
-                            <a href="#"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
-                        </div>
-                    </div>
                     <div class="pro-details-social-info">
                         <span>Share</span>
                         <div class="social-info">
@@ -100,47 +82,25 @@
                                     class="fb-xfbml-parse-ignore"><i class="ion-social-facebook"></i>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#"><i class="ion-social-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="ion-social-google"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="ion-social-instagram"></i></a>
-                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="pro-details-policy">
-                        <ul>
-                            <li><img src="assets/images/icons/policy.png" alt="" /><span>Dịch vụ gói quà miễn phí khi mua tại cửa hàng</span></li>
-                        </ul>
-                        <style type="text/css">
-                            a.tags_style{
-                                margin: 3px 2px;
-                                border: 1px solid;
-                                height: auto;
-                                background: #4fb68d;
-                                color: #fff;
-                                padding: 3px;
-                            }
-                            a.tags_style:hover{
-                                background: black;
-                            }
-                        </style>
-                        <fieldset>
-                            <legend>Tags</legend>
-                            <p><i class="fa fa-tag"></i>
-                            @php
+                        {{-- <ul>
+                            <li><img src="{{asset('public/frontend/images/icons/policy.png')}}" alt="" /><span>Dịch vụ gói quà miễn phí khi mua tại cửa hàng</span></li>
+                        </ul> --}}
+                        <div class="blog-single-tags d-flex">
+                            <span class="title">Tags: </span>
+                            <ul class="tag-list">
+                                @php
                                 $tags = $value->product_tags;
                                 $tags = explode(",",$tags);
-                            @endphp
-                            @foreach ($tags as $tag)
-                                <a class="tags_style" href="{{url('/tag/'.str_slug($tag))}}">{{$tag}}</a>
-                            @endforeach
-                            </p>
-                        </fieldset>
+                                @endphp
+                                @foreach ($tags as $tag)
+                                    <li><a class="tags_style" href="{{url('/tag/'.str_slug($tag))}}">{{$tag}} </a></li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -198,7 +158,7 @@
                                                         <li title="star_rating" id="{{$value->product_id}}-{{$count}}" 
                                                             data-index="{{$count}}" data-product_id="{{$value->product_id}}"
                                                             data-rating="{{$rating}}" class="rating list-inline-item" 
-                                                            style="cursor:pointer; {{$color}} font-size:30px;">&#9733;</li>
+                                                            style="cursor:pointer; {{$color}} font-size:30px;"><i class="ion-android-star"></i></li>
                                                     @endfor
                                                 </ul>
                                             </div>
@@ -262,24 +222,13 @@
                         <img class="second-img" src="{{URL::to('public/uploads/product/'.$lienquan->product_image)}}" alt="" />
                     </a>
                 </div>
-                <ul class="product-flag">
-                    <li class="new">New</li>
-                </ul>
                 <div class="product-decs">
                     <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}"><span>{{$lienquan->product_name}}</span></a>
                     {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}" class="product-link">{{$lienquan->product_name}}</a></h2> --}}
-                    <div class="rating-product">
-                        <i class="ion-android-star"></i>
-                        <i class="ion-android-star"></i>
-                        <i class="ion-android-star"></i>
-                        <i class="ion-android-star"></i>
-                        <i class="ion-android-star"></i>
-                    </div>
                     <div class="pricing-meta">
                         <ul>
                             {{-- <li class="old-price">{number_format($lienquan->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
                             <li class="current-price">{{number_format($lienquan->product_price,0,',','.').' '.'VNĐ'}}</li>
-                            <li class="discount-price">-10%</li>
                         </ul>
                     </div>
                 </div>
@@ -287,10 +236,10 @@
                     <ul>
                         <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$lienquan->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
                         <li>
-                            <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
+                            <a href=""><i class="ion-android-favorite-outline"></i></a>
                         </li>
                         <li>
-                            <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
+                            <a href=""><i class="ion-ios-shuffle-strong"></i></a>
                         </li>
                     </ul>
                 </div>

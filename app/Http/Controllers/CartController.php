@@ -153,10 +153,10 @@ class CartController extends Controller
                     if($val['session_id']==$key && $qty<$cart[$session]['product_quantity']){
 
                         $cart[$session]['product_qty'] = $qty;
-                        $message.='<p style="color:blue">'.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thành công</p>';
+                        $message.=''.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thành công';
 
                     }elseif($val['session_id']==$key && $qty>$cart[$session]['product_quantity']){
-                        $message.='<p style="color:red">'.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thất bại do hết hàng</p>';
+                        $message.=''.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thất bại do hết hàng';
                     }
 
                 }

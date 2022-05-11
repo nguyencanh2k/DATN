@@ -39,15 +39,19 @@
                     <!-- Right Side Start -->
                     <div class="select-shoing-wrap">
                         <div class="shot-product">
-                            <p>Sort By:</p>
+                            <p>Sắp xếp theo</p>
                         </div>
                         <div class="shop-select">
-                            <select>
-                                <option value="">Sort by newness</option>
-                                <option value="">A to Z</option>
-                                <option value=""> Z to A</option>
-                                <option value="">In stock</option>
-                            </select>
+                            <form>
+                                @csrf
+                                <select name="sort" id="sort" class="form-control">
+                                    <option value="{{Request::url()}}?sort_by=none">---Lọc---</option>
+                                    <option value="{{Request::url()}}?sort_by=tang_dan">---Giá tăng dần---</option>
+                                    <option value="{{Request::url()}}?sort_by=giam_dan">---Giá giảm dần---</option>
+                                    <option value="{{Request::url()}}?sort_by=kytu_az">A đến Z</option>
+                                    <option value="{{Request::url()}}?sort_by=kytu_za">Z đến A</option>
+                                </select>
+                            </form>
                         </div>
                     </div>
                     <!-- Right Side End -->
@@ -78,24 +82,14 @@
                                                     <img class="second-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
                                                 </a>
                                             </div>
-                                            <ul class="product-flag">
-                                                <li class="new">New</li>
-                                            </ul>
                                             <div class="product-decs">
-                                                <a class="inner-link" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
+                                                <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
                                                 {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2> --}}
-                                                <div class="rating-product">
-                                                    <i class="ion-android-star"></i>
-                                                    <i class="ion-android-star"></i>
-                                                    <i class="ion-android-star"></i>
-                                                    <i class="ion-android-star"></i>
-                                                    <i class="ion-android-star"></i>
-                                                </div>
+
                                                 <div class="pricing-meta">
                                                     <ul>
                                                         {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
                                                         <li class="current-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li>
-                                                        <li class="discount-price">-5%</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -103,10 +97,10 @@
                                                 <ul>
                                                     <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
                                                     <li>
-                                                        <a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a>
+                                                        <a href=""><i class="ion-android-favorite-outline"></i></a>
                                                     </li>
                                                     <li>
-                                                        <a href="compare.html"><i class="ion-ios-shuffle-strong"></i></a>
+                                                        <a href=""><i class="ion-ios-shuffle-strong"></i></a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -119,18 +113,7 @@
                     </div>
                     <!-- Shop Tab Content End -->
                     <!--  Pagination Area Start -->
-                    <div class="pro-pagination-style text-center">
-                        <ul>
-                            <li>
-                                <a class="prev" href="#"><i class="ion-ios-arrow-left"></i></a>
-                            </li>
-                            <li><a class="active" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li>
-                                <a class="next" href="#"><i class="ion-ios-arrow-right"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+                    {{ $pro_tag->links('pages.include.my_paginate') }}
                     <!--  Pagination Area End -->
                 </div>
                 <!-- Shop Bottom Area End -->

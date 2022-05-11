@@ -222,8 +222,7 @@
                                     <div class="header_account_list search_list">
                                         <a href="javascript:void(0)"><i class="ion-ios-search-strong"></i></a>
                                         <div class="dropdown_search">
-                                            <form action="{{URL::to('/tim-kiem')}}" autocomplete="off" method="post">
-                                                {{ csrf_field() }}
+                                            <form action="{{URL::to('/tim-kiem')}}" autocomplete="off" method="">
                                                 <input name="keywords_submit" id="keywords" placeholder="Tìm kiếm sản phẩm" type="text" />
                                                 <div class="search-category bootstrap-select" id="search_ajax"></div>
                                                 <button name="search_items" type="submit"><i class="ion-ios-search-strong"></i></button>
@@ -347,9 +346,9 @@
                                     <div class="footer-links">
                                         <ul>
                                             <li><a href="#">Vận chuyển</a></li>
-                                            <li><a href="about.html">Về chúng tôi</a></li>
+                                            <li><a href="#">Về chúng tôi</a></li>
                                             <li><a href="#">Thanh toán an toàn</a></li>
-                                            <li><a href="contact.html">Liên hệ chúng tôi</a></li>
+                                            <li><a href="#">Liên hệ chúng tôi</a></li>
                                             <li><a href="#">Cửa hàng</a></li>
                                         </ul>
                                     </div>
@@ -432,16 +431,6 @@
                                 <div class="product-details-content quickview-content">
                                     <h2 id="product_quickview_title"></h2>
                                     <p class="reference">Reference: <span id="product_quickview_id"></span></p>
-                                    {{-- <div class="pro-details-rating-wrap">
-                                        <div class="rating-product">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                        </div>
-                                        <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
-                                    </div> --}}
                                     <div class="pricing-meta">
                                         <ul>
                                             <li class="old-price not-cut" id="product_quickview_price"></li>
@@ -455,7 +444,6 @@
                                         </div>
                                         
                                         <div class="pro-details-cart btn-hover" id="product_quickview_button">
-                                            {{-- <a href="#"> + Add To Cart</a> --}}
                                             
                                         </div>
                                     </div>
@@ -465,25 +453,6 @@
                                         </div>
                                         <div class="pro-details-compare">
                                             <a href="#"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
-                                        </div>
-                                    </div>
-                                    <div class="pro-details-social-info">
-                                        <span>Share</span>
-                                        <div class="social-info">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-facebook"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-twitter"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-google"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="ion-social-instagram"></i></a>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>

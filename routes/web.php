@@ -15,7 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/trang-chu', 'HomeController@index');
 Route::get('/404', 'HomeController@error_page');
-Route::post('/tim-kiem', 'HomeController@search');
+Route::get('/tim-kiem', 'HomeController@search');
 Route::post('/autocomplete-ajax', 'HomeController@autocomplete_ajax');
 
 

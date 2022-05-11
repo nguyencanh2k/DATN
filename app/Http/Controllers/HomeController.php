@@ -47,13 +47,13 @@ class HomeController extends Controller
         $meta_title = "Tìm kiếm sản phẩm";
         $url_canonical = $request->url();
         //--seo
-       $keywords = $request->keywords_submit;
+       //$keywords = $request->keywords_submit;
+       $keywords = $_GET['keywords_submit'];  
 
+       $search_product = DB::table('tbl_product')->where('product_name','like','%'.$keywords.'%')->paginate(12);
+       $search_product->appends(['keywords_submit' => $keywords]);
 
-       $search_product = DB::table('tbl_product')->where('product_name','like','%'.$keywords.'%')->get(); 
-
-
-       return view('pages.sanpham.search')->with('category',$cate_product)->with('brand',$brand_product)->with('search_product',$search_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
+       return view('pages.sanpham.search')->with('category',$cate_product)->with('brand',$brand_product)->with('search_product',$search_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('keywords',$keywords);
 
     }
     public function send_mail(){

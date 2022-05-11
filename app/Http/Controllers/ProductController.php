@@ -202,13 +202,13 @@ class ProductController extends Controller
         if(isset($_GET['sort_by'])){
             $sort_by = $_GET['sort_by'];
             if($sort_by=='giam_dan'){
-                $show_all_product = Product::orderBy('product_price','DESC')->paginate(10)->appends(request()->query());
+                $show_all_product = Product::orderBy('product_price','DESC')->paginate(12)->appends(request()->query());
             }elseif($sort_by=='tang_dan'){
-                $show_all_product = Product::orderBy('product_price','ASC')->paginate(10)->appends(request()->query());
+                $show_all_product = Product::orderBy('product_price','ASC')->paginate(12)->appends(request()->query());
             }elseif($sort_by=='kytu_za'){
-                $show_all_product = Product::orderBy('product_name','DESC')->paginate(10)->appends(request()->query());
+                $show_all_product = Product::orderBy('product_name','DESC')->paginate(12)->appends(request()->query());
             }elseif($sort_by=='kytu_az'){
-                $show_all_product = Product::orderBy('product_name','ASC')->paginate(10)->appends(request()->query());
+                $show_all_product = Product::orderBy('product_name','ASC')->paginate(12)->appends(request()->query());
             }
         }elseif(isset($_GET['start_price']) && $_GET['end_price']){
             $min_price = $_GET['start_price'];
@@ -233,14 +233,27 @@ class ProductController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
         $tag = str_replace("-"," ",$product_tag);
-        $pro_tag = Product::where('product_status', 0)->where('product_name','LIKE','%'.$tag.'%')->orWhere('product_tags','LIKE','%'.$tag.'%')->get();
+        if(isset($_GET['sort_by'])){
+            $sort_by = $_GET['sort_by'];
+            if($sort_by=='giam_dan'){
+                $pro_tag = Product::where('product_status', 0)->where('product_name','LIKE','%'.$tag.'%')->orWhere('product_tags','LIKE','%'.$tag.'%')->orderBy('product_price','DESC')->paginate(12)->appends(request()->query());
+            }elseif($sort_by=='tang_dan'){
+                $pro_tag = Product::where('product_status', 0)->where('product_name','LIKE','%'.$tag.'%')->orWhere('product_tags','LIKE','%'.$tag.'%')->orderBy('product_price','ASC')->paginate(12)->appends(request()->query());
+            }elseif($sort_by=='kytu_za'){
+                $pro_tag = Product::where('product_status', 0)->where('product_name','LIKE','%'.$tag.'%')->orWhere('product_tags','LIKE','%'.$tag.'%')->orderBy('product_name','DESC')->paginate(12)->appends(request()->query());
+            }elseif($sort_by=='kytu_az'){
+                $pro_tag = Product::where('product_status', 0)->where('product_name','LIKE','%'.$tag.'%')->orWhere('product_tags','LIKE','%'.$tag.'%')->orderBy('product_name','ASC')->paginate(12)->appends(request()->query());
+            }
+        }else{
+            $pro_tag = Product::where('product_status', 0)->where('product_name','LIKE','%'.$tag.'%')->orWhere('product_tags','LIKE','%'.$tag.'%')->paginate(12);
+        }
 
-            //seo 
-            $meta_desc = 'Tags:'.$product_tag;
-            $meta_keywords = 'Tags:'.$product_tag;
-            $meta_title = 'Tags:'.$product_tag;
-            $url_canonical = $request->url();
-            //--seo
+        //seo 
+        $meta_desc = 'Tags:'.$product_tag;
+        $meta_keywords = 'Tags:'.$product_tag;
+        $meta_title = 'Tags:'.$product_tag;
+        $url_canonical = $request->url();
+        //--seo
         
         
         return view('pages.sanpham.tag')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('product_tag',$product_tag)->with('pro_tag',$pro_tag);
