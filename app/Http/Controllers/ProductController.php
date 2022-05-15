@@ -157,8 +157,8 @@ class ProductController extends Controller
     public function details_product($product_id, Request $request){
         //category post
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
         $details_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
@@ -192,8 +192,8 @@ class ProductController extends Controller
     public function tat_ca_san_pham(Request $request){
         //category post
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
         // $show_all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
         $min_price = Product::min('product_price');
         $max_price = Product::max('product_price');
@@ -230,8 +230,8 @@ class ProductController extends Controller
     public function tag($product_tag, Request $request){
         //category post
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
         $tag = str_replace("-"," ",$product_tag);
         if(isset($_GET['sort_by'])){
             $sort_by = $_GET['sort_by'];

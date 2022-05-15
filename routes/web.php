@@ -54,7 +54,7 @@ Route::post('/save-category-product', 'CategoryProduct@save_category_product');
 Route::post('/update-category-product/{category_product_id}', 'CategoryProduct@update_category_product');
 
 Route::post('/product-tabs', 'CategoryProduct@product_tabs');
-
+Route::post('/arrange-category', 'CategoryProduct@arrange_category');
 
 //Brand Product
 Route::get('/add-brand-product','BrandProduct@add_brand_product');
@@ -67,6 +67,7 @@ Route::get('/active-brand-product/{brand_product_id}','BrandProduct@active_brand
 
 Route::post('/save-brand-product','BrandProduct@save_brand_product');
 Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_brand_product');
+Route::post('/arrange-brand','BrandProduct@arrange_brand');
 
 
 //category post

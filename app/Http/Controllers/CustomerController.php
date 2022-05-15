@@ -72,8 +72,8 @@ class CustomerController extends Controller
     public function chi_tiet_tai_khoan(Request $request, $customer_id){
         //category post
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get();
         $profile_customer = Customer::where('customer_id',$customer_id)->get();
         //seo 
         $meta_desc = 'Chi tiết tài khoản'; 

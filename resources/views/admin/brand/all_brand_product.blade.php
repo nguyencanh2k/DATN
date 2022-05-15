@@ -22,10 +22,19 @@
                             <th scope="col">Hành động</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <style>
+                        #category_order .ui-state-highlight{
+                            padding: 24px;
+                            background-color: #ffffcc;
+                            border: 1px dotted #ccc;
+                            cursor: move;
+                            margin-top: 12px;
+                        }
+                    </style>
+                    <tbody id="brand_order">
                         @foreach ($all_brand_product as $key => $brand)
-                        <tr>
-                            <td>{{$brand->brand_id}}</td>
+                        <tr id="{{$brand->brand_id}}">
+                            <td>{{$brand->brand_order}}</td>
                             <td>{{$brand->brand_name}}</td>
                             <td>
                                 <?php
@@ -48,6 +57,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <form action="" method="post">
+                    @csrf
+                </form>
             </div>
         </div>
     </div>

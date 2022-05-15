@@ -47,7 +47,7 @@
                                 <div class="input-group-prepend"><span class="input-group-text">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="product_image" class="custom-file-input image-preview" onchange="previewFile(this);" required>
+                                    <input type="file" name="product_image" class="custom-file-input image-preview" onchange="previewFile(this);">
                                     <label class="custom-file-label">Choose file</label>
                                 </div>
                             </div>

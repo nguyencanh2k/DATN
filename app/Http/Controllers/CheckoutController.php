@@ -40,8 +40,8 @@ class CheckoutController extends Controller
         $meta_title = "Đăng nhập thanh toán";
         $url_canonical = $request->url();
         //--seo 
-       $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-       $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+       $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get();
+       $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
 
        return view('pages.checkout.login_checkout')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
    }
@@ -71,8 +71,8 @@ class CheckoutController extends Controller
        $url_canonical = $request->url();
        //--seo 
 
-       $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-       $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+       $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get();
+       $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
        $city = City::orderby('matp','ASC')->get();
 
        return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('category_post',$category_post);
@@ -101,8 +101,8 @@ class CheckoutController extends Controller
         $meta_title = "Đăng nhập thanh toán";
         $url_canonical = $request->url();
         //--seo 
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
         return view('pages.checkout.payment')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
 
     }
@@ -143,8 +143,8 @@ class CheckoutController extends Controller
         }elseif($data['payment_method']==2){
             Cart::destroy();
 
-            $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-            $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get(); 
+            $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get();
+            $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
             return view('pages.checkout.handcash')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical);
         }else{
             echo 'Thanh toán bằng thẻ ghi nợ';

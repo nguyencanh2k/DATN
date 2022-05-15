@@ -339,33 +339,48 @@
                         @foreach($all_product3 as $key => $product3)
                         <!-- Single Item -->
                         <article class="list-product">
-                            <div class="img-block">
-                                <a href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="thumbnail">
-                                    <img class="first-img" src="{{URL::to('public/uploads/product/'.$product3->product_image)}}" alt="" />
-                                    <img class="second-img" src="{{URL::to('public/uploads/product/'.$product3->product_image)}}" alt="" />
-                                </a>
-                            </div>
-                            <div class="product-decs">
-                                <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}"><span>{{$product3->product_name}}</span></a>
-                                {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="product-link">{!!$product3->product_content!!}</a></h2> --}}
-                                <div class="pricing-meta">
+                            <form action="">
+                                @csrf
+                                <input type="hidden" value="{{$product3->product_id}}" class="cart_product_id_{{$product3->product_id}}">
+                                <input type="hidden" value="{{$product3->product_name}}" class="cart_product_name_{{$product3->product_id}}" id="wishlist_productname{{$product->product_id}}">
+                                <input type="hidden" value="{{$product3->product_image}}" class="cart_product_image_{{$product3->product_id}}">
+                                <input type="hidden" value="{{$product3->product_price}}" class="cart_product_price_{{$product3->product_id}}" id="wishlist_productprice{{$product->product_id}}">
+                                <input type="hidden" value="{{$product3->product_content}}"  id="wishlist_productcontent{{$product3->product_id}}">
+                                <input type="hidden" value="{{$product3->product_quantity}}" class="cart_product_quantity_{{$product3->product_id}}">
+                                <input type="hidden" value="1" class="cart_product_qty_{{$product->product_id}}">
+                                <div class="img-block">
+                                    <a id="wishlist_producturl{{$product3->product_id}}" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="thumbnail">
+                                        <img id="wishlist_productimage{{$product3->product_id}}" class="first-img" src="{{URL::to('public/uploads/product/'.$product3->product_image)}}" alt="" />
+                                        <img id="wishlist_productimage{{$product3->product_id}}" class="second-img" src="{{URL::to('public/uploads/product/'.$product3->product_image)}}" alt="" />
+                                    </a>
+                                    <div class="quick-view">
+                                        <a class="quick_view xemnhanh" href="#" data-link-action="quickview" title="Quick view" data-id_product="{{$product3->product_id}}" data-toggle="modal" data-target="#exampleModal">
+                                            <i class="ion-ios-search-strong"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-decs">
+                                    <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}"><span>{{$product3->product_name}}</span></a>
+                                    {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="product-link">{!!$product3->product_content!!}</a></h2> --}}
+                                    <div class="pricing-meta">
+                                        <ul>
+                                            {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
+                                            <li class="current-price">{{number_format($product3->product_price,0,',','.').' '.'VNĐ'}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="add-to-link">
                                     <ul>
-                                        {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
-                                        <li class="current-price">{{number_format($product3->product_price,0,',','.').' '.'VNĐ'}}</li>
+                                        <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product3->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
+                                        <li>
+                                            <a href=""><i class="ion-android-favorite-outline"></i></a>
+                                        </li>
+                                        <li>
+                                            <a style="cursor: pointer;" onclick="add_compare({{$product3->product_id}})"><i class="ion-ios-shuffle-strong"></i></a>
+                                        </li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="add-to-link">
-                                <ul>
-                                    <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product3->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                    <li>
-                                        <a href=""><i class="ion-android-favorite-outline"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href=""><i class="ion-ios-shuffle-strong"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+                            </form>
                         </article>
                         @endforeach
                         <!-- Single Item -->

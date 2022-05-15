@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoryProductModel;
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -28,7 +29,7 @@ class CategoryProduct extends Controller
     }
     public function all_category_product(){
         $this->AuthLogin();
-        $all_category_product = DB::table('tbl_category_product')->get();
+        $all_category_product = CategoryProductModel::orderBy('category_order', 'ASC')->get();
         $manager_category_product = view('admin.category_product.all_category_product')->with('all_category_product', $all_category_product);
         return view('admin_layout')->with('admin.category_product.all_category_product', $manager_category_product);
     }
@@ -183,5 +184,16 @@ class CategoryProduct extends Controller
             $output.='</div>';
         }
         echo $output;
+    }
+    public function arrange_category(Request $request){
+        $this->AuthLogin();
+        $data = $request->all();
+        $cate_id = $data["page_id_array"];
+        foreach($cate_id as $key => $value){
+            $category = CategoryProductModel::find($value);
+            $category->category_order = $key; //key: 0 1 2, value: category_id
+            $category->save();
+        }
+        echo 'Updated';
     }
 }

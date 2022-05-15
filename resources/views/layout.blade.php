@@ -447,14 +447,14 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="pro-details-wish-com">
+                                    {{-- <div class="pro-details-wish-com">
                                         <div class="pro-details-wishlist">
                                             <a href="#"><i class="ion-android-favorite-outline"></i>Add to wishlist</a>
                                         </div>
                                         <div class="pro-details-compare">
                                             <a href="#"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </form>
                             </div>
@@ -622,9 +622,11 @@
                             beforeSend: function(){
                                 $("#beforesend_quickview").html("<h4 class='text text-primary mt-4'>Đang thêm sản phẩm vào giỏ hàng</h4>");
                             },
-                            success:function(){
-        
+                            success:function(){      
                                 $("#beforesend_quickview").html("<h4 class='text text-success mt-4'>Sản phẩm đã được thêm vào giỏ hàng</h4>");
+                                window.setTimeout(function(){ 
+                                    location.reload();
+                                } ,1000);
                             }
                         });
                     }
@@ -810,7 +812,49 @@
                 data:{cate_id:cate_id, _token:_token},
                 success:function(data){
                     $('#tabs_product').html(data);
-                    $('.owl-carousel').owlCarousel();
+                    $('.owl-carousel').owlCarousel({
+                        autoplay :   false,
+                        smartSpeed : 1000,
+                        nav :  true ,
+                        loop: false,
+                        dots :  false ,
+                        items:4,
+                        margin:30,
+                        responsive:{
+                            0:{
+                                items:1,
+                                autoplay: true,
+                                loop: true,
+                            },
+                                
+                            360:{
+                                items:1,
+                                autoplay: true,
+                                loop: true,
+                            },
+                            500:{
+                                items:2,
+                                autoplay: true,
+                                loop: true,
+                
+                            },
+                            768:{
+                                items:2,
+                            },
+                            992:{
+                                items:2,
+                            },
+                            1024:{
+                                items:2,
+                            },
+                            1200:{
+                                items:3,
+                            },
+                            1300:{
+                                items:4,
+                            }
+                        }
+                    });
                 }
             });
             $('.tabs_pro').click(function(){
@@ -822,7 +866,49 @@
                     data:{cate_id:cate_id, _token:_token},
                     success:function(data){
                         $('#tabs_product').html(data);
-                        $('.owl-carousel').owlCarousel();
+                        $('.owl-carousel').owlCarousel({
+                            autoplay :   false,
+                            smartSpeed : 1000,
+                            nav :  true ,
+                            loop: false,
+                            dots :  false ,
+                            items:4,
+                            margin:30,
+                            responsive:{
+                                0:{
+                                    items:1,
+                                    autoplay: true,
+                                    loop: true,
+                                },
+                                    
+                                360:{
+                                    items:1,
+                                    autoplay: true,
+                                    loop: true,
+                                },
+                                500:{
+                                    items:2,
+                                    autoplay: true,
+                                    loop: true,
+                    
+                                },
+                                768:{
+                                    items:2,
+                                },
+                                992:{
+                                    items:2,
+                                },
+                                1024:{
+                                    items:2,
+                                },
+                                1200:{
+                                    items:3,
+                                },
+                                1300:{
+                                    items:4,
+                                }
+                            }
+                        });
                     }
                 });
             });
@@ -941,7 +1027,8 @@
     <script type="text/javascript">
         function Huydonhang(id){
             var order_code = id;
-            var lydo = $('.lydohuydon').val();
+            var lydohuydon = '#lydohuydon_' + order_code;
+            var lydo = $(lydohuydon).val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url : "{{url('/huy-don-hang')}}",

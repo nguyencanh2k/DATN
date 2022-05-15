@@ -330,8 +330,8 @@ class OrderController extends Controller
 			$url_canonical = $request->url();
 			//--seo
 	
-			$cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
-			$brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+			$cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
+			$brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get();
 			$getorder = Order::where('customer_id',Session::get('customer_id'))->orderby('order_id', 'DESC')->get();
 			return view('pages.history.history')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('getorder',$getorder);
 		}

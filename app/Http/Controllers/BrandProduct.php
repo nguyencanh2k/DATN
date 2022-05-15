@@ -31,7 +31,7 @@ class BrandProduct extends Controller
         $this->AuthLogin();
         // $all_brand_product = DB::table('tbl_brand')->get();
         // $all_brand_product = Brand::all(); 
-        $all_brand_product = Brand::orderBy('brand_id','DESC')->get();
+        $all_brand_product = Brand::orderBy('brand_order','ASC')->get();
         $manager_brand_product = view('admin.brand.all_brand_product')->with('all_brand_product', $all_brand_product);
         return view('admin_layout')->with('admin.brand.all_brand_product', $manager_brand_product);
     }
@@ -107,8 +107,8 @@ class BrandProduct extends Controller
     public function show_brand_home(Request $request, $brand_id){
         //category post
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get();
         // $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_id)->get();
         $brand_name = DB::table('tbl_brand')->where('tbl_brand.brand_id',$brand_id)->first();
         $min_price = Product::min('product_price');
@@ -156,5 +156,16 @@ class BrandProduct extends Controller
         return view('pages.brand.show_brand')->with('category',$cate_product)->with('brand',$brand_product)->with('brand_by_id',$brand_by_id)->with(
             'brand_name',$brand_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with(
             'url_canonical',$url_canonical)->with('category_post',$category_post)->with('min_price',$min_price)->with('max_price',$max_price)->with('min_price_range',$min_price_range)->with('max_price_range',$max_price_range);
+    }
+    public function arrange_brand(Request $request){
+        $this->AuthLogin();
+        $data = $request->all();
+        $brand_id = $data["page_id_array"];
+        foreach($brand_id as $key => $value){
+            $brand = Brand::find($value);
+            $brand->brand_order = $key; //key: 0 1 2, value: brand_id
+            $brand->save();
+        }
+        echo 'Updated';
     }
 }

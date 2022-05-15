@@ -62,32 +62,32 @@
                             </td>
                             <td>
                                 @if($ord->order_status!=3)
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#huydon">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#huydon_{{$ord->order_code}}">
                                     Hủy đơn hàng
                                 </button>
                                 @endif
-                                <div class="modal fade" id="huydon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <form>
-                                            @csrf
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Lý do hủy đơn hàng</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                <form>
+                                    @csrf
+                                    <div class="modal fade" id="huydon_{{$ord->order_code}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Lý do hủy đơn hàng</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <textarea id="lydohuydon_{{$ord->order_code}}" cols="110" rows="10"></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                    <button type="button" id="{{$ord->order_code}}" onclick="Huydonhang(this.id)" class="btn btn-success">Gửi</button>
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <textarea name="" class="lydohuydon" id="" cols="110" rows="10" required></textarea>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                                <button type="button" id="{{$ord->order_code}}" onclick="Huydonhang(this.id)" class="btn btn-success">Gửi</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                                 <span>
                                 <a href="{{URL::to('/view-history-order/'.$ord->order_code)}}" data-toggle="tooltip" data-placement="top" title="View">Xem đơn hàng</a>
                                 </span>
