@@ -164,7 +164,7 @@
                                         <span>
                                             @php 
                                                 $total_coupon = $total - $cou['coupon_number'];
-                                                echo '<span>'.number_format($total_coupon,0,',','.').'đ</span>';
+                                                // echo '<span>'.number_format($total_coupon,0,',','.').'đ</span>';
                                             @endphp
                                         </span>
                                             @php 
