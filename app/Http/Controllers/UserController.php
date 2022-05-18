@@ -45,10 +45,15 @@ class UserController extends Controller
         $admin->admin_phone = $data['admin_phone'];
         $admin->admin_email = $data['admin_email'];
         $admin->admin_password = md5($data['admin_password']);
-        $admin->save();
-        $admin->roles()->attach(Roles::where('name','user')->first());
-        Session::put('message','Thêm users thành công');
-        return Redirect::to('users');
+        $user_ad = Admin::where('admin_email', $data['admin_email'])->first();
+        if ($user_ad) {
+            return redirect()->back()->with('message', 'Email đã tồn tại.');
+        } else {
+            $admin->save();
+            $admin->roles()->attach(Roles::where('name','user')->first());
+            Session::put('message','Thêm users thành công');
+            return Redirect::to('users');
+        }
     }
     public function delete_user_roles($admin_id){
         if(Auth::id()==$admin_id){

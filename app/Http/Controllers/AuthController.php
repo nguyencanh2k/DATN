@@ -35,8 +35,14 @@ class AuthController extends Controller
         $admin->admin_phone = $data['admin_phone'];
         $admin->admin_email = $data['admin_email'];
         $admin->admin_password = md5($data['admin_password']);
-        $admin->save();
-        return redirect('/register-auth')->with('message', 'Đăng ký thành công');
+        
+        $user_ad = Admin::where('admin_email', $data['admin_email'])->first();
+        if ($user_ad) {
+            return redirect('/register-auth')->with('message', 'Email đã tồn tại.');
+        } else {
+            $admin->save();
+            return redirect('/register-auth')->with('message', 'Đăng ký thành công');
+        }
     }
     public function validation($request){
         return $this->validate($request,[
@@ -48,6 +54,6 @@ class AuthController extends Controller
     }
     public function logout_auth(){
         Auth::logout();
-        return redirect('/login-auth')->with('message', 'Đăng xuất');
+        return redirect('/login-auth')->with('message', 'Đăng xuất thành công');
     }
 }
