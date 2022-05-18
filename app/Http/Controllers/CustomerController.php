@@ -38,9 +38,13 @@ class CustomerController extends Controller
         $customer->customer_phone = $data['customer_phone'];
         $customer->customer_email = $data['customer_email'];
         $customer->customer_password = md5($data['customer_password']);
-        $customer->save();
-        //Session::put('message','Thêm khách hàng thành công');
-        Toastr::success('Thêm khách hàng thành công', 'Thành công');
+        $user_cus = Customer::where('customer_email', $data['customer_email'])->first();
+        if ($user_cus) {
+            Toastr::success('Email đã tồn tại', 'Thất bại');
+        } else {
+            $customer->save();
+            Toastr::success('Thêm khách hàng thành công', 'Thành công');
+        }
         return Redirect::to('add-customer-ad');
     }
     public function edit_customer_ad($customer_id){
@@ -57,9 +61,13 @@ class CustomerController extends Controller
         $customer->customer_phone = $data['customer_phone'];
         $customer->customer_email = $data['customer_email'];
         $customer->customer_password = md5($data['customer_password']);
-        $customer->save();
-        //Session::put('message','Cập nhật thông tin khách hàng thành công');
-        Toastr::success('Cập nhật thông tin khách hàng thành công', 'Thành công');
+        $user_cus = Customer::where('customer_email', $data['customer_email'])->first();
+        if ($user_cus) {
+            Toastr::success('Email đã tồn tại', 'Thất bại');
+        } else {
+            $customer->save();
+            Toastr::success('Cập nhật thông tin khách hàng thành công', 'Thành công');
+        }
         return Redirect::to('all-customer-ad');
     }
     public function delete_customer_ad($customer_id){
@@ -68,6 +76,18 @@ class CustomerController extends Controller
         //Session::put('message','Xóa khách hàng thành công');
         Toastr::success('Xóa khách hàng thành công', 'Thành công');
         return redirect()->back();
+    }
+    public function unactive_customer($customer_id){
+        $this->AuthLogin();
+        Customer::where('customer_id',$customer_id)->update(['customer_status'=>1]);
+        Toastr::success('Khóa tài khoản thành công', 'Thành công');
+        return Redirect::to('all-customer-ad');
+    }
+    public function active_customer($customer_id){
+        $this->AuthLogin();
+        Customer::where('customer_id',$customer_id)->update(['customer_status'=>0]);
+        Toastr::success('Kích hoạt tài khoản thành công', 'Thành công');
+        return Redirect::to('all-customer-ad');
     }
     public function chi_tiet_tai_khoan(Request $request, $customer_id){
         //category post

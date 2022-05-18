@@ -64,11 +64,11 @@
                                         <div class="login-form-container">
                                             <div class="login-register-form">
                                                 @if(session()->has('message'))
-                                                    <div class="alert alert-success ml-3">
+                                                    <div class="alert alert-success">
                                                         {!! session()->get('message') !!}
                                                     </div>
                                                 @elseif(session()->has('error'))
-                                                    <div class="alert alert-danger ml-3">
+                                                    <div class="alert alert-danger">
                                                         {!! session()->get('error') !!}
                                                     </div>
                                                 @endif

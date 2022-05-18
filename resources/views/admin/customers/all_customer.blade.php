@@ -25,6 +25,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Password</th>
+                            <th scope="col">Tình trạng tài khoản</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -38,6 +39,19 @@
                             <td>{{ $cus->customer_email }}</td>
                             <td>{{ $cus->customer_phone }}</td>
                             <td>{{ $cus->customer_password }}</td>
+                            <td>
+                                <?php
+                                    if($cus->customer_status==0){
+                                ?>
+                                    <a href="{{URL::to('/unactive-customer/'.$cus->customer_id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                                <?php
+                                    }else{
+                                ?>  
+                                    <a href="{{URL::to('/active-customer/'.$cus->customer_id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                                <?php
+                                    }
+                                ?>
+                            </td>
                             <td>
                                 <a class="btn btn-sm btn-success" href="{{url('/edit-customer-ad/'.$cus->customer_id)}}">Sửa</a>
                                 <a class="btn btn-sm btn-danger" href="{{url('/delete-customer-ad/'.$cus->customer_id)}}">Xóa</a>

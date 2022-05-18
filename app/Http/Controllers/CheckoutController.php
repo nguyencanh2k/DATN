@@ -54,8 +54,12 @@ class CheckoutController extends Controller
         $data['customer_phone'] = $request->customer_phone;
         $data['customer_email'] = $request->customer_email;
         $data['customer_password'] = md5($request->customer_password);
-
-        $customer_id = DB::table('tbl_customers')->insertGetId($data);
+        $user_cus = Customer::where('customer_email', $data['customer_email'])->first();
+        if ($user_cus) {
+            return redirect()->back()->with('error', 'Email đã tồn tại.');
+        } else {
+            $customer_id = Customer::insertGetId($data);
+        }
 
     	Session::put('customer_id',$customer_id);
     	Session::put('customer_name',$request->customer_name);
@@ -163,17 +167,19 @@ class CheckoutController extends Controller
     public function login_customer(Request $request){
     	$email = $request->email_account;
     	$password = md5($request->password_account);
-    	$result = DB::table('tbl_customers')->where('customer_email',$email)->where('customer_password',$password)->first();
+    	$result = Customer::where('customer_email',$email)->where('customer_password',$password)->where('customer_status', '0')->first();
+    	$result_1 = Customer::where('customer_email',$email)->where('customer_password',$password)->where('customer_status', '1')->first();
     	if(Session::get('coupon')==true){
             Session::forget('coupon');
         }
     	
     	if($result){
-           
     		Session::put('customer_id',$result->customer_id);
-    		return Redirect::to('/checkout');
+    		return Redirect::to('/');
+    	}elseif($result_1){
+    		return Redirect::to('/login-checkout')->with('error', 'Tài khoản bị khóa.');
     	}else{
-    		return Redirect::to('/login-checkout')->with('message', 'Sai email hoặc mật khẩu.');
+    		return Redirect::to('/login-checkout')->with('error', 'Sai email hoặc mật khẩu.');
     	}
         // Session::save();
 
