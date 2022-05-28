@@ -107,7 +107,7 @@ class CartController extends Controller
     }   
     public function gio_hang(Request $request){
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         //seo 
         
        $meta_desc = "Giỏ hàng của bạn"; 

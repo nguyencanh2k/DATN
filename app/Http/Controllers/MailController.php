@@ -22,7 +22,7 @@ class MailController extends Controller
 {
     public function quen_mat_khau(Request $request){
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(3)->get();
         //seo 
@@ -75,7 +75,7 @@ class MailController extends Controller
     }
     public function update_new_pass(Request $request){
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(3)->get();
         //seo 

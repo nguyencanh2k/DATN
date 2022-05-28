@@ -35,7 +35,7 @@ class CheckoutController extends Controller
     public function login_checkout(Request $request){
 
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         //seo 
         $meta_desc = "Đăng nhập thanh toán"; 
         $meta_keywords = "Đăng nhập thanh toán";
@@ -67,7 +67,7 @@ class CheckoutController extends Controller
     public function checkout(Request $request){
 
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         //seo 
 
        $meta_desc = "Đăng nhập thanh toán"; 
@@ -99,7 +99,7 @@ class CheckoutController extends Controller
     public function payment(Request $request){
 
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         //seo 
         $meta_desc = "Đăng nhập thanh toán"; 
         $meta_keywords = "Đăng nhập thanh toán";

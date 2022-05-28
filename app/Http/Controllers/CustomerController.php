@@ -61,13 +61,8 @@ class CustomerController extends Controller
         $customer->customer_phone = $data['customer_phone'];
         $customer->customer_email = $data['customer_email'];
         $customer->customer_password = md5($data['customer_password']);
-        $user_cus = Customer::where('customer_email', $data['customer_email'])->first();
-        if ($user_cus) {
-            Toastr::success('Email đã tồn tại', 'Thất bại');
-        } else {
-            $customer->save();
-            Toastr::success('Cập nhật thông tin khách hàng thành công', 'Thành công');
-        }
+        $customer->save();
+        Toastr::success('Cập nhật thông tin khách hàng thành công', 'Thành công');
         return Redirect::to('all-customer-ad');
     }
     public function delete_customer_ad($customer_id){
@@ -91,7 +86,7 @@ class CustomerController extends Controller
     }
     public function chi_tiet_tai_khoan(Request $request, $customer_id){
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get();
         $profile_customer = Customer::where('customer_id',$customer_id)->get();

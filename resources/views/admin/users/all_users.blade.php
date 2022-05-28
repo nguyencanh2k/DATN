@@ -48,10 +48,11 @@
                             <td><input type="checkbox" name="admin_role"  {{$user->hasRole('admin') ? 'checked' : ''}}></td>
                             <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
 
-                            <td>
-                                <input type="submit" value="Phân quyền" class="btn  btn-default">
-                                <a class="btn btn-sm btn-danger" href="{{url('/delete-user-roles/'.$user->admin_id)}}">Xóa</a>
-                                <a class="btn btn-sm btn-success" href="{{url('/impersonate/'.$user->admin_id)}}">Đổi tài khoản</a>
+                            <td style="text-align: center">
+                                <a class="btn btn-sm btn-success" href="{{url('/edit-user-roles/'.$user->admin_id)}}">Sửa</a>
+                                <a class="btn btn-sm btn-danger" href="{{url('/delete-user-roles/'.$user->admin_id)}}">Xóa</a><br>
+                                <input type="submit" value="Phân quyền" class="btn  btn-default" style="font-weight: 700; font-size:18px">
+                                <a class="btn btn-sm btn-secondary" href="{{url('/impersonate/'.$user->admin_id)}}">Đổi tk</a>
                             </td> 
                         </tr>
                         </form>

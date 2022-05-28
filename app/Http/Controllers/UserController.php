@@ -9,6 +9,7 @@ use App\Roles;
 use App\Admin;
 use Session;
 use Auth;
+use Brian2694\Toastr\Facades\Toastr;
 class UserController extends Controller
 {
     public function index()
@@ -54,6 +55,23 @@ class UserController extends Controller
             Session::put('message','Thêm users thành công');
             return Redirect::to('users');
         }
+    }
+    public function edit_user_roles($admin_id){
+        $edit_users = Admin::where('admin_id',$admin_id)->get();
+
+        return view('admin.users.edit_users')->with('edit_users', $edit_users);
+    }
+    public function update_user_roles(Request $request, $admin_id){
+        $data = $request->all();
+        $admin = Admin::find($admin_id);
+        
+        $admin->admin_name = $data['admin_name'];
+        $admin->admin_phone = $data['admin_phone'];
+        $admin->admin_email = $data['admin_email'];
+        $admin->admin_password = md5($data['admin_password']);
+        $admin->save();
+        Toastr::success('Cập nhật thông tin nhân viên thành công', 'Thành công');
+        return Redirect::to('users');
     }
     public function delete_user_roles($admin_id){
         if(Auth::id()==$admin_id){

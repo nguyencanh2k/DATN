@@ -49,6 +49,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                             <button type="button" name="add_delivery" class="btn btn-dark add_delivery">Thêm phí vận chuyển</button>
                         </div>

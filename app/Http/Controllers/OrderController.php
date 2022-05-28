@@ -322,7 +322,7 @@ class OrderController extends Controller
 			return redirect('login-checkout')->with('error','Vui lòng đăng nhập tài khoản');
 		}else{
 			//category post
-			$category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
 			//seo 
 			$meta_desc = "Lịch sử đơn hàng"; 
 			$meta_keywords = "Lịch sử đơn hàng";
@@ -341,7 +341,7 @@ class OrderController extends Controller
 			return redirect('login-checkout')->with('error','Vui lòng đăng nhập tài khoản');
 		}else{
 			//category post
-			$category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        	$category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
 			//seo 
 			$meta_desc = "Lịch sử đơn hàng"; 
 			$meta_keywords = "Lịch sử đơn hàng";

@@ -64,6 +64,18 @@ class PostController extends Controller
         $all_post = Post::with('cate_post')->orderBy('post_id')->get();
     	return view('admin.post.list_post')->with(compact('all_post', $all_post));
     }
+    public function unactive_post($post_id){
+        $this->AuthLogin();
+        Post::where('post_id',$post_id)->update(['post_status'=>1]);
+        Toastr::success('Không kích hoạt bài viết thành công', 'Thành công');
+        return Redirect::to('all-post');
+    }
+    public function active_post($post_id){
+        $this->AuthLogin();
+        Post::where('post_id',$post_id)->update(['post_status'=>0]);
+        Toastr::success('Kích hoạt bài viết thành công', 'Thành công');
+        return Redirect::to('all-post');
+    }
     public function delete_post($post_id){
         $this->AuthLogin();
         $post = Post::find($post_id);
@@ -115,7 +127,7 @@ class PostController extends Controller
     }
     public function danh_muc_bai_viet(Request $request, $post_slug){
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
 
@@ -134,7 +146,7 @@ class PostController extends Controller
     }
     public function bai_viet(Request $request, $post_slug){
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
         $post_by_id = Post::with('cate_post')->where('post_status',0)->where('post_slug',$post_slug)->take(1)->get();

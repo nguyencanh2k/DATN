@@ -43,8 +43,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <div class="col-sm-2"></div>
                         <div class="col-sm-10">
-                            <button type="submit" name="add_category_product" class="btn btn-dark">Thêm danh mục</button>
+                            <button type="submit" name="add_category_product" class="btn btn-dark">Thêm danh mục sản phẩm</button>
                         </div>
                     </div>
                 </form>

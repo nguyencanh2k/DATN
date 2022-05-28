@@ -37,9 +37,9 @@
                             <td>{{$post->cate_post->cate_post_name}}</td>
                             <td>
                                     @if($post->post_status==0)
-                                        Hiển thị
+                                        <a href="{{URL::to('/unactive-post/'.$post->post_id)}}"><span class="btn-rounded btn-success btn">Hiển thị</span></a>
                                     @else
-                                        Ẩn
+                                        <a href="{{URL::to('/active-post/'.$post->post_id)}}"><span class="btn-rounded btn-danger btn">Ẩn</span></a>
                                     @endif
                             </td>
                             <td><span>

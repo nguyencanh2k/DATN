@@ -40,11 +40,11 @@
                                 <?php
                                     if($brand->brand_status==0){
                                 ?>
-                                    <a href="{{URL::to('/unactive-brand-product/'.$brand->brand_id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                                    <a href="{{URL::to('/unactive-brand-product/'.$brand->brand_id)}}"><span class="btn-rounded btn-success btn">Hiển thị</span></a>
                                 <?php
                                     }else{
                                 ?>  
-                                    <a href="{{URL::to('/active-brand-product/'.$brand->brand_id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                                    <a href="{{URL::to('/active-brand-product/'.$brand->brand_id)}}"><span class="btn-rounded btn-danger btn">Ẩn</span></a>
                                 <?php
                                     }
                                 ?>

@@ -74,6 +74,8 @@ Route::post('/arrange-brand','BrandProduct@arrange_brand');
 Route::get('/add-category-post','CategoryPost@add_category_post');
 Route::get('/all-category-post','CategoryPost@all_category_post');
 Route::post('/save-category-post','CategoryPost@save_category_post');
+Route::get('/unactive-category-post/{category_post_id}','CategoryPost@unactive_category_post');
+Route::get('/active-category-post/{category_post_id}','CategoryPost@active_category_post');
 // Route::get('/danh-muc-bai-viet/{cate_post_slug}','CategoryPost@danh_muc_bai_viet');
 Route::get('/edit-category-post/{category_post_id}','CategoryPost@edit_category_post');
 Route::post('/update-category-post/{cate_id}','CategoryPost@update_category_post');
@@ -82,6 +84,8 @@ Route::get('/delete-category-post/{cate_id}','CategoryPost@delete_category_post'
 //post
 Route::get('/add-post','PostController@add_post');
 Route::get('/all-post','PostController@all_post');
+Route::get('/unactive-post/{post_id}','PostController@unactive_post');
+Route::get('/active-post/{post_id}','PostController@active_post');
 Route::get('/delete-post/{post_id}','PostController@delete_post');
 Route::get('/edit-post/{post_id}','PostController@edit_post');
 Route::post('/save-post','PostController@save_post');
@@ -112,6 +116,8 @@ Route::post('store-users','UserController@store_users');
 Route::post('assign-roles','UserController@assign_roles');
 Route::get('impersonate/{admin_id}','UserController@impersonate');
 Route::get('impersonate-destroy','UserController@impersonate_destroy');
+Route::get('edit-user-roles/{admin_id}','UserController@edit_user_roles');
+Route::post('update-user-roles/{admin_id}','UserController@update_user_roles');
 Route::get('delete-user-roles/{admin_id}','UserController@delete_user_roles')->middleware('auth.roles');
 
 //Customer_Phan admin

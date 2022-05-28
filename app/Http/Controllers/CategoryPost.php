@@ -43,6 +43,18 @@ class CategoryPost extends Controller
         $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
         return view('admin.category_post.list_category')->with(compact('category_post'));
     }
+    public function unactive_category_post($category_post_id){
+        $this->AuthLogin();
+        CatePost::where('cate_post_id',$category_post_id)->update(['cate_post_status'=>1]);
+        Toastr::success('Không kích hoạt danh mục bài viết thành công', 'Thành công');
+        return Redirect::to('all-category-post');
+    }
+    public function active_category_post($category_post_id){
+        $this->AuthLogin();
+        CatePost::where('cate_post_id',$category_post_id)->update(['cate_post_status'=>0]);
+        Toastr::success('Kích hoạt danh mục bài viết thành công', 'Thành công');
+        return Redirect::to('all-category-post');
+    }
     public function edit_category_post($category_post_id){
         $this->AuthLogin();
 

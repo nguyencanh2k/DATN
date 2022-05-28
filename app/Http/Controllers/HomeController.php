@@ -17,7 +17,7 @@ class HomeController extends Controller
 {
     public function index(Request $request){
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(3)->get();
         //seo 
@@ -38,7 +38,7 @@ class HomeController extends Controller
     }
     public function search(Request $request){
         //category post
-        $category_post = CatePost::orderBy('cate_post_id', 'DESC')->get();
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
         //seo 

@@ -29,13 +29,13 @@
                         <tr>
                             <td>{{$cate_post->cate_post_id}}</td>
                             <td>{{$cate_post->cate_post_name}}</td>
-                            <td>{{$cate_post->cate_post_desc}}</td>
+                            <td>{!!$cate_post->cate_post_desc!!}</td>
                             <td>{{$cate_post->cate_post_slug}}</td>
                             <td>
                                 @if($cate_post->cate_post_status==0)
-                                    Hiển thị
+                                    <a href="{{URL::to('/unactive-category-post/'.$cate_post->cate_post_id)}}"><span class="btn-rounded btn-success btn">Hiển thị</span></a>
                                 @else
-                                    Ẩn
+                                    <a href="{{URL::to('/active-category-post/'.$cate_post->cate_post_id)}}"><span class="btn-rounded btn-danger btn">Ẩn</span></a>
                                 @endif
                             </td>
                             <td><span>
