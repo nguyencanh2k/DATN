@@ -14,8 +14,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        
-        $admin = Admin::with('roles')->orderBy('admin_id','DESC')->get();
+        $admin = Admin::with('roles')->orderBy('admin_id','DESC')->paginate(10);
         return view('admin.users.all_users')->with(compact('admin'));
     }
     public function add_users(){
@@ -23,21 +22,20 @@ class UserController extends Controller
     }
     public function assign_roles(Request $request){
         if(Auth::id()==$request->admin_id){
-            return redirect()->back()->with('message', 'Bạn không được phân quyền cho chính mình');
+            Toastr::error('Bạn không được phân quyền cho chính mình', 'Thất bại');
+            return redirect()->back();
         }
         $data = $request->all();
         $user = Admin::where('admin_email',$data['admin_email'])->first();
         $user->roles()->detach();
-        if($request['author_role']){
-           $user->roles()->attach(Roles::where('name','author')->first());     
-        }
-        if($request['user_role']){
-           $user->roles()->attach(Roles::where('name','user')->first());     
+        if($request['editer_role']){
+           $user->roles()->attach(Roles::where('name','editer')->first());     
         }
         if($request['admin_role']){
            $user->roles()->attach(Roles::where('name','admin')->first());     
         }
-        return redirect()->back()->with('message', 'Cấp quyền user thành công');
+        Toastr::success('Cấp quyền user thành công', 'Thành công');
+        return redirect()->back();
     }
     public function store_users(Request $request){
         $data = $request->all();
@@ -48,11 +46,12 @@ class UserController extends Controller
         $admin->admin_password = md5($data['admin_password']);
         $user_ad = Admin::where('admin_email', $data['admin_email'])->first();
         if ($user_ad) {
-            return redirect()->back()->with('message', 'Email đã tồn tại.');
+            Toastr::error('Email đã tồn tại.', 'Thất bại');
+            return redirect()->back();
         } else {
             $admin->save();
             $admin->roles()->attach(Roles::where('name','user')->first());
-            Session::put('message','Thêm users thành công');
+            Toastr::success('Thêm users thành công', 'Thành công');
             return Redirect::to('users');
         }
     }
@@ -75,14 +74,16 @@ class UserController extends Controller
     }
     public function delete_user_roles($admin_id){
         if(Auth::id()==$admin_id){
-            return redirect()->back()->with('message', 'Bạn không được xóa chính mình');
+            Toastr::error('Bạn không được xóa chính mình', 'Thất bại');
+            return redirect()->back();
         }
         $admin = Admin::find($admin_id);
         if($admin){
             $admin->roles()->detach();
             $admin->delete();
         }
-        return redirect()->back()->with('message', 'Xóa user thành công');
+        Toastr::success('Xóa user thành công', 'Thành công');
+        return redirect()->back();
     }
     public function impersonate($admin_id){
         $user = Admin::where('admin_id', $admin_id)->first();

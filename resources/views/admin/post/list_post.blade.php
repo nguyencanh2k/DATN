@@ -16,7 +16,7 @@
                 <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">STT</th>
                             <th scope="col">Tên bài viết</th>
                             <th scope="col">Hình ảnh</th>
                             <th scope="col">Slug</th>
@@ -27,9 +27,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i=0;
+                        @endphp
                         @foreach ($all_post as $key => $post)
+                        @php
+                            $i++;
+                        @endphp
                         <tr>
-                            <td>{{$post->post_id}}</td>
+                            <td>{{$i}}</td>
                             <td>{{$post->post_title}}</td>
                             <td><img src="{{asset('public/uploads/post/'.$post->post_image)}}" height="100" width="100" alt=""></td>
                             <td>{{$post->post_slug}}</td>

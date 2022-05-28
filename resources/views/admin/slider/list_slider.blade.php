@@ -16,7 +16,7 @@
                 <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">STT</th>
                             <th scope="col">Tên slide</th>
                             <th scope="col">Hình ảnh</th>
                             <th scope="col">Mô tả</th>
@@ -25,9 +25,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i=0;
+                        @endphp
                         @foreach ($all_slide as $key => $slide)
+                        @php
+                            $i++;
+                        @endphp
                         <tr>
-                            <td>{{$slide->slider_id}}</td>
+                            <td>{{$i}}</td>
                             <td>{{$slide->slider_name}}</td>
                             <td><img src="public/uploads/slider/{{ $slide->slider_image }}" height="120" width="500"></td>
                             <td>{!!$slide->slider_desc!!}</td>

@@ -40,7 +40,7 @@ class CustomerController extends Controller
         $customer->customer_password = md5($data['customer_password']);
         $user_cus = Customer::where('customer_email', $data['customer_email'])->first();
         if ($user_cus) {
-            Toastr::success('Email đã tồn tại', 'Thất bại');
+            Toastr::error('Email đã tồn tại', 'Thất bại');
         } else {
             $customer->save();
             Toastr::success('Thêm khách hàng thành công', 'Thành công');

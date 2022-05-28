@@ -16,11 +16,8 @@
                 <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
-                            <th style="width:20px;">
-                            <label class="i-checks m-b-none">
-                                <input type="checkbox"><i></i>
-                            </label>
-                            </th>
+                            
+                            <th scope="col">STT</th>
                             <th scope="col">Tên khách hàng</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
@@ -30,11 +27,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i=0;
+                        @endphp
                         @foreach ($all_customer_ad as $key => $cus)
+                        @php
+                            $i++;
+                        @endphp
                         <form action="{{url('/assign-roles')}}" method="POST">
                         @csrf
                         <tr>
-                            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+                            <td>{{$i}}</td>
                             <td>{{ $cus->customer_name }}</td>
                             <td>{{ $cus->customer_email }}</td>
                             <td>{{ $cus->customer_phone }}</td>

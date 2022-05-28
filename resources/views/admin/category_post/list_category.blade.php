@@ -16,7 +16,7 @@
                 <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">STT</th>
                             <th scope="col">Tên danh mục bài viết</th>
                             <th scope="col">Mô tả danh mục bài viết</th>
                             <th scope="col">Slug</th>
@@ -25,9 +25,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i=0;
+                        @endphp
                         @foreach ($category_post as $key => $cate_post)
+                        @php
+                            $i++;
+                        @endphp
                         <tr>
-                            <td>{{$cate_post->cate_post_id}}</td>
+                            <td>{{$i}}</td>
                             <td>{{$cate_post->cate_post_name}}</td>
                             <td>{!!$cate_post->cate_post_desc!!}</td>
                             <td>{{$cate_post->cate_post_slug}}</td>

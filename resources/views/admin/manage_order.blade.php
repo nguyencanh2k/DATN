@@ -16,7 +16,7 @@
                 <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">STT</th>
                             <th scope="col">Mã đơn hàng</th>
                             <th scope="col">Thời gian đặt hàng</th>
                             <th scope="col">Tình trạng đơn hàng</th>

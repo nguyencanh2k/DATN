@@ -15,7 +15,7 @@ class AccessPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->hasAnyRoles(['admin', 'author'])){
+        if(Auth::user()->hasAnyRoles(['admin', 'editer'])){
             return $next($request);
         }
         return redirect('/dashboard');

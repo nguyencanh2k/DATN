@@ -155,6 +155,7 @@
                             <li><a href="{{URL::to('/all-post')}}">Liệt kê bài viết</a></li>
                         </ul>
                     </li>
+                    @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-bars"></i><span class="nav-text">Đơn hàng</span>
@@ -163,6 +164,8 @@
                             <li><a href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a></li>
                         </ul>
                     </li>
+                    @endhasrole
+                    @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-ticket"></i><span class="nav-text">Mã giảm giá</span>
@@ -172,6 +175,8 @@
                             <li><a href="{{URL::to('/list-coupon')}}">Quản lý mã giảm giá</a></li>
                         </ul>
                     </li>
+                    @endhasrole
+                    @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-car"></i><span class="nav-text">Vận chuyển</span>
@@ -180,6 +185,7 @@
                             <li><a href="{{URL::to('/delivery')}}">Quản lý vận chuyển</a></li>
                         </ul>
                     </li>
+                    @endhasrole
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-comments-o"></i><span class="nav-text">Bình luận</span>
@@ -197,6 +203,7 @@
                             <li><a href="{{URL::to('/manage-slider')}}">Quản lý Slider</a></li>
                         </ul>
                     </li>
+                    @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-user"></i><span class="nav-text">Quản lý khách hàng</span>
@@ -206,7 +213,8 @@
                             <li><a href="{{URL::to('/all-customer-ad')}}">Quản lý khách hàng</a></li>
                         </ul>
                     </li>
-                    @hasrole(['admin', 'author'])
+                    @endhasrole
+                    @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-user-circle"></i><span class="nav-text">Quản lý admin</span>

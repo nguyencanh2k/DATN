@@ -13,30 +13,32 @@
                     Session::put('message', null);
                 }
                 ?>
-                <table class="table table-bordered table-striped verticle-middle" id="myTable">
+                <table class="table table-bordered table-striped verticle-middle">
                     <thead>
                         <tr>
-                            <th style="width:20px;">
-                            <label class="i-checks m-b-none">
-                                <input type="checkbox"><i></i>
-                            </label>
-                            </th>
+                            
+                            <th scope="col">STT</th>
                             <th scope="col">Tên user</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Password</th>
-                            <th scope="col">Author</th>
                             <th scope="col">Admin</th>
-                            <th scope="col">User</th>
+                            <th scope="col">Editer</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i=0;
+                        @endphp
                         @foreach ($admin as $key => $user)
+                        @php
+                            $i++;
+                        @endphp
                         <form action="{{url('/assign-roles')}}" method="POST">
                         @csrf
                         <tr>
-                            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+                            <td>{{$i}}</td>
                             <td>{{ $user->admin_name }}</td>
                             <td>{{ $user->admin_email }} 
                                 <input type="hidden" name="admin_email" value="{{ $user->admin_email }}">
@@ -44,15 +46,14 @@
                             </td>
                             <td>{{ $user->admin_phone }}</td>
                             <td>{{ $user->admin_password }}</td>
-                            <td><input type="checkbox" name="author_role" {{$user->hasRole('author') ? 'checked' : ''}}></td>
                             <td><input type="checkbox" name="admin_role"  {{$user->hasRole('admin') ? 'checked' : ''}}></td>
-                            <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
+                            <td><input type="checkbox" name="editer_role" {{$user->hasRole('editer') ? 'checked' : ''}}></td>
 
                             <td style="text-align: center">
-                                <a class="btn btn-sm btn-success" href="{{url('/edit-user-roles/'.$user->admin_id)}}">Sửa</a>
-                                <a class="btn btn-sm btn-danger" href="{{url('/delete-user-roles/'.$user->admin_id)}}">Xóa</a><br>
+                                <a class="btn btn-sm btn-success" style="font-weight: 700; font-size:18px" href="{{url('/edit-user-roles/'.$user->admin_id)}}">Sửa</a>
+                                <a class="btn btn-sm btn-danger" style="font-weight: 700; font-size:18px" href="{{url('/delete-user-roles/'.$user->admin_id)}}">Xóa</a><br>
                                 <input type="submit" value="Phân quyền" class="btn  btn-default" style="font-weight: 700; font-size:18px">
-                                <a class="btn btn-sm btn-secondary" href="{{url('/impersonate/'.$user->admin_id)}}">Đổi tk</a>
+                                <a class="btn btn-sm btn-secondary" style="font-weight: 700; font-size:18px" href="{{url('/impersonate/'.$user->admin_id)}}">Đổi tk</a>
                             </td> 
                         </tr>
                         </form>
@@ -60,6 +61,7 @@
                     </tbody>
                 </table>
             </div>
+            {{ $admin->links('admin.paginate_style.my_paginate') }}
         </div>
     </div>
 </div>

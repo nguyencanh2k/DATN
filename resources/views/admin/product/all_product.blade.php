@@ -16,7 +16,7 @@
                 <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">STT</th>
                             <th scope="col">Tên sản phẩm</th>
                             <th scope="col">Thư viện ảnh</th>
                             <th scope="col">Số lượng sản phẩm</th>
@@ -30,9 +30,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i=0;
+                        @endphp
                         @foreach ($all_product as $key => $pro)
+                        @php
+                            $i++;
+                        @endphp
                         <tr>
-                            <td>{{$pro->product_id}}</td>
+                            <td>{{$i}}</td>
                             <td>{{$pro->product_name}}</td>
                             <td><a href="{{url('/add-gallery/'.$pro->product_id)}}">Thêm thư viện ảnh</a></td>
                             <td>{{$pro->product_quantity}}</td>

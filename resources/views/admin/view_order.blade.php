@@ -94,7 +94,7 @@
                 <table class="table table-bordered table-striped verticle-middle">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">STT</th>
                             <th scope="col">Tên sản phẩm</th>
                             <th scope="col">Số lượng sản phẩm trong kho</th>
                             <th scope="col">Mã giảm giá</th>

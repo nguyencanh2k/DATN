@@ -25,7 +25,7 @@ class CouponController extends Controller
     public function delete_coupon($coupon_id){
     	$coupon = Coupon::find($coupon_id);
     	$coupon->delete();
-    	Session::put('message','Xóa mã giảm giá thành công');
+		Toastr::success('Xóa mã giảm giá thành công', 'Thành công');
         return Redirect::to('list-coupon');
     }
     public function list_coupon(){
@@ -47,7 +47,7 @@ class CouponController extends Controller
     	$coupon->coupon_condition = $data['coupon_condition'];
     	$coupon->save();
 
-    	Session::put('message','Thêm mã giảm giá thành công');
+		Toastr::success('Thêm mã giảm giá thành công', 'Thành công');
         return Redirect::to('insert-coupon');
 
 

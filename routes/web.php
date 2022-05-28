@@ -95,10 +95,14 @@ Route::get('/danh-muc-bai-viet/{post_slug}','PostController@danh_muc_bai_viet');
 Route::get('/bai-viet/{post_slug}','PostController@bai_viet');
 
 //Product
-Route::group(['middleware' => 'auth.roles'], function () {
-    Route::get('/add-product','ProductController@add_product');
-    Route::get('/edit-product/{product_id}','ProductController@edit_product');
-});
+// Route::group(['middleware' => 'auth.roles'], function () {
+//     Route::get('/add-product','ProductController@add_product');
+//     Route::get('/edit-product/{product_id}','ProductController@edit_product');
+// });
+
+Route::get('/add-product','ProductController@add_product');
+Route::get('/edit-product/{product_id}','ProductController@edit_product');
+
 Route::get('/delete-product/{product_id}','ProductController@delete_product');
 Route::get('/all-product','ProductController@all_product');
 
@@ -118,7 +122,7 @@ Route::get('impersonate/{admin_id}','UserController@impersonate');
 Route::get('impersonate-destroy','UserController@impersonate_destroy');
 Route::get('edit-user-roles/{admin_id}','UserController@edit_user_roles');
 Route::post('update-user-roles/{admin_id}','UserController@update_user_roles');
-Route::get('delete-user-roles/{admin_id}','UserController@delete_user_roles')->middleware('auth.roles');
+Route::get('delete-user-roles/{admin_id}','UserController@delete_user_roles');
 
 //Customer_Phan admin
 Route::get('/all-customer-ad','CustomerController@all_customer_ad');

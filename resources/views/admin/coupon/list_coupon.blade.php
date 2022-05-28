@@ -16,7 +16,7 @@
                 <table class="table table-bordered table-striped verticle-middle" id="myTable">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">STT</th>
                             <th scope="col">Tên mã giảm giá</th>
                             <th scope="col">Ngày bắt đầu</th>
                             <th scope="col">Ngày kết thúc</th>
@@ -30,9 +30,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i=0;
+                        @endphp
                         @foreach ($coupon as $key => $cou)
+                        @php
+                            $i++;
+                        @endphp
                         <tr>
-                            <td>{{ $cou->coupon_id }}</td>
+                            <td>{{ $i }}</td>
                             <td>{{ $cou->coupon_name }}</td>
                             <td>{{ $cou->coupon_date_start }}</td>
                             <td>{{ $cou->coupon_date_end }}</td>
