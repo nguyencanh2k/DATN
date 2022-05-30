@@ -24,25 +24,31 @@
                                 <a class="text-center" href="index.html"> <h4>Đăng nhập</h4></a>
                                 <form class="mt-5 mb-5 login-input" action="{{URL::to('/login')}}" method="post">
                                     {{ csrf_field() }}
-                                    <?php
-                                    $message= Session::get('message');
-                                    if($message){
-                                        echo '<span class="text-alert text-danger">'.$message.'</span>';
-                                        Session::put('message', null);
-                                    }
-                                    ?>
+                                    @if(session()->has('message'))
+                                        <div class="alert alert-success">
+                                            {!! session()->get('message') !!}
+                                        </div>
+                                    @elseif(session()->has('error'))
+                                        <div class="alert alert-danger">
+                                            {!! session()->get('error') !!}
+                                        </div>
+                                    @endif
 
-                                    @foreach($errors->all() as $val)
-                                    <ul>
-                                        <li>{{$val}}</li>
-                                    </ul>
-                                    @endforeach
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                     
                                     <div class="form-group">
-                                        <input type="text" name="admin_email" value="{{old('admin_email')}}" class="form-control" placeholder="E-MAIL">
+                                        <input type="email" name="admin_email" value="{{old('admin_email')}}" class="form-control" placeholder="E-MAIL" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="admin_password" class="form-control" placeholder="PASSWORD">
+                                        <input type="password" name="admin_password" class="form-control" placeholder="PASSWORD" required>
                                     </div>
                                     <button type="submit" class="btn login-form__btn submit w-100">Đăng nhập</button>
                                 </form>

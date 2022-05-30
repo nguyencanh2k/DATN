@@ -46,11 +46,11 @@
                                                 @endif
                                                 <form action="{{URL::to('/login-customer')}}" method="post">
                                                     {{ csrf_field() }}
-                                                    <input type="text" name="email_account" placeholder="Username" />
-                                                    <input type="password" name="password_account" placeholder="Password" />
+                                                    <input type="email" name="email_account" placeholder="Email" required/>
+                                                    <input type="password" name="password_account" placeholder="Password" required/>
                                                     <div class="button-box">
                                                         <div class="login-toggle-btn">
-                                                            <input type="checkbox" />
+                                                            <input type="checkbox" name="remember_me" />
                                                             <a class="flote-none" href="javascript:void(0)">Remember me</a>
                                                             <a href="{{url('/quen-mat-khau')}}">Quên mật khẩu?</a>
                                                         </div>
@@ -74,10 +74,10 @@
                                                 @endif
                                                 <form action="{{URL::to('/add-customer')}}" method="post">
                                                     {{ csrf_field() }}
-                                                    <input type="text" name="customer_name" placeholder="Họ và tên"/>
-                                                    <input name="customer_email" placeholder="Email" type="email"/>
-                                                    <input type="password" name="customer_password" placeholder="Mật khẩu"/>
-                                                    <input type="text" name="customer_phone" placeholder="Số điện thoại"/>
+                                                    <input type="text" name="customer_name" placeholder="Họ và tên" required/>
+                                                    <input name="customer_email" placeholder="Email" type="email" required/>
+                                                    <input type="text" name="customer_phone" placeholder="Số điện thoại" required/>
+                                                    <input type="password" name="customer_password" placeholder="Mật khẩu" required/>
                                                     <div class="button-box">
                                                         <button type="submit"><span>Đăng ký</span></button>
                                                     </div>

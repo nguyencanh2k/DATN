@@ -21,6 +21,7 @@ use App\CatePost;
 use App\Customer;
 use Carbon\Carbon;
 use Mail;
+use Illuminate\Support\Facades\Cookie;
 session_start();
 class CheckoutController extends Controller
 {
@@ -161,7 +162,7 @@ class CheckoutController extends Controller
     	Session::flush();
         Session::forget('customer_id');
         Session::forget('coupon');
-    	return Redirect::to('/login-checkout');
+    	return Redirect::to('/login-checkout')->with('message', 'Đăng xuất thành công.');
     }
     public function login_customer(Request $request){
     	$email = $request->email_account;
@@ -171,7 +172,6 @@ class CheckoutController extends Controller
     	if(Session::get('coupon')==true){
             Session::forget('coupon');
         }
-    	
     	if($result){
     		Session::put('customer_id',$result->customer_id);
     		return Redirect::to('/');

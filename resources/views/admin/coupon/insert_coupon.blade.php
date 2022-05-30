@@ -42,7 +42,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Số lượng</label>
                         <div class="col-sm-10">
-                            <input type="text" name="coupon_time" class="form-control" placeholder="Số lượng" required>
+                            <input type="number" min="0" name="coupon_time" class="form-control" placeholder="Số lượng" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -58,7 +58,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nhập số % hoặc $ giảm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="coupon_number" class="form-control" placeholder="Nhập số % hoặc $ giảm" required>
+                            <input type="number" min="0" name="coupon_number" class="form-control" placeholder="Nhập số % hoặc $ giảm" required>
                         </div>
                     </div>
                     <div class="form-group row">

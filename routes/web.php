@@ -136,6 +136,8 @@ Route::get('/active-customer/{customer_id}','CustomerController@active_customer'
 //chi tiet tai khoan
 Route::get('/chi-tiet-tai-khoan/{customer_id}','CustomerController@chi_tiet_tai_khoan');
 Route::post('/cap-nhat-tai-khoan/{customer_id}','CustomerController@cap_nhat_tai_khoan');
+Route::get('/doi-mat-khau/{customer_id}','CustomerController@doi_mat_khau');
+Route::post('/cap-nhat-mat-khau/{customer_id}','CustomerController@cap_nhat_mat_khau');
 //Cart
 Route::post('/update-cart-quantity','CartController@update_cart_quantity');
 Route::post('/save-cart','CartController@save_cart');

@@ -39,7 +39,7 @@ class DeliveryController extends Controller
 						<td>'.$fee->city->name_city.'</td>
 						<td>'.$fee->province->name_quanhuyen.'</td>
 						<td>'.$fee->wards->name_xaphuong.'</td>
-						<td contenteditable data-feeship_id="'.$fee->fee_id.'" class="fee_feeship_edit">'.number_format($fee->fee_feeship,0,',','.').'đ</td>
+						<td contenteditable data-feeship_id="'.$fee->fee_id.'" class="fee_feeship_edit">'.number_format($fee->fee_feeship,0,',','.').'</td>
 					</tr>
 					';
 				}

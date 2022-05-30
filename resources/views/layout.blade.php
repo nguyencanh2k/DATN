@@ -940,7 +940,7 @@
         }
         });
         $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") +
-        " VNĐ - " + $( "#slider-range" ).slider( "values", 1 ).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " VNĐ");
+        " đ - " + $( "#slider-range" ).slider( "values", 1 ).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + " đ");
 
     });
     </script>

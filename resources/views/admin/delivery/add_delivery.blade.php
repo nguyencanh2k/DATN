@@ -45,7 +45,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Phí vận chuyển</label>
                         <div class="col-sm-10">
-                            <input type="text" name="fee_ship" class="form-control fee_ship" required>
+                            <input type="number" min="0" name="fee_ship" class="form-control fee_ship" required>
                         </div>
                     </div>
                     <div class="form-group row">

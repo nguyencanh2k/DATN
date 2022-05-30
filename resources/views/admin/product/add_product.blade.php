@@ -24,7 +24,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Số lượng sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="product_quantity" class="form-control" placeholder="Số lượng sản phẩm" required>
+                            <input type="number" min="0" name="product_quantity" class="form-control" placeholder="Số lượng sản phẩm" required>
                         </div>
                     </div>
                     <div class="form-group row">
