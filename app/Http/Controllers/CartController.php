@@ -9,6 +9,9 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Cart;
 use App\CatePost;
+use App\Product;
+use App\CategoryProductModel;
+use App\Brand;
 use App\Coupon;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session as SessionSession;
@@ -19,7 +22,7 @@ class CartController extends Controller
     public function save_cart(Request $request){
         $productId = $request->productid_hidden;
         $quantity = $request->qty;
-        $product_info = DB::table('tbl_product')->where('product_id',$productId)->first(); 
+        $product_info = Product::where('product_id',$productId)->first(); 
 
         $data['id'] = $product_info->product_id;
         $data['qty'] = $quantity;
@@ -40,8 +43,8 @@ class CartController extends Controller
         $meta_title = "Giỏ hàng";
         $url_canonical = $request->url();
         //--seo
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
+        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get(); 
         return view('pages.cart.show_cart')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical);
     }
     public function delete_to_cart($rowId){
@@ -115,16 +118,13 @@ class CartController extends Controller
        $meta_title = "Giỏ hàng Ajax";
        $url_canonical = $request->url();
        //--seo
-       $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
-       $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
+       $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
+       $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
 
        return view('pages.cart.cart_ajax')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post);
    }
     public function delete_product($session_id){
         $cart = Session::get('cart');
-        // echo '<pre>';
-        // print_r($cart);
-        // echo '</pre>';
         if($cart==true){
             foreach($cart as $key => $val){
                 if($val['session_id']==$session_id){

@@ -12,7 +12,6 @@ use App\CatePost;
 use App\Gallery;
 use App\Product;
 use App\Comment;
-use App\Rating;
 use File;
 use Brian2694\Toastr\Facades\Toastr;
 session_start();
@@ -83,7 +82,6 @@ class ProductController extends Controller
         $gallery->gallery_image = $new_image;
         $gallery->product_id = $pro_id;
         $gallery->save();
-        //Session::put('message','Thêm sản phẩm thành công');
         Toastr::success('Thêm sản phẩm thành công', 'Thành công');
         return Redirect::to('add-product');
     }
@@ -185,9 +183,7 @@ class ProductController extends Controller
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
-        $rating = Rating::where('product_id', $product_id)->avg('rating');
-        $rating = round($rating);
-        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('gallery',$gallery)->with('rating',$rating);
+        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('gallery',$gallery);
     }
     public function tat_ca_san_pham(Request $request){
         //category post
@@ -365,16 +361,6 @@ class ProductController extends Controller
         $comment->comment_status  = 0;
         $comment->comment_name  = 'Admin';
         $comment->save();
-
-    }
-    public function insert_rating(Request $request){
-        $data = $request->all();
-        $rating = new Rating();
-        $rating->product_id = $data['product_id'];
-        $rating->rating = $data['index'];
-        $rating->save();
-        echo 'done';
-
 
     }
 }

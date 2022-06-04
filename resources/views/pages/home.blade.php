@@ -108,12 +108,6 @@
                                 <div class="add-to-link">
                                     <ul>
                                         <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                        <li>
-                                            <a class="add-to-wishlist" data-id_product="{{$product->product_id}}" name="add-to-wishlist"><i class="ion-android-favorite-outline"></i></a>
-                                        </li>
-                                        <li>
-                                            <a style="cursor: pointer;" onclick="add_compare({{$product->product_id}})"><i class="ion-ios-shuffle-strong"></i></a>
-                                        </li>
                                     </ul>
                                 </div>
                             </form>
@@ -124,48 +118,6 @@
                     <!-- Best Sells Carousel End -->
                 </div>
             </section>
-            
-                                    
-            <div class="container">
-                <!-- The Modal -->
-                <div class="modal" id="sosanh">
-                  <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                    
-                      <!-- Modal Header -->
-                      <div class="modal-header">
-                        <h4 class="modal-title"><span id="title-compare"></span></h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      </div>
-                      
-                      <!-- Modal body -->
-                      <div class="modal-body">
-                        <div class="compare-table table-responsive" >
-                            <table class="table mb-0" id="row_compare">
-                                <tbody>
-                                    <tr>
-                                        <td class="first-column">Tên sản phẩm</td>
-                                        <td class="first-column">Mô tả</td>
-                                        <td class="first-column">Giá</td>
-                                        <td class="first-column">Xem chi tiết sản phẩm</td>
-                                        <td class="first-column">Xóa</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                      </div>
-                      
-                      <!-- Modal footer -->
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      </div>
-                      
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-
             <!-- Best Sells Slider End -->
             <!-- Banner Area Start -->
             <div class="banner-3-area">
@@ -372,12 +324,6 @@
                                 <div class="add-to-link">
                                     <ul>
                                         <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product3->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                        <li>
-                                            <a href=""><i class="ion-android-favorite-outline"></i></a>
-                                        </li>
-                                        <li>
-                                            <a style="cursor: pointer;" onclick="add_compare({{$product3->product_id}})"><i class="ion-ios-shuffle-strong"></i></a>
-                                        </li>
                                     </ul>
                                 </div>
                             </form>

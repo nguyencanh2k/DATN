@@ -79,18 +79,10 @@
                             <!--Right Start-->
                             <div class="col-lg-8 col-md-8 text-right">
                                 <div class="header-right-nav">
-                                    <ul class="res-xs-flex">
-                                        <li class="after-n">
-                                            <a href="compare.html"><i class="ion-ios-shuffle-strong"></i>So sánh (0)</a>
-                                        </li>
-                                        <li>
-                                            <a href="wishlist.html"><i class="ion-android-favorite-outline"></i>Yêu thích (0)</a>
-                                        </li>
-                                    </ul>
                                     <div class="dropdown-navs">
                                         <ul>
                                             <!-- Settings Start -->
-                                            <li class="dropdown xs-after-n">
+                                            <li class="dropdown xs-after-n" style="height:24px; padding:13px 0;">
                                                 <a class="angle-icon" href="#">Cài đặt</a>
                                                 <ul class="dropdown-nav">
                                                     <?php
@@ -107,15 +99,15 @@
                                                         $shipping_id = Session::get('shipping_id');
                                                         if($customer_id!=NULL && $shipping_id==NULL){ 
                                                     ?>
-                                                        <li><a href="{{URL::to('/checkout')}}">Thanh toán</a></li>
+                                                        <li  class="after-n"><a href="{{URL::to('/checkout')}}">Thanh toán</a></li>
                                                     <?php 
                                                         }elseif($customer_id!=NULL && $shipping_id!=NULL){
                                                     ?>
-                                                        <li><a href="{{URL::to('/payment')}}">Thanh toán</a></li>
+                                                        <li  class="after-n"><a href="{{URL::to('/payment')}}">Thanh toán</a></li>
                                                     <?php
                                                         }else{
                                                     ?>
-                                                        <li><a href="{{URL::to('/checkout')}}">Thanh toán</a></li>
+                                                        <li  class="after-n"><a href="{{URL::to('/checkout')}}">Thanh toán</a></li>
                                                     <?php 
                                                         }
                                                     ?>
@@ -129,39 +121,25 @@
                                                     } 
                                                     ?>
                                                     
-                                                    <?php
-                                                        $customer_id = Session::get('customer_id');
-                                                        if($customer_id!=NULL){ 
-                                                    ?>
-                                                        <li><a href="{{URL::to('/logout-checkout')}}">Đăng xuất</a></li>
-                                                    <?php 
-                                                        }else{
-                                                    ?>
-                                                        <li><a href="{{URL::to('/login-checkout')}}">Đăng nhập</a></li>
-                                                    <?php
-                                                        } 
-                                                    ?>
                                                 </ul>
                                             </li>
                                             <!-- Settings End -->
-                                            <!-- Currency Start -->
-                                            <li class="top-10px first-child">
-                                                <select>
-                                                    <option value="1">USD $</option>
-                                                    <option value="2">EUR €</option>
-                                                </select>
-                                            </li>
-                                            <!-- Currency End -->
-                                            <!-- Language Start -->
-                                            <li class="top-10px mr-15px">
-                                                <select>
-                                                    <option value="1">English</option>
-                                                    <option value="2">France</option>
-                                                </select>
-                                            </li>
-                                            <!-- Language End -->
                                         </ul>
                                     </div>
+                                    <ul class="res-xs-flex">
+                                        <?php
+                                            $customer_id = Session::get('customer_id');
+                                            if($customer_id!=NULL){ 
+                                        ?>
+                                            <li class="after-n"><a href="{{URL::to('/logout-checkout')}}">Đăng xuất</a></li>
+                                        <?php 
+                                            }else{
+                                        ?>
+                                            <li class="after-n"><a href="{{URL::to('/login-checkout')}}">Đăng nhập</a></li>
+                                        <?php
+                                            } 
+                                        ?>
+                                    </ul>
                                 </div>
                             </div>
                             <!--Right End-->
@@ -981,50 +959,6 @@
         
     </script>
     <script type="text/javascript">
-        function remove_background(product_id){
-            for(var count = 1; count <=5; count++){
-                $('#'+product_id+'-'+count).css('color', '#ccc');
-            }
-        }
-        //hover chuot danh gia sao
-        $(document).on('mouseenter', '.rating', function(){
-            var index = $(this).data("index");
-            var product_id = $(this).data('product_id');
-            remove_background(product_id);
-            for(var count = 1; count <=index; count++){
-                $('#'+product_id+'-'+count).css('color', '#ffcc00');
-            }
-        });
-        //nhả chuot k danh gia
-        $(document).on('mouseleave', '.rating', function(){
-            var index = $(this).data("index");
-            var product_id = $(this).data('product_id');
-            var rating = $(this).data('rating');
-            remove_background(product_id);
-            for(var count = 1; count <=rating; count++){
-                $('#'+product_id+'-'+count).css('color', '#ffcc00');
-            }
-        });
-        //click danh gia sao
-        $(document).on('click', '.rating', function(){
-            var index = $(this).data("index");
-            var product_id = $(this).data('product_id');
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url : "{{url('/insert-rating')}}",
-                method: 'POST',
-                data:{index:index, product_id:product_id, _token:_token},
-                success:function(data){
-                    if(data == 'done'){
-                        alert("Bạn đã đánh giá "+index+" trên 5");
-                    }else{
-                        alert("Lỗi khi đánh giá");
-                    }
-                }
-                });
-        });
-    </script>
-    <script type="text/javascript">
         function Huydonhang(id){
             var order_code = id;
             var lydohuydon = '#lydohuydon_' + order_code;
@@ -1064,100 +998,6 @@
             }
             window.location.href = brand
         })
-    </script>
-    <script>
-        function delete_compare(id){
-            if(localStorage.getItem('compare')!=null){
-                var data = JSON.parse(localStorage.getItem('compare'));
-                var index = data.findIndex(item => item.id === id);
-                data.splice(index, 1);
-                localStorage.setItem('compare', JSON.stringify(data));
-                document.getElementById("row_compare"+id).remove();
-            }
-        }
-        viewed_compare();
-        function viewed_compare(){
-            if(localStorage.getItem('compare')!=null){
-                var data = JSON.parse(localStorage.getItem('compare'));
-                for(i=0; i<data.length; i++){
-                    var name = data[i].name;
-                    var price = data[i].price;
-                    var image = data[i].image;
-                    var url = data[i].url;
-                    var content = data[i].content;
-                    var id = data[i].id;
-                    $('#row_compare').find('tbody').append(`
-                                    <tr id="row_compare`+id+`">
-                                        <td class="product-image-title">
-                                            <a href="#" class="image"><img width="120px" height="120px" src="`+image+`" alt="Compare Product" /></a>
-                                            <a href="#" class="title">`+name+`</a>
-                                        </td>
-                                        <td class="pro-desc">
-                                            <p>`+content+`</p>
-                                        </td>
-                                        <td class="pro-price">`+price+`</td>
-                                        <td class="pro-addtocart">
-                                            <a href="`+url+`"><span>Xem sản phẩm</span></a>
-                                        </td>
-                                        <td class="pro-remove">
-                                            <button onclick="delete_compare(`+id+`)" ><i class="ion-trash-b"></i></button>
-                                        </td>
-                                    </tr>`);
-                }
-            }
-        }
-
-        function add_compare(product_id){
-            document.getElementById('title-compare').innerText = 'Chỉ cho phép so sánh tối đa 3 sp';
-            var id = product_id;
-            var name = document.getElementById('wishlist_productname' + id).value;
-            var content = document.getElementById('wishlist_productcontent' + id).value;
-            var price = document.getElementById('wishlist_productprice' + id).value;
-            var image = document.getElementById('wishlist_productimage' + id).src;
-            var url = document.getElementById('wishlist_producturl' + id).href;
-            var newItem = {
-                'url':url,
-                'id':id,
-                'name':name,
-                'price':price,
-                'image':image,
-                'content':content,
-            }
-            if(localStorage.getItem('compare')==null){
-                localStorage.setItem('compare', '[]');
-            }
-            var old_data = JSON.parse(localStorage.getItem('compare'));
-            var matches = $.grep(old_data, function(obj){
-                return obj.id == id;
-            })
-            if(matches.length){
-
-            }
-            else{
-                if(old_data.length<=2){
-                    old_data.push(newItem);
-                    $('#row_compare').find('tbody').append(`
-                                    <tr id="row_compare`+id+`">
-                                        <td class="product-image-title">
-                                            <a href="#" class="image"><img width="120px" height="120px" src="`+newItem.image+`" alt="Compare Product" /></a>
-                                            <a href="#" class="title">`+newItem.name+`</a>
-                                        </td>
-                                        <td class="pro-desc">
-                                            <p>`+newItem.content+`</p>
-                                        </td>
-                                        <td class="pro-price">`+newItem.price+`</td>
-                                        <td class="pro-addtocart">
-                                            <a href="`+newItem.url+`"><span>Xem sản phẩm</span></a>
-                                        </td>
-                                        <td class="pro-remove">
-                                            <button onclick="delete_compare(`+id+`)" ><i class="ion-trash-b"></i></button>
-                                        </td>
-                                    </tr>`);
-                }
-            }
-            localStorage.setItem('compare', JSON.stringify(old_data));
-            $('#sosanh').modal();
-        }
     </script>
     </body>
 </html>

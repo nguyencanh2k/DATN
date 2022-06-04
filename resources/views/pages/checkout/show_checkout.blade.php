@@ -105,7 +105,7 @@
                                 <div class="title-wrap">
                                     <h4 class="cart-bottom-title section-bg-gray">Chọn hình thức thanh toán</h4>
                                 </div>
-                                <div class="tax-wrapper">
+                                <div class="tax-wrapper" style="padding-bottom:50px">
                                     <p>Chọn 1 trong các hình thức thanh toán dưới đây</p>
                                     <div class="tax-select-wrapper">
                                         <div class="tax-select">

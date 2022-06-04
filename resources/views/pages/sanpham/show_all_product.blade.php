@@ -93,13 +93,7 @@
                                         </div>
                                         <div class="add-to-link">
                                             <ul>
-                                                <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">ADD TO CART </a></li>
-                                                <li>
-                                                    <a href=""><i class="ion-android-favorite-outline"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href=""><i class="ion-ios-shuffle-strong"></i></a>
-                                                </li>
+                                                <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng</a></li>
                                             </ul>
                                         </div>
                                     </form>
@@ -125,19 +119,30 @@
                             <h2>Filter By</h2>
                         </div>
                         <!-- Sidebar single item -->
-                        <div class="sidebar-widget">
-                            <h4 class="pro-sidebar-title">Categories</h4>
+                        {{-- <div class="sidebar-widget">
+                            <h4 class="pro-sidebar-title">Lọc danh mục</h4>
                             <div class="sidebar-widget-list">
                                 <ul>
+                                    @php
+                                        $category_id = [];
+                                        $category_arr = [];
+                                        if(isset($_GET['cate'])){
+                                            $category_id = $_GET['cate'];
+                                        }
+                                        $category_arr = explode(",", $category_id);
+                                    @endphp
+                                    @foreach ($category as $key => $cate)
                                     <li>
                                         <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" /> <a href="#">Fresh Fruit<span>(17)</span> </a>
+                                            <input type="checkbox" {{in_array($cate->category_id, $category_arr) ? 'checked' : ''}} class="category-filter" data-filters="category" 
+                                            value="{{$cate->category_id}}" name="category-filter"/> <a href="#">{{$cate->category_name}}</a>
                                             <span class="checkmark"></span>
                                         </div>
                                     </li>
+                                    @endforeach
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- Sidebar single item -->
                     </div>
                     <!-- Sidebar single item -->
@@ -155,19 +160,30 @@
                             </form>
                         </div>
                     </div>
-                    <div class="sidebar-widget mt-30">
-                        <h4 class="pro-sidebar-title">Brand</h4>
+                    {{-- <div class="sidebar-widget mt-30">
+                        <h4 class="pro-sidebar-title">Thương hiệu</h4>
                         <div class="sidebar-widget-list">
                             <ul>
+                                @php
+                                    $brand_id = [];
+                                    $brand_arr = [];
+                                    if(isset($_GET['brand'])){
+                                        $brand_id = $_GET['brand'];
+                                    }
+                                    $brand_arr = explode(",", $brand_id);
+                                @endphp
+                                @foreach ($brand as $key => $bra)
                                 <li>
                                     <div class="sidebar-widget-list-left">
-                                        <input type="checkbox" /> <a href="#">Studio Design<span>(10)</span> </a>
+                                        <input type="checkbox" {{in_array($bra->brand_id, $brand_arr) ? 'checked' : ''}} class="brand-filter" data-filters="brand" 
+                                        value="{{$bra->brand_id}}" name="brand-filter"/> <a href="#">{{$bra->brand_name}}</a>
                                         <span class="checkmark"></span>
                                     </div>
                                 </li>
+                                @endforeach
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- Sidebar Area End -->

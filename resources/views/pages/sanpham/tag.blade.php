@@ -96,12 +96,6 @@
                                             <div class="add-to-link">
                                                 <ul>
                                                     <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$product->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                                    <li>
-                                                        <a href=""><i class="ion-android-favorite-outline"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href=""><i class="ion-ios-shuffle-strong"></i></a>
-                                                    </li>
                                                 </ul>
                                             </div>
                                         </form>

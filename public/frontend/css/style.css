@@ -1859,7 +1859,7 @@ ul.dropdown-nav>li>a {
     transition: .3s ease-in-out;
     border-width: 1px;
 }
-.header-right-nav ul li:after {
+/* .header-right-nav ul li:after {
     position: absolute;
     top: 0;
     left: -27px;
@@ -1867,7 +1867,7 @@ ul.dropdown-nav>li>a {
     height: 15px;
     content: "";
     background: #fff;
-}
+} */
 .home-13 .header-right-nav ul li:after {
     background: #253237;
     left: -21px;

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Auth;
 use App\Post;
 use App\CatePost;
+use App\Brand;
+use App\CategoryProductModel;
 use Brian2694\Toastr\Facades\Toastr;
 session_start();
 class PostController extends Controller
@@ -128,8 +130,8 @@ class PostController extends Controller
     public function danh_muc_bai_viet(Request $request, $post_slug){
         //category post
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
+        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
 
         $catepost = CatePost::where('cate_post_slug', $post_slug)->take(1)->get();
         foreach($catepost as $key =>$cate){
@@ -147,8 +149,8 @@ class PostController extends Controller
     public function bai_viet(Request $request, $post_slug){
         //category post
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
+        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
         $post_by_id = Post::with('cate_post')->where('post_status',0)->where('post_slug',$post_slug)->take(1)->get();
 
         // $catepost = CatePost::where('cate_post_slug', $post_slug)->take(1)->get();

@@ -30,7 +30,6 @@ Route::post('/send-comment','ProductController@send_comment');
 Route::get('/comment','ProductController@list_comment');
 Route::post('/allow-comment','ProductController@allow_comment');
 Route::post('/reply-comment','ProductController@reply_comment');
-Route::post('/insert-rating','ProductController@insert_rating');
 
 //Back-end
 Route::get('/admin', 'AdminController@index');

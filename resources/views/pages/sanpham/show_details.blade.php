@@ -67,8 +67,6 @@
                                 <input class="cart-plus-minus-box" type="hidden" name="productid_hidden" value="{{$value->product_id}}" />
                             </div>
                             <div class="pro-details-cart btn-hover">
-                                {{-- <a type="submit" href="{{URL::to('/save-cart')}}"> + Add To Cart</a> --}}
-                                {{-- <button class="add-to-cart" data-id_product="{{$value->product_id}}" name="add-to-cart">+ Add To Cart </button> --}}
                                 <a type="button" class="add-to-cart" data-id_product="{{$value->product_id}}" name="add-to-cart">Thêm vào giỏ hàng</a>
                             </div>
                         </div>
@@ -143,25 +141,6 @@
                                 <div class="ratting-form-wrapper pl-50">
                                     <div class="ratting-form">
                                         <form action="#">
-                                            <div class="star-box">
-                                                <h3>Đánh giá sao:</h3>
-                                                <ul class="list-inline rating" title="Đánh giá sao">
-                                                    @for ($count=1; $count<=5; $count++)
-                                                        @php
-                                                            if($count<=$rating){
-                                                                $color = 'color:#ffcc00;';
-                                                            }
-                                                            else{
-                                                                $color = 'color:#ccc;';
-                                                            }
-                                                        @endphp
-                                                        <li title="star_rating" id="{{$value->product_id}}-{{$count}}" 
-                                                            data-index="{{$count}}" data-product_id="{{$value->product_id}}"
-                                                            data-rating="{{$rating}}" class="rating list-inline-item" 
-                                                            style="cursor:pointer; {{$color}} font-size:30px;"><i class="ion-android-star"></i></li>
-                                                    @endfor
-                                                </ul>
-                                            </div>
                                             <h3>Thêm bình luận</h3>
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -235,12 +214,6 @@
                 <div class="add-to-link">
                     <ul>
                         <li class="cart"><a class="cart-btn add-to-cart" data-id_product="{{$lienquan->product_id}}" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                        <li>
-                            <a href=""><i class="ion-android-favorite-outline"></i></a>
-                        </li>
-                        <li>
-                            <a href=""><i class="ion-ios-shuffle-strong"></i></a>
-                        </li>
                     </ul>
                 </div>
                 </form>
