@@ -28,12 +28,6 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Từ khóa danh mục</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor2" required></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Hiển thị</label>
                         <div class="col-sm-10 form-group">
                             <select name="category_product_status" class="form-control">

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Shipping;
-use App\Feeship;
 use App\Order;
 use App\OrderDetails;
 use App\Customer;
@@ -178,7 +177,6 @@ class OrderController extends Controller
 					<tr>
 						<th>Tên sản phẩm</th>
 						<th>Mã giảm giá</th>
-						<th>Phí ship</th>
 						<th>Số lượng</th>
 						<th>Giá sản phẩm</th>
 						<th>Thành tiền</th>
@@ -203,7 +201,6 @@ class OrderController extends Controller
 					<tr>
 						<td>'.$product->product_name.'</td>
 						<td>'.$product_coupon.'</td>
-						<td>'.number_format($product->product_feeship,0,',','.').'đ'.'</td>
 						<td>'.$product->product_sales_quantity.'</td>
 						<td>'.number_format($product->product_price,0,',','.').'đ'.'</td>
 						<td>'.number_format($subtotal,0,',','.').'đ'.'</td>
@@ -221,8 +218,7 @@ class OrderController extends Controller
 		$output.= '<tr>
 				<td colspan="2">
 					<p>Tổng giảm: '.$coupon_echo.'</p>
-					<p>Phí ship: '.number_format($product->product_feeship,0,',','.').'đ'.'</p>
-					<p>Thanh toán : '.number_format($total_coupon + $product->product_feeship,0,',','.').'đ'.'</p>
+					<p>Thanh toán : '.number_format($total_coupon,0,',','.').'đ'.'</p>
 				</td>
 		</tr>';
 		$output.='				

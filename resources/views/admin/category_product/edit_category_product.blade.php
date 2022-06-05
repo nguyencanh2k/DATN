@@ -29,12 +29,6 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Từ khóa danh mục</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control h-150px" name="category_product_keywords" rows="6" id="ckeditor2" required>{{$edit_value->meta_keywords}}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <div class="col-sm-10">
                             <button type="submit" name="update_category_product" class="btn btn-dark">Cập nhật danh mục</button>
                         </div>

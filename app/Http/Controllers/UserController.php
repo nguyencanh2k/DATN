@@ -85,15 +85,9 @@ class UserController extends Controller
         Toastr::success('Xóa user thành công', 'Thành công');
         return redirect()->back();
     }
-    public function impersonate($admin_id){
-        $user = Admin::where('admin_id', $admin_id)->first();
-        if($user){
-            session()->put('impersonate', $user->admin_id);
-        }
-        return redirect('/users');
-    }
-    public function impersonate_destroy(){
-        session()->forget('impersonate');
-        return redirect('/users');
+    public function profile_admin($admin_id){
+        $profile = Admin::where('admin_id',$admin_id)->get();
+
+        return view('admin.users.profile_users')->with('profile', $profile);
     }
 }

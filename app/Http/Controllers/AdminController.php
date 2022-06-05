@@ -10,7 +10,6 @@ use App\Login;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 use App\Statistic;
-use App\Visitors;
 use App\Product;
 use App\Post;
 use App\Customer;
@@ -28,76 +27,28 @@ class AdminController extends Controller
             return Redirect::to('admin')->send();
         }
     }
-    // public function index(){
-    //     return view('admin_login');
-    // }
+
     public function index(){
         return view('admin.custom_auth.login_auth');
     }
     public function show_dashboard(Request $request){
         $this->AuthLogin();
-        //get ip address
-        $user_ip_address = $request->ip();
-        $early_last_month = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->startOfMonth()->toDateString();
-        $end_of_last_month = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->endOfMonth()->toDateString();
-        $early_this_month = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->toDateString();
-        $oneyears = Carbon::now('Asia/Ho_Chi_Minh')->subdays(365)->toDateString();
         $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
-
-        //total last month
-        $visitor_of_lastmonth = Visitors::whereBetween('date_visitor',[$early_last_month, $end_of_last_month])->get();
-        $visitor_last_month_count = $visitor_of_lastmonth->count();
-
-        //total this month
-        $visitor_of_thismonth = Visitors::whereBetween('date_visitor',[$early_this_month, $now])->get();
-        $visitor_this_month_count = $visitor_of_thismonth->count();
-
-        //total in one year
-        $visitor_of_year = Visitors::whereBetween('date_visitor',[$oneyears, $now])->get();
-        $visitor_year_count = $visitor_of_year->count();
-
-        //total visitors
-        $visitor = Visitors::all();
-        $visitor_total = $visitor->count();
-
-        //current onl
-        $visitor_current = Visitors::where('ip_address', $user_ip_address)->get();
-        $visitor_count = $visitor_current->count();
-        if($visitor_count<1){
-            $visitor = new Visitors();
-            $visitor->ip_address = $user_ip_address;
-            $visitor->date_visitor = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
-            $visitor->save();
-        }
         //total
         $app_product = Product::all()->count();
-        $product_views = Product::orderBy('product_views', 'DESC')->take(20)->get();
+        $product_views = Product::orderBy('product_views', 'DESC')->take(5)->get();
+        $product_best_seller = Product::orderBy('product_sold', 'DESC')->take(5)->get();
         $app_post = Post::all()->count();
-        $post_views = Post::orderBy('post_views', 'DESC')->take(20)->get();
+        $post_views = Post::orderBy('post_views', 'DESC')->take(10)->get();
         $app_order = Order::all()->count();
         $app_customer = Customer::all()->count();
-        return view('admin.dashboard')->with(compact('visitor_total', 'visitor_count', 'visitor_last_month_count', 'visitor_this_month_count', 'visitor_year_count',
-    'app_product', 'app_post', 'app_order', 'app_customer', 'now', 'product_views', 'post_views'));
+        return view('admin.dashboard')->with(compact('app_product', 'app_post', 'app_order', 'app_customer', 'now', 'product_views', 'post_views', 'product_best_seller'));
     }
     public function dashboard(Request $request){
-        // $admin_email = $request->admin_email;
-        // $admin_password = md5($request->admin_password);
-
-        // $result = DB::table('tbl_admin')->where('admin_email', $admin_email)->where('admin_password', $admin_password)->first();
-        // if($result){
-        //     Session::put('admin_name', $result->admin_name);
-        //     Session::put('admin_id', $result->admin_id);
-        //     return Redirect::to('/dashboard');
-        // }else{
-        //     Session::put('message', 'Tài khoản hoặc mật khẩu không đúng. Vui lòng nhập lại!');
-        //     return Redirect::to('/admin');
-        // }
-
-        //$data = $request->all();
         $data = $request->validate([
             //validation laravel 
             'admin_email' => 'required',
-            'admin_password' => 'required',   //dòng kiểm tra Captcha
+            'admin_password' => 'required',   
         ]);
 
         $admin_email = $data['admin_email'];

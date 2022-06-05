@@ -93,37 +93,6 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Thống kê truy cập</h4>
-                <div class="table-responsive"> 
-                    <table class="table table-bordered table-striped verticle-middle">
-                        <thead>
-                            <tr>
-                                <th scope="col">Đang online</th>
-                                <th scope="col">Tổng tháng trước</th>
-                                <th scope="col">Tổng tháng này</th>
-                                <th scope="col">Tổng một năm</th>
-                                <th scope="col">Tổng truy cập</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{$visitor_count}}</td>
-                                <td>{{$visitor_last_month_count}}</td>
-                                <td>{{$visitor_this_month_count}}</td>
-                                <td>{{$visitor_year_count}}</td>
-                                <td>{{$visitor_total}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
                 <h4 class="card-title">Thống kê bài viết, sản phẩm</h4>
                 <div class="row">
                     <div class="col-md-6">
@@ -142,6 +111,14 @@
                             @foreach ($product_views as $key => $pro)
                             <li class="list-group-item">
                                 <a class="text-info" style="font-weight:400" target="_blank" href="{{url('/chi-tiet-san-pham/'.$pro->product_id)}}">{{$pro->product_name}} | <span class="text-danger">Lượt xem: {{$pro->product_views}}</span></a>
+                            </li>
+                            @endforeach
+                        </ol>
+                        <h5 class="mt-4">Sản phẩm bán chạy</h5>
+                        <ol class="list-group list-group-numbered">
+                            @foreach ($product_best_seller as $key => $pro_best)
+                            <li class="list-group-item">
+                                <a class="text-info" style="font-weight:400" target="_blank" href="{{url('/chi-tiet-san-pham/'.$pro_best->product_id)}}">{{$pro_best->product_name}} | <span class="text-danger">Số lượng bán ra: {{$pro_best->product_sold}}</span></a>
                             </li>
                             @endforeach
                         </ol>

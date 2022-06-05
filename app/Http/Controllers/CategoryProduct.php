@@ -38,7 +38,6 @@ class CategoryProduct extends Controller
         $this->AuthLogin();
         $data = array();
         $data['category_name'] = $request->category_product_name;
-        $data['meta_keywords'] = $request->category_product_keywords;
         $data['category_desc'] = $request->category_product_desc;
         $data['category_status'] = $request->category_product_status;
 
@@ -70,7 +69,6 @@ class CategoryProduct extends Controller
         $this->AuthLogin();
         $data = array();
         $data['category_name'] = $request->category_product_name;
-        $data['meta_keywords'] = $request->category_product_keywords;
         $data['category_desc'] = $request->category_product_desc;
         DB::table('tbl_category_product')->where('category_id',$category_product_id)->update($data);
         //Session::put('message','Cập nhật danh mục sản phẩm thành công');
@@ -121,7 +119,7 @@ class CategoryProduct extends Controller
         foreach($category_name as $key => $val){
             //seo 
             $meta_desc = $val->category_desc; 
-            $meta_keywords = $val->meta_keywords;
+            $meta_keywords = 'Danh mục sản phẩm';
             $meta_title = $val->category_name;
             $url_canonical = $request->url();
             //--seo

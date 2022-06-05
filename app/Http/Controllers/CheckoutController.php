@@ -11,7 +11,6 @@ use Cart;
 use App\City;
 use App\Province;
 use App\Wards;
-use App\Feeship;
 use App\Shipping;
 use App\Order;
 use App\OrderDetails;
@@ -230,29 +229,7 @@ class CheckoutController extends Controller
             echo $output;
         }
     }
-    public function calculate_fee(Request $request){
-        $data = $request->all();
-        if($data['matp']){
-            $feeship = Feeship::where('fee_matp',$data['matp'])->where('fee_maqh',$data['maqh'])->where('fee_xaid',$data['xaid'])->get();
-            if($feeship){
-                $count_feeship = $feeship->count();
-                if($count_feeship>0){
-                     foreach($feeship as $key => $fee){
-                        Session::put('fee',$fee->fee_feeship);
-                        Session::save();
-                    }
-                }else{ 
-                    Session::put('fee',30000);
-                    Session::save();
-                }
-            }
-           
-        }
-    }
-    public function del_fee(){
-        Session::forget('fee');
-        return redirect()->back();
-    }
+
     public function confirm_order(Request $request){
         $data = $request->all();
         //get coupon
@@ -302,7 +279,6 @@ class CheckoutController extends Controller
                $order_details->product_price = $cart['product_price'];
                $order_details->product_sales_quantity = $cart['product_qty'];
                $order_details->product_coupon =  $data['order_coupon'];
-               $order_details->product_feeship = $data['order_fee'];
                $order_details->save();
            }
         }
@@ -320,13 +296,8 @@ class CheckoutController extends Controller
         //         );
         //     }
         // }
-        // if(Session::get('fee')==true){
-        //     $fee = Session::get('fee');
-        // }else{
-        //     $fee = '30000 đ';
-        // }
+        // 
         // $shipping_array = array(
-        //     'fee' => $fee,
         //     'customer_name' => $customer->customer_name,
         //     'shipping_name' => $data['shipping_name'],
         //     'shipping_email' => $data['shipping_email'],
@@ -344,7 +315,6 @@ class CheckoutController extends Controller
         //     $message->from($data['email'])->subject($title_mail);//send from this mail
         // });
         Session::forget('coupon');
-        Session::forget('fee');
         Session::forget('cart');
     }
     public function execPostRequest($url, $data)

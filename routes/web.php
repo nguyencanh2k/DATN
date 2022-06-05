@@ -117,11 +117,10 @@ Route::get('users','UserController@index')->middleware('auth.roles');
 Route::get('add-users','UserController@add_users');
 Route::post('store-users','UserController@store_users');
 Route::post('assign-roles','UserController@assign_roles');
-Route::get('impersonate/{admin_id}','UserController@impersonate');
-Route::get('impersonate-destroy','UserController@impersonate_destroy');
 Route::get('edit-user-roles/{admin_id}','UserController@edit_user_roles');
 Route::post('update-user-roles/{admin_id}','UserController@update_user_roles');
 Route::get('delete-user-roles/{admin_id}','UserController@delete_user_roles');
+Route::get('profile-admin/{admin_id}','UserController@profile_admin');
 
 //Customer_Phan admin
 Route::get('/all-customer-ad','CustomerController@all_customer_ad');
@@ -160,9 +159,7 @@ Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer
 Route::get('/payment','CheckoutController@payment');
 Route::post('/order-place','CheckoutController@order_place');
 Route::post('/select-delivery-home','CheckoutController@select_delivery_home');
-Route::post('/calculate-fee','CheckoutController@calculate_fee');
 Route::post('/confirm-order','CheckoutController@confirm_order');
-Route::get('/del-fee','CheckoutController@del_fee');
 
 
 //Order
@@ -197,14 +194,6 @@ Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
 
 
 
-//Delivery
-Route::get('/delivery','DeliveryController@delivery');
-Route::post('/select-delivery','DeliveryController@select_delivery');
-Route::post('/insert-delivery','DeliveryController@insert_delivery');
-Route::post('/select-feeship','DeliveryController@select_feeship');
-Route::post('/update-delivery','DeliveryController@update_delivery');
-
-
 //Banner
 Route::get('/manage-slider','SliderController@manage_slider');
 Route::get('/add-slider','SliderController@add_slider');
@@ -216,10 +205,8 @@ Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 
 //Authentication roles
 
-Route::get('/register-auth','AuthController@register_auth');
 Route::get('/login-auth','AuthController@login_auth');
 Route::get('/logout-auth','AuthController@logout_auth');
-Route::post('/register','AuthController@register');
 Route::post('/login','AuthController@login');
 
 //Gallery

@@ -52,8 +52,6 @@
                                     </div>
                                     <button type="submit" class="btn login-form__btn submit w-100">Đăng nhập</button>
                                 </form>
-                                <p class="mt-5 login-form__footer">Chưa có tài khoản? <a href="{{URL::to('/register-auth')}}" class="text-primary">Đăng ký</a></p>
-                                {{-- <p class="mt-5 login-form__footer"><a href="{{URL::to('/login-auth')}}" class="text-primary">Đăng nhập auth</a></p> --}}
                             </div>
                         </div>
                     </div>
