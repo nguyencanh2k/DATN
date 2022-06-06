@@ -25,11 +25,7 @@ Route::get('/thuong-hieu-san-pham/{brand_id}','BrandProduct@show_brand_home');
 Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
 Route::get('/tag/{product_tag}','ProductController@tag');
 Route::get('/tat-ca-san-pham','ProductController@tat_ca_san_pham');
-Route::post('/load-comment','ProductController@load_comment');
-Route::post('/send-comment','ProductController@send_comment');
-Route::get('/comment','ProductController@list_comment');
-Route::post('/allow-comment','ProductController@allow_comment');
-Route::post('/reply-comment','ProductController@reply_comment');
+
 
 //Back-end
 Route::get('/admin', 'AdminController@index');
@@ -75,7 +71,6 @@ Route::get('/all-category-post','CategoryPost@all_category_post');
 Route::post('/save-category-post','CategoryPost@save_category_post');
 Route::get('/unactive-category-post/{category_post_id}','CategoryPost@unactive_category_post');
 Route::get('/active-category-post/{category_post_id}','CategoryPost@active_category_post');
-// Route::get('/danh-muc-bai-viet/{cate_post_slug}','CategoryPost@danh_muc_bai_viet');
 Route::get('/edit-category-post/{category_post_id}','CategoryPost@edit_category_post');
 Route::post('/update-category-post/{cate_id}','CategoryPost@update_category_post');
 Route::get('/delete-category-post/{cate_id}','CategoryPost@delete_category_post');
@@ -137,10 +132,6 @@ Route::post('/cap-nhat-tai-khoan/{customer_id}','CustomerController@cap_nhat_tai
 Route::get('/doi-mat-khau/{customer_id}','CustomerController@doi_mat_khau');
 Route::post('/cap-nhat-mat-khau/{customer_id}','CustomerController@cap_nhat_mat_khau');
 //Cart
-Route::post('/update-cart-quantity','CartController@update_cart_quantity');
-Route::post('/save-cart','CartController@save_cart');
-Route::get('/show-cart','CartController@show_cart');
-Route::get('/delete-to-cart/{rowId}','CartController@delete_to_cart');
 Route::post('/add-cart-ajax','CartController@add_cart_ajax');
 Route::get('/gio-hang','CartController@gio_hang');
 Route::post('/update-cart','CartController@update_cart');
@@ -155,16 +146,10 @@ Route::get('/logout-checkout','CheckoutController@logout_checkout');
 Route::post('/add-customer','CheckoutController@add_customer');
 Route::post('/login-customer','CheckoutController@login_customer');
 Route::get('/checkout','CheckoutController@checkout');
-Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer');
-Route::get('/payment','CheckoutController@payment');
-Route::post('/order-place','CheckoutController@order_place');
-Route::post('/select-delivery-home','CheckoutController@select_delivery_home');
 Route::post('/confirm-order','CheckoutController@confirm_order');
 
 
 //Order
-// Route::get('/manage-order','CheckoutController@manage_order');
-// Route::get('/view-order/{orderId}','CheckoutController@view_order');
 Route::get('/delete-order/{order_code}','OrderController@order_code');
 Route::get('/print-order/{checkout_code}','OrderController@print_order');
 Route::get('/manage-order','OrderController@manage_order');
@@ -174,6 +159,8 @@ Route::post('/update-qty','OrderController@update_qty');
 Route::get('/history','OrderController@history');
 Route::get('/view-history-order/{order_code}','OrderController@view_history_order');
 Route::post('/huy-don-hang','OrderController@huy_don_hang');
+Route::get('/review-order/{order_code}','OrderController@review_order');
+Route::post('/add-review','OrderController@add_review');
 
 //Send Mail 
 Route::get('/send-mail','HomeController@send_mail');

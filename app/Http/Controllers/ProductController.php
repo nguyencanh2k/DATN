@@ -11,7 +11,7 @@ use Auth;
 use App\CatePost;
 use App\Gallery;
 use App\Product;
-use App\Comment;
+use App\Review;
 use File;
 use Brian2694\Toastr\Facades\Toastr;
 session_start();
@@ -183,7 +183,8 @@ class ProductController extends Controller
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
-        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('gallery',$gallery);
+        $review = Review::with(['customer', 'product'])->where('product_id', $product_id)->get()->toArray();
+        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('gallery',$gallery)->with('review',$review);
     }
     public function tat_ca_san_pham(Request $request){
         //category post
@@ -279,88 +280,5 @@ class ProductController extends Controller
         <input type="hidden" value="1" class="cart_product_qty_'.$product->product_id.'">';
         echo json_encode($output);
     }
-    public function send_comment(Request $request){
-        $product_id = $request->product_id;
-        $comment_name = $request->comment_name;
-        $comment_content = $request->comment_content;
-        $comment = new Comment();
-        $comment->comment = $comment_content;
-        $comment->comment_name = $comment_name;
-        $comment->comment_product_id = $product_id;
-        $comment->comment_status = 1;
-        $comment->comment_parent_comment = 0;
-        $comment->save();
-
-    }
-    public function load_comment(Request $request){
-        $product_id = $request->product_id;
-        $comment = Comment::where('comment_product_id', $product_id)->where('comment_parent_comment', '=', 0)->where('comment_status', 0)->get();
-        $comment_rep = Comment::with('product')->where('comment_parent_comment', '>', 0)->get();
-        $output = '';
-        foreach($comment as $key => $comm){
-            $output.= '            
-                <div class="single-review">
-                    <div class="review-img">
-                        <img width="100" height="100" src="'.url('/public/frontend/images/guest.jpg').'" alt="" />
-                    </div>
-                    <div class="review-content">
-                        <div class="review-top-wrap">
-                            <div class="review-left">
-                                <div class="review-name">
-                                    <h4>'.$comm->comment_name.'</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-bottom">
-                            <p>'.$comm->comment.'</p>
-                        </div>
-                    </div>
-                </div>';
-            foreach($comment_rep as $key => $rep_comment){
-                if($rep_comment->comment_parent_comment==$comm->comment_id){
-            $output.= '
-            <div class="single-review child-review">
-                    <div class="review-img">
-                        <img width="60" height="60" src="'.url('/public/frontend/images/avatar_admin.png').'" alt="" />
-                    </div>
-                    <div class="review-content">
-                        <div class="review-top-wrap">
-                            <div class="review-left">
-                                <div class="review-name">
-                                    <h4>@Admin</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-bottom">
-                            <p>'.$rep_comment->comment.'</p>
-                        </div>
-                    </div>
-                </div>';}}
-        
-        }
-        echo $output;
-    }
-    public function list_comment(){
-        $comment = Comment::with('product')->where('comment_parent_comment', '=', 0)->orderBy('comment_id', 'DESC')->get();
-        $comment_rep = Comment::with('product')->where('comment_parent_comment', '>', 0)->get();
-        return view('admin.comment.list_comment')->with(compact('comment', 'comment_rep'));
-    }
-    public function allow_comment(Request $request){
-        $data = $request->all();
-        $comment = Comment::find($data['comment_id']);
-        $comment->comment_status  = $data['comment_status'];
-        $comment->save();
-
-    }
-    public function reply_comment(Request $request){
-        $data = $request->all();
-        $comment = new Comment();
-        $comment->comment = $data['comment'];
-        $comment->comment_product_id = $data['comment_product_id'];
-        $comment->comment_parent_comment  = $data['comment_id'];
-        $comment->comment_status  = 0;
-        $comment->comment_name  = 'Admin';
-        $comment->save();
-
-    }
+    
 }

@@ -129,39 +129,33 @@
                     </div>
                 </div>
                 <div id="des-details3" class="tab-pane ">
-                    <div class="row">                           
-                        <input type="hidden" name="comment_product_id" class="comment_product_id" value="{{$value->product_id}}">
-                        <form action="" class="w-100">
-                            @csrf
-                        <div class="row">
-                            <div class="col-lg-7" >
-                                <div class="review-wrapper" id="comment_show"></div>
-                            </div>
-                            <div class="col-lg-5">
-                                <div class="ratting-form-wrapper pl-50">
-                                    <div class="ratting-form">
-                                        <form action="#">
-                                            <h3>Thêm bình luận</h3>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="rating-form-style mb-10">
-                                                        <input placeholder="Name" class="comment_name form-control" type="text" />
+                    <div class="row">
+                        @foreach($review as $key => $rev)
+                            <div class="col-lg-7">
+                                <div class="review-wrapper">
+                                    <div class="single-review">
+                                        <div class="review-img">
+                                            <img src="assets/images/testimonial-image/1.png" alt="" />
+                                        </div>
+                                        <div class="review-content">
+                                            <div class="review-top-wrap">
+                                                <div class="review-left">
+                                                    <div class="review-name">
+                                                        <h4>{{$rev['customer']['customer_name']}}</h4>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="rating-form-style form-submit">
-                                                        <textarea name="comment" style="height: 180px; width:100%;resize: vertical;" class="comment_content form-control" placeholder="Message"></textarea>
-                                                        <input type="submit" class="send-comment" value="Submit" />
-                                                    </div>
-                                                    <div id="notify_comment"></div>
+                                                    <div class="rateYo_show" data-rating="{{$rev['rating']}}"></div>
                                                 </div>
                                             </div>
-                                        </form>
+                                            <div class="review-bottom">
+                                                <p>
+                                                    {{$rev['comment']}}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -82,7 +82,4 @@ class CategoryPost extends Controller
         Toastr::success('Xóa danh mục bài viết thành công', 'Thành công');
         return redirect()->back();
     }
-    // public function danh_muc_bai_viet($cate_post_slug){
-
-    // }
 }

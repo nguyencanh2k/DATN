@@ -13,6 +13,7 @@ use App\CatePost;
 use App\Brand;
 use App\CategoryProductModel;
 use App\Statistic;
+use App\Review;
 use Carbon\Carbon;
 use DB;
 use Session;
@@ -383,5 +384,46 @@ class OrderController extends Controller
 		$order->order_destroy = $data['lydo'];
 		$order->order_status = 3;
 		$order->save();
+	}
+	public function review_order(Request $request,$order_code){
+		if(!Session::get('customer_id')){
+			return redirect('login-checkout')->with('error','Vui lòng đăng nhập tài khoản');
+		}else{
+			//category post
+        	$category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
+			//seo 
+			$meta_desc = "Đánh giá sản phẩm"; 
+			$meta_keywords = "Đánh giá sản phẩm";
+			$meta_title = "Đánh giá sản phẩm";
+			$url_canonical = $request->url();
+			//--seo
+	
+			$cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
+        	$brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
+			$product_review = OrderDetails::with('product')->where('order_code',$order_code)->get();
+
+			return view('pages.history.review_order')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with(
+				'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('product_review',$product_review)->with('order_code',$order_code);
+		}
+	}
+	public function add_review(Request $request){
+		$data = $request->all();
+		$prd_review = Review::where('order_code', $data['order_code'])->where('customer_id', $data['customer_id'])->where('product_id', $data['product_id'])->first(); 
+		if($data['rating']<=1){
+			return redirect()->back()->with('error', 'Đánh giá tối thiểu 1 sao');
+		}elseif($prd_review){
+			Review::where('order_code', $data['order_code'])->where('customer_id', $data['customer_id'])->where('product_id', $data['product_id'])->update(['comment'=>$data['comment'],'rating'=>$data['rating']]); 
+			return redirect()->back()->with('message', 'Cập nhật đánh giá thành công');
+		}else{
+			$review = new Review();
+			$review->rating = $data['rating'];
+			$review->comment = $data['comment'];
+			$review->product_id = $data['product_id'];
+			$review->customer_id = $data['customer_id'];
+			$review->order_code = $data['order_code'];
+			$review->save();
+			return redirect()->back()->with('message', 'Review sản phẩm thành công.');
+		}
+		
 	}
 }

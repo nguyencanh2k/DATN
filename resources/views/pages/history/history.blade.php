@@ -61,7 +61,7 @@
                             @endif
                             </td>
                             <td>
-                                @if($ord->order_status!=3)
+                                @if($ord->order_status==1)
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#huydon_{{$ord->order_code}}">
                                     Hủy đơn hàng
                                 </button>

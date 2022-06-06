@@ -245,33 +245,6 @@
                                     <input type="text" name="shipping_address" class="shipping_address" required/>
                                 </div>
                             </div>
-                            {{-- <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Chọn thành phố</label>
-                                <div class="col-sm-10 form-group">
-                                    <select name="city" id="city" class="form-control choose city">
-                                        <option>----Chọn thành phố----</option>
-                                        @foreach($city as $key => $ci)
-                                        <option value="{{$ci->matp}}">{{$ci->name_city}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Chọn quận huyện</label>
-                                <div class="col-sm-10 form-group">
-                                    <select name="province" id="province" class="form-control province choose">
-                                        <option>----Chọn quận huyện----</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Chọn xã phường</label>
-                                <div class="col-sm-10 form-group">
-                                    <select name="wards" id="wards" class="form-control wards">
-                                        <option>----Chọn xã phường----</option>
-                                    </select>
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="additional-info-wrap">
                             <h4>Thông tin thêm</h4>

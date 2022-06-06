@@ -48,6 +48,7 @@
         <link rel="stylesheet" href="{{asset('public/frontend/css/style.min.css')}}">
         <link rel="stylesheet" href="{{asset('public/frontend/css/responsive.min.css')}}"> -->
         <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     </head>
 
     <body>
@@ -476,6 +477,7 @@
 
         <script src="{{asset('public/frontend/js/sweetalert.js')}}"></script>
         <script src="{{asset('public/frontend/js/simple.money.format.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
         <script type="text/javascript">
             click_cart_mini();
             show_cart();
@@ -609,33 +611,6 @@
                         });
                     }
                 });
-            
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $('select').niceSelect();
-                $('.choose').on('change',function(){
-                var action = $(this).attr('id');
-                var ma_id = $(this).val();
-                var _token = $('input[name="_token"]').val();
-                var result = '';
-            
-                if(action=='city'){
-                    result = 'province';
-                }else{
-                    result = 'wards';
-                }
-                $.ajax({
-                    url : "{{url('/select-delivery-home')}}",
-                    method: 'POST',
-                    data:{action:action,ma_id:ma_id,_token:_token},
-                    success:function(data){
-                    $('#'+result).html(data).niceSelect('update');  
-                    // console.log(data);   
-                    }
-                });
-            });
-            });
             
         </script>
         
@@ -899,42 +874,7 @@
 
     });
     </script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            load_comment();
-            function load_comment(){
-                var product_id = $('.comment_product_id').val();
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                url : "{{url('/load-comment')}}",
-                method: 'POST',
-                data:{product_id:product_id, _token:_token},
-                success:function(data){
-                    $('#comment_show').html(data);  
-                }
-                });
-            }
-            $('.send-comment').click(function(){
-                var product_id = $('.comment_product_id').val();
-                var comment_name = $('.comment_name').val();
-                var comment_content = $('.comment_content').val();
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                url : "{{url('/send-comment')}}",
-                method: 'POST',
-                data:{product_id:product_id, comment_name:comment_name, comment_content:comment_content, _token:_token},
-                success:function(data){
-                    $('#notify_comment').html('<span class="text text-success">Thêm bình luận thành công, chờ phê duyệt</span>')
-                    load_comment(); 
-                    $('#notify_comment').fadeOut(5000);
-                    $('.comment_name').val('');
-                    $('.comment_content').val('');
-                }
-                });
-            });
-        });
-        
-    </script>
+   
     <script type="text/javascript">
         function Huydonhang(id){
             var order_code = id;
@@ -952,6 +892,7 @@
             });
         }
     </script>
+
     <script type="text/javascript">
         $('.category-filter').click(function(){
             var category = [], tempArray = [];
@@ -975,6 +916,24 @@
             }
             window.location.href = brand
         })
+    </script>
+    <script>
+        $(function () {
+            $(".rateYo").rateYo({
+                rating: 0
+            }).on("rateyo.set", function (e, data) {
+                $('.rating').val(data.rating);
+                alert("Đánh giá " + data.rating + "/5 sao");
+                });;
+            });
+    </script>
+    <script>
+        $('.rateYo_show').each(function() {
+        $(this).rateYo({
+            rating: this.dataset.rating,
+            readOnly: true
+        });
+        });
     </script>
     </body>
 </html>

@@ -19,44 +19,6 @@ use Illuminate\Contracts\Session\Session as SessionSession;
 session_start();
 class CartController extends Controller
 {
-    public function save_cart(Request $request){
-        $productId = $request->productid_hidden;
-        $quantity = $request->qty;
-        $product_info = Product::where('product_id',$productId)->first(); 
-
-        $data['id'] = $product_info->product_id;
-        $data['qty'] = $quantity;
-        $data['name'] = $product_info->product_name;
-        $data['price'] = $product_info->product_price;
-        $data['weight'] = $product_info->product_price;
-        $data['options']['image'] = $product_info->product_image;
-        Cart::add($data);
-        //Cart::setGlobalTax(10);
-        //Cart::destroy();
-        return Redirect::to('/show-cart');
-        // Cart::destroy();
-    }
-    public function show_cart(Request $request){
-        //seo 
-        $meta_desc = "Giỏ hàng của bạn"; 
-        $meta_keywords = "Giỏ hàng";
-        $meta_title = "Giỏ hàng";
-        $url_canonical = $request->url();
-        //--seo
-        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
-        $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get(); 
-        return view('pages.cart.show_cart')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical);
-    }
-    public function delete_to_cart($rowId){
-        Cart::update($rowId,0);
-        return Redirect::to('/show-cart');
-    }
-    public function update_cart_quantity(Request $request){
-        $rowId = $request->rowId_cart;
-        $qty = $request->cart_quantity;
-        Cart::update($rowId,$qty);
-        return Redirect::to('/show-cart');
-    }
     public function add_cart_ajax(Request $request){
         // Session::forget('cart');
         $data = $request->all();

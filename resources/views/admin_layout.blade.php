@@ -181,14 +181,6 @@
                     @endhasrole
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-comments-o"></i><span class="nav-text">Bình luận</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{URL::to('/comment')}}">Quản lý bình luận</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-sliders"></i><span class="nav-text">Slider</span>
                         </a>
                         <ul aria-expanded="false">
@@ -553,47 +545,6 @@
         });
     </script>
     
-    <script type="text/javascript">
-        $('.comment_duyet_btn').click(function(){
-            var comment_status = $(this).data('comment_status');
-            var comment_id = $(this).data('comment_id');
-            var comment_product_id = $(this).attr('id');
-            if(comment_status == 0){
-                var alert = 'Thay đổi thành duyệt thành công'
-            }else{
-                var alert = 'Thay đổi thành chưa duyệt thành công'
-            }
-            $.ajax({
-                    url : "{{url('/allow-comment')}}",
-                    method: 'POST',
-                    headers:{
-                        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-                    },
-                    data:{comment_status:comment_status, comment_id:comment_id, comment_product_id:comment_product_id},
-                    success:function(data){
-                        location.reload();
-                        $('#notify_comment').html('<span class="text text-success">'+alert+'</span>')
-                    }
-                });
-        });
-        $('.btn-reply-comment').click(function(){
-            var comment_id = $(this).data('comment_id');
-            var comment = $('.reply_comment_'+comment_id).val();
-            var comment_product_id = $(this).data('product_id');
-            $.ajax({
-                    url : "{{url('/reply-comment')}}",
-                    method: 'POST',
-                    headers:{
-                        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-                    },
-                    data:{comment:comment, comment_id:comment_id, comment_product_id:comment_product_id},
-                    success:function(data){
-                        $('.reply_comment_'+comment_id).val('');
-                        $('#notify_comment').html('<span class="text text-success">Trả lời bình luận thành công</span>')
-                    }
-                });
-        });
-    </script>
     <script>
         function previewFile(input){
             var file = $(".image-preview").get(0).files[0];
