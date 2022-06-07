@@ -23,7 +23,42 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12">
+                <!-- Shop Top Area Start -->
+                <div class="shop-top-bar">
+                    <!-- Left Side start -->
+                    <div class="shop-tab nav mb-res-sm-15">
+                        <a class="active" href="#shop-1" data-toggle="tab">
+                            <i class="fa fa-th show_grid"></i>
+                        </a>
+                        <a href="#shop-2" data-toggle="tab">
+                            <i class="fa fa-list-ul"></i>
+                        </a>
+                        <p>{{$count_prd}} sản phẩm.</p>
+                    </div>
+                    <!-- Left Side End -->
+                    <!-- Right Side Start -->
+                    {{-- <div class="select-shoing-wrap">
+                        <div class="shot-product">
+                            <p>Sắp xếp theo</p>
+                        </div>
+                        <div class="shop-select">
+                            <form>
+                                @csrf
+                                <select name="sort" id="sort" class="form-control">
+                                    <option value="{{Request::url()}}?sort_by=none">---Lọc---</option>
+                                    <option value="{{Request::url()}}?sort_by=tang_dan">---Giá tăng dần---</option>
+                                    <option value="{{Request::url()}}?sort_by=giam_dan">---Giá giảm dần---</option>
+                                    <option value="{{Request::url()}}?sort_by=kytu_az">A đến Z</option>
+                                    <option value="{{Request::url()}}?sort_by=kytu_za">Z đến A</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div> --}}
+                    <!-- Right Side End -->
+                </div>
+                <!-- Shop Top Area End -->
                 <!-- Shop Bottom Area Start -->
+                
                 <div class="shop-bottom-area mt-35">
                     <!-- Shop Tab Content Start -->
                     <div class="tab-content jump">
@@ -48,11 +83,9 @@
                                                 </a>
                                             </div>
                                             <div class="product-decs">
-                                                <a class="inner-link  prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
-                                                {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2> --}}
+                                                <h2><a class="product-link  prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a></h2>
                                                 <div class="pricing-meta">
                                                     <ul>
-                                                        {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
                                                         <li class="current-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li>
                                                     </ul>
                                                 </div>

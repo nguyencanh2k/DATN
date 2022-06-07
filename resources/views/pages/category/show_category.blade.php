@@ -34,7 +34,7 @@
                         <a href="#shop-2" data-toggle="tab">
                             <i class="fa fa-list-ul"></i>
                         </a>
-                        <p>There Are 17 Products.</p>
+                        <p>{{$count_prd}} sản phẩm.</p>
                     </div>
                     <!-- Left Side End -->
                     <!-- Right Side Start -->
@@ -84,8 +84,7 @@
                                             </a>
                                         </div>
                                         <div class="product-decs">
-                                            <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
-                                            {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{{$product->product_content}}</a></h2> --}}
+                                            <h2><a class="product-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a></h2>
                                             <div class="pricing-meta">
                                                 <ul>
                                                     {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}

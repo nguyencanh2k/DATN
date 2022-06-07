@@ -42,7 +42,12 @@
                 <div class="product-details-content">
                     <h2>{{$value->product_name}}</h2>
                     <p class="reference">Mã sản phẩm:<span> {{$value->product_id}}</span></p>
-                    <div class="rateYo_show" data-rating="{{$review_avg}}"></div>
+                    <div class="pro-details-rating-wrap">
+                        <div class="rating-product">
+                            <div class="rateYo_show" data-rating="{{$review_avg}}"></div>
+                        </div>
+                        <span class="read-review"><a class="reviews" href="#">Read reviews ({{$review_count}})</a></span>
+                    </div>
                     <div class="pricing-meta">
                         <ul>
                             <li class="old-price not-cut">{{number_format($value->product_price,0,',','.').'VNĐ'}}</li>
@@ -197,11 +202,9 @@
                     </a>
                 </div>
                 <div class="product-decs">
-                    <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}"><span>{{$lienquan->product_name}}</span></a>
-                    {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}" class="product-link">{{$lienquan->product_name}}</a></h2> --}}
+                    <h2><a class="product-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}"><span>{{$lienquan->product_name}}</span></a></h2>
                     <div class="pricing-meta">
                         <ul>
-                            {{-- <li class="old-price">{number_format($lienquan->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
                             <li class="current-price">{{number_format($lienquan->product_price,0,',','.').' '.'VNĐ'}}</li>
                         </ul>
                     </div>

@@ -64,7 +64,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="section-title">
-                                <h2>Sản phẩm mới</h2>
+                                <h2>Sản phẩm mới nhất</h2>
                                 {{-- <p>Add bestselling products to weekly line up</p> --}}
                             </div>
                         </div>
@@ -78,16 +78,16 @@
                             <form action="">
                                 @csrf
                                 <input type="hidden" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
-                                <input type="hidden" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}" id="wishlist_productname{{$product->product_id}}">
+                                <input type="hidden" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
                                 <input type="hidden" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
-                                <input type="hidden" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}" id="wishlist_productprice{{$product->product_id}}">
-                                <input type="hidden" value="{{$product->product_content}}"  id="wishlist_productcontent{{$product->product_id}}">
+                                <input type="hidden" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
+                                <input type="hidden" value="{{$product->product_content}}">
                                 <input type="hidden" value="{{$product->product_quantity}}" class="cart_product_quantity_{{$product->product_id}}">
                                 <input type="hidden" value="1" class="cart_product_qty_{{$product->product_id}}">
                                 <div class="img-block">
-                                    <a id="wishlist_producturl{{$product->product_id}}" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="thumbnail">
-                                        <img id="wishlist_productimage{{$product->product_id}}" class="first-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
-                                        <img id="wishlist_productimage{{$product->product_id}}" class="second-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
+                                    <a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="thumbnail">
+                                        <img class="first-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
+                                        <img class="second-img" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
                                     </a>
                                     <div class="quick-view">
                                         <a class="quick_view xemnhanh" href="#" data-link-action="quickview" title="Quick view" data-id_product="{{$product->product_id}}" data-toggle="modal" data-target="#exampleModal">
@@ -96,11 +96,9 @@
                                     </div>
                                 </div>
                                 <div class="product-decs">
-                                    <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a>
-                                    {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}" class="product-link">{!!$product->product_content!!}</a></h2> --}}
+                                    <h2><a class="product-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}"><span>{{$product->product_name}}</span></a></h2>
                                     <div class="pricing-meta">
                                         <ul>
-                                            {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
                                             <li class="current-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li>
                                         </ul>
                                     </div>
@@ -151,7 +149,7 @@
             <section class="category-tab-area sub-category-owl-nav mt-30">
                 <div class="container">
                     <div class="section-title">
-                        <h2>Danh mục sản phẩm </h2>
+                        <h2>Danh mục sản phẩm</h2>
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs sub-category mb-30px">
                                 @php
@@ -216,8 +214,7 @@
                         <div class="col-md-12">
                             <!-- Section Title -->
                             <div class="section-title">
-                                <h2>Featured Products</h2>
-                                <p>Add products to weekly line up</p>
+                                <h2>Sản phẩm giá rẻ</h2>
                             </div>
                             <!-- Section Title -->
                         </div>
@@ -225,7 +222,7 @@
                     <!-- Feature Slider Start -->
                     <div class="feature-slider owl-carousel owl-nav-style">
                         <!-- Single Item -->
-                        @foreach($all_product as $key => $product2)
+                        @foreach($all_product2 as $key => $product2)
                         <div class="feature-slider-item">
                             <article class="list-product">
                                 <form action="">
@@ -243,8 +240,14 @@
                                     </a>
                                 </div>
                                 <div class="product-decs">
-                                    <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}"><span>{{$product2->product_name}}</span></a>
-                                    {{-- <h2><a href="single-product.html" class="product-link">{!!$product2->product_content!!}</a></h2> --}}
+                                    <h2><a class="product-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}"><span>{{$product2->product_name}}</span></a></h2>
+                                    {{-- <div class="rating-product">
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                    </div> --}}
                                     <div class="pricing-meta">
                                         <ul>
                                             <li class="old-price not-cut">{{number_format($product2->product_price,0,',','.').' '.'VNĐ'}}</li>
@@ -281,7 +284,6 @@
                             <!-- Section Title -->
                             <div class="section-title">
                                 <h2>Sản phẩm phổ biến</h2>
-                                <p>Thêm ngay vào bộ sưu tập của bạn</p>
                             </div>
                             <!-- Section Title -->
                         </div>
@@ -294,16 +296,16 @@
                             <form action="">
                                 @csrf
                                 <input type="hidden" value="{{$product3->product_id}}" class="cart_product_id_{{$product3->product_id}}">
-                                <input type="hidden" value="{{$product3->product_name}}" class="cart_product_name_{{$product3->product_id}}" id="wishlist_productname{{$product->product_id}}">
+                                <input type="hidden" value="{{$product3->product_name}}" class="cart_product_name_{{$product3->product_id}}">
                                 <input type="hidden" value="{{$product3->product_image}}" class="cart_product_image_{{$product3->product_id}}">
-                                <input type="hidden" value="{{$product3->product_price}}" class="cart_product_price_{{$product3->product_id}}" id="wishlist_productprice{{$product->product_id}}">
-                                <input type="hidden" value="{{$product3->product_content}}"  id="wishlist_productcontent{{$product3->product_id}}">
+                                <input type="hidden" value="{{$product3->product_price}}" class="cart_product_price_{{$product3->product_id}}">
+                                <input type="hidden" value="{{$product3->product_content}}">
                                 <input type="hidden" value="{{$product3->product_quantity}}" class="cart_product_quantity_{{$product3->product_id}}">
                                 <input type="hidden" value="1" class="cart_product_qty_{{$product->product_id}}">
                                 <div class="img-block">
-                                    <a id="wishlist_producturl{{$product3->product_id}}" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="thumbnail">
-                                        <img id="wishlist_productimage{{$product3->product_id}}" class="first-img" src="{{URL::to('public/uploads/product/'.$product3->product_image)}}" alt="" />
-                                        <img id="wishlist_productimage{{$product3->product_id}}" class="second-img" src="{{URL::to('public/uploads/product/'.$product3->product_image)}}" alt="" />
+                                    <a href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="thumbnail">
+                                        <img class="first-img" src="{{URL::to('public/uploads/product/'.$product3->product_image)}}" alt="" />
+                                        <img class="second-img" src="{{URL::to('public/uploads/product/'.$product3->product_image)}}" alt="" />
                                     </a>
                                     <div class="quick-view">
                                         <a class="quick_view xemnhanh" href="#" data-link-action="quickview" title="Quick view" data-id_product="{{$product3->product_id}}" data-toggle="modal" data-target="#exampleModal">
@@ -312,11 +314,9 @@
                                     </div>
                                 </div>
                                 <div class="product-decs">
-                                    <a class="inner-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}"><span>{{$product3->product_name}}</span></a>
-                                    {{-- <h2><a href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}" class="product-link">{!!$product3->product_content!!}</a></h2> --}}
+                                    <h2><a class="product-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product3->product_id)}}"><span>{{$product3->product_name}}</span></a></h2>
                                     <div class="pricing-meta">
                                         <ul>
-                                            {{-- <li class="old-price">{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</li> --}}
                                             <li class="current-price">{{number_format($product3->product_price,0,',','.').' '.'VNĐ'}}</li>
                                         </ul>
                                     </div>

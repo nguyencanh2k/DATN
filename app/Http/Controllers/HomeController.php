@@ -32,10 +32,13 @@ class HomeController extends Controller
         $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
 
         $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
-        $all_product2 = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'asc')->limit(10)->get();
-        $all_product3 = DB::table('tbl_product')->where('product_status','0')->orderby(DB::raw('RAND()'))->limit(10)->get();
-        $cate_pro_tabs = CategoryProductModel::where('category_status','0')->orderby('category_id','asc')->get(); 
-        return view('pages.home')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product2',$all_product2)->with('all_product3',$all_product3)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post)->with('cate_pro_tabs',$cate_pro_tabs);
+        $all_product2 = DB::table('tbl_product')->where('product_status','0')->orderby('product_price', 'asc')->limit(10)->get();
+        $all_product3 = DB::table('tbl_product')->where('product_status','0')->orderby('product_views', 'desc')->limit(10)->get();
+        $cate_pro_tabs = CategoryProductModel::where('category_status','0')->orderby('category_id','asc')->get();
+        return view('pages.home')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with(
+        'all_product2',$all_product2)->with('all_product3',$all_product3)->with('meta_desc',$meta_desc)->with(
+        'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
+        'slider',$slider)->with('category_post',$category_post)->with('cate_pro_tabs',$cate_pro_tabs);
     }
     public function search(Request $request){
         //category post
@@ -51,10 +54,13 @@ class HomeController extends Controller
        //$keywords = $request->keywords_submit;
        $keywords = $_GET['keywords_submit'];  
 
-       $search_product = Product::where('product_name','like','%'.$keywords.'%')->paginate(12);
+       $search_product = Product::where('product_name','like','%'.$keywords.'%')->paginate(12)->appends(request()->query());
        $search_product->appends(['keywords_submit' => $keywords]);
+       $count_prd = count($search_product);
 
-       return view('pages.sanpham.search')->with('category',$cate_product)->with('brand',$brand_product)->with('search_product',$search_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('keywords',$keywords);
+       return view('pages.sanpham.search')->with('category',$cate_product)->with('brand',$brand_product)->with('search_product',$search_product)->with(
+           'meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
+            'category_post',$category_post)->with('keywords',$keywords)->with('count_prd',$count_prd);
 
     }
     public function send_mail(){

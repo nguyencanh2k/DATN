@@ -409,7 +409,7 @@
                                 <div id="product_quickview_value"></div>
                                 <div class="product-details-content quickview-content">
                                     <h2 id="product_quickview_title"></h2>
-                                    <p class="reference">Reference: <span id="product_quickview_id"></span></p>
+                                    <p class="reference">Mã sản phẩm: <span id="product_quickview_id"></span></p>
                                     <div class="pricing-meta">
                                         <ul>
                                             <li class="old-price not-cut" id="product_quickview_price"></li>
@@ -418,22 +418,9 @@
                                     <p id="product_quickview_desc"></p>
                                     <div id="beforesend_quickview"></div>
                                     <div class="pro-details-quality">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                        </div>
-                                        
                                         <div class="pro-details-cart btn-hover" id="product_quickview_button">
-                                            
-                                        </div>
                                     </div>
-                                    {{-- <div class="pro-details-wish-com">
-                                        <div class="pro-details-wishlist">
-                                            <a href="#"><i class="ion-android-favorite-outline"></i>Add to wishlist</a>
-                                        </div>
-                                        <div class="pro-details-compare">
-                                            <a href="#"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
-                                        </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </form>
                             </div>
@@ -909,6 +896,7 @@
         $(this).rateYo({
             rating: this.dataset.rating,
             readOnly: true,
+            starWidth: "18px",
         });
         });
     </script>

@@ -185,10 +185,12 @@ class ProductController extends Controller
         ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
         $review = Review::with(['customer', 'product'])->where('product_id', $product_id)->where('review_status', '0')->get()->toArray();
         $review_avg = Review::where('product_id', $product_id)->avg('rating');
+        $review_count = Review::where('product_id', $product_id)->count('comment');
         return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with(
             'product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with(
             'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
-            'category_post',$category_post)->with('gallery',$gallery)->with('review',$review)->with('review_avg',$review_avg);
+            'category_post',$category_post)->with('gallery',$gallery)->with('review',$review)->with('review_avg',$review_avg)->with(
+            'review_count',$review_count);
     }
     public function tat_ca_san_pham(Request $request){
         //category post
@@ -230,9 +232,11 @@ class ProductController extends Controller
             $meta_title = 'Tất cả sản phẩm';
             $url_canonical = $request->url();
         //--seo
+        $count_prd = count($show_all_product);
         
-        return view('pages.sanpham.show_all_product')->with('category',$cate_product)->with('brand',$brand_product)->with('show_all_product',$show_all_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with(
-            'min_price',$min_price)->with('max_price',$max_price)->with('min_price_range',$min_price_range)->with('max_price_range',$max_price_range);
+        return view('pages.sanpham.show_all_product')->with('category',$cate_product)->with('brand',$brand_product)->with('show_all_product',$show_all_product)->with(
+            'meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with(
+            'min_price',$min_price)->with('max_price',$max_price)->with('min_price_range',$min_price_range)->with('max_price_range',$max_price_range)->with('count_prd',$count_prd);
     }
     public function tag($product_tag, Request $request){
         //category post
@@ -261,9 +265,11 @@ class ProductController extends Controller
         $meta_title = 'Tags:'.$product_tag;
         $url_canonical = $request->url();
         //--seo
+        $count_prd = count($pro_tag);
         
-        
-        return view('pages.sanpham.tag')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('product_tag',$product_tag)->with('pro_tag',$pro_tag);
+        return view('pages.sanpham.tag')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with(
+        'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
+        'category_post',$category_post)->with('product_tag',$product_tag)->with('pro_tag',$pro_tag)->with('count_prd',$count_prd);
     }
     public function quickview(Request $request){
         $product_id = $request->product_id;
@@ -284,9 +290,9 @@ class ProductController extends Controller
         $output['product_quickview_value'] = '
         <input type="hidden" value="'.$product->product_id.'" class="cart_product_id_'.$product->product_id.'">
         <input type="hidden" value="'.$product->product_name.'" class="cart_product_name_'.$product->product_id.'">
-        <input type="hidden" value="'.$product->product_quantity.'" class="cart_product_image_'.$product->product_id.'">
-        <input type="hidden" value="'.$product->product_image.'" class="cart_product_price_'.$product->product_id.'">
-        <input type="hidden" value="'.$product->product_price.'" class="cart_product_quantity_'.$product->product_id.'">
+        <input type="hidden" value="'.$product->product_quantity.'" class="cart_product_quantity_'.$product->product_id.'">
+        <input type="hidden" value="'.$product->product_image.'" class="cart_product_image_'.$product->product_id.'">
+        <input type="hidden" value="'.$product->product_price.'" class="cart_product_price_'.$product->product_id.'">
         <input type="hidden" value="1" class="cart_product_qty_'.$product->product_id.'">';
         echo json_encode($output);
     }

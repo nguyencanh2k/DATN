@@ -46,13 +46,7 @@ class BrandProduct extends Controller
         $brand->brand_desc = $data['brand_product_desc'];
         $brand->brand_status = $data['brand_product_status'];
         $brand->save();
-        //db
-        // $data = array();
-        // $data['brand_name'] = $request->brand_product_name;
-        // $data['brand_desc'] = $request->brand_product_desc;
-        // $data['brand_status'] = $request->brand_product_status;
 
-        // DB::table('tbl_brand')->insert($data);
         Toastr::success('Thêm thương hiệu sản phẩm thành công', 'Thành công');
         return Redirect::to('add-brand-product');
     }
@@ -70,7 +64,6 @@ class BrandProduct extends Controller
     }
     public function edit_brand_product($brand_product_id){
         $this->AuthLogin();
-        // $edit_brand_product = DB::table('tbl_brand')->where('brand_id',$brand_product_id)->get();
         $edit_brand_product = Brand::where('brand_id',$brand_product_id)->get();
         $manager_brand_product  = view('admin.brand.edit_brand_product')->with('edit_brand_product',$edit_brand_product);
 
@@ -136,10 +129,11 @@ class BrandProduct extends Controller
         $meta_title = $brand_name->brand_name;
         $url_canonical = $request->url();
         //--seo
-
+        $count_prd = count($brand_by_id);
         return view('pages.brand.show_brand')->with('category',$cate_product)->with('brand',$brand_product)->with('brand_by_id',$brand_by_id)->with(
             'brand_name',$brand_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with(
-            'url_canonical',$url_canonical)->with('category_post',$category_post)->with('min_price',$min_price)->with('max_price',$max_price)->with('min_price_range',$min_price_range)->with('max_price_range',$max_price_range);
+            'url_canonical',$url_canonical)->with('category_post',$category_post)->with('min_price',$min_price)->with('max_price',$max_price)->with(
+            'min_price_range',$min_price_range)->with('max_price_range',$max_price_range)->with('count_prd',$count_prd);
     }
     public function arrange_brand(Request $request){
         $this->AuthLogin();

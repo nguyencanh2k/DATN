@@ -126,7 +126,12 @@ class CategoryProduct extends Controller
             $url_canonical = $request->url();
             //--seo
             }
-        return view('pages.category.show_category')->with('category',$cate_product)->with('brand',$brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('min_price',$min_price)->with('max_price',$max_price)->with('min_price_range',$min_price_range)->with('max_price_range',$max_price_range);
+        $count_prd = count($category_by_id);
+        return view('pages.category.show_category')->with('category',$cate_product)->with('brand',$brand_product)->with(
+        'category_by_id',$category_by_id)->with('category_name',$category_name)->with('meta_desc',$meta_desc)->with(
+        'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
+        'category_post',$category_post)->with('min_price',$min_price)->with('max_price',$max_price)->with(
+        'min_price_range',$min_price_range)->with('max_price_range',$max_price_range)->with('count_prd',$count_prd);
     }
     public function product_tabs(Request $request){
         $data = $request->all();
@@ -156,7 +161,7 @@ class CategoryProduct extends Controller
                                         </div>
                                     </div>
                                     <div class="product-decs">
-                                        <a class="inner-link prd-name-hidden" href="'.url('/chi-tiet-san-pham/'.$val->product_id).'"><span>'.$val->product_name.'</span></a>
+                                        <h2><a class="product-link prd-name-hidden" href="'.url('/chi-tiet-san-pham/'.$val->product_id).'"><span>'.$val->product_name.'</span></a></h2>
                                         
                                         <div class="pricing-meta">
                                             <ul>
@@ -167,12 +172,6 @@ class CategoryProduct extends Controller
                                     <div class="add-to-link">
                                         <ul>
                                             <li class="cart"><a class="cart-btn add-to-cart" onclick="Addtocart(this.id);" id="'.$val->product_id.'" name="add-to-cart">Thêm vào giỏ hàng </a></li>
-                                            <li>
-                                                <a href=""><i class="ion-android-favorite-outline"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href=""><i class="ion-ios-shuffle-strong"></i></a>
-                                            </li>
                                         </ul>
                                     </div>
                                 </article>

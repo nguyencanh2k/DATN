@@ -35,12 +35,8 @@ class MailController extends Controller
 
         $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
         $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
-
-        $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
-        $all_product2 = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'asc')->limit(10)->get();
-        $all_product3 = DB::table('tbl_product')->where('product_status','0')->orderby(DB::raw('RAND()'))->limit(10)->get();
         $cate_pro_tabs = CategoryProductModel::where('category_status','0')->orderby('category_id','asc')->get(); 
-        return view('pages.checkout.forget_pass')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('all_product2',$all_product2)->with('all_product3',$all_product3)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post)->with('cate_pro_tabs',$cate_pro_tabs);
+        return view('pages.checkout.forget_pass')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post)->with('cate_pro_tabs',$cate_pro_tabs);
     }
     public function recover_pass(Request $request){
         $data = $request->all();
