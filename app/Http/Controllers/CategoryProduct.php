@@ -108,10 +108,12 @@ class CategoryProduct extends Controller
             $min_price = $_GET['start_price'];
             $max_price = $_GET['end_price'];
             $category_by_id = Product::with('category')->whereBetween('product_price', [$min_price, $max_price])->orderBy('product_id', 'ASC')->paginate(10)->appends(request()->query());
-        }elseif(isset($_GET['cate'])){
-            $category_filter = $_GET['cate'];
-            $category_arr = explode(",", $category_filter);
-            $category_by_id = Product::with('category')->whereIn('category_id', $category_arr)->orderBy('product_price','DESC')->paginate(12)->appends(request()->query());
+        }elseif(isset($_GET['filterbrand'])){
+            $brand_filter = $_GET['filterbrand'];
+            $category_by_id = Product::with('brand')->whereIn('brand_id', $brand_filter)->paginate(12)->appends(request()->query());
+        }elseif(isset($_GET['filtercategory'])){
+            $category_filter = $_GET['filtercategory'];
+            $category_by_id = Product::with('category')->whereIn('category_id', $category_filter)->paginate(12)->appends(request()->query());
         }else{
             $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_id','DESC')->paginate(20);
         }

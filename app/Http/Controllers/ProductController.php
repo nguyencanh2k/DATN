@@ -184,7 +184,11 @@ class ProductController extends Controller
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
         $review = Review::with(['customer', 'product'])->where('product_id', $product_id)->get()->toArray();
-        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('gallery',$gallery)->with('review',$review);
+        $review_avg = Review::where('product_id', $product_id)->avg('rating');
+        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with(
+            'product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with(
+            'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
+            'category_post',$category_post)->with('gallery',$gallery)->with('review',$review)->with('review_avg',$review_avg);
     }
     public function tat_ca_san_pham(Request $request){
         //category post
@@ -211,6 +215,12 @@ class ProductController extends Controller
             $min_price = $_GET['start_price'];
             $max_price = $_GET['end_price'];
             $show_all_product = Product::whereBetween('product_price', [$min_price, $max_price])->paginate(12)->appends(request()->query());
+        }elseif(isset($_GET['filterbrand'])){
+            $brand_filter = $_GET['filterbrand'];
+            $show_all_product = Product::with('brand')->whereIn('brand_id', $brand_filter)->paginate(12)->appends(request()->query());
+        }elseif(isset($_GET['filtercategory'])){
+            $category_filter = $_GET['filtercategory'];
+            $show_all_product = Product::with('category')->whereIn('category_id', $category_filter)->paginate(12)->appends(request()->query());
         }else{
             $show_all_product = Product::where('product_status','0')->paginate(12);
         }

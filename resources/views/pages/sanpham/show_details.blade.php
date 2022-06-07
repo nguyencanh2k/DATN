@@ -42,6 +42,7 @@
                 <div class="product-details-content">
                     <h2>{{$value->product_name}}</h2>
                     <p class="reference">Mã sản phẩm:<span> {{$value->product_id}}</span></p>
+                    <div class="rateYo_show" data-rating="{{$review_avg}}"></div>
                     <div class="pricing-meta">
                         <ul>
                             <li class="old-price not-cut">{{number_format($value->product_price,0,',','.').'VNĐ'}}</li>

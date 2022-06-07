@@ -893,7 +893,7 @@
         }
     </script>
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $('.category-filter').click(function(){
             var category = [], tempArray = [];
             $.each($("[data-filters='category']:checked"), function(){
@@ -916,7 +916,8 @@
             }
             window.location.href = brand
         })
-    </script>
+    </script> --}}
+
     <script>
         $(function () {
             $(".rateYo").rateYo({

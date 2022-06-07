@@ -121,11 +121,12 @@ class BrandProduct extends Controller
             $min_price = $_GET['start_price'];
             $max_price = $_GET['end_price'];
             $brand_by_id = Product::with('brand')->whereBetween('product_price', [$min_price, $max_price])->orderBy('product_id', 'ASC')->paginate(10)->appends(request()->query());
-        }elseif(isset($_GET['brand'])){
-            //$brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_id)->get();
-            $brand_id = $_GET['brand'];
-            $brand_arr = explode(",", $brand_id);
-            $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->whereIn('tbl_product.brand_id', $brand_arr)->paginate(2)->appends(request()->query());
+        }elseif(isset($_GET['filterbrand'])){
+            $brand_filter = $_GET['filterbrand'];
+            $brand_by_id = Product::with('brand')->whereIn('brand_id', $brand_filter)->paginate(12)->appends(request()->query());
+        }elseif(isset($_GET['filtercategory'])){
+            $category_filter = $_GET['filtercategory'];
+            $brand_by_id = Product::with('category')->whereIn('category_id', $category_filter)->paginate(12)->appends(request()->query());
         }else{
             $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_name->brand_id)->paginate(2);
         }

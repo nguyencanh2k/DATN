@@ -114,30 +114,62 @@
             <!-- Sidebar Area Start -->
             <div class="col-lg-3 order-lg-first col-md-12 order-md-last mb-res-md-60px mb-res-sm-60px">
                 <div class="left-sidebar">
-                    <div class="sidebar-heading">
-                        <div class="main-heading">
-                            <h2>Lọc theo</h2>
+                    <form action="{{URL::current()}}" method="get">
+                        <div class="sidebar-heading">
+                            <div class="main-heading">
+                                <h2>Filter By</h2>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget">
+                                <h4 class="pro-sidebar-title">Lọc danh mục</h4>
+                                <div class="sidebar-widget-list">
+                                    <ul>
+                                        @foreach ($category as $key => $cate)
+                                            @php
+                                                $checked_category = [];
+                                                if(isset($_GET['filtercategory']))
+                                                {
+                                                    $checked_category = $_GET['filtercategory'];
+                                                }
+                                            @endphp
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox" name="filtercategory[]" value="{{ $cate->category_id }}"
+                                                @if ( in_array( $cate->category_id,  $checked_category ))
+                                                    checked
+                                                @endif
+                                                /> <a href="#">{{$cate->category_name}}</a>
+                                                <span class="checkmark"></span>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
                         </div>
-                        <!-- Sidebar single item -->
-                        <div class="sidebar-widget">
+                        <input type="submit" id="filter" value="Lọc" class="btn btn-success" />
+                    </form>
+                    <form action="{{URL::current()}}" method="get">
+                        <div class="sidebar-widget mt-30">
                             <h4 class="pro-sidebar-title">Thương hiệu</h4>
                             <div class="sidebar-widget-list">
                                 <ul>
-                                    @php
-                                        $brand_id = [];
-                                        $brand_arr = [];
-                                        if(isset($_GET['brand'])){
-                                            $brand_id = $_GET['brand'];
-                                        }else{
-                                            $brand_id = $brand_name->brand_id.",";
-                                        }
-                                        $brand_arr = explode(",", $brand_id);
-                                    @endphp
                                     @foreach ($brand as $key => $bra)
+                                        @php
+                                            $checked_brand = [];
+                                            if(isset($_GET['filterbrand']))
+                                            {
+                                                $checked_brand = $_GET['filterbrand'];
+                                            }
+                                        @endphp
                                     <li>
                                         <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" {{in_array($bra->brand_id, $brand_arr) ? 'checked' : ''}} class="brand-filter" data-filters="brand" 
-                                            value="{{$bra->brand_id}}" name="brand-filter"/> <a href="#">{{$bra->brand_name}}</a>
+                                            <input type="checkbox" name="filterbrand[]" value="{{$bra->brand_id}}" 
+                                            @if ( in_array( $bra->brand_id,  $checked_brand ))
+                                                checked
+                                            @endif
+                                            /> <a href="#">{{$bra->brand_name}}</a>
                                             <span class="checkmark"></span>
                                         </div>
                                     </li>
@@ -145,8 +177,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- Sidebar single item -->
-                    </div>
+                        <input type="submit" id="filter" value="Lọc" class="btn btn-success" />
+                    </form>
                     <!-- Sidebar single item -->
                     <div class="sidebar-widget mt-20">
                         <h4 class="pro-sidebar-title">Giá</h4>
