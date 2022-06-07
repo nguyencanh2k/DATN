@@ -17,6 +17,7 @@ use App\Review;
 use Carbon\Carbon;
 use DB;
 use Session;
+use Illuminate\Support\Facades\Redirect;
 use Brian2694\Toastr\Facades\Toastr;
 class OrderController extends Controller
 {
@@ -24,9 +25,9 @@ class OrderController extends Controller
     	$order = Order::orderby('created_at','DESC')->get();
     	return view('admin.manage_order')->with(compact('order'));
     }
-    public function view_order($order_code){
-		$order_details = OrderDetails::with('product')->where('order_code',$order_code)->get();
-		$order = Order::where('order_code',$order_code)->get();
+    public function view_order($order_id){
+		$order_details = OrderDetails::with('product')->where('order_id',$order_id)->get();
+		$order = Order::where('order_id',$order_id)->get();
 		foreach($order as $key => $ord){
 			$customer_id = $ord->customer_id;
 			$shipping_id = $ord->shipping_id;
@@ -35,7 +36,7 @@ class OrderController extends Controller
 		$customer = Customer::where('customer_id',$customer_id)->first();
 		$shipping = Shipping::where('shipping_id',$shipping_id)->first();
 
-		$order_details_product = OrderDetails::with('product')->where('order_code', $order_code)->get();
+		$order_details_product = OrderDetails::with('product')->where('order_id', $order_id)->get();
 
 		foreach($order_details_product as $key => $order_d){
 			$product_coupon = $order_d->product_coupon;
@@ -54,10 +55,9 @@ class OrderController extends Controller
 
 	}
 
-	public function order_code(Request $request ,$order_code){
-		$order = Order::where('order_code',$order_code)->first();
+	public function order_code(Request $request ,$order_id){
+		$order = Order::where('order_id',$order_id)->first();
 		$order->delete();
-		//Session::put('message','Xóa đơn hàng thành công');
         Toastr::success('Xóa đơn hàng thành công', 'Thành công');
         return redirect()->back();
 
@@ -70,8 +70,8 @@ class OrderController extends Controller
 		return $pdf->stream();
 	}
 	public function print_order_convert($checkout_code){
-		$order_details = OrderDetails::where('order_code',$checkout_code)->get();
-		$order = Order::where('order_code',$checkout_code)->get();
+		$order_details = OrderDetails::where('order_id',$checkout_code)->get();
+		$order = Order::where('order_id',$checkout_code)->get();
 		foreach($order as $key => $ord){
 			$customer_id = $ord->customer_id;
 			$shipping_id = $ord->shipping_id;
@@ -79,7 +79,7 @@ class OrderController extends Controller
 		$customer = Customer::where('customer_id',$customer_id)->first();
 		$shipping = Shipping::where('shipping_id',$shipping_id)->first();
 
-		$order_details_product = OrderDetails::with('product')->where('order_code', $checkout_code)->get();
+		$order_details_product = OrderDetails::with('product')->where('order_id', $checkout_code)->get();
 
 		foreach($order_details_product as $key => $order_d){
 
@@ -310,7 +310,7 @@ class OrderController extends Controller
 	}
 	public function update_qty(Request $request){
 		$data = $request->all();
-		$order_details = OrderDetails::where('product_id',$data['order_product_id'])->where('order_code',$data['order_code'])->first();
+		$order_details = OrderDetails::where('product_id',$data['order_product_id'])->where('order_id',$data['order_id'])->first();
 		$order_details->product_sales_quantity = $data['order_qty'];
 		$order_details->save();
 	}
@@ -333,7 +333,7 @@ class OrderController extends Controller
 			return view('pages.history.history')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('getorder',$getorder);
 		}
 	}
-	public function view_history_order(Request $request,$order_code){
+	public function view_history_order(Request $request,$order_id){
 		if(!Session::get('customer_id')){
 			return redirect('login-checkout')->with('error','Vui lòng đăng nhập tài khoản');
 		}else{
@@ -349,8 +349,8 @@ class OrderController extends Controller
 			$cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
         	$brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
 			//lsu don hang
-			$order_details = OrderDetails::with('product')->where('order_code',$order_code)->get();
-			$getorder = Order::where('order_code',$order_code)->first();
+			$order_details = OrderDetails::with('product')->where('order_id',$order_id)->get();
+			$getorder = Order::where('order_id',$order_id)->first();
 			$customer_id = $getorder->customer_id;
 			$shipping_id = $getorder->shipping_id;
 			$order_status = $getorder->order_status;
@@ -358,7 +358,7 @@ class OrderController extends Controller
 			$customer = Customer::where('customer_id',$customer_id)->first();
 			$shipping = Shipping::where('shipping_id',$shipping_id)->first();
 
-			$order_details_product = OrderDetails::with('product')->where('order_code', $order_code)->get();
+			$order_details_product = OrderDetails::with('product')->where('order_id', $order_id)->get();
 
 			foreach($order_details_product as $key => $order_d){
 				$product_coupon = $order_d->product_coupon;
@@ -380,12 +380,12 @@ class OrderController extends Controller
 	}
 	public function huy_don_hang(Request $request){
 		$data = $request->all();
-		$order = Order::where('order_code', $data['order_code'])->first();
+		$order = Order::where('order_id', $data['order_id'])->first();
 		$order->order_destroy = $data['lydo'];
 		$order->order_status = 3;
 		$order->save();
 	}
-	public function review_order(Request $request,$order_code){
+	public function review_order(Request $request,$order_id){
 		if(!Session::get('customer_id')){
 			return redirect('login-checkout')->with('error','Vui lòng đăng nhập tài khoản');
 		}else{
@@ -400,19 +400,19 @@ class OrderController extends Controller
 	
 			$cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
         	$brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
-			$product_review = OrderDetails::with('product')->where('order_code',$order_code)->get();
+			$product_review = OrderDetails::with('product')->where('order_id',$order_id)->get();
 
 			return view('pages.history.review_order')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with(
-				'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('product_review',$product_review)->with('order_code',$order_code);
+				'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('category_post',$category_post)->with('product_review',$product_review)->with('order_id',$order_id);
 		}
 	}
 	public function add_review(Request $request){
 		$data = $request->all();
-		$prd_review = Review::where('order_code', $data['order_code'])->where('customer_id', $data['customer_id'])->where('product_id', $data['product_id'])->first(); 
+		$prd_review = Review::where('order_id', $data['order_id'])->where('customer_id', $data['customer_id'])->where('product_id', $data['product_id'])->first(); 
 		if($data['rating']<=1){
 			return redirect()->back()->with('error', 'Đánh giá tối thiểu 1 sao');
 		}elseif($prd_review){
-			Review::where('order_code', $data['order_code'])->where('customer_id', $data['customer_id'])->where('product_id', $data['product_id'])->update(['comment'=>$data['comment'],'rating'=>$data['rating']]); 
+			Review::where('order_id', $data['order_id'])->where('customer_id', $data['customer_id'])->where('product_id', $data['product_id'])->update(['comment'=>$data['comment'],'rating'=>$data['rating']]); 
 			return redirect()->back()->with('message', 'Cập nhật đánh giá thành công');
 		}else{
 			$review = new Review();
@@ -420,10 +420,24 @@ class OrderController extends Controller
 			$review->comment = $data['comment'];
 			$review->product_id = $data['product_id'];
 			$review->customer_id = $data['customer_id'];
-			$review->order_code = $data['order_code'];
+			$review->order_id = $data['order_id'];
 			$review->save();
 			return redirect()->back()->with('message', 'Review sản phẩm thành công.');
 		}
 		
 	}
+	public function all_review(){
+    	$review = Review::with(['customer', 'product'])->orderby('review_id','DESC')->get();
+    	return view('admin.reviews.all_review')->with(compact('review'));
+	}
+    public function unactive_review($review_id){
+        Review::where('review_id',$review_id)->update(['review_status'=>1]);
+        Toastr::success('Ẩn review thành công', 'Thành công');
+        return Redirect::to('all-review');
+    }
+    public function active_review($review_id){
+        Review::where('review_id',$review_id)->update(['review_status'=>0]);
+        Toastr::success('Hiển thị review thành công', 'Thành công');
+        return Redirect::to('all-review');
+    }
 }

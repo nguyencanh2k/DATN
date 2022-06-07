@@ -877,14 +877,14 @@
    
     <script type="text/javascript">
         function Huydonhang(id){
-            var order_code = id;
-            var lydohuydon = '#lydohuydon_' + order_code;
+            var order_id = id;
+            var lydohuydon = '#lydohuydon_' + order_id;
             var lydo = $(lydohuydon).val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url : "{{url('/huy-don-hang')}}",
                 method: 'POST',
-                data:{order_code:order_code, lydo:lydo, _token:_token},
+                data:{order_id:order_id, lydo:lydo, _token:_token},
                 success:function(data){
                     alert("Hủy đơn hàng thành công");
                     location.reload();
@@ -893,35 +893,11 @@
         }
     </script>
 
-    {{-- <script type="text/javascript">
-        $('.category-filter').click(function(){
-            var category = [], tempArray = [];
-            $.each($("[data-filters='category']:checked"), function(){
-                tempArray.push($(this).val());
-            });
-            tempArray.reverse();
-            if(tempArray.length !==0){
-                category+='?cate='+tempArray.toString();
-            }
-            window.location.href = category
-        })
-        $('.brand-filter').click(function(){
-            var brand = [], tempArray = [];
-            $.each($("[data-filters='brand']:checked"), function(){
-                tempArray.push($(this).val());
-            });
-            tempArray.reverse();
-            if(tempArray.length !==0){
-                brand+='?brand='+tempArray.toString();
-            }
-            window.location.href = brand
-        })
-    </script> --}}
-
     <script>
         $(function () {
             $(".rateYo").rateYo({
-                rating: 0
+                rating: 0,
+                fullStar: true
             }).on("rateyo.set", function (e, data) {
                 $('.rating').val(data.rating);
                 alert("Đánh giá " + data.rating + "/5 sao");
@@ -932,7 +908,7 @@
         $('.rateYo_show').each(function() {
         $(this).rateYo({
             rating: this.dataset.rating,
-            readOnly: true
+            readOnly: true,
         });
         });
     </script>

@@ -132,14 +132,11 @@ class CheckoutController extends Controller
         $shipping->save();
         $shipping_id = $shipping->shipping_id;
 
-        $checkout_code = substr(md5(microtime()),rand(0,26),5);
-
         //get order
         $order = new Order;
         $order->customer_id = Session::get('customer_id');
         $order->shipping_id = $shipping_id;
         $order->order_status = 1;
-        $order->order_code = $checkout_code;
 
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
@@ -151,7 +148,7 @@ class CheckoutController extends Controller
         if(Session::get('cart')==true){
            foreach(Session::get('cart') as $key => $cart){
                $order_details = new OrderDetails;
-               $order_details->order_code = $checkout_code;
+               $order_details->order_id = $order->order_id;
                $order_details->product_id = $cart['product_id'];
                $order_details->product_name = $cart['product_name'];
                $order_details->product_price = $cart['product_price'];

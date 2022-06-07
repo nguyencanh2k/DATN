@@ -50,7 +50,7 @@
                         @endphp
                         <tr>
                             <td>{{$i}}</td>
-                            <td>{{$ord->order_code}}</td>
+                            <td>{{$ord->order_id}}</td>
                             <td>{{ $ord->created_at }}</td>
                             <td>@if($ord->order_status==1)
                                 <span class="text text-success">Đơn hàng mới</span> 
@@ -62,13 +62,13 @@
                             </td>
                             <td>
                                 @if($ord->order_status==1)
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#huydon_{{$ord->order_code}}">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#huydon_{{$ord->order_id}}">
                                     Hủy đơn hàng
                                 </button>
                                 @endif
                                 <form>
                                     @csrf
-                                    <div class="modal fade" id="huydon_{{$ord->order_code}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="huydon_{{$ord->order_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -78,18 +78,18 @@
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <textarea id="lydohuydon_{{$ord->order_code}}" cols="110" rows="10"></textarea>
+                                                        <textarea id="lydohuydon_{{$ord->order_id}}" cols="110" rows="10"></textarea>
                                                     </div>
                                                     <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                                    <button type="button" id="{{$ord->order_code}}" onclick="Huydonhang(this.id)" class="btn btn-success">Gửi</button>
+                                                    <button type="button" id="{{$ord->order_id}}" onclick="Huydonhang(this.id)" class="btn btn-success">Gửi</button>
                                                     </div>
                                                 </div>
                                         </div>
                                     </div>
                                 </form>
                                 <span>
-                                <a href="{{URL::to('/view-history-order/'.$ord->order_code)}}" data-toggle="tooltip" data-placement="top" title="View">Xem đơn hàng</a>
+                                <a href="{{URL::to('/view-history-order/'.$ord->order_id)}}" data-toggle="tooltip" data-placement="top" title="View">Xem đơn hàng</a>
                                 </span>
                             </td>
                         </tr>

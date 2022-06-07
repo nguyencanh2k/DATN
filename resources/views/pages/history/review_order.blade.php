@@ -60,7 +60,7 @@
                                                 $customer_id = Session::get('customer_id')
                                             @endphp
                                             <input type="hidden" name="product_id" value="{{$prd->product_id}}">
-                                            <input type="hidden" name="order_code" value="{{$prd->order_code}}">
+                                            <input type="hidden" name="order_id" value="{{$prd->order_id}}">
                                             <input type="hidden" name="customer_id" value="{{$customer_id}}">
                                             <input type="hidden" name="rating" class="rating">
                                             <textarea name="comment" placeholder="Vui lòng viết đánh giá sản phẩm" required></textarea>

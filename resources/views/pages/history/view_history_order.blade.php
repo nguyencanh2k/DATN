@@ -147,7 +147,7 @@
                                 <input type="number" readonly min="1" {{$order_status==2 ? 'disabled' : ''}} class="order_qty_{{$details->product_id}}" value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
                                 <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{$details->product_id}}" value="{{$details->product->product_quantity}}">
 
-                                <input type="hidden" name="order_code" class="order_code" value="{{$details->order_code}}">
+                                <input type="hidden" name="order_id" class="order_id" value="{{$details->order_id}}">
                   
                                 <input type="hidden" name="order_product_id" class="order_product_id" value="{{$details->product_id}}">
                   
@@ -155,7 +155,7 @@
                             <td>{{number_format($details->product_price ,0,',','.')}}đ</td>
                             <td>{{number_format($subtotal ,0,',','.')}}đ</td>
                             @if ($order_status == 2)
-                                <td><a href="{{URL::to('/review-order/'.$details->order_code)}}" data-toggle="tooltip" data-placement="top" title="View">Đánh giá sản phẩm</a></td>
+                                <td><a href="{{URL::to('/review-order/'.$details->order_id)}}" data-toggle="tooltip" data-placement="top" title="View">Đánh giá sản phẩm</a></td>
                             @endif
                         </tr>
                         @endforeach
@@ -183,7 +183,7 @@
                     </tbody>
                 </table>
             </div>
-            <a target="_blank" href="{{url('/print-order/'.$details->order_code)}}">In đơn hàng</a>
+            <a target="_blank" href="{{url('/print-order/'.$details->order_id)}}">In đơn hàng</a>
         </div>
     </div>
 </div>

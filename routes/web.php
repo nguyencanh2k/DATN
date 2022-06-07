@@ -150,17 +150,20 @@ Route::post('/confirm-order','CheckoutController@confirm_order');
 
 
 //Order
-Route::get('/delete-order/{order_code}','OrderController@order_code');
+Route::get('/delete-order/{order_id}','OrderController@order_code');
 Route::get('/print-order/{checkout_code}','OrderController@print_order');
 Route::get('/manage-order','OrderController@manage_order');
-Route::get('/view-order/{order_code}','OrderController@view_order');
+Route::get('/view-order/{order_id}','OrderController@view_order');
 Route::post('/update-order-qty','OrderController@update_order_qty');
 Route::post('/update-qty','OrderController@update_qty');
 Route::get('/history','OrderController@history');
-Route::get('/view-history-order/{order_code}','OrderController@view_history_order');
+Route::get('/view-history-order/{order_id}','OrderController@view_history_order');
 Route::post('/huy-don-hang','OrderController@huy_don_hang');
-Route::get('/review-order/{order_code}','OrderController@review_order');
+Route::get('/review-order/{order_id}','OrderController@review_order');
 Route::post('/add-review','OrderController@add_review');
+Route::get('/all-review','OrderController@all_review');
+Route::get('/unactive-review/{review_id}','OrderController@unactive_review');
+Route::get('/active-review/{review_id}','OrderController@active_review');
 
 //Send Mail 
 Route::get('/send-mail','HomeController@send_mail');

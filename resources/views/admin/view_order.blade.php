@@ -131,7 +131,7 @@
                                 <input type="number" min="1" {{$order_status==2 ? 'disabled' : ''}} class="order_qty_{{$details->product_id}}" value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
                                 <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{$details->product_id}}" value="{{$details->product->product_quantity}}">
 
-                                <input type="hidden" name="order_code" class="order_code" value="{{$details->order_code}}">
+                                <input type="hidden" name="order_id" class="order_id" value="{{$details->order_id}}">
                   
                                 <input type="hidden" name="order_product_id" class="order_product_id" value="{{$details->product_id}}">
                   
@@ -209,7 +209,7 @@
                     </tbody>
                 </table>
             </div>
-            <a target="_blank" href="{{url('/print-order/'.$details->order_code)}}">In đơn hàng</a>
+            <a target="_blank" href="{{url('/print-order/'.$details->order_id)}}">In đơn hàng</a>
         </div>
     </div>
 </div>

@@ -183,7 +183,7 @@ class ProductController extends Controller
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
-        $review = Review::with(['customer', 'product'])->where('product_id', $product_id)->get()->toArray();
+        $review = Review::with(['customer', 'product'])->where('product_id', $product_id)->where('review_status', '0')->get()->toArray();
         $review_avg = Review::where('product_id', $product_id)->avg('rating');
         return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with(
             'product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with(

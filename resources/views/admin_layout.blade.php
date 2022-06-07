@@ -22,6 +22,7 @@
     <link href="{{asset('public/backend/css/bootstrap-tagsinput.css')}}" rel="stylesheet">
     <link href="{{asset('public/backend/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     
 </head>
 
@@ -158,6 +159,14 @@
                             <li><a href="{{URL::to('/all-post')}}">Liệt kê bài viết</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-newspaper-o"></i><span class="nav-text">Quản lý đánh giá</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{URL::to('/all-review')}}">Liệt kê đánh giá</a></li>
+                        </ul>
+                    </li>
                     @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -275,6 +284,7 @@
     <script src="{{asset('public/backend/js/simple.money.format.js')}}"></script>
     <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
     <script>
@@ -315,17 +325,14 @@
         $('.update_quantity_order').click(function(){
             var order_product_id = $(this).data('product_id');
             var order_qty = $('.order_qty_'+order_product_id).val();
-            var order_code = $('.order_code').val();
+            var order_id = $('.order_id').val();
             var _token = $('input[name="_token"]').val();
-            // alert(order_product_id);
-            // alert(order_qty);
-            // alert(order_code);
             $.ajax({
                     url : "{{url('/update-qty')}}",
     
                     method: 'POST',
     
-                    data:{_token:_token, order_product_id:order_product_id ,order_qty:order_qty ,order_code:order_code},
+                    data:{_token:_token, order_product_id:order_product_id ,order_qty:order_qty ,order_id:order_id},
                     // dataType:"JSON",
                     success:function(data){
     
@@ -599,6 +606,14 @@
                     });
                 }
             });
+        });
+    </script>
+    <script>
+        $('.rateYo_show').each(function() {
+        $(this).rateYo({
+            rating: this.dataset.rating,
+            readOnly: true
+        });
         });
     </script>
 </body>
