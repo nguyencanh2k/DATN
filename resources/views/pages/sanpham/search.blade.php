@@ -36,25 +36,6 @@
                         <p>{{$count_prd}} sản phẩm.</p>
                     </div>
                     <!-- Left Side End -->
-                    <!-- Right Side Start -->
-                    {{-- <div class="select-shoing-wrap">
-                        <div class="shot-product">
-                            <p>Sắp xếp theo</p>
-                        </div>
-                        <div class="shop-select">
-                            <form>
-                                @csrf
-                                <select name="sort" id="sort" class="form-control">
-                                    <option value="{{Request::url()}}?sort_by=none">---Lọc---</option>
-                                    <option value="{{Request::url()}}?sort_by=tang_dan">---Giá tăng dần---</option>
-                                    <option value="{{Request::url()}}?sort_by=giam_dan">---Giá giảm dần---</option>
-                                    <option value="{{Request::url()}}?sort_by=kytu_az">A đến Z</option>
-                                    <option value="{{Request::url()}}?sort_by=kytu_za">Z đến A</option>
-                                </select>
-                            </form>
-                        </div>
-                    </div> --}}
-                    <!-- Right Side End -->
                 </div>
                 <!-- Shop Top Area End -->
                 <!-- Shop Bottom Area Start -->

@@ -164,7 +164,6 @@
                                         <span>
                                             @php 
                                                 $total_coupon = $total - $cou['coupon_number'];
-                                                // echo '<span>'.number_format($total_coupon,0,',','.').'đ</span>';
                                             @endphp
                                         </span>
                                             @php 
@@ -220,6 +219,7 @@
 						@else 
 							<input type="hidden" name="order_coupon" class="order_coupon" value="no">
 						@endif
+                            <input type="hidden" value="{{$total_after}}" name="total_after" class="total_after">
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-20px">
@@ -259,43 +259,6 @@
                     </form>
                 </div>
             </div>
-            {{-- <div class="col-lg-5">
-                <div class="your-order-area">
-                    <h3>Đơn hàng của bạn</h3>
-                    <div class="your-order-wrap gray-bg-4">
-                        <div class="your-order-product-info">
-                            <div class="your-order-top">
-                                <ul>
-                                    <li>Sản phẩm</li>
-                                    <li>Tổng tiền</li>
-                                </ul>
-                            </div>
-                            <div class="your-order-middle">
-                                <ul>
-                                    <li><span class="order-middle-left">Product Name X 1</span> <span class="order-price">$329 </span></li>
-                                    <li><span class="order-middle-left">Product Name X 1</span> <span class="order-price">$329 </span></li>
-                                </ul>
-                            </div>
-                            <div class="your-order-bottom">
-                                <ul>
-                                    <li class="your-order-shipping">Phí vận chuyển</li>
-                                    <li>Freeship</li>
-                                </ul>
-                            </div>
-                            <div class="your-order-total">
-                                <ul>
-                                    <li class="order-total">Tổng tiền</li>
-                                    <li>$329</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Place-order mt-25">
-                        <a class="btn-hover" href="#">Place Order</a>
-                    </div>
-                </div>
-            </div> --}}
-            
         </div>
     </div>
 </div>

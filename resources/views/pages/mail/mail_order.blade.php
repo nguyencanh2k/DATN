@@ -32,7 +32,7 @@
             <div class="col-xs-12">
                 <div class="invoice-title">
                     <h2>Chào {{$shipping_array['customer_name']}}</h2>
-                    <h3>Mã đơn hàng {{$code['order_code']}}</h3>
+                    <h3>Mã đơn hàng {{$code['order_id']}}</h3>
                 </div>
                 <hr>
                 <div class="row">
@@ -104,7 +104,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- foreach ($order->lineItems as $line) or some such thing here -->
                                     @php
                                         $sub_total = 0;
                                         $total = 0;
@@ -130,22 +129,15 @@
                                     <tr>
                                         <td class="no-line"></td>
                                         <td class="no-line"></td>
-                                        <td class="no-line text-center"><strong>Phí ship</strong></td>
-                                        <td class="no-line text-right">{{$shipping_array['fee']}} đ</td>
+                                        <td class="no-line text-center"><strong>Mã giảm giá:</strong></td>
+                                        <td class="no-line text-right">{{$code['coupon_code']}}</td>
                                     </tr>
-                                    
                                     <tr>
                                         <td class="no-line"></td>
                                         <td class="no-line"></td>
-                                        <td class="no-line text-center"><strong>Mã giảm giá: {{$code['order_code']}}</strong></td>
-                                        <td class="no-line text-right">0</td>
-                                    </tr>
-                                    {{-- <tr>
-                                        <td class="no-line"></td>
-                                        <td class="no-line"></td>
                                         <td class="no-line text-center"><strong>Tổng tiền thanh toán</strong></td>
-                                        <td class="no-line text-right">{{number_format($total,0,',','.')}} đ</td>
-                                    </tr> --}}
+                                        <td class="no-line text-right">{{number_format($code['grand_total'],0,',','.')}} đ</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

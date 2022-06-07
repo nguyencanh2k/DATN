@@ -204,7 +204,7 @@
                                             <form action="{{URL::to('/tim-kiem')}}" autocomplete="off" method="">
                                                 <input name="keywords_submit" id="keywords" placeholder="Tìm kiếm sản phẩm" type="text" />
                                                 <div class="search-category bootstrap-select" id="search_ajax"></div>
-                                                <button name="search_items" type="submit"><i class="ion-ios-search-strong"></i></button>
+                                                <button type="submit"><i class="ion-ios-search-strong"></i></button>
                                             </form>
                                         </div>
                                     </div>
@@ -626,12 +626,13 @@
                           var shipping_notes = $('.shipping_notes').val();
                           var shipping_method = $('.payment_select').val();
                           var order_coupon = $('.order_coupon').val();
+                          var total_after = $('.total_after').val();
                           var _token = $('input[name="_token"]').val();
   
                           $.ajax({
                               url: '{{url('/confirm-order')}}',
                               method: 'POST',
-                              data:{shipping_email:shipping_email,shipping_name:shipping_name,shipping_address:shipping_address,shipping_phone:shipping_phone,shipping_notes:shipping_notes,_token:_token,order_coupon:order_coupon,shipping_method:shipping_method},
+                              data:{shipping_email:shipping_email,shipping_name:shipping_name,shipping_address:shipping_address,shipping_phone:shipping_phone,shipping_notes:shipping_notes,_token:_token,order_coupon:order_coupon,shipping_method:shipping_method,total_after:total_after},
                               success:function(){
                                  swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
                               }
