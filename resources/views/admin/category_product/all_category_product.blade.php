@@ -40,11 +40,11 @@
                                 <?php
                                     if($cate_pro->category_status==0){
                                 ?>
-                                    <a href="{{URL::to('/unactive-category-product/'.$cate_pro->category_id)}}"><span class="btn-rounded btn-success btn">Hiển thị</span></a>
+                                    <a href="{{URL::to('/unactive-category-product/'.$cate_pro->category_id)}}"><span class="btn-rounded btn-outline-success btn"><b>Hiển thị</b></span></a>
                                 <?php
                                     }else{
                                 ?>  
-                                    <a href="{{URL::to('/active-category-product/'.$cate_pro->category_id)}}"><span class="btn-rounded btn-danger btn">Ẩn</span></a>
+                                    <a href="{{URL::to('/active-category-product/'.$cate_pro->category_id)}}"><span class="btn-rounded btn-outline-danger btn"><b>Ẩn</b></span></a>
                                 <?php
                                     }
                                 ?>

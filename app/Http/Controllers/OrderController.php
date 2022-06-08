@@ -249,7 +249,7 @@ class OrderController extends Controller
 		return $output;
 
 	}
-	public function update_order_qty(Request $request){
+	public function update_order_status(Request $request){
 		//update order
 		$data = $request->all();
 		$order = Order::find($data['order_id']);
@@ -308,12 +308,7 @@ class OrderController extends Controller
 			}
 		}
 	}
-	public function update_qty(Request $request){
-		$data = $request->all();
-		$order_details = OrderDetails::where('product_id',$data['order_product_id'])->where('order_id',$data['order_id'])->first();
-		$order_details->product_sales_quantity = $data['order_qty'];
-		$order_details->save();
-	}
+
 	public function history(Request $request){
 		if(!Session::get('customer_id')){
 			return redirect('login-checkout')->with('error','Vui lòng đăng nhập tài khoản');

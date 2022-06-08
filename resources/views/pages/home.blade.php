@@ -241,13 +241,6 @@
                                 </div>
                                 <div class="product-decs">
                                     <h2><a class="product-link prd-name-hidden" href="{{URL::to('/chi-tiet-san-pham/'.$product2->product_id)}}"><span>{{$product2->product_name}}</span></a></h2>
-                                    {{-- <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div> --}}
                                     <div class="pricing-meta">
                                         <ul>
                                             <li class="old-price not-cut">{{number_format($product2->product_price,0,',','.').' '.'VNĐ'}}</li>

@@ -128,18 +128,13 @@
                             </td>
                             <td>{{number_format($details->product_feeship ,0,',','.')}}đ</td>
                             <td>
-                                <input type="number" min="1" {{$order_status==2 ? 'disabled' : ''}} class="order_qty_{{$details->product_id}}" value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
-                                <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{$details->product_id}}" value="{{$details->product->product_quantity}}">
+                                <input type="number" min="1" readonly value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
+                                {{-- <input type="hidden" name="order_qty_storage" value="{{$details->product->product_quantity}}"> --}}
 
                                 <input type="hidden" name="order_id" class="order_id" value="{{$details->order_id}}">
                   
                                 <input type="hidden" name="order_product_id" class="order_product_id" value="{{$details->product_id}}">
-                  
-                                @if($order_status==1) 
-                  
-                                <button class="btn btn-default update_quantity_order" data-product_id="{{$details->product_id}}" name="update_quantity_order">Cập nhật</button>
-                  
-                                @endif
+
                             </td>
                             <td>{{number_format($details->product_price ,0,',','.')}}đ</td>
                             <td>{{number_format($details->product->price_cost ,0,',','.')}}đ</td>

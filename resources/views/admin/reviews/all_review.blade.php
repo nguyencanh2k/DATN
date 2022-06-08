@@ -42,11 +42,11 @@
                                 <?php
                                     if($rev->review_status==0){
                                 ?>
-                                    <a href="{{URL::to('/unactive-review/'.$rev->review_id)}}"><span class="btn-rounded btn-success btn">Hiển thị</span></a>
+                                    <a href="{{URL::to('/unactive-review/'.$rev->review_id)}}"><span class="btn-rounded btn-outline-success btn"><b>Hiển thị</b></span></a>
                                 <?php
                                     }else{
                                 ?>  
-                                    <a href="{{URL::to('/active-review/'.$rev->review_id)}}"><span class="btn-rounded btn-danger btn">Ẩn</span></a>
+                                    <a href="{{URL::to('/active-review/'.$rev->review_id)}}"><span class="btn-rounded btn-outline-danger btn"><b>Ẩn</b></span></a>
                                 <?php
                                     }
                                 ?>

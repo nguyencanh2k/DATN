@@ -219,7 +219,9 @@
 						@else 
 							<input type="hidden" name="order_coupon" class="order_coupon" value="no">
 						@endif
+                        @if(Session::get('cart'))
                             <input type="hidden" value="{{$total_after}}" name="total_after" class="total_after">
+                        @endif
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-20px">

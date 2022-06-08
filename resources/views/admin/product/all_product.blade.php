@@ -51,11 +51,11 @@
                                 <?php
                                     if($pro->product_status==0){
                                 ?>
-                                    <a href="{{URL::to('/unactive-product/'.$pro->product_id)}}"><span class="btn-rounded btn-success btn">Hiển thị</span></a>
+                                    <a href="{{URL::to('/unactive-product/'.$pro->product_id)}}"><span class="btn-rounded btn-outline-success btn"><b>Hiển thị</b></span></a>
                                 <?php
                                     }else{
                                 ?>  
-                                    <a href="{{URL::to('/active-product/'.$pro->product_id)}}"><span class="btn-rounded btn-danger btn">Ẩn</span></a>
+                                    <a href="{{URL::to('/active-product/'.$pro->product_id)}}"><span class="btn-rounded btn-outline-danger btn"><b>Ẩn</b></span></a>
                                 <?php
                                     }
                                 ?>

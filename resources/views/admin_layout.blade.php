@@ -161,7 +161,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-newspaper-o"></i><span class="nav-text">Quản lý đánh giá</span>
+                            <i class="fa fa-commenting-o"></i><span class="nav-text">Quản lý đánh giá</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/all-review')}}">Liệt kê đánh giá</a></li>
@@ -322,33 +322,6 @@
     </script>
     
     <script type="text/javascript">
-        $('.update_quantity_order').click(function(){
-            var order_product_id = $(this).data('product_id');
-            var order_qty = $('.order_qty_'+order_product_id).val();
-            var order_id = $('.order_id').val();
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                    url : "{{url('/update-qty')}}",
-    
-                    method: 'POST',
-    
-                    data:{_token:_token, order_product_id:order_product_id ,order_qty:order_qty ,order_id:order_id},
-                    // dataType:"JSON",
-                    success:function(data){
-    
-                        alert('Cập nhật số lượng thành công');
-                     
-                       location.reload();
-                        
-                  
-                        
-    
-                    }
-            });
-    
-        });
-    </script>
-    <script type="text/javascript">
         $('.order_details').change(function(){
             var order_status = $(this).val();
             var order_id = $(this).children(":selected").attr("id");
@@ -359,30 +332,15 @@
             $("input[name='product_sales_quantity']").each(function(){
                 quantity.push($(this).val());
             });
-            //lay ra product id de so sanh
+            //lay ra product id 
             order_product_id = [];
             $("input[name='order_product_id']").each(function(){
                 order_product_id.push($(this).val());
             });
-            j = 0;
-            for(i=0;i<order_product_id.length;i++){
-                //so luong khach dat
-                var order_qty = $('.order_qty_' + order_product_id[i]).val();
-                //so luong ton kho
-                var order_qty_storage = $('.order_qty_storage_' + order_product_id[i]).val();
-
-                if(parseInt(order_qty)>parseInt(order_qty_storage)){
-                    j = j + 1;
-                    if(j==1){
-                        alert('Số lượng bán trong kho không đủ');
-                    }
-                    $('.color_qty_'+order_product_id[i]).css('background','#000');
-                }
-            }
-            if(j==0){
+            
             
                     $.ajax({
-                            url : "{{url('/update-order-qty')}}",
+                            url : "{{url('/update-order-status')}}",
                             method: 'POST',
                             data:{_token:_token, order_status:order_status ,order_id:order_id ,quantity:quantity, order_product_id:order_product_id},
                             success:function(data){
@@ -391,7 +349,7 @@
                             }
                     });
                 
-            }
+            
 
         });
     </script>

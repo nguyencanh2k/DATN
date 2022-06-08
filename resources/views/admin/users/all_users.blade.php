@@ -3,7 +3,7 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Liệt kê Users</h4>
+            <h4 class="card-title">Liệt kê nhân viên</h4>
             
             <div class="table-responsive"> 
                 <?php
@@ -18,7 +18,7 @@
                         <tr>
                             
                             <th scope="col">STT</th>
-                            <th scope="col">Tên user</th>
+                            <th scope="col">Tên nhân viên</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Password</th>
@@ -64,17 +64,4 @@
         </div>
     </div>
 </div>
-{{-- <div class="col-lg-12">
-    <div class="card">
-        <div class="card-body">
-            <div class="bootstrap-pagination">
-                <nav>
-                    <ul class="pagination justify-content-center">
-                        {!!$admin->links()!!}
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div> --}}
 @endsection

@@ -95,20 +95,17 @@
                                                     } 
                                                     ?>
 
+                                                    <li><a href="{{URL::to('/gio-hang')}}">Giỏ hàng</a></li>
+                                                    
                                                     <?php
                                                         $customer_id = Session::get('customer_id');
-                                                        $shipping_id = Session::get('shipping_id');
-                                                        if($customer_id!=NULL && $shipping_id==NULL){ 
+                                                        if($customer_id!=NULL){ 
                                                     ?>
                                                         <li  class="after-n"><a href="{{URL::to('/checkout')}}">Thanh toán</a></li>
                                                     <?php 
-                                                        }elseif($customer_id!=NULL && $shipping_id!=NULL){
-                                                    ?>
-                                                        <li  class="after-n"><a href="{{URL::to('/payment')}}">Thanh toán</a></li>
-                                                    <?php
                                                         }else{
                                                     ?>
-                                                        <li  class="after-n"><a href="{{URL::to('/checkout')}}">Thanh toán</a></li>
+                                                        <li  class="after-n"><a href="{{URL::to('/login-checkout')}}">Thanh toán</a></li>
                                                     <?php 
                                                         }
                                                     ?>
@@ -551,7 +548,7 @@
                                         title: "Đã thêm sản phẩm vào giỏ hàng",
                                         text: "Tiếp tục mua sắm",
                                         showCancelButton: true,
-                                        cancelButtonText: "Xem tiếp",
+                                        cancelButtonText: "Đóng",
                                         confirmButtonClass: "btn-success",
                                         confirmButtonText: "Đi đến giỏ hàng",
                                         closeOnConfirm: false
@@ -607,15 +604,14 @@
               $('.send_order').click(function(){
                   swal({
                     title: "Xác nhận đơn hàng",
-                    text: "Đơn hàng sẽ thực hiện sau khi xác nhận,bạn có muốn đặt không?",
+                    text: "Đơn hàng sẽ được thực hiện sau khi xác nhận, bạn có muốn đặt không?",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Cảm ơn, Mua hàng",
-  
-                      cancelButtonText: "Đóng,chưa mua",
-                      closeOnConfirm: false,
-                      closeOnCancel: false
+                    confirmButtonText: "Đặt hàng",
+                    cancelButtonText: "Đóng",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
                   },
                   function(isConfirm){
                        if (isConfirm) {

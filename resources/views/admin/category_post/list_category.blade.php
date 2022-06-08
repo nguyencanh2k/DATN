@@ -39,9 +39,9 @@
                             <td>{{$cate_post->cate_post_slug}}</td>
                             <td>
                                 @if($cate_post->cate_post_status==0)
-                                    <a href="{{URL::to('/unactive-category-post/'.$cate_post->cate_post_id)}}"><span class="btn-rounded btn-success btn">Hiển thị</span></a>
+                                    <a href="{{URL::to('/unactive-category-post/'.$cate_post->cate_post_id)}}"><span class="btn-rounded btn-outline-success btn"><b>Hiển thị</b></span></a>
                                 @else
-                                    <a href="{{URL::to('/active-category-post/'.$cate_post->cate_post_id)}}"><span class="btn-rounded btn-danger btn">Ẩn</span></a>
+                                    <a href="{{URL::to('/active-category-post/'.$cate_post->cate_post_id)}}"><span class="btn-rounded btn-outline-danger btn"><b>Ẩn</b></span></a>
                                 @endif
                             </td>
                             <td><span>

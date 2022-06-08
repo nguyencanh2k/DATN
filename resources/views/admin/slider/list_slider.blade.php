@@ -41,11 +41,11 @@
                                 <?php
                                     if($slide->slider_status==1){
                                 ?>
-                                    <a href="{{URL::to('/unactive-slide/'.$slide->slider_id)}}"><span class="btn-rounded btn-success btn">Hiển thị</span></a>
+                                    <a href="{{URL::to('/unactive-slide/'.$slide->slider_id)}}"><span class="btn-rounded btn-outline-success btn"><b>Hiển thị</b></span></a>
                                 <?php
                                     }else{
                                 ?>  
-                                    <a href="{{URL::to('/active-slide/'.$slide->slider_id)}}"><span class="btn-rounded btn-danger btn">Ẩn</span></a>
+                                    <a href="{{URL::to('/active-slide/'.$slide->slider_id)}}"><span class="btn-rounded btn-outline-danger btn"><b>Ẩn</b></span></a>
                                 <?php
                                     }
                                 ?>

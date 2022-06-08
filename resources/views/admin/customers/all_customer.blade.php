@@ -46,11 +46,11 @@
                                 <?php
                                     if($cus->customer_status==0){
                                 ?>
-                                    <a href="{{URL::to('/unactive-customer/'.$cus->customer_id)}}"><span class="btn-rounded btn-success btn">Hoạt động</span></a>
+                                    <a href="{{URL::to('/unactive-customer/'.$cus->customer_id)}}"><span class="btn-rounded btn-outline-success btn"><b>Hoạt động</b></span></a>
                                 <?php
                                     }else{
                                 ?>  
-                                    <a href="{{URL::to('/active-customer/'.$cus->customer_id)}}"><span class="btn-rounded btn-danger btn">Khóa</span></a>
+                                    <a href="{{URL::to('/active-customer/'.$cus->customer_id)}}"><span class="btn-rounded btn-outline-danger btn"><b>Khóa</b></span></a>
                                 <?php
                                     }
                                 ?>

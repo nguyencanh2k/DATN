@@ -29,7 +29,7 @@ Route::get('/tat-ca-san-pham','ProductController@tat_ca_san_pham');
 
 //Back-end
 Route::get('/admin', 'AdminController@index');
-Route::get('/dashboard', 'AdminController@show_dashboard');
+Route::get('/dashboard', 'AdminController@show_dashboard')->middleware('auth.roles');
 Route::get('/logout', 'AdminController@logout');
 Route::post('/admin-dashboard', 'AdminController@dashboard');
 Route::post('/filter-by-date', 'AdminController@filter_by_date');
@@ -154,8 +154,7 @@ Route::get('/delete-order/{order_id}','OrderController@order_code');
 Route::get('/print-order/{checkout_code}','OrderController@print_order');
 Route::get('/manage-order','OrderController@manage_order');
 Route::get('/view-order/{order_id}','OrderController@view_order');
-Route::post('/update-order-qty','OrderController@update_order_qty');
-Route::post('/update-qty','OrderController@update_qty');
+Route::post('/update-order-status','OrderController@update_order_status');
 Route::get('/history','OrderController@history');
 Route::get('/view-history-order/{order_id}','OrderController@view_history_order');
 Route::post('/huy-don-hang','OrderController@huy_don_hang');
@@ -166,7 +165,6 @@ Route::get('/unactive-review/{review_id}','OrderController@unactive_review');
 Route::get('/active-review/{review_id}','OrderController@active_review');
 
 //Send Mail 
-Route::get('/send-mail','HomeController@send_mail');
 Route::get('/quen-mat-khau','MailController@quen_mat_khau');
 Route::post('/recover-pass','MailController@recover_pass');
 Route::get('/update-new-pass','MailController@update_new_pass');
