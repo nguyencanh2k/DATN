@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Session;
 use App\Http\Requests;
 use App\Gallery;
 use Illuminate\Support\Facades\Redirect;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\CatePost;
 use Brian2694\Toastr\Facades\Toastr;
 session_start();

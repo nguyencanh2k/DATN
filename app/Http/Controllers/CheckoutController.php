@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Cart;
@@ -15,14 +14,15 @@ use App\Shipping;
 use App\Order;
 use App\OrderDetails;
 use App\Coupon;
-use Auth;
 use App\CatePost;
 use App\Brand;
 use App\CategoryProductModel;
 use App\Customer;
 use Carbon\Carbon;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 session_start();
 class CheckoutController extends Controller
 {
@@ -150,8 +150,6 @@ class CheckoutController extends Controller
                $order_details = new OrderDetails;
                $order_details->order_id = $order->order_id;
                $order_details->product_id = $cart['product_id'];
-               $order_details->product_name = $cart['product_name'];
-               $order_details->product_price = $cart['product_price'];
                $order_details->product_sales_quantity = $cart['product_qty'];
                $order_details->product_coupon =  $data['order_coupon'];
                $order_details->save();

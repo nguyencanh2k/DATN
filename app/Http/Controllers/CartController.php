@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Cart;
 use App\CatePost;
 use App\Product;
@@ -115,10 +115,10 @@ class CartController extends Controller
                     if($val['session_id']==$key && $qty<$cart[$session]['product_quantity']){
 
                         $cart[$session]['product_qty'] = $qty;
-                        $message.=''.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thành công';
+                        $message.=''.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thành công<br>';
 
                     }elseif($val['session_id']==$key && $qty>$cart[$session]['product_quantity']){
-                        $message.=''.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thất bại do hết hàng';
+                        $message.=''.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thất bại do kho không đủ số lượng<br>';
                     }
 
                 }

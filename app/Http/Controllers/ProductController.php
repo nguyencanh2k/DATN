@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
+use App\CategoryProductModel;
 use Illuminate\Http\Request;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
-use Auth;
 use App\CatePost;
 use App\Gallery;
 use App\Product;
 use App\Review;
-use File;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 session_start();
 class ProductController extends Controller
 {
@@ -27,8 +29,8 @@ class ProductController extends Controller
     }
     public function add_product(){
         $this->AuthLogin();
-        $cate_product = DB::table('tbl_category_product')->orderby('category_id','desc')->get(); 
-        $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get(); 
+        $cate_product = CategoryProductModel::orderby('category_id','desc')->get(); 
+        $brand_product = Brand::orderby('brand_id','desc')->get(); 
        
         return view('admin.product.add_product')->with('cate_product', $cate_product)->with('brand_product',$brand_product);
     }
@@ -72,10 +74,6 @@ class ProductController extends Controller
             $data['product_image'] = $new_image;
             
         }
-        // $data['product_image'] = '';
-    	// DB::table('tbl_product')->insert($data);
-    	// Session::put('message','Thêm sản phẩm thành công');
-    	// return Redirect::to('all-product');
         $pro_id = DB::table('tbl_product')->insertGetId($data);
         $gallery = new Gallery();
         $gallery->gallery_name = $new_image;
@@ -87,24 +85,21 @@ class ProductController extends Controller
     }
     public function unactive_product($product_id){
         $this->AuthLogin();
-        DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>1]);
-        //Session::put('message','Không kích hoạt sản phẩm thành công');
+        Product::where('product_id',$product_id)->update(['product_status'=>1]);
         Toastr::success('Không kích hoạt sản phẩm thành công', 'Thành công');
         return Redirect::to('all-product');
     }
     public function active_product($product_id){
         $this->AuthLogin();
-        DB::table('tbl_product')->where('product_id',$product_id)->update(['product_status'=>0]);
-        //Session::put('message','Kích hoạt sản phẩm thành công');
+        Product::where('product_id',$product_id)->update(['product_status'=>0]);
         Toastr::success('Kích hoạt sản phẩm thành công', 'Thành công');
         return Redirect::to('all-product');
     }
     public function edit_product($product_id){
         $this->AuthLogin();
-        $cate_product = DB::table('tbl_category_product')->orderby('category_id','desc')->get(); 
-        $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get(); 
-
-        $edit_product = DB::table('tbl_product')->where('product_id',$product_id)->get();
+        $cate_product = CategoryProductModel::orderby('category_id','desc')->get(); 
+        $brand_product = Brand::orderby('brand_id','desc')->get(); 
+        $edit_product = Product::where('product_id',$product_id)->get();
 
         $manager_product  = view('admin.product.edit_product')->with('edit_product',$edit_product)->with('cate_product',$cate_product)->with('brand_product',$brand_product);
 
@@ -112,6 +107,11 @@ class ProductController extends Controller
     }
     public function update_product(Request $request,$product_id){
         $this->AuthLogin();
+        $data = $request->all();
+
+
+
+
         $data = array();
         $product_price = filter_var($request->product_price, FILTER_SANITIZE_NUMBER_INT);
         $price_cost = filter_var($request->price_cost, FILTER_SANITIZE_NUMBER_INT);
@@ -135,19 +135,17 @@ class ProductController extends Controller
                     $data['product_image'] = $new_image;
                     DB::table('tbl_product')->where('product_id',$product_id)->update($data);
                     Toastr::success('Cập nhật sản phẩm thành công', 'Thành công');
-                    //Session::put('message','Cập nhật sản phẩm thành công');
                     return Redirect::to('all-product');
         }
             
         DB::table('tbl_product')->where('product_id',$product_id)->update($data);
-        //Session::put('message','Cập nhật sản phẩm thành công');
         Toastr::success('Cập nhật sản phẩm thành công', 'Thành công');
         return Redirect::to('all-product');
     }
     public function delete_product($product_id){
         $this->AuthLogin();
-        DB::table('tbl_product')->where('product_id',$product_id)->delete();
-        //Session::put('message','Xóa sản phẩm thành công');
+        $product = Product::find($product_id);
+        $product->delete();
         Toastr::success('Xóa sản phẩm thành công', 'Thành công');
         return Redirect::to('all-product');
     }
@@ -155,8 +153,8 @@ class ProductController extends Controller
     public function details_product($product_id, Request $request){
         //category post
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
+        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get(); 
         $details_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
@@ -195,9 +193,8 @@ class ProductController extends Controller
     public function tat_ca_san_pham(Request $request){
         //category post
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
-        // $show_all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
+        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get(); 
         $min_price = Product::min('product_price');
         $max_price = Product::max('product_price');
         $min_price_range = $min_price + 1000000;
@@ -241,8 +238,8 @@ class ProductController extends Controller
     public function tag($product_tag, Request $request){
         //category post
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_order','asc')->get(); 
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_order','asc')->get(); 
+        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get(); 
         $tag = str_replace("-"," ",$product_tag);
         if(isset($_GET['sort_by'])){
             $sort_by = $_GET['sort_by'];

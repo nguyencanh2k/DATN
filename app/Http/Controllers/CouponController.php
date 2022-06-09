@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Coupon;
-use Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Session;
 session_start();
 class CouponController extends Controller
 {

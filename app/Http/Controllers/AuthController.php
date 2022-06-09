@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Roles;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 

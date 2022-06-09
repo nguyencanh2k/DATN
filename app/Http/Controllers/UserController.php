@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Roles;
 use App\Admin;
-use Session;
-use Auth;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
     public function index()

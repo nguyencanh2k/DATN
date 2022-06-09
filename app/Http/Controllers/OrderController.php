@@ -15,10 +15,11 @@ use App\CategoryProductModel;
 use App\Statistic;
 use App\Review;
 use Carbon\Carbon;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\App;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Session;
 class OrderController extends Controller
 {
     public function manage_order(){
@@ -64,7 +65,7 @@ class OrderController extends Controller
 	}
 	
     public function print_order($checkout_code){
-		$pdf = \App::make('dompdf.wrapper');
+		$pdf = App::make('dompdf.wrapper');
 		$pdf->loadHTML($this->print_order_convert($checkout_code));
 		
 		return $pdf->stream();

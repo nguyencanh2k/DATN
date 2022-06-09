@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use DB;
-use Session;
 use App\Http\Requests;
 use App\Login;
 use Illuminate\Support\Facades\Redirect;
-use Auth;
 use App\Statistic;
 use App\Product;
 use App\Post;

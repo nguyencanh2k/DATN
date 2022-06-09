@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Mail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use App\Slider;
 use App\CatePost;
-use Session;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests;
 use App\Product;
 use App\CategoryProductModel;
@@ -31,9 +31,9 @@ class HomeController extends Controller
         $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
         $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
 
-        $all_product = DB::table('tbl_product')->where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
-        $all_product2 = DB::table('tbl_product')->where('product_status','0')->orderby('product_price', 'asc')->limit(10)->get();
-        $all_product3 = DB::table('tbl_product')->where('product_status','0')->orderby('product_views', 'desc')->limit(10)->get();
+        $all_product = Product::where('product_status','0')->orderby('product_id', 'desc')->limit(10)->get();
+        $all_product2 = Product::where('product_status','0')->orderby('product_price', 'asc')->limit(10)->get();
+        $all_product3 = Product::where('product_status','0')->orderby('product_views', 'desc')->limit(10)->get();
         $cate_pro_tabs = CategoryProductModel::where('category_status','0')->orderby('category_id','asc')->get();
         return view('pages.home')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with(
         'all_product2',$all_product2)->with('all_product3',$all_product3)->with('meta_desc',$meta_desc)->with(

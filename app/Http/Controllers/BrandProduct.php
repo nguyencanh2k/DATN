@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
 use App\CatePost;
 use App\Product;
 use App\Brand;
 use App\CategoryProductModel;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
-use Auth;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 session_start();
 class BrandProduct extends Controller
 {
@@ -30,8 +30,6 @@ class BrandProduct extends Controller
     }
     public function all_brand_product(){
         $this->AuthLogin();
-        // $all_brand_product = DB::table('tbl_brand')->get();
-        // $all_brand_product = Brand::all(); 
         $all_brand_product = Brand::orderBy('brand_order','ASC')->get();
         $manager_brand_product = view('admin.brand.all_brand_product')->with('all_brand_product', $all_brand_product);
         return view('admin_layout')->with('admin.brand.all_brand_product', $manager_brand_product);
@@ -73,10 +71,8 @@ class BrandProduct extends Controller
         $this->AuthLogin();
         $data = $request->all();
         $brand = Brand::find($brand_product_id);
-        // $brand = new Brand();
         $brand->brand_name = $data['brand_product_name'];
         $brand->brand_desc = $data['brand_product_desc'];
-        // $brand->brand_status = $data['brand_product_status'];
         $brand->save();
         Toastr::success('Cập nhật thương hiệu sản phẩm thành công', 'Thành công');
         return Redirect::to('all-brand-product');
@@ -93,7 +89,6 @@ class BrandProduct extends Controller
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
         $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
-        // $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_id)->get();
         $brand_name = Brand::where('tbl_brand.brand_id',$brand_id)->first();
         $min_price = Product::min('product_price');
         $max_price = Product::max('product_price');
@@ -121,7 +116,7 @@ class BrandProduct extends Controller
             $category_filter = $_GET['filtercategory'];
             $brand_by_id = Product::with('category')->whereIn('category_id', $category_filter)->paginate(12)->appends(request()->query());
         }else{
-            $brand_by_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id', $brand_name->brand_id)->paginate(2);
+            $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->paginate(12);
         }
         //seo 
         $meta_desc = $brand_name->brand_desc; 

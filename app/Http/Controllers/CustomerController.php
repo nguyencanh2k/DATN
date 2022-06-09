@@ -9,9 +9,8 @@ use App\Customer;
 use App\CatePost;
 use App\CategoryProductModel;
 use App\Brand;
-use DB;
-use Session;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Brian2694\Toastr\Facades\Toastr;
 class CustomerController extends Controller

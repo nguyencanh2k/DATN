@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
-use Auth;
 use App\Post;
 use App\CatePost;
 use App\Brand;
 use App\CategoryProductModel;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 session_start();
 class PostController extends Controller
 {

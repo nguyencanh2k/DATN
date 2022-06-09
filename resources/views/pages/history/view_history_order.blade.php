@@ -106,12 +106,12 @@
                             @foreach($order_details as $key => $details)
                             @php
                                 $i++;
-                                $subtotal = $details->product_price*$details->product_sales_quantity;
+                                $subtotal = $details->product->product_price*$details->product_sales_quantity;
                                 $total+=$subtotal;
                             @endphp
-                            <tr class="color_qty_{{$details->product_id}}">
+                            <tr class="color_qty_{{$details->product->product_id}}">
                                 <td>{{$i}}</td>
-                                <td>{{$details->product_name}}</td>
+                                <td>{{$details->product->product_name}}</td>
                                 <td>@if($details->product_coupon!='no')
                                     {{$details->product_coupon}}
                                   @else 
@@ -119,7 +119,7 @@
                                   @endif
                                 </td>
                                 <td>{{$details->product_sales_quantity}}</td>
-                                <td>{{number_format($details->product_price ,0,',','.')}}đ</td>
+                                <td>{{number_format($details->product->product_price ,0,',','.')}}đ</td>
                                 <td>{{number_format($subtotal ,0,',','.')}}đ</td>
                                 @if ($order_status == 2)
                                     <td><a href="{{URL::to('/review-order/'.$details->order_id)}}" data-toggle="tooltip" data-placement="top" title="View">Đánh giá sản phẩm</a></td>

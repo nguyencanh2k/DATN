@@ -83,10 +83,8 @@
                                     <th scope="col">Tên sản phẩm</th>
                                     <th scope="col">Số lượng sản phẩm trong kho</th>
                                     <th scope="col">Mã giảm giá</th>
-                                    <th scope="col">Phí ship</th>
                                     <th scope="col">Số lượng</th>
                                     <th scope="col">Giá sản phẩm</th>
-                                    <th scope="col">Giá gốc</th>
                                     <th scope="col">Tổng tiền</th>
                                 </tr>
                             </thead>
@@ -98,12 +96,12 @@
                                 @foreach($order_details as $key => $details)
                                 @php
                                     $i++;
-                                    $subtotal = $details->product_price*$details->product_sales_quantity;
+                                    $subtotal = $details->product->product_price*$details->product_sales_quantity;
                                     $total+=$subtotal;
                                 @endphp
-                                <tr class="color_qty_{{$details->product_id}}">
+                                <tr class="color_qty_{{$details->product->product_id}}">
                                     <td>{{$i}}</td>
-                                    <td>{{$details->product_name}}</td>
+                                    <td>{{$details->product->product_name}}</td>
                                     <td>{{$details->product->product_quantity}}</td>
                                     <td>@if($details->product_coupon!='no')
                                         {{$details->product_coupon}}
@@ -111,7 +109,6 @@
                                         Không có
                                       @endif
                                     </td>
-                                    <td>{{number_format($details->product_feeship ,0,',','.')}}đ</td>
                                     <td>
                                         <input type="number" min="1" readonly value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
                                         {{-- <input type="hidden" name="order_qty_storage" value="{{$details->product->product_quantity}}"> --}}
@@ -121,8 +118,7 @@
                                         <input type="hidden" name="order_product_id" class="order_product_id" value="{{$details->product_id}}">
         
                                     </td>
-                                    <td>{{number_format($details->product_price ,0,',','.')}}đ</td>
-                                    <td>{{number_format($details->product->price_cost ,0,',','.')}}đ</td>
+                                    <td>{{number_format($details->product->product_price ,0,',','.')}}đ</td>
                                     <td>{{number_format($subtotal ,0,',','.')}}đ</td>
                                 </tr>
                                 @endforeach

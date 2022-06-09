@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\CategoryProductModel;
 use Illuminate\Http\Request;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
-use Auth;
 use App\CatePost;
 use App\Product;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 session_start();
 class CategoryProduct extends Controller
 {
@@ -36,12 +36,13 @@ class CategoryProduct extends Controller
     }
     public function save_category_product(Request $request){
         $this->AuthLogin();
-        $data = array();
-        $data['category_name'] = $request->category_product_name;
-        $data['category_desc'] = $request->category_product_desc;
-        $data['category_status'] = $request->category_product_status;
+        $data = $request->all();
+        $category_product = new CategoryProductModel();
+        $category_product->category_name = $data['category_product_name'];
+        $category_product->category_desc = $data['category_product_desc'];
+        $category_product->category_status = $data['category_product_status'];
+        $category_product->save();
 
-        DB::table('tbl_category_product')->insert($data);
         Toastr::success('Thêm danh mục sản phẩm thành công', 'Thành công');
         return Redirect::to('all-category-product');
     }
@@ -67,11 +68,13 @@ class CategoryProduct extends Controller
     }
     public function update_category_product(Request $request,$category_product_id){
         $this->AuthLogin();
-        $data = array();
-        $data['category_name'] = $request->category_product_name;
-        $data['category_desc'] = $request->category_product_desc;
-        DB::table('tbl_category_product')->where('category_id',$category_product_id)->update($data);
-        //Session::put('message','Cập nhật danh mục sản phẩm thành công');
+
+        $data = $request->all();
+        $category_product = CategoryProductModel::find($category_product_id);
+        $category_product->category_name = $data['category_product_name'];
+        $category_product->category_desc = $data['category_product_desc'];
+        $category_product->save();
+
         Toastr::success('Cập nhật danh mục sản phẩm thành công', 'Thành công');
         return Redirect::to('all-category-product');
     }
@@ -88,7 +91,6 @@ class CategoryProduct extends Controller
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_id','desc')->get(); 
         $brand_product = Brand::where('brand_status','0')->orderby('brand_id','desc')->get();
-        // $category_by_id = DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')->where('tbl_product.category_id', $category_id)->get();
         $min_price = Product::min('product_price');
         $max_price = Product::max('product_price');
         $min_price_range = $min_price + 1000000;
@@ -117,7 +119,7 @@ class CategoryProduct extends Controller
         }else{
             $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_id','DESC')->paginate(20);
         }
-        $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->limit(1)->get();
+        $category_name = CategoryProductModel::where('category_id',$category_id)->limit(1)->get();
         foreach($category_name as $key => $val){
             //seo 
             $meta_desc = $val->category_desc; 

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
-use Auth;
 use App\CatePost;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 session_start();
 class CategoryPost extends Controller
 {
@@ -34,7 +34,6 @@ class CategoryPost extends Controller
         $category_post->cate_post_desc = $data['cate_post_desc'];
         $category_post->cate_post_status = $data['cate_post_status'];
         $category_post->save();
-        //Session::put('message', 'Thêm danh mục bài viết thành công');
         Toastr::success('Thêm danh mục bài viết thành công', 'Thành công');
         return redirect()->back();
     }
