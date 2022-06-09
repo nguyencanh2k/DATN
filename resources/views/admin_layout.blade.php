@@ -231,10 +231,7 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-
-            <div class="container-fluid mt-3">
                 @yield('admin_content')
-            </div>
             <!-- #/ container -->
         </div>
         <!--**********************************

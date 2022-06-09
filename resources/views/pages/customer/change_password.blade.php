@@ -68,6 +68,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <div class="col-sm-2"></div>
                                                 <div class="col-sm-10">
                                                     <button type="submit" name="update_password" class="btn btn-dark">Cập nhật mật khẩu</button>
                                                 </div>

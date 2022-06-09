@@ -88,7 +88,6 @@ class GalleryController extends Controller
                
             }
         }
-        //Session::put('message','Thêm thư viện ảnh thành công');
         Toastr::success('Thêm thư viện ảnh thành công', 'Thành công');
         return redirect()->back();
     }

@@ -56,17 +56,12 @@
                                                     <input type="text" name="customer_phone" value="{{$edit_cus->customer_phone}}" class="form-control" placeholder="" required>
                                                 </div>
                                             </div>
-                                            {{-- <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Mật khẩu</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="customer_password" value="{{$edit_cus->customer_password}}" class="form-control" placeholder="" required>
-                                                </div>
-                                            </div> --}}
                                             <div class="form-group row">
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-5">
                                                     <button type="submit" name="update_customer" class="btn btn-dark">Cập nhật thông tin tài khoản</button>
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-5">
                                                     <a class="btn btn-dark" href="{{URL::to('/doi-mat-khau/'.$edit_cus->customer_id)}}">Đổi mật khẩu</a>
                                                 </div>
                                             </div>
