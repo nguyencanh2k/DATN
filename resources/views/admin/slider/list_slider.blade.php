@@ -29,7 +29,9 @@
                                     <th scope="col">STT</th>
                                     <th scope="col">Tên slide</th>
                                     <th scope="col">Hình ảnh</th>
-                                    <th scope="col">Mô tả</th>
+                                    <th scope="col">Tiêu đề</th>
+                                    <th scope="col">Nội dung</th>
+                                    <th scope="col">Phụ đề</th>
                                     <th scope="col">Hiển thị</th>
                                     <th scope="col">Hành động</th>
                                 </tr>
@@ -46,10 +48,12 @@
                                     <td>{{$i}}</td>
                                     <td>{{$slide->slider_name}}</td>
                                     <td><img src="public/uploads/slider/{{ $slide->slider_image }}" height="120" width="500"></td>
-                                    <td>{!!$slide->slider_desc!!}</td>
+                                    <td>{{$slide->slider_title}}</td>
+                                    <td>{{$slide->slider_content}}</td>
+                                    <td>{{$slide->slider_subtitle}}</td>
                                     <td>
                                         <?php
-                                            if($slide->slider_status==1){
+                                            if($slide->slider_status==0){
                                         ?>
                                             <a href="{{URL::to('/unactive-slide/'.$slide->slider_id)}}"><span class="btn-rounded btn-outline-success btn"><b>Hiển thị</b></span></a>
                                         <?php

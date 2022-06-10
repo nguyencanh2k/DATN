@@ -25,7 +25,7 @@ class MailController extends Controller
         //category post
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         //slide
-        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(3)->get();
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','0')->take(3)->get();
         //seo 
         $meta_desc = "Quên mật khẩu"; 
         $meta_keywords = "Quên mật khẩu";

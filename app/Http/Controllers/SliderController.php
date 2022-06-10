@@ -29,14 +29,14 @@ class SliderController extends Controller
     }
     public function unactive_slide($slide_id){
         $this->AuthLogin();
-        Slider::where('slider_id',$slide_id)->update(['slider_status'=>0]);
+        Slider::where('slider_id',$slide_id)->update(['slider_status'=>1]);
         Toastr::success('Không kích hoạt slider thành công', 'Thành công');
         return Redirect::to('manage-slider');
 
     }
     public function active_slide($slide_id){
         $this->AuthLogin();
-        Slider::where('slider_id',$slide_id)->update(['slider_status'=>1]);
+        Slider::where('slider_id',$slide_id)->update(['slider_status'=>0]);
         Toastr::success('Kích hoạt slider thành công', 'Thành công');
         return Redirect::to('manage-slider');
 
@@ -59,7 +59,9 @@ class SliderController extends Controller
             $slider->slider_name = $data['slider_name'];
             $slider->slider_image = $new_image;
             $slider->slider_status = $data['slider_status'];
-            $slider->slider_desc = $data['slider_desc'];
+            $slider->slider_title = $data['slider_title'];
+            $slider->slider_content = $data['slider_content'];
+            $slider->slider_subtitle = $data['slider_subtitle'];
            	$slider->save();
             Toastr::success('Thêm slider thành công', 'Thành công');
             return Redirect::to('add-slider');

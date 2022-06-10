@@ -46,9 +46,21 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Mô tả</label>
+                                <label class="col-sm-2 col-form-label">Tiêu đề</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control h-150px" name="slider_desc" rows="6" id="ckeditor"  placeholder="Mô tả" required></textarea>
+                                    <input type="text" name="slider_title" class="form-control" placeholder="Tiêu đề" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Nội dung</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="slider_content" class="form-control" placeholder="Nội dung" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Phụ đề</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="slider_subtitle" class="form-control" placeholder="Phụ đề" required>
                                 </div>
                             </div>
                             <div class="form-group row">

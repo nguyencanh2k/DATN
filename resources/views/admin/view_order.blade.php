@@ -185,7 +185,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <a target="_blank" href="{{url('/print-order/'.$details->order_id)}}">In đơn hàng</a>
                 </div>
             </div>
         </div>

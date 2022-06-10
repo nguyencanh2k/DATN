@@ -36,31 +36,29 @@ class ProductController extends Controller
     }
     public function all_product(){
         $this->AuthLogin();
-        $all_product = DB::table('tbl_product')
-        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->orderby('tbl_product.product_id','desc')->get();
+        $all_product = Product::with(['category','brand'])->orderby('tbl_product.product_id','desc')->get();
     	$manager_product  = view('admin.product.all_product')->with('all_product',$all_product);
     	return view('admin_layout')->with('admin.product.all_product', $manager_product);
     }
     public function save_product(Request $request){
         $this->AuthLogin();
-        $data = array();
-        $product_price = filter_var($request->product_price, FILTER_SANITIZE_NUMBER_INT);
-        $price_cost = filter_var($request->price_cost, FILTER_SANITIZE_NUMBER_INT);
-    	$data['product_name'] = $request->product_name;
-    	$data['price_cost'] = $price_cost;
-    	$data['product_tags'] = $request->product_tags;
-    	$data['product_quantity'] = $request->product_quantity;
-    	$data['product_sold'] = '0';
-    	$data['product_price'] = $product_price;
-    	$data['product_desc'] = $request->product_desc;
-        $data['product_content'] = $request->product_content;
-        $data['category_id'] = $request->product_cate;
-        $data['brand_id'] = $request->product_brand;
-        $data['product_status'] = $request->product_status;
-        $data['product_image'] = $request->product_status;
-        $get_image = $request->file('product_image');
+        $data = $request->all();
+        $product = new Product();
+        $product_price = filter_var($data['product_price'], FILTER_SANITIZE_NUMBER_INT);
+        $price_cost = filter_var($data['price_cost'], FILTER_SANITIZE_NUMBER_INT);
+        $product->product_name = $data['product_name'];
+        $product->price_cost = $price_cost;
+        $product->product_tags = $data['product_tags'];
+        $product->product_quantity = $data['product_quantity'];
+        $product->product_sold = '0';
+        $product->product_price = $product_price;
+        $product->product_desc = $data['product_desc'];
+        $product->product_content = $data['product_content'];
+        $product->category_id = $data['product_cate'];
+        $product->brand_id = $data['product_brand'];
+        $product->product_status = $data['product_status'];
+        $product->product_image = $data['product_image'];
+        $get_image = request('product_image');
 
         $path = 'public/uploads/product/';
         $path_gallery = 'public/uploads/gallery/';
@@ -71,14 +69,14 @@ class ProductController extends Controller
             $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move($path, $new_image);
             File::copy($path.$new_image, $path_gallery.$new_image);
-            $data['product_image'] = $new_image;
+            $product->product_image = $new_image;
             
         }
-        $pro_id = DB::table('tbl_product')->insertGetId($data);
+        $product->save();
         $gallery = new Gallery();
         $gallery->gallery_name = $new_image;
         $gallery->gallery_image = $new_image;
-        $gallery->product_id = $pro_id;
+        $gallery->product_id = $product->product_id;
         $gallery->save();
         Toastr::success('Thêm sản phẩm thành công', 'Thành công');
         return Redirect::to('add-product');
@@ -108,23 +106,19 @@ class ProductController extends Controller
     public function update_product(Request $request,$product_id){
         $this->AuthLogin();
         $data = $request->all();
-
-
-
-
-        $data = array();
-        $product_price = filter_var($request->product_price, FILTER_SANITIZE_NUMBER_INT);
-        $price_cost = filter_var($request->price_cost, FILTER_SANITIZE_NUMBER_INT);
-        $data['product_name'] = $request->product_name;
-    	$data['price_cost'] = $price_cost;
-    	$data['product_tags'] = $request->product_tags;
-    	$data['product_quantity'] = $request->product_quantity;
-        $data['product_price'] = $product_price;
-        $data['product_desc'] = $request->product_desc;
-        $data['product_content'] = $request->product_content;
-        $data['category_id'] = $request->product_cate;
-        $data['brand_id'] = $request->product_brand;
-        $data['product_status'] = $request->product_status;
+        $product = Product::find($product_id);
+        $product_price = filter_var($data['product_price'], FILTER_SANITIZE_NUMBER_INT);
+        $price_cost = filter_var($data['price_cost'], FILTER_SANITIZE_NUMBER_INT);
+        $product->product_name = $data['product_name'];
+        $product->price_cost = $price_cost;
+        $product->product_tags = $data['product_tags'];
+        $product->product_quantity = $data['product_quantity'];
+        $product->product_price = $product_price;
+        $product->product_desc = $data['product_desc'];
+        $product->product_content = $data['product_content'];
+        $product->category_id = $data['product_cate'];
+        $product->brand_id = $data['product_brand'];
+        $product->product_status = $data['product_status'];
         $get_image = $request->file('product_image');
         
         if($get_image){
@@ -132,13 +126,13 @@ class ProductController extends Controller
                     $name_image = current(explode('.',$get_name_image));
                     $new_image =  $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
                     $get_image->move('public/uploads/product',$new_image);
-                    $data['product_image'] = $new_image;
-                    DB::table('tbl_product')->where('product_id',$product_id)->update($data);
+                    $product->product_image = $new_image;
+                    $product->save();
                     Toastr::success('Cập nhật sản phẩm thành công', 'Thành công');
                     return Redirect::to('all-product');
         }
             
-        DB::table('tbl_product')->where('product_id',$product_id)->update($data);
+        $product->save();
         Toastr::success('Cập nhật sản phẩm thành công', 'Thành công');
         return Redirect::to('all-product');
     }
@@ -155,10 +149,7 @@ class ProductController extends Controller
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
         $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
         $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get(); 
-        $details_product = DB::table('tbl_product')
-        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->where('tbl_product.product_id',$product_id)->get();
+        $details_product = Product::with(['category','brand'])->where('product_id',$product_id)->get();
 
 
         foreach($details_product as $key => $value){
@@ -177,10 +168,7 @@ class ProductController extends Controller
         $product = Product::where('product_id', $product_id)->first();
         $product->product_views = $product->product_views + 1;
         $product->save();
-        $related_product = DB::table('tbl_product')
-        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
+        $related_product = Product::with(['category','brand'])->where('category_id',$category_id)->whereNotIn('product_id',[$product_id])->get();
         $review = Review::with(['customer', 'product'])->where('product_id', $product_id)->where('review_status', '0')->get()->toArray();
         $review_avg = Review::where('product_id', $product_id)->avg('rating');
         $review_count = Review::where('product_id', $product_id)->count('comment');

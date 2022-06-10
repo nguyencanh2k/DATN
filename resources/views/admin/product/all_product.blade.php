@@ -55,8 +55,8 @@
                                     <td class="price_format">{{$pro->price_cost}}</td>
                                     <td class="price_format">{{$pro->product_price}}</td>
                                     <td><img src="public/uploads/product/{{$pro->product_image}}" height="100" width="100" alt=""></td>
-                                    <td>{{$pro->category_name}}</td>
-                                    <td>{{$pro->brand_name}}</td>
+                                    <td>{{$pro->category->category_name}}</td>
+                                    <td>{{$pro->brand->brand_name}}</td>
                                     <td>
                                         <?php
                                             if($pro->product_status==0){

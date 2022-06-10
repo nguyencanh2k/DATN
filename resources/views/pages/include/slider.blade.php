@@ -12,14 +12,11 @@
         <div class="slider-height-6 d-flex align-items-start justify-content-start bg-img item {{$i==1 ? 'active' : '' }}" style="background-image: url({{asset('public/uploads/slider/'.$slide->slider_image)}}">
             <div class="container">
                 <div class="slider-content-1 slider-animated-1 text-left">
-                    <span class="animated">Máy cơ THỤY SĨ siêu mỏng</span>
+                    <span class="animated">{!!$slide->slider_title!!}</span>
                     <h1 class="animated">
-                        Frederique <br />
-                        Constant 2022
+                        {!!$slide->slider_content!!}
                     </h1>
-                    <h1>{!!$slide->slider_desc!!}</h1>
-                    <p class="animated">Hàng tuyển chọn rất kỹ</p>
-                    {{-- <a href="#" class="shop-btn animated">Mua ngay</a> --}}
+                    <p class="animated">{!!$slide->slider_subtitle!!}</p>
                 </div>
             </div>
         </div>
