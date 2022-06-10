@@ -48,7 +48,6 @@
                                                 <th>Giá</th>
                                                 <th>Số lượng</th>
                                                 <th>Tổng tiền</th>
-                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,44 +63,26 @@
                                                 <td class="product-thumbnail">
                                                     <a href="#"><img width="120px" height="120px" src="{{asset('public/uploads/product/'.$cart['product_image'])}}" alt="" /></a>
                                                 </td>
-                                                <td class="product-name"><a href="#">{{$cart['product_name']}}</a></td>
+                                                <td class="product-name"><a href="{{URL::to('/chi-tiet-san-pham/'.$cart['product_id'])}}">{{$cart['product_name']}}</a></td>
                                                 <td class="product-price-cart"><span class="amount">{{number_format($cart['product_price'],0,',','.')}}đ</span></td>
                                                 <td class="product-quantity">
                                                     <div class="cart-plus-minus">
-                                                        <input class="cart-plus-minus-box" type="text" name="cart_qty[{{$cart['session_id']}}]" value="{{$cart['product_qty']}}">
+                                                        <input class="cart-plus-minus-box" type="text" readonly disabled name="cart_qty[{{$cart['session_id']}}]" value="{{$cart['product_qty']}}">
                                                     </div>
                                                 </td>
-                                                <td class="product-subtotal"> {{number_format($subtotal,0,',','.')}}đ
-                                                </td>
-                                                <td class="product-remove">
-                                                    <a class="cart_quantity_delete" href="{{url('/del-product/'.$cart['session_id'])}}"><i class="fa fa-times"></i></a>
-                                                </td>
+                                                <td class="product-subtotal"> {{number_format($subtotal,0,',','.')}}đ</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="cart-shiping-update-wrapper">
-                                            <div class="cart-shiping-update">
-                                                <a href="{{URL::to('/')}}">Tiếp tục mua sắm</a>
-                                            </div>
-                                            <div class="cart-clear">
-                                                <button type="submit" name="update_qty">Cập nhật giỏ hàng</button>
-                                                <a href="{{url('/del-all-product')}}">Xóa tất cả sản phẩm trong giỏ</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 @endif
                             </form>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="cart-tax">
+                    <div class="row mt-4">
+                        <div class="col-lg-4 col-md-6 d-flex">
+                            <div class="cart-tax flex-fill">
                                 <div class="title-wrap">
                                     <h4 class="cart-bottom-title section-bg-gray">Chọn hình thức thanh toán</h4>
                                 </div>
@@ -118,8 +99,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="discount-code-wrapper">
+                        <div class="col-lg-4 col-md-6 d-flex">
+                            <div class="discount-code-wrapper flex-fill">
                                 <div class="title-wrap">
                                     <h4 class="cart-bottom-title section-bg-gray">Mã giảm giá</h4>
                                 </div>
@@ -133,9 +114,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-4 col-md-12 d-flex">
                             @if(Session::get('cart'))
-                            <div class="grand-totall">
+                            <div class="grand-totall flex-fill">
                                 <div class="title-wrap">
                                     <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                                 </div>
@@ -252,7 +233,7 @@
                             <h4>Thông tin thêm</h4>
                             <div class="additional-info">
                                 <label>Ghi chú đơn hàng</label>
-                                <textarea placeholder="Notes about your order, e.g. special notes for delivery. " name="shipping_notes" class="shipping_notes"></textarea>
+                                <textarea placeholder="" name="shipping_notes" class="shipping_notes"></textarea>
                             </div>
                         </div>
                         <div class="Place-order mt-25">

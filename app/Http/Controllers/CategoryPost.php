@@ -70,14 +70,12 @@ class CategoryPost extends Controller
         $category_post->cate_post_desc = $data['cate_post_desc'];
         $category_post->cate_post_status = $data['cate_post_status'];
         $category_post->save();
-        //Session::put('message', 'Cập nhật danh mục bài viết thành công');
         Toastr::success('Cập nhật danh mục bài viết thành công', 'Thành công');
         return redirect('/all-category-post');
     }
     public function delete_category_post($cate_id){
         $category_post = CatePost::find($cate_id);
         $category_post->delete();
-        //Session::put('message','Xóa danh mục bài viết thành công');
         Toastr::success('Xóa danh mục bài viết thành công', 'Thành công');
         return redirect()->back();
     }

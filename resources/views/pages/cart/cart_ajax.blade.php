@@ -60,7 +60,7 @@
                                     <td class="product-thumbnail">
                                         <a href="#"><img style="width: 120px; height: 120px;" src="{{asset('public/uploads/product/'.$cart['product_image'])}}" alt="" /></a>
                                     </td>
-                                    <td class="product-name"><a href="#">{{$cart['product_name']}}</a></td>
+                                    <td class="product-name"><a href="{{URL::to('/chi-tiet-san-pham/'.$cart['product_id'])}}">{{$cart['product_name']}}</a></td>
                                     <td class="product-price-cart"><span class="amount">{{number_format($cart['product_price'],0,',','.')}}đ</span></td>
                                     <td class="product-quantity">
                                         <div class="cart-plus-minus">
@@ -96,8 +96,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="discount-code-wrapper">
+            <div class="col-lg-6 col-md-6 d-flex">
+                <div class="discount-code-wrapper flex-fill">
                     <div class="title-wrap">
                         <h4 class="cart-bottom-title section-bg-gray">Mã giảm giá</h4>
                     </div>
@@ -111,9 +111,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-6 col-md-12 d-flex">
                 @if(Session::get('cart'))
-                <div class="grand-totall">
+                <div class="grand-totall flex-fill">
                     <div class="title-wrap">
                         <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                     </div>

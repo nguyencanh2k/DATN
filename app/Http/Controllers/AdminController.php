@@ -95,7 +95,7 @@ class AdminController extends Controller
         $cuoi_thangtruoc = Carbon::now('Asia/Ho_Chi_Minh')->subMonth()->endOfMonth()->toDateString();
         
         $sub7days = Carbon::now('Asia/Ho_Chi_Minh')->subdays(7)->toDateString();
-        $sub365days = Carbon::now('Asia/Ho_Chi_Minh')->subdays(1000)->toDateString();
+        $sub365days = Carbon::now('Asia/Ho_Chi_Minh')->subdays(365)->toDateString();
         
         $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
         if($data['dashboard_value']=='7ngay'){

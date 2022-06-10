@@ -70,7 +70,6 @@ class CustomerController extends Controller
     public function delete_customer_ad($customer_id){
         $delete_cus = Customer::find($customer_id);
         $delete_cus->delete();
-        //Session::put('message','Xóa khách hàng thành công');
         Toastr::success('Xóa khách hàng thành công', 'Thành công');
         return redirect()->back();
     }

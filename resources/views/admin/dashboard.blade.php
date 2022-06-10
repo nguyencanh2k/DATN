@@ -61,12 +61,12 @@
                         <div class="row form-material">
                             <div class="col-md-3">
                                 <label class="m-t-20">Từ ngày: </label>
-                                <input type="text" class="form-control" placeholder="2020-10-15" id="mdate">
+                                <input type="text" class="form-control" placeholder="2022-04-01" id="mdate">
                                 <input type="button" value="Lọc kết quả" id="btn-dashboard-filter" class="btn btn-primary mt-2">
                             </div>
                             <div class="col-md-3">
                                 <label class="m-t-20">Đến ngày: </label>
-                                <input type="text" class="form-control" placeholder="2020-11-08" id="mdate2">
+                                <input type="text" class="form-control" placeholder="2022-06-30" id="mdate2">
                             </div>
                             <div class="col-md-3">
                             </div>

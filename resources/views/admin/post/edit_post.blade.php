@@ -88,6 +88,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <div class="col-sm-2"></div>
                                 <div class="col-sm-10">
                                     <button type="submit" name="update_post" class="btn btn-dark">Cập nhật bài viết</button>
                                 </div>

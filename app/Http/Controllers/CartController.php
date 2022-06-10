@@ -226,8 +226,10 @@ class CartController extends Controller
         $cart = count(Session::get('cart'));
         $output = '';
         if($cart>0){
+            $total=0;
             $output.='<ul>';
             foreach(Session::get('cart') as $key => $value){
+                $total+= $value['product_price']*$value['product_qty'];
                 $output.=' <li class="single-shopping-cart">
                                 <div class="shopping-cart-img">
                                     <a href=""><img alt="" src="'.asset('public/uploads/product/'.$value['product_image']).'" /></a>
@@ -235,7 +237,7 @@ class CartController extends Controller
                                 </div>
                                 <div class="shopping-cart-title">
                                     <h4><a href="">'.$value['product_name'].'</a></h4>
-                                    <span>'.number_format($value['product_price'],0,',','.').'vnđ</span>
+                                    <span>'.number_format($value['product_price']*$value['product_qty'],0,',','.').' đ</span>
                                     <div class="shopping-cart-delete">
                                         <a href="'.url('/del-product/'.$value['session_id']).'" class="cart_quantity_delete"><i class="ion-android-cancel"></i></a>
                                     </div>
@@ -244,7 +246,9 @@ class CartController extends Controller
             }
             
             $output.='</ul>
-                    
+                    <div class="shopping-cart-total">
+                        <h4 class="shop-total">Tổng : <span>'.number_format($total,0,',','.').'đ</span></h4>
+                    </div>
                     <div class="shopping-cart-btn text-center">
                         <a class="default-btn" href="'.url('/gio-hang').'">Xem giỏ hàng</a>
                     </div>';
