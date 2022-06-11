@@ -123,22 +123,22 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-res-xs-30">
                             <div class="banner-wrapper">
-                                <a href="{{URL::to('/danh-muc-san-pham/10')}}"><img src="{{asset('public/frontend/images/dong-ho-nam-trang-chu-1.jpg')}}" alt="" /></a>
+                                <a href="{{URL::to('/danh-muc-san-pham/1')}}"><img src="{{asset('public/frontend/images/dong-ho-nam-trang-chu-1.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="banner-wrapper">
-                                <a href="{{URL::to('/danh-muc-san-pham/11')}}"><img src="{{asset('public/frontend/images/dong-ho-nu-trang-chu-1.jpg')}}" alt="" /></a>
+                                <a href="{{URL::to('/danh-muc-san-pham/2')}}"><img src="{{asset('public/frontend/images/dong-ho-nu-trang-chu-1.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
                             <div class="banner-wrapper">
-                                <a href="{{URL::to('/danh-muc-san-pham/12')}}"><img src="{{asset('public/frontend/images/dong-ho-co-trang-chu.jpg')}}" alt="" /></a>
+                                <a href="{{URL::to('/danh-muc-san-pham/3')}}"><img src="{{asset('public/frontend/images/dong-ho-co-trang-chu.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
                             <div class="banner-wrapper">
-                                <a href="{{URL::to('/danh-muc-san-pham/13')}}"><img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" /></a>
+                                <a href="{{URL::to('/danh-muc-san-pham/4')}}"><img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>

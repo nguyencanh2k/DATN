@@ -35,21 +35,22 @@ class CouponController extends Controller
     }
     public function insert_coupon_code(Request $request){
     	$data = $request->all();
-
-    	$coupon = new Coupon;
-
-    	$coupon->coupon_name = $data['coupon_name'];
-    	$coupon->coupon_number = $data['coupon_number'];
-    	$coupon->coupon_date_start = $data['coupon_date_start'];
-    	$coupon->coupon_date_end = $data['coupon_date_end'];
-    	$coupon->coupon_code = $data['coupon_code'];
-    	$coupon->coupon_time = $data['coupon_time'];
-    	$coupon->coupon_condition = $data['coupon_condition'];
-    	$coupon->save();
-
-		Toastr::success('Thêm mã giảm giá thành công', 'Thành công');
-        return Redirect::to('insert-coupon');
-
-
+		$coupon_exists = Coupon::where('coupon_code',$data['coupon_code'])->first();
+		if($coupon_exists){
+			Toastr::warning('Mã giảm giá đã tồn tại', 'Thất bại');
+        	return Redirect::to('insert-coupon');
+		}else{
+			$coupon = new Coupon;
+			$coupon->coupon_name = $data['coupon_name'];
+			$coupon->coupon_number = $data['coupon_number'];
+			$coupon->coupon_date_start = $data['coupon_date_start'];
+			$coupon->coupon_date_end = $data['coupon_date_end'];
+			$coupon->coupon_code = $data['coupon_code'];
+			$coupon->coupon_time = $data['coupon_time'];
+			$coupon->coupon_condition = $data['coupon_condition'];
+			$coupon->save();
+			Toastr::success('Thêm mã giảm giá thành công', 'Thành công');
+			return Redirect::to('insert-coupon');
+		}
     }
 }

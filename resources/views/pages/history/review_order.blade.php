@@ -18,9 +18,9 @@
 </section>
 <!-- Breadcrumb Area End -->
 <div class="col-lg-12">
-    <div class="card">
+    <div class="card border-0">
         <div class="card-body">
-            <h2 class="card-title">Đánh giá sản phẩm</h2>
+            <h3 class="card-title mb-4">Đánh giá sản phẩm</h3>
             
             <div class="table-responsive"> 
                 @if(session()->has('message'))
@@ -34,13 +34,16 @@
                 @endif
                 @foreach($product_review as $key => $prd)
                 <div class="col-lg-12">
-                    <div class="ratting-form-wrapper pl-50">
+                    <div class="ratting-form-wrapper" style="padding-left: 0px">
                         <div class="single-review">
+                            <div class="review-img">
+                                <img height="120px" width="120px" src="{{URL::to('public/uploads/product/'.$prd->product->product_image)}}" alt="" />
+                            </div>
                             <div class="review-content">
                                 <div class="review-top-wrap">
                                     <div class="review-left">
                                         <div class="review-name">
-                                            <h3>{{$prd->product_name}}</h3>
+                                            <h3>{{$prd->product->product_name}}</h3>
                                         </div>
                                     </div>
                                 </div>

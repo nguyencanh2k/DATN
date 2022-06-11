@@ -35,15 +35,15 @@ class CustomerController extends Controller
     public function save_customer_ad(Request $request){
         $this->AuthLogin();
         $data = $request->all();
-        $customer = new Customer();
-        $customer->customer_name = $data['customer_name'];
-        $customer->customer_phone = $data['customer_phone'];
-        $customer->customer_email = $data['customer_email'];
-        $customer->customer_password = md5($data['customer_password']);
         $user_cus = Customer::where('customer_email', $data['customer_email'])->first();
         if ($user_cus) {
             Toastr::error('Email đã tồn tại', 'Thất bại');
         } else {
+            $customer = new Customer();
+            $customer->customer_name = $data['customer_name'];
+            $customer->customer_phone = $data['customer_phone'];
+            $customer->customer_email = $data['customer_email'];
+            $customer->customer_password = md5($data['customer_password']);
             $customer->save();
             Toastr::success('Thêm khách hàng thành công', 'Thành công');
         }
@@ -108,7 +108,6 @@ class CustomerController extends Controller
         $customer->customer_name = $data['customer_name'];
         $customer->customer_phone = $data['customer_phone'];
         $customer->customer_email = $data['customer_email'];
-        // $customer->customer_password = md5($data['customer_password']);
         $customer->save();
         Session::put('message','Cập nhật thông tin thành công');
         return redirect()->back();

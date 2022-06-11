@@ -13,6 +13,9 @@ use App\CatePost;
 use App\Gallery;
 use App\Product;
 use App\Review;
+use App\Comment;
+use App\Customer;
+use Carbon\Carbon;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -171,12 +174,14 @@ class ProductController extends Controller
         $related_product = Product::with(['category','brand'])->where('category_id',$category_id)->whereNotIn('product_id',[$product_id])->get();
         $review = Review::with(['customer', 'product'])->where('product_id', $product_id)->where('review_status', '0')->get()->toArray();
         $review_avg = Review::where('product_id', $product_id)->avg('rating');
-        $review_count = Review::where('product_id', $product_id)->count('comment');
+        $review_count = Review::where('product_id', $product_id)->count('comment'); 
+        $comment = Comment::where('product_id', $product_id)->where('comment_parent', '=', 0)->get();
+        $comment_reply = Comment::with('product')->where('comment_parent', '>', 0)->get(); 
         return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with(
             'product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with(
             'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
             'category_post',$category_post)->with('gallery',$gallery)->with('review',$review)->with('review_avg',$review_avg)->with(
-            'review_count',$review_count);
+            'review_count',$review_count)->with('comment',$comment)->with('comment_reply',$comment_reply);
     }
     public function tat_ca_san_pham(Request $request){
         //category post
@@ -281,5 +286,52 @@ class ProductController extends Controller
         <input type="hidden" value="1" class="cart_product_qty_'.$product->product_id.'">';
         echo json_encode($output);
     }
-    
+    public function add_comment(Request $request){
+        $data = $request->all();
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $comment = new Comment();
+        $comment->comment_name = $data['comment_name'];
+        $comment->product_id = $data['product_id'];
+        $comment->comment = $data['comment'];
+        $comment->comment_parent = 0;
+        $comment->created_at = $today;
+        $comment->save();
+        return redirect()->back()->with('message', 'Bình luận sản phẩm thành công.');
+    }
+    public function all_comment(){
+        $comment = Comment::with('product')->where('comment_parent', '=', 0)->orderBy('comment_id', 'DESC')->get();
+        $comment_reply = Comment::with('product')->where('comment_parent', '>', 0)->get();
+        return view('admin.comment.all_comment')->with(compact('comment', 'comment_reply'));
+    }
+    public function reply_comment(Request $request){
+        $data = $request->all();
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $comment = new Comment();
+        $comment->comment_name = 'ADMIN';
+        $comment->product_id = $data['product_id'];
+        $comment->comment = $data['reply_comment'];
+        $comment->comment_parent = $data['comment_id'];
+        $comment->created_at = $today;
+        $comment->save();
+        Toastr::success('Trả lời bình luận thành công', 'Thành công');
+        return redirect()->back();
+    }
+    public function delete_comment($comment_id){
+        $comment = Comment::where('comment_id', $comment_id)->delete();
+        $comment_parent = Comment::where('comment_parent', $comment_id)->delete();
+        Toastr::success('Xóa bình luận thành công', 'Thành công');
+        return redirect()->back();
+    }
+    public function reply_comment_guest(Request $request){
+        $data = $request->all();
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $comment = new Comment();
+        $comment->comment_name = $data['comment_name'];
+        $comment->product_id = $data['product_id'];
+        $comment->comment = $data['reply_comment'];
+        $comment->comment_parent = $data['comment_id'];
+        $comment->created_at = $today;
+        $comment->save();
+        return redirect()->back();
+    }
 }

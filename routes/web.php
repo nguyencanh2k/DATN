@@ -107,6 +107,11 @@ Route::get('/active-product/{product_id}','ProductController@active_product');
 Route::post('/save-product','ProductController@save_product');
 Route::post('/update-product/{product_id}','ProductController@update_product');
 Route::post('/quickview','ProductController@quickview');
+Route::post('/add-comment','ProductController@add_comment');
+Route::get('/all-comment','ProductController@all_comment');
+Route::post('/reply-comment','ProductController@reply_comment');
+Route::get('/delete-comment/{comment_id}','ProductController@delete_comment');
+Route::post('/reply-comment-guest','ProductController@reply_comment_guest');
 
 //User
 Route::get('users','UserController@index')->middleware('auth.roles');

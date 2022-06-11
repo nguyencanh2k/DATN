@@ -39,7 +39,7 @@ class AdminController extends Controller
         $product_views = Product::orderBy('product_views', 'DESC')->take(5)->get();
         $product_best_seller = Product::orderBy('product_sold', 'DESC')->take(5)->get();
         $app_post = Post::all()->count();
-        $post_views = Post::orderBy('post_views', 'DESC')->take(10)->get();
+        $post_views = Post::orderBy('post_views', 'DESC')->take(5)->get();
         $app_order = Order::all()->count();
         $app_customer = Customer::all()->count();
         return view('admin.dashboard')->with(compact('app_product', 'app_post', 'app_order', 'app_customer', 'now', 'product_views', 'post_views', 'product_best_seller'));

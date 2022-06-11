@@ -49,11 +49,9 @@ class PostController extends Controller
             $get_image->move('public/uploads/post',$new_image);
             $post->post_image = $new_image;
             $post->save();
-            //Session::put('message','Thêm bài viết thành công');
             Toastr::success('Thêm bài viết thành công', 'Thành công');
             return redirect()->back();
         }else{
-            //Session::put('message','Làm ơn thêm ảnh vào bài viết');
             Toastr::warning('Làm ơn thêm ảnh vào bài viết', 'Thông báo');
             return redirect()->back();
 
@@ -86,7 +84,6 @@ class PostController extends Controller
             unlink($path);
         }
         $post->delete();
-        //Session::put('message','Xóa bài viết thành công');
         Toastr::success('Xóa bài viết thành công', 'Thành công');
         return redirect()->back();
     }
@@ -122,7 +119,6 @@ class PostController extends Controller
             
         }
         $post->save();
-        //Session::put('message','Cập nhật bài viết thành công');
         Toastr::success('Cập nhật bài viết thành công', 'Thành công');
         return redirect()->back();
     }

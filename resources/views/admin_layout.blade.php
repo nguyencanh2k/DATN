@@ -167,6 +167,14 @@
                             <li><a href="{{URL::to('/all-review')}}">Liệt kê đánh giá</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-commenting-o"></i><span class="nav-text">Quản lý bình luận</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{URL::to('/all-comment')}}">Liệt kê bình luận</a></li>
+                        </ul>
+                    </li>
                     @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">

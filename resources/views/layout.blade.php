@@ -884,7 +884,6 @@
                 fullStar: true
             }).on("rateyo.set", function (e, data) {
                 $('.rating').val(data.rating);
-                alert("Đánh giá " + data.rating + "/5 sao");
                 });;
             });
     </script>
