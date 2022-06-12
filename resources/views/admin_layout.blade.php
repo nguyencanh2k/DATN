@@ -152,16 +152,26 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-newspaper-o"></i><span class="nav-text">Quản lý bài viết</span>
+                            <i class="fa fa-newspaper-o"></i><span class="nav-text">Bài viết</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/add-post')}}">Thêm bài viết</a></li>
                             <li><a href="{{URL::to('/all-post')}}">Liệt kê bài viết</a></li>
                         </ul>
                     </li>
+                    @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-commenting-o"></i><span class="nav-text">Quản lý đánh giá</span>
+                            <i class="fa fa-money"></i><span class="nav-text">Đơn hàng</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a></li>
+                        </ul>
+                    </li>
+                    @endhasrole
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-star-o"></i><span class="nav-text">Đánh giá</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/all-review')}}">Liệt kê đánh giá</a></li>
@@ -169,22 +179,12 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-commenting-o"></i><span class="nav-text">Quản lý bình luận</span>
+                            <i class="fa fa-commenting-o"></i><span class="nav-text">Bình luận</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{URL::to('/all-comment')}}">Liệt kê bình luận</a></li>
                         </ul>
                     </li>
-                    @hasrole(['admin'])
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="fa fa-bars"></i><span class="nav-text">Đơn hàng</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a></li>
-                        </ul>
-                    </li>
-                    @endhasrole
                     @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">

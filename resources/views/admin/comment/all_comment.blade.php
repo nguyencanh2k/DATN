@@ -31,7 +31,7 @@
                                     <th scope="col">Bình luận</th>
                                     <th scope="col">Ngày gửi</th>
                                     <th scope="col">Sản phẩm</th>
-                                    <th scope="col">Quản lý</th>
+                                    <th scope="col">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,16 +49,20 @@
                                         <ul>Trả lời: 
                                             @foreach ($comment_reply as $key => $cmt_reply)
                                             @if($cmt_reply->comment_parent==$cmt->comment_id)
-                                                <li style="margin-left: 40px; color:blue;list-style-type:decimal">{{$cmt_reply->comment}}</li>
+                                                <li style="margin-left: 40px; color:blue;list-style-type:decimal">{{$cmt_reply->comment_name}}: {{$cmt_reply->comment}}
+                                                    <a href="{{URL::to('/delete-comment/'.$cmt_reply->comment_id)}}" onclick="return confirm('Bạn có chắc là muốn xóa bình luận này ko?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close text-danger ml-4"></i></a>
+                                                </li>
                                             @endif
                                             @endforeach
                                         </ul>
                                         <form action="{{URL::to('/reply-comment')}}" method="post">
                                             @csrf
-                                            <textarea name="reply_comment" class="form-control" cols="60" rows="3"></textarea><br>
-                                            <input type="hidden" name="comment_id" value="{{$cmt->comment_id}}">
-                                            <input type="hidden" name="product_id" value="{{$cmt->product_id}}">
-                                            <input type="submit" class="btn btn-default btn-sm btn-reply-comment" value="Trả lời">
+                                            <div class="form-group row m-4">
+                                                <input type="hidden" name="comment_id" value="{{$cmt->comment_id}}">
+                                                <input type="hidden" name="product_id" value="{{$cmt->product_id}}">
+                                                <textarea name="reply_comment" class="form-control" cols="150" rows="5"></textarea><br>
+                                                <input type="submit" class="btn btn-default btn-sm btn-reply-comment mt-1" value="Trả lời">
+                                            </div>
                                         </form>
                                     </td>
                                     <td>{{$cmt->created_at}}</td>

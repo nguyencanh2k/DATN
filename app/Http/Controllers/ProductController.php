@@ -288,15 +288,19 @@ class ProductController extends Controller
     }
     public function add_comment(Request $request){
         $data = $request->all();
-        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $comment = new Comment();
-        $comment->comment_name = $data['comment_name'];
-        $comment->product_id = $data['product_id'];
-        $comment->comment = $data['comment'];
-        $comment->comment_parent = 0;
-        $comment->created_at = $today;
-        $comment->save();
-        return redirect()->back()->with('message', 'Bình luận sản phẩm thành công.');
+        if($data['comment_name'] == 'ADMIN'){
+            return redirect()->back()->with('message', 'Bạn không được đặt tên này');
+        }else{
+            $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+            $comment = new Comment();
+            $comment->comment_name = $data['comment_name'];
+            $comment->product_id = $data['product_id'];
+            $comment->comment = $data['comment'];
+            $comment->comment_parent = 0;
+            $comment->created_at = $today;
+            $comment->save();
+            return redirect()->back()->with('message', 'Bình luận sản phẩm thành công.');
+        }
     }
     public function all_comment(){
         $comment = Comment::with('product')->where('comment_parent', '=', 0)->orderBy('comment_id', 'DESC')->get();
@@ -324,14 +328,18 @@ class ProductController extends Controller
     }
     public function reply_comment_guest(Request $request){
         $data = $request->all();
-        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
-        $comment = new Comment();
-        $comment->comment_name = $data['comment_name'];
-        $comment->product_id = $data['product_id'];
-        $comment->comment = $data['reply_comment'];
-        $comment->comment_parent = $data['comment_id'];
-        $comment->created_at = $today;
-        $comment->save();
-        return redirect()->back();
+        if($data['comment_name'] == 'ADMIN'){
+            return redirect()->back()->with('message', 'Bạn không được đặt tên này');
+        }else{
+            $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+            $comment = new Comment();
+            $comment->comment_name = $data['comment_name'];
+            $comment->product_id = $data['product_id'];
+            $comment->comment = $data['reply_comment'];
+            $comment->comment_parent = $data['comment_id'];
+            $comment->created_at = $today;
+            $comment->save();
+            return redirect()->back();
+        }
     }
 }

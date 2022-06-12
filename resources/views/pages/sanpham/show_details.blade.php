@@ -122,7 +122,7 @@
                 <div id="des-details2" class="tab-pane active">
                     <div class="product-anotherinfo-wrapper">
                         <ul>
-                            <li><span>Nội dung sản phẩm: </span>{!!$value->product_content!!}</li>
+                            <li>{!!$value->product_content!!}</li>
                         </ul>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                                 <div class="review-wrapper">
                                     <div class="single-review">
                                         <div class="review-img">
-                                            <img src="assets/images/testimonial-image/1.png" alt="" />
+                                            <img src="{{asset('public/frontend/images/onlinemoney.png')}}" height="100px" width="100px" alt="" />
                                         </div>
                                         <div class="review-content">
                                             <div class="review-top-wrap">
@@ -227,6 +227,15 @@
             </div>
         </div>
     </div>
+    @if(session()->has('message'))
+            <div class="alert alert-success">
+                {!! session()->get('message') !!}
+            </div>
+        @elseif(session()->has('error'))
+            <div class="alert alert-danger">
+                {!! session()->get('error') !!}
+            </div>
+        @endif
     <div class="row">
         <div class="col-lg-7">
             <div class="review-wrapper">
@@ -269,7 +278,7 @@
                                     <div class="review-top-wrap">
                                         <div class="review-left">
                                             <div class="review-name">
-                                                <h4>{{$cmt_reply->comment_name}}</h4>
+                                                <h4>@ {{$cmt_reply->comment_name}}</h4>
                                             </div>
                                         </div>
                                         <div class="review-left">
@@ -299,7 +308,7 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="rating-form-style form-submit">
-                                                    <textarea name="reply_comment" placeholder="Bình luận" required></textarea>
+                                                    <textarea name="reply_comment" placeholder="Bình luận" style="height: 100px;" required></textarea>
                                                     <input type="submit" value="Gửi" />
                                                 </div>
                                             </div>
@@ -315,15 +324,6 @@
         <div class="col-lg-5">
             <div class="ratting-form-wrapper pl-50">
                 <h3 class="mb-4">Thêm bình luận</h3>
-                @if(session()->has('message'))
-                        <div class="alert alert-success">
-                            {!! session()->get('message') !!}
-                        </div>
-                    @elseif(session()->has('error'))
-                        <div class="alert alert-danger">
-                            {!! session()->get('error') !!}
-                        </div>
-                    @endif
                 <div class="ratting-form">
                     <form action="{{URL::to('/add-comment')}}" method="post">
                         @csrf

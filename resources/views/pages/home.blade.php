@@ -117,34 +117,19 @@
                 </div>
             </section>
             <!-- Best Sells Slider End -->
-            <!-- Banner Area Start -->
-            <div class="banner-3-area">
+            <!-- Banner Area 2 Start -->
+            <div class="banner-area-2">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-res-xs-30">
-                            <div class="banner-wrapper">
-                                <a href="{{URL::to('/danh-muc-san-pham/1')}}"><img src="{{asset('public/frontend/images/dong-ho-nam-trang-chu-1.jpg')}}" alt="" /></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="banner-wrapper">
-                                <a href="{{URL::to('/danh-muc-san-pham/2')}}"><img src="{{asset('public/frontend/images/dong-ho-nu-trang-chu-1.jpg')}}" alt="" /></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
-                            <div class="banner-wrapper">
-                                <a href="{{URL::to('/danh-muc-san-pham/3')}}"><img src="{{asset('public/frontend/images/dong-ho-co-trang-chu.jpg')}}" alt="" /></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-4">
-                            <div class="banner-wrapper">
-                                <a href="{{URL::to('/danh-muc-san-pham/4')}}"><img src="{{asset('public/frontend/images/dong-ho-pin-trang-chu.jpg')}}" alt="" /></a>
+                        <div class="col-md-12">
+                            <div class="banner-inner">
+                                <a href=""><img src="{{asset('public/frontend/images/banner-area-2.png')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Banner Area End -->
+            <!-- Banner Area 2 End -->
             <!-- Category Tab Area Start -->
             <section class="category-tab-area sub-category-owl-nav mt-30">
                 <div class="container">
@@ -170,7 +155,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4">
                                     <div class="banner-wrapper">
-                                        <a><img src="{{asset('public/frontend/images/banner-image/26.jpg')}}" alt="" /></a>
+                                        <a><img src="{{asset('public/frontend/images/banner-area-3.png')}}" alt="" /></a>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 mt-res-sm-90 mt-res-sm-60 mt-res-sm-60">                                   
@@ -190,17 +175,17 @@
                     <div class="row">
                         <div class="col-md-3 col-xs-12">
                             <div class="banner-wrapper">
-                                <a href=""><img src="{{asset('public/frontend/images/dong-ho-co-thuy-sy.jpg')}}" alt="" /></a>
+                                <a href=""><img src="{{asset('public/frontend/images/banner-area-6.png')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-md-6 col-xs-12 mt-res-sx-30px">
                             <div class="banner-wrapper">
-                                <a href=""><img src="{{asset('public/frontend/images/SRWATCH-GALAXY-SG99993.4602GLA-version2-1.jpg')}}" alt="" /></a>
+                                <a href=""><img src="{{asset('public/frontend/images/banner-area-5.png')}}" alt="" /></a>
                             </div>
                         </div>
                         <div class="col-md-3 col-xs-12 mt-res-sx-30px">
                             <div class="banner-wrapper">
-                                <a href=""><img src="{{asset('public/frontend/images/Ogival-OG358.88AGR-GL.jpg')}}" alt="" /></a>
+                                <a href=""><img src="{{asset('public/frontend/images/banner-area-7.png')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -262,7 +247,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="banner-inner">
-                                <a href=""><img src="{{asset('public/frontend/images/4.jpg')}}" alt="" /></a>
+                                <a href=""><img src="{{asset('public/frontend/images/banner-area-4.png')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>
