@@ -50,7 +50,7 @@ class UserController extends Controller
             return redirect()->back();
         } else {
             $admin->save();
-            $admin->roles()->attach(Roles::where('name','user')->first());
+            $admin->roles()->attach(Roles::where('name','editer')->first());
             Toastr::success('Thêm users thành công', 'Thành công');
             return Redirect::to('users');
         }

@@ -144,14 +144,14 @@
                                             <div class="review-top-wrap">
                                                 <div class="review-left">
                                                     <div class="review-name">
-                                                        <h4>{{$rev['customer']['customer_name']}}</h4>
+                                                        <h4>{{$rev->customer->customer_name}}</h4>
                                                     </div>
-                                                    <div class="rateYo_show" data-rating="{{$rev['rating']}}"></div>
+                                                    <div class="rateYo_show" data-rating="{{$rev->rating}}"></div>
                                                 </div>
                                             </div>
                                             <div class="review-bottom">
                                                 <p>
-                                                    {{$rev['comment']}}
+                                                    {{$rev->comment}}
                                                 </p>
                                             </div>
                                         </div>
@@ -252,7 +252,7 @@
                                     </div>
                                 </div>
                                 <div class="review-left">
-                                    <a href="#">{{$cmt->created_at}}</a>
+                                    <a href="#">{{$cmt->comment_date}}</a>
                                 </div>
                             </div>
                             <div class="review-bottom">

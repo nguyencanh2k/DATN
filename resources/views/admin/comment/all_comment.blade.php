@@ -65,7 +65,7 @@
                                             </div>
                                         </form>
                                     </td>
-                                    <td>{{$cmt->created_at}}</td>
+                                    <td>{{$cmt->comment_date}}</td>
                                     <td><a href="{{url('/chi-tiet-san-pham/'.$cmt->product->product_id)}}" target="_blank" rel="noopener noreferrer">{{$cmt->product->product_name}}</a></td>
                                     <td><span>
                                         <a href="{{URL::to('/delete-comment/'.$cmt->comment_id)}}" onclick="return confirm('Bạn có chắc là muốn xóa bình luận này ko?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close text-danger ml-4"></i></a>

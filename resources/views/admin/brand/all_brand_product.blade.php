@@ -43,27 +43,27 @@
                             </style>
                             <tbody id="brand_order">
                                 @foreach ($all_brand_product as $key => $brand)
-                                <tr id="{{$brand->brand_id}}">
-                                    <td>{{$brand->brand_order}}</td>
-                                    <td>{{$brand->brand_name}}</td>
-                                    <td>
-                                        <?php
-                                            if($brand->brand_status==0){
-                                        ?>
-                                            <a href="{{URL::to('/unactive-brand-product/'.$brand->brand_id)}}"><span class="btn-rounded btn-outline-success btn"><b>Hiển thị</b></span></a>
-                                        <?php
-                                            }else{
-                                        ?>  
-                                            <a href="{{URL::to('/active-brand-product/'.$brand->brand_id)}}"><span class="btn-rounded btn-outline-danger btn"><b>Ẩn</b></span></a>
-                                        <?php
-                                            }
-                                        ?>
-                                    </td>
-                                    <td><span>
-                                        <a href="{{URL::to('/edit-brand-product/'.$brand->brand_id)}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-success m-r-5"></i> </a>
-                                        <a href="{{URL::to('/delete-brand-product/'.$brand->brand_id)}}" onclick="return confirm('Bạn có chắc là muốn xóa thương hiệu này ko?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close text-danger ml-4"></i></a>
-                                    </span></td>
-                                </tr>
+                                    <tr id="{{$brand->brand_id}}">
+                                        <td>{{$brand->brand_order}}</td>
+                                        <td>{{$brand->brand_name}}</td>
+                                        <td>
+                                            <?php
+                                                if($brand->brand_status==0){
+                                            ?>
+                                                <a href="{{URL::to('/unactive-brand-product/'.$brand->brand_id)}}"><span class="btn-rounded btn-outline-success btn"><b>Hiển thị</b></span></a>
+                                            <?php
+                                                }else{
+                                            ?>  
+                                                <a href="{{URL::to('/active-brand-product/'.$brand->brand_id)}}"><span class="btn-rounded btn-outline-danger btn"><b>Ẩn</b></span></a>
+                                            <?php
+                                                }
+                                            ?>
+                                        </td>
+                                        <td><span>
+                                            <a href="{{URL::to('/edit-brand-product/'.$brand->brand_id)}}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil text-success m-r-5"></i> </a>
+                                            <a href="{{URL::to('/delete-brand-product/'.$brand->brand_id)}}" onclick="return confirm('Bạn có chắc là muốn xóa thương hiệu này ko?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close text-danger ml-4"></i></a>
+                                        </span></td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

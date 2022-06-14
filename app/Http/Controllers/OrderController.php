@@ -219,10 +219,11 @@ class OrderController extends Controller
 	public function add_review(Request $request){
 		$data = $request->all();
 		$prd_review = Review::where('order_id', $data['order_id'])->where('customer_id', $data['customer_id'])->where('product_id', $data['product_id'])->first(); 
+		$today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
 		if($data['rating']<=1){
 			return redirect()->back()->with('error', 'Đánh giá tối thiểu 1 sao');
 		}elseif($prd_review){
-			Review::where('order_id', $data['order_id'])->where('customer_id', $data['customer_id'])->where('product_id', $data['product_id'])->update(['comment'=>$data['comment'],'rating'=>$data['rating']]); 
+			Review::where('order_id', $data['order_id'])->where('customer_id', $data['customer_id'])->where('product_id', $data['product_id'])->update(['comment'=>$data['comment'],'rating'=>$data['rating'],'review_date'=>$today]); 
 			return redirect()->back()->with('message', 'Cập nhật đánh giá thành công');
 		}else{
 			$review = new Review();
@@ -231,6 +232,7 @@ class OrderController extends Controller
 			$review->product_id = $data['product_id'];
 			$review->customer_id = $data['customer_id'];
 			$review->order_id = $data['order_id'];
+			$review->review_date = $today;
 			$review->save();
 			return redirect()->back()->with('message', 'Review sản phẩm thành công.');
 		}

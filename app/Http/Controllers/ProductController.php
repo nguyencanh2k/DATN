@@ -172,7 +172,7 @@ class ProductController extends Controller
         $product->product_views = $product->product_views + 1;
         $product->save();
         $related_product = Product::with(['category','brand'])->where('category_id',$category_id)->whereNotIn('product_id',[$product_id])->get();
-        $review = Review::with(['customer', 'product'])->where('product_id', $product_id)->where('review_status', '0')->get()->toArray();
+        $review = Review::with(['customer', 'product'])->where('product_id', $product_id)->where('review_status', '0')->get();
         $review_avg = Review::where('product_id', $product_id)->avg('rating');
         $review_count = Review::where('product_id', $product_id)->count('comment'); 
         $comment = Comment::where('product_id', $product_id)->where('comment_parent', '=', 0)->get();
@@ -297,7 +297,7 @@ class ProductController extends Controller
             $comment->product_id = $data['product_id'];
             $comment->comment = $data['comment'];
             $comment->comment_parent = 0;
-            $comment->created_at = $today;
+            $comment->comment_date = $today;
             $comment->save();
             return redirect()->back()->with('message', 'Bình luận sản phẩm thành công.');
         }
@@ -315,7 +315,7 @@ class ProductController extends Controller
         $comment->product_id = $data['product_id'];
         $comment->comment = $data['reply_comment'];
         $comment->comment_parent = $data['comment_id'];
-        $comment->created_at = $today;
+        $comment->comment_date = $today;
         $comment->save();
         Toastr::success('Trả lời bình luận thành công', 'Thành công');
         return redirect()->back();
@@ -337,7 +337,7 @@ class ProductController extends Controller
             $comment->product_id = $data['product_id'];
             $comment->comment = $data['reply_comment'];
             $comment->comment_parent = $data['comment_id'];
-            $comment->created_at = $today;
+            $comment->comment_date = $today;
             $comment->save();
             return redirect()->back();
         }

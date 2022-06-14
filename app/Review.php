@@ -8,7 +8,7 @@ class Review extends Model
 {
     public $timestamps = false; //set time to false
     protected $fillable = [
-    	'rating', 'comment', 'product_id', 'customer_id', 'order_id'
+    	'rating', 'comment', 'product_id', 'customer_id', 'order_id', 'review_date'
     ];
     protected $primaryKey = 'review_id';
  	protected $table = 'tbl_reviews';

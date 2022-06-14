@@ -30,6 +30,7 @@
                                     <th scope="col">Tên khách hàng</th>
                                     <th scope="col">Bình luận</th>
                                     <th scope="col">Đánh giá</th>
+                                    <th scope="col">Ngày đánh giá</th>
                                     <th scope="col">Sản phẩm</th>
                                     <th scope="col">Hiển thị</th>
                                 </tr>
@@ -47,6 +48,7 @@
                                     <td>{{$rev->customer->customer_name}}</td>
                                     <td>{{$rev->comment}}</td>
                                     <td>{{$rev['rating']}}/5 sao</td>
+                                    <td>{{$rev->review_date}}</td>
                                     <td><a target="_blank" href="{{url('/chi-tiet-san-pham/'.$rev->product->product_id)}}">{{$rev->product->product_name}}</a></td>
                                     <td>
                                         <?php
