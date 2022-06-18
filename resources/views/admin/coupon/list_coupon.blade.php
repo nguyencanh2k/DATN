@@ -103,6 +103,9 @@
                                     <td><span>
                                         <a href="{{URL::to('/delete-coupon/'.$cou->coupon_id)}}" onclick="return confirm('Bạn có chắc là muốn xóa mã giảm giá này ko?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close text-danger ml-4"></i></a>
                                     </span></td>
+                                    <td><span>
+                                        <a class="btn btn-sm btn-success" href="{{URL::to('/send-coupon/'.$cou->coupon_id)}}" data-toggle="tooltip" data-placement="top" title="Send">Gửi</a>
+                                    </span></td>
                                 </tr>
                                 @endforeach
                             </tbody>

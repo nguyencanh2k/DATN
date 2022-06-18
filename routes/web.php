@@ -89,12 +89,6 @@ Route::post('/update-post/{post_id}','PostController@update_post');
 Route::get('/danh-muc-bai-viet/{post_slug}','PostController@danh_muc_bai_viet');
 Route::get('/bai-viet/{post_slug}','PostController@bai_viet');
 
-//Product
-// Route::group(['middleware' => 'auth.roles'], function () {
-//     Route::get('/add-product','ProductController@add_product');
-//     Route::get('/edit-product/{product_id}','ProductController@edit_product');
-// });
-
 Route::get('/add-product','ProductController@add_product');
 Route::get('/edit-product/{product_id}','ProductController@edit_product');
 
@@ -124,12 +118,7 @@ Route::get('delete-user-roles/{admin_id}','UserController@delete_user_roles');
 Route::get('profile-admin/{admin_id}','UserController@profile_admin');
 
 //Customer_Phan admin
-Route::get('/all-customer-ad','CustomerController@all_customer_ad');
-Route::get('/add-customer-ad','CustomerController@add_customer_ad');
-Route::post('/save-customer-ad','CustomerController@save_customer_ad');
-Route::get('/edit-customer-ad/{post_id}','CustomerController@edit_customer_ad');
-Route::post('/update-customer-ad/{customer_id}','CustomerController@update_customer_ad');
-Route::get('/delete-customer-ad/{customer_id}','CustomerController@delete_customer_ad');
+Route::get('/all-customer','CustomerController@all_customer');
 Route::get('/unactive-customer/{customer_id}','CustomerController@unactive_customer');
 Route::get('/active-customer/{customer_id}','CustomerController@active_customer');
 //chi tiet tai khoan
@@ -174,11 +163,11 @@ Route::get('/quen-mat-khau','MailController@quen_mat_khau');
 Route::post('/recover-pass','MailController@recover_pass');
 Route::get('/update-new-pass','MailController@update_new_pass');
 Route::post('/reset-new-pass','MailController@reset_new_pass');
+Route::get('/send-coupon/{coupon_id}','MailController@send_coupon');
 
 
 //Coupon
 Route::post('/check-coupon','CartController@check_coupon');
-
 Route::get('/unset-coupon','CouponController@unset_coupon');
 Route::get('/insert-coupon','CouponController@insert_coupon');
 Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon');

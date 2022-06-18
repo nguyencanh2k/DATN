@@ -14,6 +14,8 @@ use Carbon\Carbon;
 use App\CategoryProductModel;
 use App\Brand;
 use App\Customer;
+use App\Coupon;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -105,5 +107,30 @@ class MailController extends Controller
             return redirect('quen-mat-khau')->with('error', 'Link đã hết hạn');
         }
 
+    }
+    public function send_coupon(Request $request, $coupon_id){
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+        $title_mail = "Watch Store gửi đến bạn mã giảm giá ngày".' '.$now;
+        $customer = Customer::where('customer_status', '0')->get();
+        $coupon = Coupon::where('coupon_id', $coupon_id)->first();
+        $data = [];
+        foreach($customer as $value){
+            $data['email'][] = $value->customer_email;
+        }
+        $coupon_mail = array(
+            'coupon_id' => $coupon_id,
+            'coupon_code' => $coupon->coupon_code,
+            'coupon_date_start' => $coupon->coupon_date_start,
+            'coupon_date_end' => $coupon->coupon_date_end,
+            'coupon_condition' => $coupon->coupon_condition,
+            'coupon_number' => $coupon->coupon_number,
+        );
+        Mail::send('pages.mail.mail_coupon', [$data, 'coupon_mail'=>$coupon_mail], function($message) use ($title_mail,$data){
+
+            $message->to($data['email'])->subject($title_mail);//send this mail with subject
+            $message->from($data['email'])->subject($title_mail);//send from this mail
+        });
+        Toastr::success('Gửi mã giảm giá thành công', 'Thành công');
+        return redirect()->back();   
     }
 }

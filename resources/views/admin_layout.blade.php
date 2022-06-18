@@ -211,8 +211,7 @@
                             <i class="fa fa-user"></i><span class="nav-text">Quản lý khách hàng</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{URL::to('/add-customer-ad')}}">Thêm khách hàng</a></li>
-                            <li><a href="{{URL::to('/all-customer-ad')}}">Quản lý khách hàng</a></li>
+                            <li><a href="{{URL::to('/all-customer')}}">Quản lý khách hàng</a></li>
                         </ul>
                     </li>
                     @endhasrole

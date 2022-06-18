@@ -33,7 +33,6 @@
                                     <th scope="col">Phone</th>
                                     <th scope="col">Password</th>
                                     <th scope="col">Tình trạng tài khoản</th>
-                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,8 +43,6 @@
                                 @php
                                     $i++;
                                 @endphp
-                                <form action="{{url('/assign-roles')}}" method="POST">
-                                @csrf
                                 <tr>
                                     <td>{{$i}}</td>
                                     <td>{{ $cus->customer_name }}</td>
@@ -65,12 +62,7 @@
                                             }
                                         ?>
                                     </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-success" href="{{url('/edit-customer-ad/'.$cus->customer_id)}}">Sửa</a>
-                                        <a class="btn btn-sm btn-danger" href="{{url('/delete-customer-ad/'.$cus->customer_id)}}">Xóa</a>
-                                    </td> 
                                 </tr>
-                                </form>
                                 @endforeach
                             </tbody>
                         </table>
