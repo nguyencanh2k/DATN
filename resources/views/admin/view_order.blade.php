@@ -55,7 +55,6 @@
                         <li class="mb-1"><strong class="text-dark mr-4">Hình thức thanh toán:</strong> 
                             <span>
                                 @if($shipping->shipping_method==0) Thanh toán khi nhận hàng 
-                                @else Thanh toán bằng thẻ ngân hàng
                                 @endif
                             </span>
                         </li>
@@ -151,7 +150,7 @@
                                            @csrf
                                           <select class="form-control order_details">
                                             <option value="">----Chọn hình thức đơn hàng-----</option>
-                                            <option id="{{$or->order_id}}" selected value="1">Chưa xử lý</option>
+                                            <option disabled id="{{$or->order_id}}" selected value="1">Đơn hàng mới</option>
                                             <option id="{{$or->order_id}}" value="2">Đã xử lý-Đã giao hàng</option>
                                             <option id="{{$or->order_id}}" value="3">Đơn hàng bị hủy</option>
                                           </select>
@@ -161,7 +160,7 @@
                                           @csrf
                                           <select class="form-control order_details">
                                             <option value="">----Chọn hình thức đơn hàng-----</option>
-                                            <option disabled id="{{$or->order_id}}" value="1">Chưa xử lý</option>
+                                            <option disabled id="{{$or->order_id}}" value="1">Đơn hàng mới</option>
                                             <option id="{{$or->order_id}}" selected value="2">Đã xử lý-Đã giao hàng</option>
                                             <option disabled id="{{$or->order_id}}" value="3">Đơn hàng bị hủy</option>
                                           </select>
@@ -171,7 +170,7 @@
                                           @csrf
                                           <select class="form-control order_details">
                                             <option value="">----Chọn hình thức đơn hàng-----</option>
-                                            <option disabled id="{{$or->order_id}}" value="1">Chưa xử lý</option>
+                                            <option disabled id="{{$or->order_id}}" value="1">Đơn hàng mới</option>
                                             <option disabled id="{{$or->order_id}}" value="2">Đã xử lý-Đã giao hàng</option>
                                             <option id="{{$or->order_id}}" selected value="3">Đơn hàng bị hủy</option>
                                           </select>

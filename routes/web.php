@@ -18,6 +18,7 @@ Route::get('/trang-chu', 'HomeController@index');
 Route::get('/404', 'HomeController@error_page');
 Route::get('/tim-kiem', 'HomeController@search');
 Route::post('/autocomplete-ajax', 'HomeController@autocomplete_ajax');
+Route::get('/lien-he', 'HomeController@contact');
 
 
 //Danh muc san pham trang chu
@@ -145,7 +146,6 @@ Route::post('/confirm-order','CheckoutController@confirm_order');
 
 
 //Order
-Route::get('/delete-order/{order_id}','OrderController@order_code');
 Route::get('/manage-order','OrderController@manage_order');
 Route::get('/view-order/{order_id}','OrderController@view_order');
 Route::post('/update-order-status','OrderController@update_order_status');

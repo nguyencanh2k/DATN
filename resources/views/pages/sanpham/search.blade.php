@@ -9,7 +9,7 @@
                 <div class="breadcrumb-content">
                     <h1 class="breadcrumb-hrading">Kết quả tìm kiếm: {{$keywords}}</h1>
                     <ul class="breadcrumb-links">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{url('/')}}">Trang chủ</a></li>
                         <li>Tìm kiếm</li>
                     </ul>
                 </div>

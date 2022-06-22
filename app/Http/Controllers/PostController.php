@@ -120,7 +120,7 @@ class PostController extends Controller
         }
         $post->save();
         Toastr::success('Cập nhật bài viết thành công', 'Thành công');
-        return redirect()->back();
+        return Redirect::to('all-post');
     }
     public function danh_muc_bai_viet(Request $request, $post_slug){
         //category post

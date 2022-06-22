@@ -79,4 +79,22 @@ class HomeController extends Controller
             echo $output;
         }
     }
+    public function contact(Request $request){
+        //category post
+        $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
+        //slide
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','0')->take(3)->get();
+        //seo 
+        $meta_desc = "Watch store - Kinh doanh đồng hồ"; 
+        $meta_keywords = "đồng hồ, dong ho";
+        $meta_title = "Liên hệ";
+        $url_canonical = $request->url();
+        //--seo
+
+        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_order','asc')->get(); 
+        $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
+        return view('pages.contact.contact')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with(
+        'meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with(
+        'slider',$slider)->with('category_post',$category_post);
+    }
 }

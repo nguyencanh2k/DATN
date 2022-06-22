@@ -9,7 +9,7 @@
                 <div class="breadcrumb-content">
                     <h1 class="breadcrumb-hrading">Tags tìm kiếm: {{$product_tag}}</h1>
                     <ul class="breadcrumb-links">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{url('/')}}">Trang chủ</a></li>
                         <li>Tags tìm kiếm</li>
                     </ul>
                 </div>

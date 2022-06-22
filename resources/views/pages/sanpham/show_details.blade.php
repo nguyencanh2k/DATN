@@ -8,7 +8,7 @@
                 <div class="breadcrumb-content">
                     <h1 class="breadcrumb-hrading">{{$meta_title}}</h1>
                     <ul class="breadcrumb-links">
-                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="{{url('/')}}">Trang chủ</a></li>
                         <li>Chi tiết sản phẩm</li>
                     </ul>
                 </div>
@@ -282,7 +282,7 @@
                                             </div>
                                         </div>
                                         <div class="review-left">
-                                            <a href="#">{{$cmt_reply->created_at}}</a>
+                                            <a href="#">{{$cmt_reply->comment_date}}</a>
                                         </div>
                                     </div>
                                     <div class="review-bottom">

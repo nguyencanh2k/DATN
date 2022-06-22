@@ -56,14 +56,6 @@ class OrderController extends Controller
 
 	}
 
-	public function order_code(Request $request ,$order_id){
-		$order = Order::where('order_id',$order_id)->first();
-		$order->delete();
-        Toastr::success('Xóa đơn hàng thành công', 'Thành công');
-        return redirect()->back();
-
-	}
-
 	public function update_order_status(Request $request){
 		//update order
 		$data = $request->all();
@@ -85,15 +77,15 @@ class OrderController extends Controller
 			$quantity = 0;
 			foreach($data['order_product_id'] as $key => $product_id){			
 				$product = Product::find($product_id);
-				$product_quantity = $product->product_quantity;
+				//$product_quantity = $product->product_quantity;
 				$product_sold = $product->product_sold;
 				$product_price = $product->product_price;
 				$product_cost = $product->price_cost;
 				$now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 				foreach($data['quantity'] as $key2 => $qty){
 						if($key==$key2){
-								$pro_remain = $product_quantity - $qty;
-								$product->product_quantity = $pro_remain;
+								//$pro_remain = $product_quantity - $qty;
+								//$product->product_quantity = $pro_remain;
 								$product->product_sold = $product_sold + $qty;
 								$product->save();
 								//update doanh thu
@@ -120,6 +112,18 @@ class OrderController extends Controller
 				$statistic_new->quantity = $quantity;
 				$statistic_new->total_order = $total_order;
 				$statistic_new->save();
+			}
+		}else{
+			foreach($data['order_product_id'] as $key => $product_id){			
+				$product = Product::find($product_id);
+				$product_quantity = $product->product_quantity;
+				foreach($data['quantity'] as $key2 => $qty){
+						if($key==$key2){
+								$pro_remain = $product_quantity + $qty;
+								$product->product_quantity = $pro_remain;
+								$product->save();
+						}
+				}
 			}
 		}
 	}
@@ -194,6 +198,17 @@ class OrderController extends Controller
 		$order->order_destroy = $data['lydo'];
 		$order->order_status = 3;
 		$order->save();
+		
+		$order_details = OrderDetails::with('product')->where('order_id',$data['order_id'])->get();
+		foreach($order_details as $key => $ord){	
+			$prd_id = $ord->product_id;	
+			$qty = $ord->product_sales_quantity;	
+			$product = Product::find($prd_id);
+			$product_quantity = $product->product_quantity;
+			$pro_remain = $product_quantity + $qty;
+			$product->product_quantity = $pro_remain;
+			$product->save();
+		}
 	}
 	public function review_order(Request $request,$order_id){
 		if(!Session::get('customer_id')){

@@ -84,18 +84,7 @@
                         <div class="col-lg-4 col-md-6 d-flex">
                             <div class="cart-tax flex-fill">
                                 <div class="title-wrap">
-                                    <h4 class="cart-bottom-title section-bg-gray">Chọn hình thức thanh toán</h4>
-                                </div>
-                                <div class="tax-wrapper" style="padding-bottom:50px">
-                                    <p>Chọn 1 trong các hình thức thanh toán dưới đây</p>
-                                    <div class="tax-select-wrapper">
-                                        <div class="tax-select">
-                                            <select name="payment_select" class="email s-email s-wid payment_select">
-                                                <option value="0">Thanh toán khi nhận hàng</option>
-                                                <option value="1">Thanh toán bằng thẻ ngân hàng</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <h4 class="cart-bottom-title section-bg-gray">Khách hàng vui lòng chuẩn bị đủ tiền khi nhận hàng</h4>
                                 </div>
                             </div>
                         </div>
@@ -176,9 +165,9 @@
                                 
                                 <form action="{{url('/momo-payment')}}" method="post">
                                     @csrf
-                                    <div class="Place-order mt-25 text-center">
+                                    <div class="Place-order mt-25 text-center" id="btn_momo">
                                         <input type="hidden" value="{{$total_after}}" name="total_momo" class="btn btn-hover cart-btn-2">
-                                        <input type="submit" value="Thanh toán qua ATM Momo" name="payUrl" class="btn btn-hover cart-btn-2 w-100">
+                                        <input type="submit" value="Thanh toán qua Momo" name="payUrl" class="btn btn-hover cart-btn-2 w-100">
                                     </div>
                                 </form>
                             </div>

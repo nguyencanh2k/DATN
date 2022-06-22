@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="invoice-title">
-                    <h2>Chào {{$shipping_array['customer_name']}}</h2>
+                    <h2>Chào {{$shipping_array['customer_name']}}</h2><br>
                     <h3>Mã đơn hàng {{$code['order_id']}}</h3>
                 </div>
                 <hr>
@@ -77,8 +77,6 @@
                             Phương thức thanh toán: 
                             @if($shipping_array['shipping_method']==0)
                                 Thanh toán bằng tiền mặt
-                            @else
-                                Thanh toán bằng Momo
                             @endif
                         </address>
                     </div>

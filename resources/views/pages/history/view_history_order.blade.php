@@ -65,7 +65,6 @@
                             <li class="mb-1"><strong class="text-dark mr-4">Hình thức thanh toán:</strong> 
                                 <span>
                                     @if($shipping->shipping_method==0) Thanh toán khi nhận hàng 
-                                    @else Thanh toán bằng thẻ ngân hàng
                                     @endif
                                 </span>
                             </li>
@@ -120,7 +119,9 @@
                                             Không có
                                         @endif
                                         </td>
-                                        <td>{{$details->product_sales_quantity}}</td>
+                                        <td>
+                                            {{$details->product_sales_quantity}}
+                                        </td>
                                         <td>{{number_format($details->product->product_price ,0,',','.')}}đ</td>
                                         <td>{{number_format($subtotal ,0,',','.')}}đ</td>
                                         @if ($order_status == 2)

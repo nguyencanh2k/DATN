@@ -44,7 +44,7 @@ class CategoryProduct extends Controller
         $category_product->save();
 
         Toastr::success('Thêm danh mục sản phẩm thành công', 'Thành công');
-        return Redirect::to('all-category-product');
+        return Redirect::to('add-category-product');
     }
     public function unactive_category_product($category_product_id){
         $this->AuthLogin();

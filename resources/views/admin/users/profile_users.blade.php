@@ -21,7 +21,7 @@
                 @foreach ($profile as $key => $prof)
                 <div class="card-body">
                     <div class="media align-items-center mb-4">
-                        <img class="mr-3" src="{{asset('public/backend/images/user/yuta.jpg')}}" width="80" height="80" alt="">
+                        <img class="mr-3" src="{{asset('public/backend/images/user/avatar_admin.png')}}" width="80" height="80" alt="">
                         <div class="media-body">
                             <h3 class="mb-0">{{$prof->admin_name}}</h3>
                         </div>

@@ -60,7 +60,6 @@
                                     </td>
                                     <td><span>
                                         <a href="{{URL::to('/view-order/'.$ord->order_id)}}" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye text-success m-r-5 text-active"></i></a>
-                                        <a href="{{URL::to('/delete-order/'.$ord->order_id)}}" onclick="return confirm('Bạn có chắc là muốn xóa đơn hàng này ko?')" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close text-danger ml-4"></i></a>
                                     </span></td>
                                 </tr>
                                 @endforeach

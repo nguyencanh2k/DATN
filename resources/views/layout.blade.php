@@ -188,7 +188,7 @@
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        <li><a href="">Contact Us</a></li>
+                                        <li><a href="{{URL::to('/lien-he')}}">Liên hệ</a></li>
                                     </ul>
                                 </div>
                                 <!--Main Navigation End -->
@@ -210,7 +210,7 @@
                                     <div class="contact-link">
                                         <div class="phone">
                                             <p>Hotline:</p>
-                                            <a href="tel:(+800)345678">(+012)3456789</a>
+                                            <a href="tel:(+800)345678">(+093)1892222</a>
                                         </div>
                                     </div>
                                     <!--Contact info End -->
@@ -289,8 +289,8 @@
                                         <p class="phone-info">
                                             Cần giúp đỡ?
                                             <span>
-                                                (+012) 345 6789 <br />
-                                                (+012) 123 4567
+                                                (+093) 189 2222 <br />
+                                                (+096) 139 5555
                                             </span>
                                         </p>
                                     </div>
@@ -339,8 +339,8 @@
                                             <li><a href="#">Giá tốt nhất</a></li>
                                             <li><a href="#">Sản phẩm mới</a></li>
                                             <li><a href="#">Sản phẩm bán chạy</a></li>
-                                            <li><a href="login.html">Đăng nhập</a></li>
-                                            <li><a href="my-account.html">Tài khoản của tôi</a></li>
+                                            <li><a href="">Đăng nhập</a></li>
+                                            <li><a href="">Tài khoản của tôi</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -620,7 +620,6 @@
                           var shipping_address = $('.shipping_address').val();
                           var shipping_phone = $('.shipping_phone').val();
                           var shipping_notes = $('.shipping_notes').val();
-                          var shipping_method = $('.payment_select').val();
                           var order_coupon = $('.order_coupon').val();
                           var total_after = $('.total_after').val();
                           var _token = $('input[name="_token"]').val();
@@ -628,7 +627,7 @@
                           $.ajax({
                               url: '{{url('/confirm-order')}}',
                               method: 'POST',
-                              data:{shipping_email:shipping_email,shipping_name:shipping_name,shipping_address:shipping_address,shipping_phone:shipping_phone,shipping_notes:shipping_notes,_token:_token,order_coupon:order_coupon,shipping_method:shipping_method,total_after:total_after},
+                              data:{shipping_email:shipping_email,shipping_name:shipping_name,shipping_address:shipping_address,shipping_phone:shipping_phone,shipping_notes:shipping_notes,_token:_token,order_coupon:order_coupon,total_after:total_after},
                               success:function(){
                                  swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
                               }
@@ -895,6 +894,20 @@
             starWidth: "18px",
         });
         });
+    </script>
+    <script>
+        $("#btn_momo").hide();
+        // $(function () {
+        // $("#show_btn_momo").change(function() {
+        //     var val = $(this).val();
+        //     if(val === "0") {
+        //         $("#btn_momo").hide();
+        //     }
+        //     else if(val === "1") {
+        //         $("#btn_momo").show();
+        //     }
+        // });
+        // });
     </script>
     </body>
 </html>

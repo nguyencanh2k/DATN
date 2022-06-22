@@ -15,6 +15,7 @@ use App\Order;
 use App\OrderDetails;
 use App\Coupon;
 use App\CatePost;
+use App\Product;
 use App\Brand;
 use App\CategoryProductModel;
 use App\Customer;
@@ -128,7 +129,7 @@ class CheckoutController extends Controller
         $shipping->shipping_phone = $data['shipping_phone'];
         $shipping->shipping_address = $data['shipping_address'];
         $shipping->shipping_notes = $data['shipping_notes'];
-        $shipping->shipping_method = $data['shipping_method'];
+        $shipping->shipping_method = '0';
         $shipping->save();
         $shipping_id = $shipping->shipping_id;
 
@@ -152,7 +153,12 @@ class CheckoutController extends Controller
                $order_details->product_id = $cart['product_id'];
                $order_details->product_sales_quantity = $cart['product_qty'];
                $order_details->product_coupon =  $data['order_coupon'];
-               $order_details->save();
+               $order_details->save();			
+               $product = Product::find($cart['product_id']);
+               $product_quantity = $product->product_quantity;
+               $pro_remain = $product_quantity - $cart['product_qty'];
+               $product->product_quantity = $pro_remain;
+               $product->save();
            }
         }
         //send mail
@@ -177,7 +183,7 @@ class CheckoutController extends Controller
             'shipping_phone' => $data['shipping_phone'],
             'shipping_address' => $data['shipping_address'],
             'shipping_notes' => $data['shipping_notes'],
-            'shipping_method' => $data['shipping_method']
+            'shipping_method' => '0'
         );
         $ordercode_mail = array(
             'coupon_code' => $coupon_mail,
@@ -215,7 +221,7 @@ class CheckoutController extends Controller
         $partnerCode = 'MOMOBKUN20180529';
         $accessKey = 'klm05TvNBzhg7h7j';
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-        $orderInfo = "Thanh toán qua ATM MoMo";
+        $orderInfo = "Thanh toán qua MoMo";
         $amount = $_POST['total_momo'];
         $orderId = time() . "";
         $redirectUrl = "http://localhost:8080/DATN/checkout";

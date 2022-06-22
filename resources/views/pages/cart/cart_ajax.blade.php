@@ -97,7 +97,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6 d-flex">
-                <div class="discount-code-wrapper flex-fill">
+                {{-- <div class="discount-code-wrapper flex-fill">
                     <div class="title-wrap">
                         <h4 class="cart-bottom-title section-bg-gray">Mã giảm giá</h4>
                     </div>
@@ -109,7 +109,7 @@
                             <button class="cart-btn-2 check_coupon" name="check_coupon" type="submit">Áp dụng mã giảm giá</button>
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-6 col-md-12 d-flex">
                 @if(Session::get('cart'))

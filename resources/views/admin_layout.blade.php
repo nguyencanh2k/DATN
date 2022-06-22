@@ -80,7 +80,7 @@
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                <img src="{{asset('public/backend/images/user/yuta.jpg')}}" height="40" width="40" alt="">
+                                <img src="{{asset('public/backend/images/user/avatar_admin.png')}}" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
@@ -159,7 +159,6 @@
                             <li><a href="{{URL::to('/all-post')}}">Liệt kê bài viết</a></li>
                         </ul>
                     </li>
-                    @hasrole(['admin'])
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-money"></i><span class="nav-text">Đơn hàng</span>
@@ -168,7 +167,6 @@
                             <li><a href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a></li>
                         </ul>
                     </li>
-                    @endhasrole
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-star-o"></i><span class="nav-text">Đánh giá</span>
