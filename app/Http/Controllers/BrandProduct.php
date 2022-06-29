@@ -92,23 +92,23 @@ class BrandProduct extends Controller
         $brand_name = Brand::where('tbl_brand.brand_id',$brand_id)->first();
         $min_price = Product::min('product_price');
         $max_price = Product::max('product_price');
-        $min_price_range = $min_price + 1000000;
+        $min_price_range = $min_price;
         $max_price_range = $max_price + 5000000;
         if(isset($_GET['sort_by'])){
             $sort_by = $_GET['sort_by'];
             if($sort_by=='giam_dan'){
-                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_price','DESC')->paginate(10)->appends(request()->query());
+                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_price','DESC')->paginate(12)->appends(request()->query());
             }elseif($sort_by=='tang_dan'){
-                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_price','ASC')->paginate(10)->appends(request()->query());
+                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_price','ASC')->paginate(12)->appends(request()->query());
             }elseif($sort_by=='kytu_za'){
-                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_name','DESC')->paginate(10)->appends(request()->query());
+                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_name','DESC')->paginate(12)->appends(request()->query());
             }elseif($sort_by=='kytu_az'){
-                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_name','ASC')->paginate(10)->appends(request()->query());
+                $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->orderBy('product_name','ASC')->paginate(12)->appends(request()->query());
             }
         }elseif(isset($_GET['start_price']) && $_GET['end_price']){
             $min_price = $_GET['start_price'];
             $max_price = $_GET['end_price'];
-            $brand_by_id = Product::with('brand')->whereBetween('product_price', [$min_price, $max_price])->orderBy('product_id', 'ASC')->paginate(10)->appends(request()->query());
+            $brand_by_id = Product::with('brand')->where('brand_id', $brand_id)->whereBetween('product_price', [$min_price, $max_price])->orderBy('product_id', 'ASC')->paginate(12)->appends(request()->query());
         }elseif(isset($_GET['filterbrand'])){
             $brand_filter = $_GET['filterbrand'];
             $brand_by_id = Product::with('brand')->whereIn('brand_id', $brand_filter)->paginate(12)->appends(request()->query());

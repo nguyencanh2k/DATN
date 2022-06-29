@@ -75,7 +75,7 @@
                                             <?php
                                             }else{
                                             ?>  
-                                            Giảm {{$cou->coupon_number}} k
+                                            Giảm {{number_format($cou->coupon_number,0,',','.').' '.'đ'}}
                                             <?php
                                         }
                                         ?>

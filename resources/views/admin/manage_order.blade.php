@@ -49,7 +49,7 @@
                                     <td>@if($ord->order_status==1)
                                         <span class="text text-success">Đơn hàng mới</span> 
                                     @elseif($ord->order_status==2)
-                                        <span class="text text-primary">Đã xử lý - Đã giao hàng</span> 
+                                        <span class="text text-primary">Đã giao hàng</span> 
                                     @else
                                         <span class="text text-danger">Đơn hàng đã bị hủy</span> 
                                     @endif

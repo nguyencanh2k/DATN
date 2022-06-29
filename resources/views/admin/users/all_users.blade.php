@@ -61,7 +61,7 @@
         
                                     <td style="text-align: center">
                                         <a class="btn btn-sm btn-success" style="font-weight: 700; font-size:18px" href="{{url('/edit-user-roles/'.$user->admin_id)}}">Sửa</a>
-                                        <a class="btn btn-sm btn-danger" style="font-weight: 700; font-size:18px" href="{{url('/delete-user-roles/'.$user->admin_id)}}">Xóa</a><br>
+                                        <a class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc là muốn xóa nhân viên này ko?')" style="font-weight: 700; font-size:18px" href="{{url('/delete-user-roles/'.$user->admin_id)}}">Xóa</a><br>
                                         <input type="submit" value="Phân quyền" class="btn  btn-default" style="font-weight: 700; font-size:18px">
                                     </td> 
                                 </tr>

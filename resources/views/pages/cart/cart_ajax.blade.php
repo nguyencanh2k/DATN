@@ -90,7 +90,10 @@
                             </div>
                         </div>
                     </div>
-                    
+                    @else
+                    <div class="alert alert-danger">
+                        Giỏ hàng trống
+                    </div>
                     @endif
                 </form>
             </div>

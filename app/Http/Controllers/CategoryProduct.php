@@ -89,27 +89,27 @@ class CategoryProduct extends Controller
     public function show_category_home(Request $request , $category_id){
         //category post
         $category_post = CatePost::where('cate_post_status','0')->orderBy('cate_post_id', 'DESC')->get();
-        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_id','desc')->get(); 
-        $brand_product = Brand::where('brand_status','0')->orderby('brand_id','desc')->get();
+        $cate_product = CategoryProductModel::where('category_status','0')->orderby('category_id','asc')->get(); 
+        $brand_product = Brand::where('brand_status','0')->orderby('brand_order','asc')->get();
         $min_price = Product::min('product_price');
         $max_price = Product::max('product_price');
-        $min_price_range = $min_price + 1000000;
+        $min_price_range = $min_price;
         $max_price_range = $max_price + 5000000;
         if(isset($_GET['sort_by'])){
             $sort_by = $_GET['sort_by'];
             if($sort_by=='giam_dan'){
-                $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_price','DESC')->paginate(10)->appends(request()->query());
+                $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_price','DESC')->paginate(12)->appends(request()->query());
             }elseif($sort_by=='tang_dan'){
-                $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_price','ASC')->paginate(10)->appends(request()->query());
+                $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_price','ASC')->paginate(12)->appends(request()->query());
             }elseif($sort_by=='kytu_za'){
-                $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_name','DESC')->paginate(10)->appends(request()->query());
+                $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_name','DESC')->paginate(12)->appends(request()->query());
             }elseif($sort_by=='kytu_az'){
-                $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_name','ASC')->paginate(10)->appends(request()->query());
+                $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_name','ASC')->paginate(12)->appends(request()->query());
             }
         }elseif(isset($_GET['start_price']) && $_GET['end_price']){
             $min_price = $_GET['start_price'];
             $max_price = $_GET['end_price'];
-            $category_by_id = Product::with('category')->whereBetween('product_price', [$min_price, $max_price])->orderBy('product_id', 'ASC')->paginate(10)->appends(request()->query());
+            $category_by_id = Product::with('category')->where('category_id', $category_id)->whereBetween('product_price', [$min_price, $max_price])->orderBy('product_id', 'ASC')->paginate(12)->appends(request()->query());
         }elseif(isset($_GET['filterbrand'])){
             $brand_filter = $_GET['filterbrand'];
             $category_by_id = Product::with('brand')->whereIn('brand_id', $brand_filter)->paginate(12)->appends(request()->query());
@@ -117,7 +117,7 @@ class CategoryProduct extends Controller
             $category_filter = $_GET['filtercategory'];
             $category_by_id = Product::with('category')->whereIn('category_id', $category_filter)->paginate(12)->appends(request()->query());
         }else{
-            $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_id','DESC')->paginate(20);
+            $category_by_id = Product::with('category')->where('category_id', $category_id)->orderBy('product_id','DESC')->paginate(12);
         }
         $category_name = CategoryProductModel::where('category_id',$category_id)->limit(1)->get();
         foreach($category_name as $key => $val){

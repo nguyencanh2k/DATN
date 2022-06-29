@@ -116,11 +116,11 @@
                     <form action="{{URL::current()}}" method="get">
                         <div class="sidebar-heading">
                             <div class="main-heading">
-                                <h2>Filter By</h2>
+                                <h2>Lọc theo</h2>
                             </div>
                             <!-- Sidebar single item -->
                             <div class="sidebar-widget">
-                                <h4 class="pro-sidebar-title">Lọc danh mục</h4>
+                                <h4 class="pro-sidebar-title">Danh mục</h4>
                                 <div class="sidebar-widget-list">
                                     <ul>
                                         @foreach ($category as $key => $cate)
@@ -179,7 +179,7 @@
                         <input type="submit" id="filter" value="Lọc" class="btn btn-success" />
                     </form>
                     <!-- Sidebar single item -->
-                    <div class="sidebar-widget mt-20">
+                    <div class="sidebar-widget mt-20 mb-4">
                         <h4 class="pro-sidebar-title">Giá</h4>
                         <div class="price-filter mt-10">
                             <form action="">
