@@ -46,7 +46,7 @@
                         <div class="rating-product">
                             <div class="rateYo_show" data-rating="{{$review_avg}}"></div>
                         </div>
-                        <span class="read-review"><a class="reviews" href="#">Read reviews ({{$review_count}})</a></span>
+                        <span class="read-review"><a class="reviews" href="#">Đánh giá ({{$review_count}})</a></span>
                     </div>
                     <div class="pricing-meta">
                         <ul>

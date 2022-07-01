@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-12 order-lg-last col-md-12 order-md-first">
                 @foreach($post as $key => $p)
-                <div class="row">
+                <div class="row mt-50">
                     <div class="col-lg-5 col-md-6">
                         <div class="single-blog-post blog-grid-post">
                             <div class="blog-post-media">
@@ -44,7 +44,7 @@
                             <p>
                                 {!!$p->post_desc!!}
                             </p>
-                            <a class="read-more-btn" href="{{URL::to('/bai-viet/'.$p->post_slug)}}"> Read More <i class="ion-android-arrow-dropright-circle"></i></a>
+                            <a class="read-more-btn" href="{{URL::to('/bai-viet/'.$p->post_slug)}}"> Đọc ngay <i class="ion-android-arrow-dropright-circle"></i></a>
                         </div>
                     </div>
                     <!-- single blog post -->

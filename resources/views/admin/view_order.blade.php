@@ -135,8 +135,12 @@
                                         @else 
                                             @php
                                             echo 'Tổng giảm :'.number_format($coupon_number,0,',','.').' đ'.'</br>';
-                                            $total_coupon = $total - $coupon_number ;
-        
+                                            if ($coupon_number>=$total) {
+                                                $coupon_number=$total;
+                                                $total_coupon = $total - $coupon_number ;
+                                            }else{
+                                                $total_coupon = $total - $coupon_number ;
+                                            }
                                             @endphp
                                         @endif
                                         Thanh toán: {{number_format($total_coupon,0,',','.')}} đ     

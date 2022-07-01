@@ -180,7 +180,7 @@
                     </form>
                     <!-- Sidebar single item -->
                     <div class="sidebar-widget mt-20 mb-4">
-                        <h4 class="pro-sidebar-title">Price</h4>
+                        <h4 class="pro-sidebar-title">Giá</h4>
                         <div class="price-filter mt-10">
                             <form action="">
                             <div class="price-slider-amount">

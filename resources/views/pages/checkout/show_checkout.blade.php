@@ -107,7 +107,7 @@
                             @if(Session::get('cart'))
                             <div class="grand-totall flex-fill">
                                 <div class="title-wrap">
-                                    <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                                    <h4 class="cart-bottom-title section-bg-gary-cart">Tổng tiền</h4>
                                 </div>
 
                                 <h5>Tổng tiền :<span>{{number_format($total,0,',','.')}}đ</span></h5>
@@ -133,7 +133,12 @@
                                     <h5>Mã giảm :  <span>{{number_format($cou['coupon_number'],0,',','.')}}đ</span>
                                         <span>
                                             @php 
-                                                $total_coupon = $total - $cou['coupon_number'];
+                                                if($cou['coupon_number']>=$total){
+                                                    $cou['coupon_number'] = $total;
+                                                    $total_coupon = $total - $cou['coupon_number'];
+                                                }else{
+                                                    $total_coupon = $total - $cou['coupon_number'];
+                                                }
                                             @endphp
                                         </span>
                                             @php 
@@ -146,7 +151,7 @@
                                 @endif
                                 
 
-                                <h4 class="grand-totall-title">Tổng đã giảm :
+                                <h4 class="grand-totall-title">Tổng thanh toán :
                                     @php 
 											if(Session::get('coupon')){
 												$total_after = $total_after_coupon;

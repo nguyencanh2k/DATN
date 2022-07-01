@@ -35,7 +35,7 @@
                             <table class="table table-bordered table-striped verticle-middle">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>STT</th>
                                         <th>Mã đơn hàng</th>
                                         <th>Thời gian đặt hàng</th>
                                         <th>Tình trạng đơn hàng</th>
