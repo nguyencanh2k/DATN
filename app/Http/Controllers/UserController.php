@@ -67,10 +67,16 @@ class UserController extends Controller
         $admin->admin_name = $data['admin_name'];
         $admin->admin_phone = $data['admin_phone'];
         $admin->admin_email = $data['admin_email'];
-        $admin->admin_password = md5($data['admin_password']);
-        $admin->save();
-        Toastr::success('Cập nhật thông tin nhân viên thành công', 'Thành công');
-        return Redirect::to('users');
+        if($data['admin_password']){
+            $admin->admin_password = md5($data['admin_password']);
+            $admin->save();
+            Toastr::success('Cập nhật thông tin nhân viên thành công', 'Thành công');
+            return Redirect::to('users');
+        }else{
+            $admin->save();
+            Toastr::success('Cập nhật thông tin nhân viên thành công', 'Thành công');
+            return Redirect::to('users');
+        }
     }
     public function delete_user_roles($admin_id){
         if(Auth::id()==$admin_id){

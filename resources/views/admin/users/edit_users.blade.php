@@ -48,7 +48,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Mật khẩu</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="admin_password" value="{{$edit_ad->admin_password}}" class="form-control" placeholder="" required>
+                                    <input type="text" name="admin_password" value="" class="form-control" placeholder="" >
                                 </div>
                             </div>
                             <div class="form-group row">

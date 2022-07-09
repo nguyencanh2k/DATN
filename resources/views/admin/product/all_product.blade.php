@@ -30,6 +30,7 @@
                                     <th scope="col">Tên sản phẩm</th>
                                     <th scope="col">Thư viện ảnh</th>
                                     <th scope="col">Số lượng sản phẩm</th>
+                                    <th scope="col">Số lượng bán ra</th>
                                     <th scope="col">Giá nhập</th>
                                     <th scope="col">Giá bán</th>
                                     <th scope="col">Hình ảnh sản phẩm</th>
@@ -52,6 +53,7 @@
                                     <td>{{$pro->product_name}}</td>
                                     <td><a href="{{url('/add-gallery/'.$pro->product_id)}}">Thêm thư viện ảnh</a></td>
                                     <td>{{$pro->product_quantity}}</td>
+                                    <td>{{$pro->product_sold}}</td>
                                     <td class="price_format">{{$pro->price_cost}}</td>
                                     <td class="price_format">{{$pro->product_price}}</td>
                                     <td><img src="public/uploads/product/{{$pro->product_image}}" height="100" width="100" alt=""></td>
